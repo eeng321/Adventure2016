@@ -1,0 +1,2 @@
+add_executable(rest_server rest_server.cc)
+target_link_libraries(rest_server net_static)

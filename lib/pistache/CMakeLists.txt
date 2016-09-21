@@ -14,10 +14,7 @@ endif()
 
 include_directories (${CMAKE_CURRENT_SOURCE_DIR}/include)
 file(GLOB HEADER_FILES "include/*.h")
-install(FILES ${HEADER_FILES} DESTINATION include/pistache)
+install(FILES ${HEADER_FILES} DESTINATION include)
 
 add_subdirectory (src)
 include_directories (src)
-
-add_subdirectory (adventure_rest_server)
-
