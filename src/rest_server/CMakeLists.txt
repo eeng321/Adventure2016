@@ -18,3 +18,5 @@ install(FILES ${HEADER_FILES} DESTINATION include)
 
 add_subdirectory (src)
 include_directories (src)
+
+add_subdirectory (rest_server)

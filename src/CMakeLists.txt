@@ -1,2 +1,2 @@
-add_subdirectory(rest-server)
-include_directories(rest-server) 
+add_subdirectory(rest_server)
+include_directories(rest_server)
