@@ -1,3 +1,7 @@
+
+#ifndef tile_h
+#define tile_h
+
 #include <string>
 
 using std::string
@@ -23,29 +27,20 @@ private:
 class Field : public Tile {//simple implementation of the tile interface
 public:
 
-	field(Coordinate c)
-	:location(c){
-		navigable = false;
-	}
+	field(Coordinate c);
 
-	string description() const {
+	string description() const;
 
-	}
+	Coordinate getLocation() const;
 
-	Coordinate getLocation() const {
-		return location
-	}
+	void makeUnnavigable();
 
-	void makeUnnavigable(){
-		navigable = false;
-	}
+	void makeNavigable();
 
-	void makeNavigable(){
-		navigable = true;
-	}
-
-	bool isNavigable(){
-		return navigable;
-	}
+	bool isNavigable();
 
 };//field class
+
+#include "tile.cpp"
+
+#endif /* tile_h */
