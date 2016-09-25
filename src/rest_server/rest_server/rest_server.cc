@@ -2,7 +2,6 @@
    Original Author: Mathieu Stefani, 07 février 2016
    Updated by: Michael Nguyen for CMPT 373.
 */
-
 #include "http.h"
 #include "router.h"
 #include "endpoint.h"
@@ -53,6 +52,7 @@ public:
     }
 
 private:
+
     void setupRoutes() {
         using namespace Net::Rest;
 
