@@ -31,12 +31,9 @@ World::World(int size, Coordinate spawn)
 :spawnLocation(spawn){
 	for(int x = 0; x < size; x++){
 
-		// vector<unique_ptr<Tile> > column;
-		// map.push_back(column);
 		for(int y = 0; y < size; y++){
 			Field f{ Coordinate{x,y} };
 			auto temp = std::make_unique<Field>(Coordinate{x,y});
-			// unique_ptr<Tile> temp = std::move(&f);//initialize map with only generic field tiles
 			map[x].push_back(std::move(temp));
 		}	
 	}
@@ -45,10 +42,6 @@ World::World(int size, Coordinate spawn)
 void World::enterWorld(const string& username){
 	players.insert(std::make_pair(username, spawnLocation));
 }
-
-// vector< vector< unique_ptr<Tile> > >* World::getMap() const {
-// 	return *map;
-// }
 
 Tile* World::getTile(const Coordinate& c) const {//getTileToEdit may be the only time a tile is needed to be returned, possibly don't need this method
 	return map[c.x][c.y].get();
@@ -61,9 +54,7 @@ Tile* World::getTileToEdit(const Coordinate& c){
 
 void World::modifyTile(Tile& t){
 	Coordinate c = t.getLocation();
-	map[c.x][c.y].reset(std::move(&t));
-	// map[c.x][c.y] = std::move(&t);
-	// map[c.x][c.y] = t.clone();//overwrite tile with the new tile 	
+	map[c.x][c.y].reset(std::move(&t)); 	
 	map[c.x][c.y]->makeNavigable();	
 }
 

@@ -28,8 +28,6 @@ public:
 
 	void enterWorld(const string& username);
 
-	// vector< vector< unique_ptr<Tile> > > getMap() const;
-
 	Tile* getTile(const Coordinate& c) const;
 
 	Tile* getTileToEdit(const Coordinate& c);

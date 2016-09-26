@@ -29,7 +29,3 @@ void Field::makeNavigable(){
 bool Field::isNavigable() const {
 	return navigable;
 }
-
-// std::unique_ptr<Tile> Field::clone(){//uses clone pattern as seen on cplusplus.com
-// 	return std::make_unique<Tile>(*this);
-// }
