@@ -1,34 +1,35 @@
 //tile.cpp
 
-#ifdef tile_h;
-
 #include <string>
 
-using std::string
+#include "tile.h"
+using std::string;
 
-field::field(Coordinate c)
+Field::Field(Coordinate c)
 :location(c){
 	navigable = false;
 }
 
-string field::description() const {
-
+string Field::description() const {
+	return "a Simple descirption";
 }
 
-Coordinate field::getLocation() const {
-	return location
+Coordinate Field::getLocation() const {
+	return location;
 }
 
-void field::makeUnnavigable(){
+void Field::makeUnnavigable(){
 	navigable = false;
 }
 
-void field::makeNavigable(){
+void Field::makeNavigable(){
 	navigable = true;
 }
 
-bool field::isNavigable(){
+bool Field::isNavigable() const {
 	return navigable;
 }
 
-#endif
+// std::unique_ptr<Tile> Field::clone(){//uses clone pattern as seen on cplusplus.com
+// 	return std::make_unique<Tile>(*this);
+// }

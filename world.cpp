@@ -1,20 +1,18 @@
 //world.cpp
 
 //world.h
-//reference: cplusplus.com
-
-#ifdef world_h
+//reference: cplusplus.com, cppreference.com
 
 #include <vector>
 #include <unordered_map>
 #include <string>
 #include <exception>
 
-#include "tile.h"
+#include "world.h"
 
-using std::unordered_map
-using std::vector
-using std::string
+using std::unordered_map;
+using std::vector;
+using std::string;
 
 
 /*
@@ -31,39 +29,42 @@ using std::string
 
 World::World(int size, Coordinate spawn)
 :spawnLocation(spawn){
-	for(int x := 0; x < size; x++){
+	for(int x = 0; x < size; x++){
 
-		vector<Tile> column;
-		for(int y := 0; y < size; y++){
-			Field temp(Coordinate{x,y});//initialize map with only generic field tiles
-			column.pushBack(temp)
-		}
-
-		map.push_back(column);
+		// vector<unique_ptr<Tile> > column;
+		// map.push_back(column);
+		for(int y = 0; y < size; y++){
+			Field f{ Coordinate{x,y} };
+			auto temp = std::make_unique<Field>(Coordinate{x,y});
+			// unique_ptr<Tile> temp = std::move(&f);//initialize map with only generic field tiles
+			map[x].push_back(std::move(temp));
+		}	
 	}
 }
 
 void World::enterWorld(const string& username){
-	players.insert(std::make_pair<string,Coordinate>(username, spawn));
+	players.insert(std::make_pair(username, spawnLocation));
 }
 
-vector< vector<Tile> > World::getMap() const {
-	return map;
+// vector< vector< unique_ptr<Tile> > >* World::getMap() const {
+// 	return *map;
+// }
+
+Tile* World::getTile(const Coordinate& c) const {//getTileToEdit may be the only time a tile is needed to be returned, possibly don't need this method
+	return map[c.x][c.y].get();
 }
 
-Tile World::getTile(const Coordinate& c) const {//getTileToEdit may be the only time a tile is needed to be returned, possibly don't need this method
-	return map[c.x][c.y];
+Tile* World::getTileToEdit(const Coordinate& c){
+	map[c.x][c.y]->makeUnnavigable();
+	return map[c.x][c.y].get();
 }
 
-Tile World::getTileToEdit(const Coordinate& c){
-	map[c.x][c.y].makeUnnavigable();
-	return map[c.x][c.y];
-}
-
-void World::modifyTile(const Tile& t){
+void World::modifyTile(Tile& t){
 	Coordinate c = t.getLocation();
-	map[c.x][c.y] = t;//overwrite tile with the new tile 	
-	map[c.x][c.y].makeNavigable();	
+	map[c.x][c.y].reset(std::move(&t));
+	// map[c.x][c.y] = std::move(&t);
+	// map[c.x][c.y] = t.clone();//overwrite tile with the new tile 	
+	map[c.x][c.y]->makeNavigable();	
 }
 
 /* 
@@ -73,39 +74,38 @@ void World::modifyTile(const Tile& t){
    not vavigable
  */
 void World::move(string username, Direction d){
-	Coordinate currentLocation = players.find("username");
-	if(d = north && 
+	Coordinate currentLocation = players[username];
+	if(d == north && 
 		currentLocation.y > 0 && //greater than last tile
-		map[currentLocation.x][currentLocation.y - 1].isNavigable() ){
+		map[currentLocation.x][currentLocation.y - 1]->isNavigable() ){
 
 		currentLocation.y--;
 		players[username] = currentLocation;
 
-	} else if(d = south &&
+	} else if(d == south &&
 		currentLocation.y < map[currentLocation.x].size() - 1 && //less than last tile
-		map[currentLocation.x][currentLocation.y + 1].isNavigable() ){
+		map[currentLocation.x][currentLocation.y + 1]->isNavigable() ){
 
 		currentLocation.y++;
 		players[username] = currentLocation;
 
-	} else if(d = east &&
+	} else if(d == east &&
 		currentLocation.x < map.size() - 1 && //less than last tile
-		map[currentLocation.x + 1][currentLocation.y].isNavigable){
+		map[currentLocation.x + 1][currentLocation.y]->isNavigable()){
 
 		currentLocation.x++;
 		players[username] = currentLocation;
 
-	} else if(d = west &&
+	} else if(d == west &&
 		currentLocation.x > 0 && //greater than last tile
-		map[currentLocation.x - 1][currentLocation.y].isNavigable){
+		map[currentLocation.x - 1][currentLocation.y]->isNavigable()){
 
 		currentLocation.x--;
 		players[username] = currentLocation;
 
 	} else {
-		throw std::domain_error;
+		throw std::domain_error("Unable to walk in that direction");
 	}
 }
 
 
-#endif
