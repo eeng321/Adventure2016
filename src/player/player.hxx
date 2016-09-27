@@ -14,10 +14,10 @@ private:
 
   friend class odb::access; 
 
-  #pragma db id auto        
-  unsigned long id_;        
+  #pragma db id auto       
 
-  std::string name_;
-
-  int health_;
+  unsigned long id_; //player id
+  std::string name_; //player name
+  int health_; 		 //player health
+  int row_, col_; 		 //player position
 };
