@@ -1,5 +1,5 @@
-// playerDriver.cxx
-//
+// playerDriver.cxx 
+// CRUD operations
 
 #include <memory>   // std::auto_ptr
 #include <iostream>
@@ -15,42 +15,8 @@
 using namespace std;
 using namespace odb::core;
 
-// int main (int argc, char* argv[])
-// {
-//   try
-//   {
-//     auto_ptr<database> db (new odb::sqlite::database (argc, argv));
-
-//     unsigned long john_id, jane_id, joe_id; //player_id
-
-//     // Create a few persistent person objects.
-//     //
-//     {
-//       //playerid (name, health)
-//       player john ("John", 100); 
-//       player jane ("Jane", 100);
-//       player joe ("Joe", 100);
-
-//       transaction t (db->begin ());
-
-//       // Make objects persistent and save their ids for later use.
-//       //
-//       john_id = db->persist (john);
-//       jane_id = db->persist (jane);
-//       joe_id = db->persist (joe);
-
-//       t.commit ();
-//     }
-//   }
-//   catch (const odb::exception& e)
-//   {
-//     cerr << e.what () << endl;
-//     return 1;
-//   }
-// }
-
 //create entry into db
-int Create(string const playerName){
+void Create(string const playerName){
   try{
     player user (playerName, 100); //create player object
     transaction t (db->begin());
@@ -61,7 +27,6 @@ int Create(string const playerName){
   }
   catch (const odb::exception& e){
     cerr << e.what () << endl;
-    return 1;  
   }
 
 }
@@ -96,7 +61,7 @@ int Retrieve(string const playerName){
 }
 
 //add stuff into param for changing
-int Update(string const playerName){
+void Update(string const playerName){
   int playerID = Retrieve(playerName); //get id of the player name you want
 
   if(playerID != -1){ //if we can find player in db
@@ -114,10 +79,9 @@ int Update(string const playerName){
     catch (const odb::exception& e)
     {
       cerr << e.what () << endl;
-      return 1;
     }
   }
-  return 0; //failed
+
 }
 
 //delete player from the database
