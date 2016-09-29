@@ -1,43 +1,65 @@
+//room.h
+
+
 #include <string>
-#include <memory>
+#include <vector>
 
 using std::string;
+using std::vector;
 
-struct Coordinate {
-	int x;
-	int y;
+enum class Direction{north, south, east, west};
+
+struct ID {
+	int value;
 };
 
-class Tile {//Tile interface
-public:
-	virtual ~Tile();
-	virtual string description() const = 0;
-	virtual Coordinate getLocation() const = 0;
-	virtual void makeUnnavigable() = 0;
-	virtual void makeNavigable() = 0;
-	virtual bool isNavigable() const = 0;
-	virtual std::unique_ptr<Tile> clone() = 0;
-};//Tile class
+struct Description {
+	string value;
+};
 
-class Field : public Tile {//simple implementation of the tile interface
-public:
-	~Field();
-	Field(Coordinate c);
+struct Door {
+	Direction direction;
+	vector<string> keywords;
+	int id;
+};
 
-	string description() const;
 
-	Coordinate getLocation() const;
-
-	void makeUnnavigable();
-
-	void makeNavigable();
-
-	bool isNavigable() const;
-
-	std::unique_ptr<Tile> clone();
-
+class Room {//Tile interface
 private:
-	Coordinate location;
+	ID id;
+	string name;
+	Description description;
+	vector<Description> extendedDescriptions;
+	vector<ID> npcList;
+	vector<string> playerList;
+	vector<ID> objectList;
 	bool navigable;
 
-};//field class
+	void addPlayer(string username);
+	void removePlayer(string username);
+	bool indexInRoom(string username);
+
+public:
+
+	~Room();
+	Room(const Description& d, 
+		const vector<Description>& ed, 
+		ID idIn, 
+		const string& nameIn, 
+		const vector<Door>& doorsIn);
+
+	Room(const Room& r);
+	string getDescription() const;
+	int getId() const;
+	void makeUnnavigable();
+	void makeNavigable();
+	bool isNavigable() const;
+	vector<ID> getNpcList() const;
+	vector<ID> getPlayerList() const;
+
+	void enterRoom(string username);
+	void exitRoom(string username);
+	bool canMove(Direction d);
+
+};//Room class
+
