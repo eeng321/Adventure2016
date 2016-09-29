@@ -8,7 +8,7 @@
 #include <string>
 #include <exception>
 
-#include "world.h"
+#include "worldInteraction.h"
 
 using std::unordered_map;
 using std::vector;
