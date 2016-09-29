@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "tile.h"
+#include "room.h"
 using std::string;
 
 Field::Field(Coordinate c)
