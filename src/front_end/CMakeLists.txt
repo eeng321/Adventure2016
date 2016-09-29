@@ -1,0 +1,4 @@
+add_subdirectory(lib)
+add_subdirectory(tools)
+
+install(FILES ${CMAKE_SOURCE_DIR}/include/userInput.h DESTINATION include)
