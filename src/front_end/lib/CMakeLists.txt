@@ -1,1 +1,5 @@
 add_subdirectory(userInput)
+add_subdirectory(restClient)
+
+include_directories(userInput)
+include_directories(restClient)
