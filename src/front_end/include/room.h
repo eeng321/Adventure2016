@@ -10,24 +10,11 @@ using std::vector;
 
 enum class Direction{north, south, east, west};
 
-// class ID {
-// public:
-// 	int value;
-// 	ID(){}
-// 	ID(const ID& in):value(in.value){}
-// };
 typedef int id;
 
 typedef string description;
 
 typedef string username;
-
-// class Description {
-// public:
-// 	string value;
-// 	Description();
-// 	Description(const Description& d):value(d.value){}
-// };
 
 class Door {
 public:
@@ -59,7 +46,20 @@ private:
 public:
 
 	~Room();
-	Room(const description& d, 
+
+	Room(const string& a,
+		id rid,
+		const string& n,
+		const description& des,
+		const vector<description>& ed,
+		const vector<Door>& d,
+		const vector<id>& nl,
+		const vector<string> pl,
+		const vector<id>& ol,
+		bool nav);
+
+	Room(const string& a,
+		const description& d, 
 		const vector<description>& ed, 
 		id idIn, 
 		const string& nameIn, 

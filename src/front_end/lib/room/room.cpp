@@ -43,13 +43,37 @@ int Room::indexInRoom(username player){
 Room::~Room(){
 
 }
+Room::Room(const string& a,
+	id rid,
+	const string& n,
+	const description& des,
+	const vector<description>& ed,
+	const vector<Door>& d,
+	const vector<id>& nl,
+	const vector<string> pl,
+	const vector<id>& ol,
+	bool nav)
+: area(a), 
+	mainDescription(des), 
+	extendedDescriptions(ed), 
+	roomId(rid), 
+	name(n), 
+	doors(d),
+	npcList(nl),
+	playerList(pl),
+	objectList(ol),
+	navigable(nav){
 
-Room::Room(const description& d, 
+
+}
+
+Room::Room(const string& a,
+	const description& d, 
 	const vector<description>& ed, 
 	id idIn, 
 	const string& nameIn, 
 	const vector<Door>& doorsIn)
-:mainDescription(d), extendedDescriptions(ed), roomId(idIn), name(nameIn), doors(doorsIn){
+:area(a), mainDescription(d), extendedDescriptions(ed), roomId(idIn), name(nameIn), doors(doorsIn){
 
 }
 
