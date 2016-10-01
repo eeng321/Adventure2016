@@ -6,6 +6,9 @@
 #include "router.h"
 #include "endpoint.h"
 #include <algorithm>
+#include "playerDriver.cxx"
+
+
 
 using namespace std;
 using namespace Net;
@@ -58,6 +61,8 @@ private:
 
         Routes::Get(router, "/player/:id", Routes::bind(&PlayerEndPoint::getPlayer, this));
         Routes::Get(router, "/test", Routes::bind(&Generic::test));
+        Routes::Get(router, "/testCreate", Routes::bind(&Generic::test));
+
 //        Routes::Post(router, "/record/:name/:value?", Routes::bind(&PlayerEndPoint::doRecordMetric, this));
 
 //        Routes::Get(router, "/auth", Routes::bind(&PlayerEndPoint::doAuth, this));
@@ -93,23 +98,28 @@ private:
     void getPlayer(const Rest::Request& request, Net::Http::ResponseWriter response) {
 
         // todo: Route this to PlayerController to update DB Model
-        auto playerId = request.param(":id").as<int>();
-        auto mockedPlayer = "[\n"
-                "  {\n"
-                "    \"id\": " + std::to_string(playerId) + "\n"
-                "  },\n"
-                "  {\n"
-                "    \"name\": \"Michael Nguyen\"\n"
-                "  },\n"
-                "  {\n"
-                "    \"age\": 23\n"
-                "  },\n"
-                "  {\n"
-                "    \"health\": 100\n"
-                "  }\n"
-                "]\n";
+//        auto playerId = request.param(":id").as<int>();
+//        auto mockedPlayer = "[\n"
+//                "  {\n"
+//                "    \"id\": " + std::to_string(playerId) + "\n"
+//                "  },\n"
+//                "  {\n"
+//                "    \"name\": \"Michael Nguyen\"\n"
+//                "  },\n"
+//                "  {\n"
+//                "    \"age\": 23\n"
+//                "  },\n"
+//                "  {\n"
+//                "    \"health\": 100\n"
+//                "  }\n"
+//                "]\n";
+        auto playerName = request.param(":name").as<string>();
+        Player player(-1,playerName, 100);
+        Create(player);
 
-        response.send(Http::Code::Ok, mockedPlayer);
+        Player mockedPlayer = Retrieve(playerName);
+
+        response.send(Http::Code::Ok, mockedPlayer.name_);
     }
 //
 //    void doAuth(const Rest::Request& request, Net::Http::ResponseWriter response) {

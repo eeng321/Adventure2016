@@ -14,74 +14,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="71d5e072-9740-4207-a9af-174c30f6a27d" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/CMakeLists.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/.gitmodules" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/.travis.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/CMakeLists.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/adventure_rest_server/CMakeLists.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/adventure_rest_server/custom_header.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/adventure_rest_server/hello_server.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/adventure_rest_server/http_client.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/adventure_rest_server/http_server.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/adventure_rest_server/rest_description.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/adventure_rest_server/rest_server.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/include/async.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/include/client.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/include/common.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/include/cookie.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/include/description.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/include/endpoint.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/include/flags.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/include/http.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/include/http_defs.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/include/http_header.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/include/http_headers.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/include/iterator_adapter.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/include/listener.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/include/mailbox.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/include/mime.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/include/net.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/include/optional.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/include/os.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/include/peer.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/include/prototype.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/include/reactor.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/include/router.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/include/serializer/rapidjson.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/include/stream.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/include/tcp.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/include/timer_pool.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/include/transport.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/include/typeid.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/include/view.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/src/CMakeLists.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/src/client/client.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/src/common/cookie.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/src/common/description.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/src/common/http.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/src/common/http_defs.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/src/common/http_header.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/src/common/http_headers.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/src/common/mime.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/src/common/net.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/src/common/os.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/src/common/peer.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/src/common/reactor.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/src/common/stream.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/src/common/tcp.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/src/common/timer_pool.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/src/common/transport.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/src/server/endpoint.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/src/server/listener.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pistache/src/server/router.cc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rest-server/CMakeLists.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/rest-server/rest_server.cc" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CMakeLists.txt" afterPath="$PROJECT_DIR$/src/CMakeLists.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/rest_server/rest_server/playerDriver.cxx" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/player/driver.cxx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/player/player.hxx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/player/playerDriver.cxx" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/adventure2016.iml" afterPath="$PROJECT_DIR$/.idea/adventure2016.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/rest_server/rest_server/rest_server.cc" afterPath="$PROJECT_DIR$/src/rest_server/rest_server/rest_server.cc" />
     </list>
     <ignored path="adventure2016.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -104,7 +43,7 @@
       <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
+            <state relative-caret-position="0">
               <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding />
             </state>
@@ -121,21 +60,45 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="rest_server.cc" pinned="false" current-in-tab="true">
+      <file leaf-file-name="rest_server.cc" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/rest_server/rest_server/rest_server.cc">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="144">
-              <caret line="67" column="63" selection-start-line="67" selection-start-column="63" selection-end-line="67" selection-end-column="63" />
+              <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+              <folding>
+                <element signature="e#104#121#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="playerDriver.cxx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/rest_server/rest_server/playerDriver.cxx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="23" column="57" selection-start-line="23" selection-start-column="57" selection-end-line="23" selection-end-column="57" />
+              <folding>
+                <element signature="e#41#77#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="database.hxx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/rest_server/rest_server/database.hxx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-270">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="net.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/rest_server/include/net.h">
+      <file leaf-file-name="Player.hxx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/rest_server/rest_server/Player.hxx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-115">
-              <caret line="30" column="28" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+            <state relative-caret-position="0">
+              <caret line="0" column="14" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -149,7 +112,13 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/src/rest_server/rest_server/player.hxx" />
+        <option value="$PROJECT_DIR$/src/rest_server/rest_server/player-odb.ixx" />
+        <option value="$PROJECT_DIR$/src/rest_server/rest_server/Player.hxx" />
+        <option value="$PROJECT_DIR$/src/rest_server/rest_server/player-odb.hxx" />
         <option value="$PROJECT_DIR$/src/rest_server/rest_server/rest_server.cc" />
+        <option value="$PROJECT_DIR$/src/rest_server/rest_server/player-odb.cxx" />
+        <option value="$PROJECT_DIR$/src/rest_server/rest_server/playerDriver.cxx" />
       </list>
     </option>
   </component>
@@ -161,10 +130,10 @@
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="267" />
-    <option name="y" value="82" />
-    <option name="width" value="2020" />
-    <option name="height" value="1199" />
+    <option name="x" value="-4" />
+    <option name="y" value="31" />
+    <option name="width" value="1374" />
+    <option name="height" value="700" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -269,8 +238,15 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="js-jscs-nodeInterpreter" value="/usr/bin/node" />
   </component>
-  <component name="RunManager" selected="Application.Build All">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/rest_server/rest_server" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.rest_server">
     <configuration default="true" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" PASS_PARENT_ENVS_2="true" PROJECT_NAME="adventure2016" TARGET_NAME="rest_server" CONFIG_NAME="Debug" TEST_MODE="SUITE_TEST">
       <envs />
       <method />
@@ -312,6 +288,12 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -426,10 +408,6 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
-      <envs />
-      <method />
-    </configuration>
     <configuration default="false" name="rest_server" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="adventure2016" TARGET_NAME="rest_server" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="adventure2016" RUN_TARGET_NAME="rest_server">
       <envs />
       <method />
@@ -442,11 +420,15 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="false" name="Build All" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="" PASS_PARENT_ENVS_2="true" PROJECT_NAME="adventure2016" TARGET_NAME="rest_server" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="adventure2016" RUN_TARGET_NAME="rest_server">
+      <envs />
+      <method />
+    </configuration>
     <list size="4">
-      <item index="0" class="java.lang.String" itemvalue="Application.Build All" />
-      <item index="1" class="java.lang.String" itemvalue="Application.rest_server" />
-      <item index="2" class="java.lang.String" itemvalue="Application.net" />
-      <item index="3" class="java.lang.String" itemvalue="Application.net_static" />
+      <item index="0" class="java.lang.String" itemvalue="Application.rest_server" />
+      <item index="1" class="java.lang.String" itemvalue="Application.net" />
+      <item index="2" class="java.lang.String" itemvalue="Application.net_static" />
+      <item index="3" class="java.lang.String" itemvalue="Application.Build All" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
@@ -461,27 +443,28 @@
       <updated>1474425261837</updated>
       <workItem from="1474425265473" duration="45000" />
       <workItem from="1474425405137" duration="1891000" />
+      <workItem from="1475272812331" duration="9354000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1936000" />
+    <option name="totallyTimeSpent" value="11290000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="267" y="82" width="2020" height="1199" extended-state="0" />
+    <frame x="-4" y="31" width="1374" height="700" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10990099" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20058565" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.091240875" sideWeight="0.49714285" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30082646" sideWeight="0.49714285" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11148272" sideWeight="0.50285715" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289256" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -503,34 +486,12 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rest_server/rest_server/rest_server.cc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -547,10 +508,112 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/rest_server/rest_server/rest_server.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#104#121#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/rest_server/include/net.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-115">
+        <state relative-caret-position="540">
           <caret line="30" column="28" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rest_server/rest_server/rest_server.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#104#121#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rest_server/include/net.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="30" column="28" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rest_server/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rest_server/rest_server/playerDriver.hxx.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rest_server/rest_server/player-odb.ixx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="6" column="11" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
+          <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
+          <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+          <caret line="18" column="38" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
+          <caret line="27" column="38" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
+          <caret line="35" column="11" selection-start-line="35" selection-start-column="11" selection-end-line="35" selection-end-column="11" />
+          <caret line="39" column="36" selection-start-line="39" selection-start-column="36" selection-end-line="39" selection-end-column="36" />
+          <caret line="50" column="11" selection-start-line="50" selection-start-column="11" selection-end-line="50" selection-end-column="11" />
+          <caret line="54" column="43" selection-start-line="54" selection-start-column="43" selection-end-line="54" selection-end-column="43" />
+          <caret line="63" column="43" selection-start-line="63" selection-start-column="43" selection-end-line="63" selection-end-column="43" />
+          <caret line="72" column="11" selection-start-line="72" selection-start-column="11" selection-end-line="72" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rest_server/rest_server/player.hxx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="30" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
           <folding />
         </state>
       </provider>
@@ -558,8 +621,52 @@
     <entry file="file://$PROJECT_DIR$/src/rest_server/rest_server/rest_server.cc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
-          <caret line="67" column="63" selection-start-line="67" selection-start-column="63" selection-end-line="67" selection-end-column="63" />
+          <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+          <folding>
+            <element signature="e#104#121#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rest_server/rest_server/player-odb.cxx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18198">
+          <caret line="1011" column="0" selection-start-line="1011" selection-start-column="0" selection-end-line="1011" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rest_server/rest_server/player-odb.hxx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1116">
+          <caret line="89" column="5" selection-start-line="89" selection-start-column="5" selection-end-line="89" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rest_server/rest_server/Player.hxx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="14" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rest_server/rest_server/database.hxx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-270">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rest_server/rest_server/playerDriver.cxx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="23" column="57" selection-start-line="23" selection-start-column="57" selection-end-line="23" selection-end-column="57" />
+          <folding>
+            <element signature="e#41#77#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
