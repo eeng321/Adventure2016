@@ -41,6 +41,7 @@ public:
 
 class Room {//Tile interface
 private:
+	string area;
 	id roomId;
 	string name;
 	description mainDescription;
@@ -64,6 +65,7 @@ public:
 		const string& nameIn, 
 		const vector<Door>& doorsIn);
 
+	string getArea() const;
 	description getDescription() const;
 	id getId() const;
 	string getName() const;

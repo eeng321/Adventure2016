@@ -53,6 +53,10 @@ Room::Room(const description& d,
 
 }
 
+string Room::getArea() const {
+	return area;
+}
+
 /* a function for returning the raw description screen, not the function
    for returning the string that will be seen by the user */
 description Room::getDescription() const {
