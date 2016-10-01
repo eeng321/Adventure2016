@@ -28,7 +28,7 @@ void test(const Rest::Request&, Http::ResponseWriter response) {
 }
 
 }
-
+//todo: move these to new  class files
 class PlayerEndPoint {
 public:
     PlayerEndPoint(Net::Address addr)

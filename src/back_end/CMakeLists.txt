@@ -1,5 +1,4 @@
 cmake_minimum_required (VERSION 2.8.7)
-project (pistache)
 include(CheckCXXCompilerFlag)
 
 CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
@@ -19,4 +18,4 @@ install(FILES ${HEADER_FILES} DESTINATION include)
 add_subdirectory (src)
 include_directories (src)
 
-add_subdirectory (rest_server)
+add_subdirectory (restServer)
