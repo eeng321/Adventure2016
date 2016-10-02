@@ -34,6 +34,10 @@ void getMaxScreenSize(int* maxRow, int* maxCol) {
     getmaxyx(stdscr, *maxRow, *maxCol);
 }
 
+void updateCursorPosition() {
+    getyx(stdscr, cursor.row, cursor.col);
+}
+
 int getCursorRow() {
     return cursor.row;
 }
