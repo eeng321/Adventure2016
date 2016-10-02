@@ -15,14 +15,13 @@ namespace Rest {
     public:
         RestClient();
         std::string Get(std::string request);
+        std::string Post(std::string request, std::string payload);
         std::string Put(std::string request);
-        std::string Post(std::string request);
         std::string Delete(std::string request);
 
     private:
         Net::Http::Client _client;
     };
 }
-
 
 #endif //ADVENTURE2016_RESTCLIENT_H
