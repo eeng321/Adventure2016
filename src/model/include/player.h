@@ -3,25 +3,24 @@
 
 
 #include <string>
+#include <vector>
 
 using namespace std;
 
-typedef int id;
-
 class Player{
 public:
-    Player(id playerID);
+    Player(int playerID);
     int getPlayerID();
-    id getRoomID();
-    void updateRoomID(id newRoomID);
+    vector<int> getCoordinate();
+    void updateCoordinate(vector<int> newCoordinate);
 
 private:
     // Player identification attributes
-    int player_id;
+    int id;
     string login_name;
 
     // Player information attributes
-    id player_location_id;
+    vector<int> coordinate;
 
     // Player stats
     int health;

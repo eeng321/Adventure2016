@@ -4,27 +4,24 @@
 
 using namespace std;
 
-const int DEFAULT_SPAWN = 0;
-const int START_HEALTH = 100;
-
-Player::Player(id playerID)
-:player_id(playerID){
-
+Player::Player(int playerID){
+    // initialize values
+    id = playerID;
     login_name = "";
+    // set default coordinate to 0,0
+    coordinate.assign(0,0);
 
-    player_location_id = DEFAULT_SPAWN;
-
-    health = START_HEALTH;
+    health = 100;
 }
 
 int Player::getPlayerID(){
-    return player_id;
+    return id;
 }
 
-id Player::getRoomID(){
-    return player_location_id;
+vector<int> Player::getCoordinate(){
+    return coordinate;
 }
 
-void player::updateRoomID(id newRoomID){
-    player_location_id = newRoomID;
+void Player::updateCoordinate(vector<int> newCoordinate){
+    newCoordinate = newCoordinate;
 }
