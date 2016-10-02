@@ -3,9 +3,17 @@
    Updated by: Michael Nguyen for CMPT 373.
 */
 
-#include "http.h"
-#include "router.h"
-#include "endpoint.h"
+//#include "http.h"
+//#include "router.h"
+//#include "endpoint.h"
+//#include "lib/pistache/include/net.h"
+//#include "lib/pistache/include/http.h"
+//#include "lib/pistache/include/client.h"
+#include "../lib/pistache/include/net.h"
+#include "../lib/pistache/include/http.h"
+#include "../lib/pistache/include/client.h"
+#include "../lib/pistache/include/endpoint.h"
+#include "../lib/pistache/include/router.h"
 #include <algorithm>
 
 using namespace std;

@@ -5,9 +5,9 @@
 #define ADVENTURE2016_RESTCLIENT_H
 
 #include <iostream>
-#include "include/net.h"
-#include "include/http.h"
-#include "include/client.h"
+#include "lib/pistache/include/net.h"
+#include "lib/pistache/include/http.h"
+#include "lib/pistache/include/client.h"
 
 namespace Rest {
 
