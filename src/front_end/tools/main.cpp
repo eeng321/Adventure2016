@@ -1,5 +1,6 @@
 #include "userInput.h"
 #include "RestClient.h"
+#include <iostream>
 #include <ncurses.h>
 
 #define MAX_CHAR_LIMIT 500
@@ -11,6 +12,7 @@ struct screenCoordinates {
 
 int
 main() {
+
     initscr();
     scrollok(stdscr, TRUE); //allows for screen scrolling
 //    keypad(stdstr, TRUE);  //only needed if needs special keys
