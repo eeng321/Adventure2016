@@ -29,3 +29,6 @@
 
 # Extras
 *.iml
+
+# Folders
+.idea/

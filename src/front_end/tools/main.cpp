@@ -1,5 +1,6 @@
-#include <ncurses.h>
 #include "userInput.h"
+#include "RestClient.h"
+#include <ncurses.h>
 
 #define MAX_CHAR_LIMIT 500
 
