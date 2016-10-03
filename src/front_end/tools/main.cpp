@@ -1,5 +1,7 @@
-#include <ncurses.h>
 #include "userInput.h"
+#include "RestClient.h"
+#include <iostream>
+#include <ncurses.h>
 #include "display.h"
 
 int
