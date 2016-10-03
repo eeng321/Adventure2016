@@ -3,6 +3,7 @@
 #include <iostream>
 #include <ncurses.h>
 #include "display.h"
+#include "Controller.h"
 
 int
 main() {
