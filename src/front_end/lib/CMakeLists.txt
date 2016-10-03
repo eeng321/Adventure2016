@@ -1,2 +1,2 @@
 add_subdirectory(userInput)
-add_subdirectory(ncursesAdventure)
+add_subdirectory(display)

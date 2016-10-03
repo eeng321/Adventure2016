@@ -1,5 +1,5 @@
-void getUserInput(char*);
 
-void checkPlayerCredentials(char*, char*, char*);
+void checkExistingPlayerCredentials(char *, char *, char *);
 
-void accountOrLoginMenu(char*);
+void createNewPlayerCredentials(char*, char*, char*);
+

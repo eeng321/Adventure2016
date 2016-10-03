@@ -1,38 +1,32 @@
 //Menu Code based off of example http://techlister.com/linux/creating-menu-with-ncurses-in-c/1293/
 
 #include <ncurses.h>
-#include <ncursesAdventure.h>
+#include <display.h>
 #include <string.h>
+#include <unistd.h>
 #include "userInput.h"
+#include <iostream>
+
+using namespace std;
 
 
-void getUserInput(char* command) {
-    getnstr(command, 500);
-}
+void checkExistingPlayerCredentials(char *command, char *username, char *password) {
+    Display_clearDisplay();
 
-void checkPlayerCredentials(char* command, char* username, char* password) {
-    clear();
-    resetCursor();
-
-    printw("Please input your username\n");
-    refresh();
-    getUserInput(command);
+    Display_addStringToMainWindow("Please input your username:");
+    Display_getUserInput(command);
     strcpy(username, command);
 
-    printw("Please input your password\n");
-    refresh();
-    getUserInput(command);
+    Display_addStringToMainWindow("Please input your password:");
+    Display_getUserInput(command);
     strcpy(password, command);
 
-    clear();
-    mvprintw(getCursorRow(), getCursorCol(), username);
-    moveCursorDownOneRow();
-    mvprintw(getCursorRow(), getCursorCol(), password);
-    refresh();
+    Display_addStringToMainWindow(username);
+    Display_addStringToMainWindow(password);
+    sleep(3); //TEMPORARY
 }
 
-void accountOrLoginMenu(char* command) {
-    clear();
-    resetCursor();
-
+void createNewPlayerCredentials(char *command, char *username, char *password) {
+    //TODO: Where do we store this information?
+    //TODO: How do we pass this information?
 }
