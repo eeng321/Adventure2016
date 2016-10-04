@@ -1,4 +1,6 @@
+include_directories (include)
 add_subdirectory (src)
-include_directories (src)
+add_subdirectory (lib)
 
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/include/player.h DESTINATION include)
+
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/include/ DESTINATION include)
