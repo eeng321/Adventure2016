@@ -7,31 +7,7 @@
 #include "room.h"
 using std::string;
 
-void Room::addPlayer(username player) {
-	bool inRoom = false;
-	for (int i = 0; i < playerList.size(); i++){
-		if(playerList[i] == player){
-			inRoom = true;
-			break;	
-		} 
-	}
-
-	if(!inRoom){
-		playerList.push_back(player);
-	}
-	throw std::domain_error("Player already in room");//will only run if 	
-}
-
-void Room::removePlayer(username player) {
-	try{
-		int position = indexInRoom(player);
-		playerList.erase(playerList.begin() + position);
-	} catch (const std::exception& e){
-		throw;//propogate error to the calling function
-	}
-}
-
-int Room::indexInRoom(username player){
+int Room::indexPlayer(username player){
 	for (int i = 0; i < playerList.size(); i++){
 		if(playerList[i] == player){
 			return i;
@@ -40,9 +16,28 @@ int Room::indexInRoom(username player){
 	throw std::domain_error("Player not in room");	
 }
 
+int Room::indexObject(id object){
+    for (int i = 0; i < objectList.size(); i++){
+        if(objectList[i] == object){
+            return i;
+        }
+    }
+    throw std::domain_error("Object not in room");
+}
+
+int Room::indexNpc(id npc){
+    for (int i = 0; i < npcList.size(); i++){
+        if(npcList[i] == npc){
+            return i;
+        }
+    }
+    throw std::domain_error("Object not in room");
+}
+
 Room::~Room(){
 
 }
+
 Room::Room(const string& a,
 	id rid,
 	const string& n,
@@ -81,7 +76,7 @@ string Room::getArea() const {
 	return area;
 }
 
-/* a function for returning the raw description screen, not the function
+/* a function for returning the raw description string, not the function
    for returning the string that will be seen by the user */
 description Room::getDescription() const {
 	return mainDescription;
@@ -132,4 +127,82 @@ bool Room::canMove(Direction d){
 		}
 	}
 	return false;
+}
+
+void Room::addPlayer(username player) {
+    bool inRoom = false;
+
+    /* Find if the player is already in the room */
+    for (int i = 0; i < playerList.size(); i++){
+        if(playerList[i] == player){
+            inRoom = true;
+            break;
+        }
+    }
+
+    /* Add the player to the room if they are not already in it */
+    if(!inRoom){
+        playerList.push_back(player);
+        return;
+    }
+    throw std::domain_error("Player already in room");//will only run if the player was already in the room
+}
+
+void Room::removePlayer(username player) {
+    try{
+        int position = indexPlayer(player);
+        playerList.erase(playerList.begin() + position);
+    } catch (const std::exception& e){
+        throw;//propogate error to the calling function
+    }
+}
+
+void Room::addNpc(id npc) {
+    bool inRoom = false;
+    for (int i = 0; i < npcList.size(); i++){
+        if(npcList[i] == npc){
+            inRoom = true;
+            break;
+        }
+    }
+
+    if(!inRoom){
+        npcList.push_back(npc);
+        return;
+    }
+    throw std::domain_error("NPC already in room");
+}
+
+void Room::removeNpc(id npc) {
+    try{
+        int position = indexNpc(npc);
+        npcList.erase(npcList.begin() + position);
+    } catch (const std::exception& e){
+        throw;//propogate error to the calling function
+    }
+}
+
+void Room::addObject(id object) {
+    bool inRoom = false;
+    for (int i = 0; i < objectList.size(); i++){
+        if(objectList[i] == object){
+            inRoom = true;
+            break;
+        }
+    }
+
+    if(!inRoom){
+        objectList.push_back(object);
+        return;
+    }
+    throw std::domain_error("Object already in room");
+}
+
+void Room::removeObject(id object) {
+    try{
+        int position = indexObject(object);
+        objectList.erase(objectList.begin() + position);
+    } catch (const std::exception& e){
+        throw;//propogate error to the calling function
+    }
 }

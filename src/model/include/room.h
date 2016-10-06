@@ -39,9 +39,10 @@ private:
 	vector<id> objectList;
 	bool navigable;
 
-	void addPlayer(username player);
-	void removePlayer(username player);
-	int indexInRoom(username player);
+
+	int indexPlayer(username player);
+    int indexObject(id object);
+    int indexNpc(id npc);
 
 public:
 
@@ -65,6 +66,7 @@ public:
 		const string& nameIn, 
 		const vector<Door>& doorsIn);
 
+    /* Getters */
 	string getArea() const;
 	description getDescription() const;
 	id getId() const;
@@ -75,15 +77,25 @@ public:
 	vector<username> getPlayerList() const;
 	vector<id> getObjectList() const;
 
-
+    /* Navigation management */
 	void makeUnnavigable();
 	void makeNavigable();
 	bool isNavigable() const;
 
-
-	void enterRoom(username player);
-	void exitRoom(username player);
+    /* Player Management */
+    void addPlayer(username player);
+    void removePlayer(username player);
 	bool canMove(Direction d);
+
+    /* NPC management */
+	void addNpc(id npc);
+    void removeNpc(id npc);
+
+    /* Object management */
+    void addObject(id object);
+    void removeObject(id object);
+
+
 
 };//Room class
 
