@@ -159,19 +159,20 @@ void Room::removePlayer(username player) {
 }
 
 void Room::addNpc(id npc) {
-    bool inRoom = false;
-    for (int i = 0; i < npcList.size(); i++){
-        if(npcList[i] == npc){
-            inRoom = true;
-            break;
-        }
-    }
-
-    if(!inRoom){
-        npcList.push_back(npc);
-        return;
-    }
-    throw std::domain_error("NPC already in room");
+//    bool inRoom = false;
+//    for (int i = 0; i < npcList.size(); i++){
+//        if(npcList[i] == npc){
+//            inRoom = true;
+//            break;
+//        }
+//    }
+//
+//    if(!inRoom){
+//        npcList.push_back(npc);
+//        return;
+//    }
+//    throw std::domain_error("NPC already in room");
+    npcList.push_back(npc);
 }
 
 void Room::removeNpc(id npc) {
