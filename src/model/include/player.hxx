@@ -1,0 +1,8 @@
+//
+// Created by edmond on 10/2/16.
+//
+
+#ifndef ADVENTURE2016_PLAYER_HXX
+#define ADVENTURE2016_PLAYER_HXX
+
+#endif //ADVENTURE2016_PLAYER_HXX

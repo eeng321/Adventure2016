@@ -1,4 +1,6 @@
-add_subdirectory(rest_server)
 
+add_subdirectory(back_end)
+include_directories(back_end)
 
-include_directories(rest_server)
+add_subdirectory(front_end)
+
