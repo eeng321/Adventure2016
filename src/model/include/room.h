@@ -16,13 +16,11 @@ typedef string description;
 
 typedef string username;
 
-class Door {
+struct Door {
 public:
 	Direction direction;
 	vector<string> keywords;
 	id doorId;
-	Door(){}
-	Door(const Door& d):direction(d.direction), keywords(d.keywords), doorId(d.doorId){}
 };
 
 
