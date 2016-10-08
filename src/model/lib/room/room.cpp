@@ -6,6 +6,7 @@
 
 #include "room.h"
 using std::string;
+using std::vector;
 
 int Room::indexPlayer(username player){
 	for (int i = 0; i < playerList.size(); i++){
@@ -66,7 +67,7 @@ Room::Room(const string& a,
 	const description& d, 
 	const vector<description>& ed, 
 	id idIn, 
-	const string& nameIn, 
+	const string& nameIn,
 	const vector<Door>& doorsIn)
 :area(a), mainDescription(d), extendedDescriptions(ed), roomId(idIn), name(nameIn), doors(doorsIn){
 

@@ -5,36 +5,33 @@
 #include <string>
 #include <vector>
 
-using std::string;
-using std::vector;
-
 enum class Direction{north, south, east, west};
 
 typedef int id;
 
-typedef string description;
+typedef std::string description;
 
-typedef string username;
+typedef std::string username;
 
 struct Door {
 public:
 	Direction direction;
-	vector<string> keywords;
+	std::vector<std::string> keywords;
 	id doorId;
 };
 
 
 class Room {//Tile interface
 private:
-	string area;
+	std::string area;
 	id roomId;
-	string name;
+	std::string name;
 	description mainDescription;
-	vector<description> extendedDescriptions;
-	vector<Door> doors;
-	vector<id> npcList;
-	vector<string> playerList;
-	vector<id> objectList;
+	std::vector<description> extendedDescriptions;
+	std::vector<Door> doors;
+	std::vector<id> npcList;
+	std::vector<std::string> playerList;
+	std::vector<id> objectList;
 	bool navigable;
 
 
@@ -46,34 +43,34 @@ public:
 
 	~Room();
 
-	Room(const string& a,
+	Room(const std::string& a,
 		id rid,
-		const string& n,
+		const std::string& n,
 		const description& des,
-		const vector<description>& ed,
-		const vector<Door>& d,
-		const vector<id>& nl,
-		const vector<string> pl,
-		const vector<id>& ol,
+		const std::vector<description>& ed,
+		const std::vector<Door>& d,
+		const std::vector<id>& nl,
+		const std::vector<std::string> pl,
+		const std::vector<id>& ol,
 		bool nav);
 
-	Room(const string& a,
+	Room(const std::string& a,
 		const description& d, 
-		const vector<description>& ed, 
+		const std::vector<description>& ed,
 		id idIn, 
-		const string& nameIn, 
-		const vector<Door>& doorsIn);
+		const std::string& nameIn,
+		const std::vector<Door>& doorsIn);
 
     /* Getters */
-	string getArea() const;
+	std::string getArea() const;
 	description getDescription() const;
 	id getId() const;
-	string getName() const;
-	vector<description> getExtendedDescriptions() const;
-	vector<Door> getDoors() const;
-	vector<id> getNpcList() const;
-	vector<username> getPlayerList() const;
-	vector<id> getObjectList() const;
+    std::string getName() const;
+    std::vector<description> getExtendedDescriptions() const;
+    std::vector<Door> getDoors() const;
+    std::vector<id> getNpcList() const;
+    std::vector<username> getPlayerList() const;
+    std::vector<id> getObjectList() const;
 
     /* Navigation management */
 	void makeUnnavigable();
