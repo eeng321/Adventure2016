@@ -5,8 +5,10 @@ include_directories(${CURSES_INCLUDE_DIR})
 add_executable(adventure2016 main.cpp ../../model/include/player.hxx)
 set_property(TARGET adventure2016 PROPERTY CXX_STANDARD 14)
 
-target_link_libraries(adventure2016 ${CURSES_LIBRARIES})
+
 target_link_libraries(adventure2016 userInput)
+target_link_libraries(adventure2016 display)
+target_link_libraries(adventure2016 ${CURSES_LIBRARIES})
 target_link_libraries(adventure2016 restClient)
 
 install(TARGETS adventure2016 DESTINATION bin)
