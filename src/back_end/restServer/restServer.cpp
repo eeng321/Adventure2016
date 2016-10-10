@@ -14,7 +14,10 @@
 #include "../lib/pistache/include/client.h"
 #include "../lib/pistache/include/endpoint.h"
 #include "../lib/pistache/include/router.h"
+#include "../lib/hiberlite/include/hiberlite.h"
+#include "../../model/include/player.h"
 #include <algorithm>
+
 
 using namespace std;
 using namespace Net;
@@ -68,20 +71,28 @@ private:
 
         // todo: Route this to PlayerController to update DB Model
         auto playerId = request.param(":id").as<int>();
-        auto mockedPlayer = "[\n"
-                "  {\n"
-                "    \"id\": " + std::to_string(playerId) + "\n"
-                "  },\n"
-                "  {\n"
-                "    \"name\": \"Michael Nguyen\"\n"
-                "  },\n"
-                "  {\n"
-                "    \"age\": 23\n"
-                "  },\n"
-                "  {\n"
-                "    \"health\": 100\n"
-                "  }\n"
-                "]\n";
+
+        hiberlite::Database db("player.db");
+        //register bean class
+        db.registerBeanClass<Player>();
+
+        hiberlite::bean_ptr<Player> p=db.loadBean<Player>(1);
+        cout << p->id;
+        auto mockedPlayer = "";
+        // auto mockedPlayer = "[\n"
+        //         "  {\n"
+        //         "    \"id\": " + std::to_string(playerId) + "\n"
+        //         "  },\n"
+        //         "  {\n"
+        //         "    \"name\": \"Michael Nguyen\"\n"
+        //         "  },\n"
+        //         "  {\n"
+        //         "    \"age\": 23\n"
+        //         "  },\n"
+        //         "  {\n"
+        //         "    \"health\": 100\n"
+        //         "  }\n"
+        //         "]\n";
 
         response.send(Http::Code::Ok, mockedPlayer);
     }
@@ -93,8 +104,23 @@ private:
 
         // Parse body to grab player arguments
 
-        // Send to ODB
+        //hiberlite
+        hiberlite::Database db("player.db");
 
+        //register bean class
+        db.registerBeanClass<Player>();
+        //drop all tables beans will use
+        db.dropModel();
+        //create those tables again with proper schema
+        db.createModel();
+
+        Player demo;
+
+        hiberlite::bean_ptr<Player> p=db.copyBean(demo); //create a managed copy of the object
+        cout << p->id;
+        cout << demo.id;
+
+        //
 
         // Send Success/Fail
         response.send(Http::Code::Ok, body);
