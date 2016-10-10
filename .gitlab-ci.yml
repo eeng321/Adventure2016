@@ -1,0 +1,6 @@
+adventure2016:
+  script:
+    - mkdir build
+    - cd build
+    - cmake ..
+    - make
