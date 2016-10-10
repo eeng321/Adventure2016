@@ -3,6 +3,7 @@
    Updated by: Michael Nguyen for CMPT 373.
 */
 
+#include <algorithm>
 #include "../lib/pistache/include/net.h"
 #include "../lib/pistache/include/http.h"
 #include "../lib/pistache/include/client.h"
@@ -10,9 +11,6 @@
 #include "../lib/pistache/include/router.h"
 
 #include "playerEndpoint.h"
-//#include "../lib/yaml-parser/include/yaml-cpp/yaml.h"
-
-#include <algorithm>
 
 using namespace std;
 using namespace Net;
@@ -44,9 +42,23 @@ private:
 
     void setupRoutes() {
         using namespace Net::Rest;
+
+        // Authentication Routes
         Routes::Post(router, "/login", Routes::bind(&PlayerEndpoint::login));
-        Routes::Get(router, "/player/:id", Routes::bind(&PlayerEndpoint::getPlayer));
+
+        // Player CRUDS
+        Routes::Get(router, "/player/:id", Routes::bind(&PlayerEndpoint::retrievePlayer));
+        Routes::Put(router, "/player/:id", Routes::bind(&PlayerEndpoint::updatePlayer));
         Routes::Post(router, "/player", Routes::bind(&PlayerEndpoint::createPlayer));
+        Routes::Delete(router, "/player/:id", Routes::bind(&PlayerEndpoint::deletePlayer));
+
+        // Todo: Room Routes
+//        Routes::Get(router, "/room/:id", Routes::bind(&RoomEndpoint::retrieveRoom));
+//        Routes::Put(router, "/room/:id", Routes::bind(&RoomEndpoint::updateRoom));
+//        Routes::Post(router, "/room", Routes::bind(&RoomEndpoint::createRoom));
+//        Routes::Delete(router, "/room/:id", Routes::bind(&RoomEndpoint::deleteRoom));
+
+        // Todo: RPC
     }
 };
 
