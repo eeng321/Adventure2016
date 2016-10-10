@@ -1,3 +1,5 @@
+include_directories(includes)
+
 add_subdirectory(restServer)
 include_directories(restServer)
 
