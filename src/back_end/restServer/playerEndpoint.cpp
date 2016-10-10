@@ -11,9 +11,10 @@ using namespace std;
 using namespace Net;
 
 void PlayerEndpoint::login(const Rest::Request& request, Net::Http::ResponseWriter response) {
-    cout << "Request for resource: " << request.resource() << endl;
+    cout << "Request for resource: " << request.method() << request.resource() << endl;
 
     // Verify credentials with DB.
+
     auto success = true;
     if (success) {
         response.send(Http::Code::Ok, "Success. Returns the retrieved player YAML");
@@ -24,7 +25,7 @@ void PlayerEndpoint::login(const Rest::Request& request, Net::Http::ResponseWrit
 }
 
 void PlayerEndpoint::createPlayer(const Rest::Request& request, Net::Http::ResponseWriter response) {
-    cout << "Request for resource: " << request.resource() << endl;
+    cout << "Request for resource: " << request.method() << request.resource() << endl;
 
     // Parse body to grab player arguments
 
@@ -39,7 +40,7 @@ void PlayerEndpoint::createPlayer(const Rest::Request& request, Net::Http::Respo
 }
 
 void PlayerEndpoint::retrievePlayer(const Rest::Request& request, Net::Http::ResponseWriter response) {
-    cout << "Request for resource: " << request.resource() << endl;
+    cout << "Request for resource: " << request.method() << request.resource() << endl;
 
     auto playerId = request.param(":id").as<int>();
     auto mockedPlayer = "[\n"
@@ -67,9 +68,9 @@ void PlayerEndpoint::retrievePlayer(const Rest::Request& request, Net::Http::Res
 }
 
 void PlayerEndpoint::updatePlayer(const Rest::Request& request, Net::Http::ResponseWriter response) {
-    cout << "Request for resource: " << request.resource() << endl;
+    cout << "Request for resource: " << request.method() << request.resource() << endl;
 
-    auto playerId = request.param("id").as<int>();
+    auto playerId = request.param(":id").as<int>();
 
     // Parse body to grab player arguments
 
@@ -84,9 +85,9 @@ void PlayerEndpoint::updatePlayer(const Rest::Request& request, Net::Http::Respo
 }
 
 void PlayerEndpoint::deletePlayer(const Rest::Request& request, Net::Http::ResponseWriter response) {
-    cout << "Request for resource: " << request.resource() << endl;
+    cout << "Request for resource: " << request.method() << request.resource() << endl;
 
-    auto playerId = request.param("id").as<int>();
+    auto playerId = request.param(":id").as<int>();
 
     // Parse body to grab player arguments
 
