@@ -25,7 +25,7 @@ id Player::getRoomID(){
     return player_location_id;
 }
 
-void player::updateRoomID(id newRoomID){
+void Player::updateRoomID(id newRoomID){
     player_location_id = newRoomID;
 }
 
