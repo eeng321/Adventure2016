@@ -51,6 +51,7 @@ Room::Room(const string& a,
 	bool nav)
 : area(a), 
 	mainDescription(des), 
+	roomId(rid),
 	extendedDescriptions(ed), 
 	roomId(rid), 
 	name(n), 

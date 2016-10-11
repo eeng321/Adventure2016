@@ -36,7 +36,7 @@ private:
 
 
 	int indexPlayer(username player);
-    int indexObject(id object);
+	int indexObject(id object);
     int indexNpc(id npc);
 
 public:
@@ -78,8 +78,8 @@ public:
 	bool isNavigable() const;
 
     /* Player Management */
-    void addPlayer(username player);
-    void removePlayer(username player);
+	void addPlayer(username player);
+	void removePlayer(username player);
 	bool canMove(Direction d);
 
     /* NPC management */
