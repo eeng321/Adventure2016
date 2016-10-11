@@ -12,6 +12,40 @@
   }
 
 namespace YAML {
+	const char *ex2_1 =
+    "- Mark McGwire\n"
+    "- Sammy Sosa\n"
+    "- Ken Griffey";
+
+const char *ex2_2 =
+    "hr:  65    # Home runs\n"
+    "avg: 0.278 # Batting average\n"
+    "rbi: 147   # Runs Batted In";
+
+const char *ex2_3 =
+    "american:\n"
+    "- Boston Red Sox\n"
+    "- Detroit Tigers\n"
+    "- New York Yankees\n"
+    "national:\n"
+    "- New York Mets\n"
+    "- Chicago Cubs\n"
+    "- Atlanta Braves";
+
+const char *ex2_4 =
+    "-\n"
+    "  name: Mark McGwire\n"
+    "  hr:   65\n"
+    "  avg:  0.278\n"
+    "-\n"
+    "  name: Sammy Sosa\n"
+    "  hr:   63\n"
+    "  avg:  0.288";
+
+const char *ex2_5 =
+    "- [name        , hr, avg  ]\n"
+    "- [Mark McGwire, 65, 0.278]\n"
+    "- [Sammy Sosa  , 63, 0.288]";
 namespace {
 
 TEST(NodeSpecTest, Ex2_1_SeqScalars) {
