@@ -83,6 +83,7 @@ file(GLOB sources "src/[a-zA-Z]*.cpp")
 file(GLOB_RECURSE public_headers "include/yaml-cpp/[a-zA-Z]*.h")
 file(GLOB private_headers "src/[a-zA-Z]*.h")
 
+
 if(YAML_CPP_BUILD_CONTRIB)
 	file(GLOB contrib_sources "src/contrib/[a-zA-Z]*.cpp")
 	file(GLOB contrib_public_headers "include/yaml-cpp/contrib/[a-zA-Z]*.h")
