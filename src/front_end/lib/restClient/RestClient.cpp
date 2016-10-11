@@ -46,7 +46,28 @@ std::string RestClient::Post(std::string request, std::string payload) {
     auto resp = _client.post(request).body(payload).send();
     resp.then([&](Net::Http::Response response) {
         if (response.code() == Net::Http::Code(400)){
-            body = "Fail";
+            body = "0";
+        }
+        body = response.body();
+
+    }, Async::IgnoreException);
+    responses.push_back(std::move(resp));
+
+    auto sync = Async::whenAll(responses.begin(), responses.end());
+    Async::Barrier<std::vector<Net::Http::Response>> barrier(sync);
+
+    barrier.wait_for(std::chrono::seconds(5));
+
+    return body;
+}
+
+std::string RestClient::Put(std::string request, std::string payload) {
+    std::vector<Async::Promise<Net::Http::Response>> responses;
+    std::string body;
+    auto resp = _client.put(request).body(payload).send();
+    resp.then([&](Net::Http::Response response) {
+        if (response.code() == Net::Http::Code(400)){
+            body = "0";
         }
         body = response.body();
 
