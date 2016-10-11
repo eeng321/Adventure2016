@@ -4,15 +4,15 @@
 
 using namespace std;
 
-Player::Player(){
-    // initialize values
-    id = 0;
-    login_name = "";
-    // set default coordinate to 0,0
-    coordinate.assign(0,0);
+// Player::Player(){
+//     // initialize values
+//     id = 0;
+//     login_name = "";
+//     // set default coordinate to 0,0
+//     coordinate.assign(0,0);
 
-    health = 100;
-}
+//     health = 100;
+// }
 
 Player::Player(int playerID){
     // initialize values
@@ -23,6 +23,10 @@ Player::Player(int playerID){
 
     health = 100;
 }
+
+// Player::~Player(){
+// 	delete this;
+// }
 
 int Player::getPlayerID(){
     return id;

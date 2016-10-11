@@ -10,6 +10,7 @@ using namespace std;
 
 class Player{
 public:
+
     friend class hiberlite::access;
     template<class Archive>
     void hibernate(Archive & ar)
@@ -21,6 +22,7 @@ public:
     }
     Player();
     Player(int playerID);
+    //~Player();
     int getPlayerID();
     vector<int> getCoordinate();
     void updateCoordinate(vector<int> newCoordinate);
