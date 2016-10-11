@@ -6,42 +6,46 @@
 #include "room.h"
 #include "player.h"
 
-struct objectReset{
-    id objectId;
-    id roomId;
+struct objectReset {
+	id objectId;
+	id roomId;
 };
 
-struct npcReset{
-    string comment;
-    id npcId;
-    int limit;
-    id roomId;
+struct npcReset {
+	string comment;
+	id npcId;
+	int limit;
+	id roomId;
 };
 
-struct giveReset{
-    string comment;
-    id objectId;//not sure what this ID refers to, object id's?
+struct giveReset {
+	string comment;
+	id objectId;//not sure what this ID refers to, object id's?
 };
-
 
 
 class resets {
 private:
-    std::vector<objectReset> objectResets;
-    std::vector<npcReset> npcResets;
-    std::vector<giveReset> giveResets;
-    
+	std::vector<objectReset> objectResets;
+	std::vector<npcReset> npcResets;
+	std::vector<giveReset> giveResets;
+
 public:
-    resets();
+	resets();
 
-    void runAll();
-    void runNpc();
-    void runObject();
-    void runGive();
+	void runAll();
 
-    void addObject(const objectReset& object);
-    void addNpc(const npcReset& npc);
-    void addGive(const giveReset& give);
+	void runNpc();
+
+	void runObject();
+
+	void runGive();
+
+	void addObject(const objectReset &object);
+
+	void addNpc(const npcReset &npc);
+
+	void addGive(const giveReset &give);
 
 };
 

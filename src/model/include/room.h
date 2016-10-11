@@ -5,7 +5,9 @@
 #include <string>
 #include <vector>
 
-enum class Direction{north, south, east, west};
+enum class Direction {
+	north, south, east, west
+};
 
 typedef int id;
 
@@ -38,53 +40,66 @@ public:
 
 	~Room();
 
-	Room(const std::string& a,
-		id rid,
-		const std::string& n,
-		const description& des,
-		const std::vector<description>& ed,
-		const std::vector<Door>& d,
-		const std::vector<id>& nl,
-		const std::vector<std::string> pl,
-		const std::vector<id>& ol,
-		bool nav);
+	Room(const std::string &a,
+		 id rid,
+		 const std::string &n,
+		 const description &des,
+		 const std::vector<description> &ed,
+		 const std::vector<Door> &d,
+		 const std::vector<id> &nl,
+		 const std::vector<std::string> pl,
+		 const std::vector<id> &ol,
+		 bool nav);
 
-	Room(const std::string& a,
-		const description& d, 
-		const std::vector<description>& ed,
-		id idIn, 
-		const std::string& nameIn,
-		const std::vector<Door>& doorsIn);
+	Room(const std::string &a,
+		 const description &d,
+		 const std::vector<description> &ed,
+		 id idIn,
+		 const std::string &nameIn,
+		 const std::vector<Door> &doorsIn);
 
-    /* Getters */
+	/* Getters */
 	std::string getArea() const;
-	description getDescription() const;
-	id getId() const;
-    std::string getName() const;
-    std::vector<description> getExtendedDescriptions() const;
-    std::vector<Door> getDoors() const;
-    std::vector<id> getNpcList() const;
-    std::vector<username> getPlayerList() const;
-    std::vector<id> getObjectList() const;
 
-    /* Navigation management */
+	description getDescription() const;
+
+	id getId() const;
+
+	std::string getName() const;
+
+	std::vector<description> getExtendedDescriptions() const;
+
+	std::vector<Door> getDoors() const;
+
+	std::vector<id> getNpcList() const;
+
+	std::vector<username> getPlayerList() const;
+
+	std::vector<id> getObjectList() const;
+
+	/* Navigation management */
 	void makeUnnavigable();
+
 	void makeNavigable();
+
 	bool isNavigable() const;
 
-    /* Player Management */
+	/* Player Management */
 	void addPlayer(username player);
+
 	void removePlayer(username player);
+
 	bool canMove(Direction d);
 
-    /* NPC management */
+	/* NPC management */
 	void addNpc(id npc);
-    void removeNpc(id npc);
 
-    /* Object management */
-    void addObject(id object);
-    void removeObject(id object);
+	void removeNpc(id npc);
 
+	/* Object management */
+	void addObject(id object);
+
+	void removeObject(id object);
 
 
 };//Room class
