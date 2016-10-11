@@ -3,37 +3,12 @@
 
 #include <string>
 #include <stdexcept>
+#include <algorithm>
 
 #include "room.h"
 using std::string;
 using std::vector;
-
-int Room::indexPlayer(username player){
-	for (int i = 0; i < playerList.size(); i++){
-		if(playerList[i] == player){
-			return i;
-		} 
-	}
-	throw std::domain_error("Player not in room");	
-}
-
-int Room::indexObject(id object){
-    for (int i = 0; i < objectList.size(); i++){
-        if(objectList[i] == object){
-            return i;
-        }
-    }
-    throw std::domain_error("Object not in room");
-}
-
-int Room::indexNpc(id npc){
-    for (int i = 0; i < npcList.size(); i++){
-        if(npcList[i] == npc){
-            return i;
-        }
-    }
-    throw std::domain_error("Object not in room");
-}
+using std::find;
 
 Room::~Room(){
 
@@ -51,8 +26,7 @@ Room::Room(const string& a,
 	bool nav)
 : area(a), 
 	mainDescription(des), 
-	roomId(rid),
-	extendedDescriptions(ed), 
+	extendedDescriptions(ed),
 	roomId(rid), 
 	name(n), 
 	doors(d),
@@ -121,7 +95,7 @@ bool Room::isNavigable() const {
 	return navigable;
 }
 
-/* canMove checks to ensure that there is a room in the direction the player is trying to move */
+/* Ensure there is a room in the direction the player is trying to move */
 bool Room::canMove(Direction d){
 	for (auto door : doors){
 		if (d == door.direction){//possibly add in checks later for obstructions
@@ -132,80 +106,60 @@ bool Room::canMove(Direction d){
 }
 
 void Room::addPlayer(username player) {
-    bool inRoom = false;
-
-    /* Find if the player is already in the room */
-    for (int i = 0; i < playerList.size(); i++){
-        if(playerList[i] == player){
-            inRoom = true;
-            break;
-        }
-    }
+	auto element = find(playerList.begin(), playerList.end(), player);
 
     /* Add the player to the room if they are not already in it */
-    if(!inRoom){
-        playerList.push_back(player);
-        return;
+    if(element != playerList.end()){
+		throw std::domain_error("Player already in room");
     }
-    throw std::domain_error("Player already in room");//will only run if the player was already in the room
+	playerList.push_back(player);
 }
 
 void Room::removePlayer(username player) {
-    try{
-        int position = indexPlayer(player);
-        playerList.erase(playerList.begin() + position);
-    } catch (const std::exception& e){
-        throw;//propogate error to the calling function
+
+    auto element = find(playerList.begin(), playerList.end(), player);
+
+    /* Tell the calling function that the player is not in the room
+     * and don't try to remove them */
+    if(element == playerList.end()){
+        throw std::domain_error("Player not in room");
     }
+    playerList.erase(element);
 }
 
+/* Add the NPC to the room, doesn't check for duplicates b/c
+ * multiple instances of an NPC can be in a room at once */
 void Room::addNpc(id npc) {
-//    bool inRoom = false;
-//    for (int i = 0; i < npcList.size(); i++){
-//        if(npcList[i] == npc){
-//            inRoom = true;
-//            break;
-//        }
-//    }
-//
-//    if(!inRoom){
-//        npcList.push_back(npc);
-//        return;
-//    }
-//    throw std::domain_error("NPC already in room");
     npcList.push_back(npc);
 }
 
 void Room::removeNpc(id npc) {
-    try{
-        int position = indexNpc(npc);
-        npcList.erase(npcList.begin() + position);
-    } catch (const std::exception& e){
-        throw;//propogate error to the calling function
+    auto element = find(npcList.begin(), npcList.end(), npc);
+
+    /* Tell the calling function that the player is not in the room
+     * and don't try to remove them */
+    if(element == npcList.end()){
+        throw std::domain_error("NPC not in room");
     }
+    npcList.erase(element);
 }
 
 void Room::addObject(id object) {
-    bool inRoom = false;
-    for (int i = 0; i < objectList.size(); i++){
-        if(objectList[i] == object){
-            inRoom = true;
-            break;
-        }
-    }
+	auto element = find(objectList.begin(), objectList.end(), object);
 
-    if(!inRoom){
-        objectList.push_back(object);
-        return;
+    if(element != objectList.end()){
+		throw std::domain_error("Object already in room");
     }
-    throw std::domain_error("Object already in room");
+	objectList.push_back(object);
 }
 
 void Room::removeObject(id object) {
-    try{
-        int position = indexObject(object);
-        objectList.erase(objectList.begin() + position);
-    } catch (const std::exception& e){
-        throw;//propogate error to the calling function
+    auto element = find(objectList.begin(), objectList.end(), object);
+
+    /* Tell the calling function that the player is not in the room
+     * and don't try to remove them */
+    if(element == objectList.end()){
+        throw std::domain_error("Object not in room");
     }
+    objectList.erase(element);
 }

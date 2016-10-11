@@ -34,11 +34,6 @@ private:
 	std::vector<id> objectList;
 	bool navigable;
 
-
-	int indexPlayer(username player);
-	int indexObject(id object);
-    int indexNpc(id npc);
-
 public:
 
 	~Room();
