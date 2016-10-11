@@ -20,8 +20,8 @@ public:
         ar & HIBERLITE_NVP(coordinate);
         ar & HIBERLITE_NVP(health);
     }
-    Player();
-    Player(int playerID);
+    //Player();
+    //Player(int playerID);
     //~Player();
     int getPlayerID();
     vector<int> getCoordinate();

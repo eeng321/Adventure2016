@@ -114,7 +114,8 @@ private:
         //create those tables again with proper schema
         db.createModel();
 
-        Player demo(1);
+        Player demo;
+        demo.id = 1;
 
         hiberlite::bean_ptr<Player> p=db.copyBean(demo); //create a managed copy of the object
         cout << p->id;
