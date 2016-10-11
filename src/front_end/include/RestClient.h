@@ -16,7 +16,7 @@ namespace Rest {
         RestClient();
         std::string Get(std::string request);
         std::string Post(std::string request, std::string payload);
-        std::string Put(std::string request);
+        std::string Put(std::string request, std::string payload);
         std::string Delete(std::string request);
 
     private:
