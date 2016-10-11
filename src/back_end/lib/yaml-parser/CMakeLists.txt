@@ -42,14 +42,6 @@ option(YAML_CPP_BUILD_CONTRIB "Enable contrib stuff in library" ON)
 #     http://www.cmake.org/cmake/help/cmake2.6docs.html#command:add_library
 option(BUILD_SHARED_LIBS "Build Shared Libraries" OFF)
 
-# --> Apple
-option(APPLE_UNIVERSAL_BIN "Apple: Build universal binary" OFF)
-
-# --> Microsoft Visual C++
-# see http://msdn.microsoft.com/en-us/library/aa278396(v=VS.60).aspx
-#     http://msdn.microsoft.com/en-us/library/2kzt1wy3(v=VS.71).aspx
-option(MSVC_SHARED_RT "MSVC: Build with shared runtime libs (/MD)" ON)
-option(MSVC_STHREADED_RT "MSVC: Build with single-threaded static runtime libs (/ML until VS .NET 2003)" OFF)
 
 ###
 ### Sources, headers, directories and libs
@@ -127,26 +119,6 @@ else()
 	set(LABEL_SUFFIX "static")
 endif()
 
-if(APPLE)
-	if(APPLE_UNIVERSAL_BIN)
-		set(CMAKE_OSX_ARCHITECTURES ppc;i386)
-	endif()
-endif()
-
-if(IPHONE)
-	set(CMAKE_OSX_SYSROOT "iphoneos4.2")
-	set(CMAKE_OSX_ARCHITECTURES "armv6;armv7")
-endif()
-
-if(WIN32)
-	if(BUILD_SHARED_LIBS)
-		add_definitions(-D${PROJECT_NAME}_DLL)	# use or build Windows DLL
-	endif()
-	if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-		set(CMAKE_INSTALL_PREFIX "C:/")
-	endif()
-endif()
-
 # GCC or Clang specialities
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU" OR
    CMAKE_CXX_COMPILER_ID MATCHES "Clang")
@@ -194,58 +166,6 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU" OR
 	endif()
 endif()
 
-# Microsoft VisualC++ specialities
-if(MSVC)
-	### General stuff
-	# a) Change MSVC runtime library settings (/MD[d], /MT[d], /ML[d] (single-threaded until VS 2003))
-	#    plus set lib suffix for later use and project label accordingly
-	# see http://msdn.microsoft.com/en-us/library/aa278396(v=VS.60).aspx
-	#     http://msdn.microsoft.com/en-us/library/2kzt1wy3(v=VS.71).aspx
-	set(LIB_RT_SUFFIX "md")	# CMake defaults to /MD for MSVC
-	set(LIB_RT_OPTION "/MD")
-	#
-	if(NOT MSVC_SHARED_RT)	# User wants to have static runtime libraries (/MT, /ML)
-		if(MSVC_STHREADED_RT)	# User wants to have old single-threaded static runtime libraries
-			set(LIB_RT_SUFFIX "ml")
-			set(LIB_RT_OPTION "/ML")
-			if(NOT ${MSVC_VERSION} LESS 1400)
-				message(FATAL_ERROR "Single-threaded static runtime libraries (/ML) only available until VS .NET 2003 (7.1).")
-			endif()
-		else()
-			set(LIB_RT_SUFFIX "mt")
-			set(LIB_RT_OPTION "/MT")
-		endif()
-
-		# correct linker options
-		foreach(flag_var  yaml_c_flags  yaml_cxx_flags)
-			foreach(config_name  ""  DEBUG  RELEASE  MINSIZEREL  RELWITHDEBINFO)
-				set(var_name "${flag_var}")
-				if(NOT "${config_name}" STREQUAL "")
-					set(var_name "${var_name}_${config_name}")
-				endif()
-				string(REPLACE "/MD" "${LIB_RT_OPTION}" ${var_name} "${${var_name}}")
-			endforeach()
-		endforeach()
-	endif()
-	#
-	set(LABEL_SUFFIX "${LABEL_SUFFIX} ${LIB_RT_SUFFIX}")
-
-	# b) Change prefix for static libraries
-	set(CMAKE_STATIC_LIBRARY_PREFIX "lib")	# to distinguish static libraries from DLL import libs
-
-	# c) Correct suffixes for static libraries
-	if(NOT BUILD_SHARED_LIBS)
-		### General stuff
-		set(LIB_TARGET_SUFFIX "${LIB_SUFFIX}${LIB_RT_SUFFIX}")
-	endif()
-
-	### Project stuff
-	# /W3 = set warning level; see http://msdn.microsoft.com/en-us/library/thxezb7y.aspx
-	# /wd4127 = disable warning C4127 "conditional expression is constant"; see http://msdn.microsoft.com/en-us/library/6t66728h.aspx
-	# /wd4355 = disable warning C4355 "'this' : used in base member initializer list"; http://msdn.microsoft.com/en-us/library/3c594ae3.aspx
-	set(yaml_cxx_flags "/W3 /wd4127 /wd4355 ${yaml_cxx_flags}")
-endif()
-
 
 ###
 ### General install settings
@@ -281,12 +201,6 @@ set_target_properties(yaml-cpp PROPERTIES
 	SOVERSION "${YAML_CPP_VERSION_MAJOR}.${YAML_CPP_VERSION_MINOR}"
 	PROJECT_LABEL "yaml-cpp ${LABEL_SUFFIX}"
 )
-
-if(IPHONE)
-	set_target_properties(yaml-cpp PROPERTIES
-		XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET "3.0"
-	)
-endif()
 
 if(MSVC)
 	if(NOT BUILD_SHARED_LIBS)
@@ -348,7 +262,6 @@ endif()
 ### Extras
 ###
 if(YAML_CPP_BUILD_TOOLS)
-	add_subdirectory(test)
 	add_subdirectory(util)
 endif()
 
@@ -359,3 +272,18 @@ add_custom_target(format
 	COMMAND clang-format --style=file -i ${all_sources}
 	COMMENT "Running clang-format"
 	VERBATIM)
+
+#include_directories(include)
+#include_directories(src)
+#
+#file(GLOB YAML_PARSER_SOURCE_FILES "src/[a-zA-Z]*.cpp")
+#file(GLOB_RECURSE public_headers "include/yaml-cpp/[a-zA-Z]*.h")
+#file(GLOB private_headers "src/[a-zA-Z]*.h")
+#
+#install(FILES ${public_headers} DESTINATION include)
+#set(SOURCE_FILES
+#		${YAML_PARSER_SOURCE_FILES})
+#
+##add_library(yaml-cpp ${SOURCE_FILES})
+#install(TARGETS yaml-cpp DESTINATION lib)
+#set_property(TARGET yaml-cpp PROPERTY CXX_STANDARD 11)
