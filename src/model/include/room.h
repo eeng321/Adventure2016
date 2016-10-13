@@ -20,6 +20,7 @@ public:
 	Direction direction;
 	std::vector<std::string> keywords;
 	id doorId;
+	void build(Direction d, std::vector<std::string> k, id dID);
 };
 
 
@@ -40,6 +41,8 @@ public:
 
 	~Room();
 
+	Room();
+
 	Room(const std::string &a,
 		 id rid,
 		 const std::string &n,
@@ -52,6 +55,24 @@ public:
 		 bool nav);
 
 	Room(const std::string &a,
+		 const description &d,
+		 const std::vector<description> &ed,
+		 id idIn,
+		 const std::string &nameIn,
+		 const std::vector<Door> &doorsIn);
+
+	void build(const std::string &a,
+		 id rid,
+		 const std::string &n,
+		 const description &des,
+		 const std::vector<description> &ed,
+		 const std::vector<Door> &d,
+		 const std::vector<id> &nl,
+		 const std::vector<std::string> pl,
+		 const std::vector<id> &ol,
+		 bool nav);
+
+	void build(const std::string &a,
 		 const description &d,
 		 const std::vector<description> &ed,
 		 id idIn,

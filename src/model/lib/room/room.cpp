@@ -11,42 +11,94 @@ using std::string;
 using std::vector;
 using std::find;
 
+void Door::build(Direction d, std::vector<std::string> k, id dID){
+	direction = d;
+	keywords = k;
+	doorId = dID;
+}
+
+
 Room::~Room() {
 
 }
 
-Room::Room(const string &a,
-		   id rid,
-		   const string &n,
-		   const description &des,
-		   const vector<description> &ed,
-		   const vector<Door> &d,
-		   const vector<id> &nl,
-		   const vector<string> pl,
-		   const vector<id> &ol,
-		   bool nav)
-		: area(a),
-		  mainDescription(des),
-		  extendedDescriptions(ed),
-		  roomId(rid),
-		  name(n),
-		  doors(d),
-		  npcList(nl),
-		  playerList(pl),
-		  objectList(ol),
-		  navigable(nav) {
+Room::Room(){}
+
+Room::Room(const string &areaIn,
+		   id roomIdIn,
+		   const string &nameIn,
+		   const description &descriptionIn,
+		   const vector<description> &extendedDescriptionIn,
+		   const vector<Door> &doorsIn,
+		   const vector<id> &npcListIn,
+		   const vector<string> playerListIn,
+		   const vector<id> &objectListIn,
+		   bool navigabilityIn)
+		: area(areaIn),
+		  mainDescription(descriptionIn),
+		  extendedDescriptions(extendedDescriptionIn),
+		  roomId(roomIdIn),
+		  name(nameIn),
+		  doors(doorsIn),
+		  npcList(npcListIn),
+		  playerList(playerListIn),
+		  objectList(objectListIn),
+		  navigable(navigabilityIn) {
 
 
 }
 
-Room::Room(const string &a,
-		   const description &d,
-		   const vector<description> &ed,
+Room::Room(const string &areaIn,
+		   const description &descriptionIn,
+		   const vector<description> &extendedDescriptionIn,
 		   id idIn,
 		   const string &nameIn,
 		   const vector<Door> &doorsIn)
-		: area(a), mainDescription(d), extendedDescriptions(ed), roomId(idIn), name(nameIn), doors(doorsIn) {
+		: area(areaIn),
+		  mainDescription(descriptionIn),
+		  extendedDescriptions(extendedDescriptionIn),
+		  roomId(idIn),
+		  name(nameIn),
+		  doors(doorsIn) {
 
+}
+
+void Room::build(const string &areaIn,
+	id idIn,
+	const string &nameIn,
+	const description &descriptionIn,
+	const vector<description> &extendedDescriptionIn,
+	const vector<Door> &doorsIn,
+	const vector<id> &npcListIn,
+	const vector<string> playerListIn,
+	const vector<id> &objectListIn,
+	bool navigabilityIn){
+
+	area = areaIn;
+	mainDescription = descriptionIn;
+	extendedDescriptions = extendedDescriptionIn;
+	roomId = idIn;
+	name = nameIn;
+	doors = doorsIn;
+	npcList = npcListIn;
+	playerList = playerListIn;
+	objectList = objectListIn;
+	navigable = navigabilityIn;
+}
+
+void Room::build(const string &areaIn,
+	const description &descriptionIn,
+	const vector<description> &extendedDescriptionIn,
+	id idIn,
+	const string &nameIn,
+	const vector<Door> &doorsIn){
+
+	area = areaIn;
+	mainDescription = descriptionIn;
+	extendedDescriptions = extendedDescriptionIn;
+	roomId = idIn;
+	name = nameIn;
+	doors = doorsIn;
 }
 
 string Room::getArea() const {
