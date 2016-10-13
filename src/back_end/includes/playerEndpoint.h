@@ -7,6 +7,7 @@
 
 #include "../lib/pistache/include/http.h"
 #include "../lib/pistache/include/router.h"
+#include "parser.h"
 
 namespace PlayerEndpoint {
 

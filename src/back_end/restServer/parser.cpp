@@ -1,20 +1,25 @@
 
-#include "yaml-cpp/yaml.h"
+#include "parser.h"
 #include <iostream>
 #include <fstream>
 
 using namespace std;
-int main(int argc, char** argv) {
+using namespace parser;
 
 
-    // std::ifstream fin("/home/william/cmpt373/adventure2016/src/yaml-parser/smurf.yaml");
-    // std::cout << fin.rdbuf();
-    YAML::Node node = YAML::LoadFile("/home/william/cmpt373/adventure2016/src/back_end/lib/yaml-parser/smurf.yaml");
-    std::cout << "test\n";
-//    YAML::Node roomNode = node["ROOMS"];//desc, doors(), extended_descriptions, id, name
-//
-//    for(auto i : roomNode){
-//    	std::cout << i["id"] << "\n";
-//    }
-    return 0;
+YAML::Node parser::serializeLogin(const std::string username, const std::string password){
+
+    YAML::Node node;
+    node["USERNAME"] = username;
+    node["PASSWORD"] = password;
+    return node;
+
+
 }
+
+void parser::deserializeLogin(std::string &username, std::string &password, YAML::Node node){
+    username = node["USERNAME"].as<string>();
+    password = node["PASSWORD"].as<string>();
+}
+
+
