@@ -11,13 +11,6 @@ using std::string;
 using std::vector;
 using std::find;
 
-void Door::build(Direction d, std::vector<std::string> k, id dID){
-	direction = d;
-	keywords = k;
-	doorId = dID;
-}
-
-
 Room::~Room() {
 
 }
