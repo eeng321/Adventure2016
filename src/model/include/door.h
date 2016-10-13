@@ -16,7 +16,7 @@ typedef std::string description;
 
 typedef std::string username;
 
-struct Door {
+class Door {
 public:
 	Direction direction;
 	std::vector<std::string> keywords;
