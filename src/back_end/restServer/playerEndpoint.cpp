@@ -16,8 +16,6 @@ void PlayerEndpoint::login(const Rest::Request& request, Net::Http::ResponseWrit
 
     // Verify credentials with DB.
     YAML::Node node;
-    node["USERNAME"] = "username";
-    node["PASSWORD"] = "password";
 
     auto success = true;
     if (success) {
