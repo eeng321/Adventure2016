@@ -5,85 +5,102 @@
 #include <string>
 #include <vector>
 
-using std::string;
-using std::vector;
-
-enum class Direction{north, south, east, west};
+enum class Direction {
+	north, south, east, west
+};
 
 typedef int id;
 
-typedef string description;
+typedef std::string description;
 
-typedef string username;
+typedef std::string username;
 
-class Door {
+struct Door {
 public:
 	Direction direction;
-	vector<string> keywords;
+	std::vector<std::string> keywords;
 	id doorId;
-	Door(){}
-	Door(const Door& d):direction(d.direction), keywords(d.keywords), doorId(d.doorId){}
 };
 
 
 class Room {//Tile interface
 private:
-	string area;
+	std::string area;
 	id roomId;
-	string name;
+	std::string name;
 	description mainDescription;
-	vector<description> extendedDescriptions;
-	vector<Door> doors;
-	vector<id> npcList;
-	vector<string> playerList;
-	vector<id> objectList;
+	std::vector<description> extendedDescriptions;
+	std::vector<Door> doors;
+	std::vector<id> npcList;
+	std::vector<std::string> playerList;
+	std::vector<id> objectList;
 	bool navigable;
-
-	void addPlayer(username player);
-	void removePlayer(username player);
-	int indexInRoom(username player);
 
 public:
 
 	~Room();
 
-	Room(const string& a,
-		id rid,
-		const string& n,
-		const description& des,
-		const vector<description>& ed,
-		const vector<Door>& d,
-		const vector<id>& nl,
-		const vector<string> pl,
-		const vector<id>& ol,
-		bool nav);
+	Room(const std::string &a,
+		 id rid,
+		 const std::string &n,
+		 const description &des,
+		 const std::vector<description> &ed,
+		 const std::vector<Door> &d,
+		 const std::vector<id> &nl,
+		 const std::vector<std::string> pl,
+		 const std::vector<id> &ol,
+		 bool nav);
 
-	Room(const string& a,
-		const description& d, 
-		const vector<description>& ed, 
-		id idIn, 
-		const string& nameIn, 
-		const vector<Door>& doorsIn);
+	Room(const std::string &a,
+		 const description &d,
+		 const std::vector<description> &ed,
+		 id idIn,
+		 const std::string &nameIn,
+		 const std::vector<Door> &doorsIn);
 
-	string getArea() const;
+	/* Getters */
+	std::string getArea() const;
+
 	description getDescription() const;
+
 	id getId() const;
-	string getName() const;
-	vector<description> getExtendedDescriptions() const;
-	vector<Door> getDoors() const;
-	vector<id> getNpcList() const;
-	vector<username> getPlayerList() const;
-	vector<id> getObjectList() const;
 
+	std::string getName() const;
 
+	std::vector<description> getExtendedDescriptions() const;
+
+	std::vector<Door> getDoors() const;
+
+	std::vector<id> getNpcList() const;
+
+	std::vector<username> getPlayerList() const;
+
+	std::vector<id> getObjectList() const;
+
+	/* Navigation management */
 	void makeUnnavigable();
+
 	void makeNavigable();
+
 	bool isNavigable() const;
 
+	/* Player Management */
+	void addPlayer(username player);
 
-	void enterRoom(username player);
-	void exitRoom(username player);
+	void removePlayer(username player);
+
 	bool canMove(Direction d);
+
+	/* NPC management */
+	void addNpc(id npc);
+
+	void removeNpc(id npc);
+
+	/* Object management */
+	void addObject(id object);
+
+	void removeObject(id object);
+
 
 };//Room class
 
