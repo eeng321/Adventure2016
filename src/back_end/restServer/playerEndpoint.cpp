@@ -3,7 +3,8 @@
 //
 
 #include "playerEndpoint.h"
-#include "parser.h"
+#include "yaml-cpp/yaml.h"
+//#include "parser.h"
 #include "../lib/pistache/include/client.h"
 #include "../lib/pistache/include/endpoint.h"
 
@@ -14,6 +15,9 @@ void PlayerEndpoint::login(const Rest::Request& request, Net::Http::ResponseWrit
     cout << "Request for resource: " << request.method() << request.resource() << endl;
 
     // Verify credentials with DB.
+    YAML::Node node;
+    node["USERNAME"] = "username";
+    node["PASSWORD"] = "password";
 
     auto success = true;
     if (success) {
