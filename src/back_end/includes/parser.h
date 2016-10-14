@@ -10,7 +10,7 @@
 namespace parser{
 
     YAML::Node serializeLogin(const std::string username, const std::string password);
-    void deserializeLogin(std::string &username, std::string &password, YAML::Node node);
+    void deserializeLogin(std::string &username, std::string &password, YAML::Node &node);
 }
 
 #endif //ADVENTURE2016_PARSER_H

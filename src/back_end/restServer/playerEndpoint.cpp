@@ -3,7 +3,7 @@
 //
 
 #include "playerEndpoint.h"
-
+#include "parser.h"
 #include "../lib/pistache/include/client.h"
 #include "../lib/pistache/include/endpoint.h"
 
