@@ -10,7 +10,7 @@ using namespace parser;
 YAML::Node parser::serializeLogin(const std::string username, const std::string password){
 
     YAML::Node node = YAML::LoadFile("yaml.yaml");
-    std::cout << node["USERNAME"];
+    //std::cout << node["USERNAME"];
     //node["PASSWORD"] = password;
     return node;
 }
