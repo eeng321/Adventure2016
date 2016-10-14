@@ -1,4 +1,5 @@
-//npc.h
+// npc.h
+// Npc object structure. Uses values from a parse Npc from a YAML file.
 
 #ifndef ADVENTURE2016_NPC_H
 #define ADVENTURE2016_NPC_H
@@ -9,26 +10,25 @@
 typedef int id;
 typedef std::string description;
 
-class Npc{
+class Npc {
 public:
     Npc(description desc,
         id nid,
         std::vector<std::string> key,
         description ldesc,
         description sdesc);
-
-    std::string getMaindesc();
-    id getNpcID();
+    std::string getMainDesc();
+    id getNpcId();
     std::vector<std::string> getKeywords();
-    std::string getLongdesc();
-    std::string getShortdesc();
+    std::string getLongDesc();
+    std::string getShortDesc();
 
 private:
-    description maindesc;
-    id npcID;
+    description mainDesc;
+    id npcId;
     std::vector<std::string> keywords;
-    description longdesc;
-    description shortdesc;
+    description longDesc;
+    description shortDesc;
 
 
 };

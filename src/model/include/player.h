@@ -8,20 +8,20 @@ using namespace std;
 
 typedef int id;
 
-class Player{
+class Player {
 public:
-    Player(id playerID);
-    id getPlayerID();
-    id getRoomID();
-    void updateRoomID(id newRoomID);
+    Player(id pid);
+    id getPlayerId();
+    id getRoomId();
+    void updateRoomId(id newRoomId);
 
 private:
     // Player identification attributes
-    id player_id;
-    string login_name;
+    id playerId;
+    string loginName;
 
     // Player information attributes
-    id player_location_id;
+    id playerLocationId;
 
     // Player stats
     int health;

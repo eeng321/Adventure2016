@@ -6,26 +6,25 @@ Npc::Npc(description desc,
          std::vector<std::string> key,
          description ldesc,
          description sdesc)
-        :maindesc(desc), npcID(nid), keywords(key), longdesc(ldesc), shortdesc(sdesc){
-
+        : mainDesc(desc), npcId(nid), keywords(key), longDesc(ldesc), shortDesc(sdesc) {
 }
 
-std::string Npc::getMaindesc(){
-    return maindesc;
+std::string Npc::getMainDesc() {
+    return mainDesc;
 }
 
-id Npc::getNpcID(){
-    return npcID;
+id Npc::getNpcId() {
+    return npcId;
 }
 
-std::vector<std::string> Npc::getKeywords(){
+std::vector<std::string> Npc::getKeywords() {
     return keywords;
 }
 
-std::string Npc::getLongdesc(){
-    return longdesc;
+std::string Npc::getLongDesc() {
+    return longDesc;
 }
 
-std::string Npc::getShortdesc(){
-    return shortdesc;
+std::string Npc::getShortDesc() {
+    return shortDesc;
 }
