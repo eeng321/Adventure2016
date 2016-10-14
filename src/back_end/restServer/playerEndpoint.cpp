@@ -14,7 +14,7 @@ void PlayerEndpoint::login(const Rest::Request& request, Net::Http::ResponseWrit
     cout << "Request for resource: " << request.method() << request.resource() << endl;
 
     // Verify credentials with DB.
-    
+
 
     auto success = true;
     if (success) {
