@@ -16,7 +16,6 @@ namespace PlayerEndpoint {
     void retrievePlayer(const Net::Rest::Request& request, Net::Http::ResponseWriter response);
     void updatePlayer(const Net::Rest::Request& request, Net::Http::ResponseWriter response);
     void deletePlayer(const Net::Rest::Request& request, Net::Http::ResponseWriter response);
-
 }
 
 #endif //ADVENTURE2016_PLAYERENDPOINT_H

@@ -1,8 +1,8 @@
 #ifndef ADVENTURE2016_PLAYER_H
 #define ADVENTURE2016_PLAYER_H
 
+#pragma once
 #include "../../back_end/lib/hiberlite/include/hiberlite.h"
-
 #include <string>
 #include <vector>
 
