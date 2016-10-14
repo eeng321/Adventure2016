@@ -5,6 +5,9 @@
 #include <algorithm>
 #include <iostream>
 #include "Controller.h"
+#include "../../include/utility.h"
+
+using namespace utility;
 
 // TODO
 const std::string SERVER = "http://localhost:8080/";
@@ -41,7 +44,8 @@ std::string Controller::parseCommand(std::string command) {
 }
 
 std::string Controller::who() {
-    return client.Get(SERVER + "player/" + std::to_string(int(player.getPlayerId())));
+
+    return client.Get(SERVER + "player/" + player.getPlayerId());
 }
 
 std::string Controller::moveNorth() {
