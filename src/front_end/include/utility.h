@@ -1,3 +1,7 @@
+/*
+ * Utility namespace for overloaded operations, central location for future utility methods
+ */
+
 
 #ifndef ADVENTURE2016_UTILITY_H
 #define ADVENTURE2016_UTILITY_H
