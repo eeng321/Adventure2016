@@ -3,7 +3,7 @@
 //
 
 #include "playerEndpoint.h"
-//#include "parser.h"
+#include "parser.h"
 #include "../lib/pistache/include/client.h"
 #include "../lib/pistache/include/endpoint.h"
 
@@ -29,7 +29,7 @@ void PlayerEndpoint::createPlayer(const Rest::Request& request, Net::Http::Respo
     cout << "Request for resource: " << request.method() << request.resource() << endl;
 
     // Parse body to grab player arguments
-
+    cout << "test" << endl;
     // Send to ODB
     auto success = true;
     if (success) {

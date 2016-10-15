@@ -1,4 +1,4 @@
-# attempt to find static library first if this is set
+# attempt to find static library first if this is set; snippet from supercollider
 set(YAMLCPP_STATIC_LIBRARY TRUE)
 if(YAMLCPP_STATIC_LIBRARY)
     set(YAMLCPP_STATIC libyaml-cpp.a)
@@ -32,12 +32,11 @@ find_library(YAMLCPP_LIBRARY
         /opt
         ${YAMLCPP_DIR}/lib)
 
-add_executable(rest_server restServer.cpp playerEndpoint.cpp)
-add_executable(parser parser.cpp)
+add_executable(rest_server restServer.cpp playerEndpoint.cpp parser.cpp)
 target_link_libraries(rest_server net_static)
-target_link_libraries(parser yaml-cpp)
-set_target_properties(parser PROPERTIES COMPILE_FLAGS "-std=c++11")
-set_target_properties(parser PROPERTIES COMPILE_FLAGS "-lyaml-cpp")
+target_link_libraries(rest_server yaml-cpp)
+set_target_properties(rest_server PROPERTIES COMPILE_FLAGS "-std=c++11")
+set_target_properties(rest_server PROPERTIES COMPILE_FLAGS "-lyaml-cpp")
 
 
 
