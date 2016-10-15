@@ -8,6 +8,4 @@ include_directories(${CURSES_INCLUDE_DIR})
 include_directories(${CMAKE_SOURCE_DIR}/hiberlite/src)
 
 
-
-
 add_subdirectory(src)

@@ -31,7 +31,7 @@ Player parser::playerDeserialize(const std::string body){
 
     Player player;
     player.loginName = node[LOGIN_NAME_KEY].as<string>();
-    player.playerId = node[LOGIN_ID_KEY].as<id>();
+    player.playerId = node[LOGIN_ID_KEY].as<int>();
 
     return player;
 

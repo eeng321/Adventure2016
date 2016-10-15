@@ -7,7 +7,6 @@
 
 using namespace std;
 
-typedef int id;
 
 class Player {
 public:
@@ -16,8 +15,8 @@ public:
     template<class Archive>
     void hibernate(Archive & ar)
     {
-        ar & HIBERLITE_NVP(id);
-        ar & HIBERLITE_NVP(login_name);
+        ar & HIBERLITE_NVP(playerId);
+        ar & HIBERLITE_NVP(loginName);
         ar & HIBERLITE_NVP(coordinate);
         ar & HIBERLITE_NVP(health);
     }
