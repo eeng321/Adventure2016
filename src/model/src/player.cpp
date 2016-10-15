@@ -1,41 +1,21 @@
 #include <string>
-#include <vector>
 #include "../include/player.h"
 
 using namespace std;
 
-// Player::Player(){
-//     // initialize values
-//     id = 0;
-//     login_name = "";
-//     // set default coordinate to 0,0
-//     coordinate.assign(0,0);
+const int DEFAULT_SPAWN = 0;
+const int START_HEALTH = 100;
 
-//     health = 100;
-// }
 
-// Player::Player(int playerID){
-//     // initialize values
-//     id = playerID;
-//     login_name = "default";
-//     // set default coordinate to 0,0
-//     coordinate.assign(0,0);
-
-//     health = 100;
-// }
-
-// Player::~Player(){
-// 	delete this;
-// }
-
-int Player::getPlayerID(){
-    return id;
+int Player::getPlayerID() {
+    return playerId;
 }
 
-vector<int> Player::getCoordinate(){
+int Player::getCoordinate() {
     return coordinate;
 }
 
-void Player::updateCoordinate(vector<int> newCoordinate){
-    newCoordinate = newCoordinate;
+void Player::updateCoordinate(int newRoomId) {
+    coordinate = newRoomId;
 }
+

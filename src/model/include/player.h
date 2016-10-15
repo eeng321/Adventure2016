@@ -4,11 +4,12 @@
 #pragma once
 #include "../../back_end/lib/hiberlite/include/hiberlite.h"
 #include <string>
-#include <vector>
 
 using namespace std;
 
-class Player{
+typedef int id;
+
+class Player {
 public:
 
     friend class hiberlite::access;
@@ -20,20 +21,17 @@ public:
         ar & HIBERLITE_NVP(coordinate);
         ar & HIBERLITE_NVP(health);
     }
-    //Player();
-    //Player(int playerID);
-    //~Player();
     int getPlayerID();
-    vector<int> getCoordinate();
-    void updateCoordinate(vector<int> newCoordinate);
+    int getCoordinate();
+    void updateCoordinate(int newCoordinate);
 
-//private:
+
     // Player identification attributes
-    int id;
-    string login_name;
+    int playerId;
+    string loginName;
 
     // Player information attributes
-    vector<int> coordinate;
+    int coordinate;
 
     // Player stats
     int health;
@@ -41,5 +39,5 @@ public:
 
 HIBERLITE_EXPORT_CLASS(Player)
 
-
 #endif //ADVENTURE2016_PLAYER_H
+

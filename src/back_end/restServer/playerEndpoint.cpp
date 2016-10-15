@@ -5,6 +5,7 @@
 #include "playerEndpoint.h"
 #include <sstream>
 #include <iostream>
+#include "parser.h"
 #include "../lib/pistache/include/client.h"
 #include "../lib/pistache/include/endpoint.h"
 #include "../lib/hiberlite/include/hiberlite.h"
@@ -80,6 +81,7 @@ void PlayerEndpoint::login(const Rest::Request& request, Net::Http::ResponseWrit
 
     // Verify credentials with DB.
 
+
     auto success = true;
     if (success) {
         response.send(Http::Code::Ok, "Success. Returns the retrieved player YAML");
@@ -92,24 +94,28 @@ void PlayerEndpoint::login(const Rest::Request& request, Net::Http::ResponseWrit
 void PlayerEndpoint::createPlayer(const Rest::Request& request, Net::Http::ResponseWriter response) {
     cout << "Request for resource: " << request.method() << request.resource() << endl;
 
-    istringstream playerParams(request.body());
-    int len = 8; //lines in request body
-    string parseBody[len];
-    //parse request.body() into string array
-    for(int i = 0; i<len; i++){
-    	getline(playerParams, parseBody[i]);
-    }
-    //index 3 and 7 contain the parameters (every 4th line)
-    Player demo = addPlayer(stoi(parseBody[3]), parseBody[7]);
-    cout << "Printing newly added player: \n";
-    cout << demo.id << endl;
-    cout << demo.login_name << endl;
-    cout << demo.health << endl;
-    
-    
+//    istringstream playerParams(request.body());
+//    int len = 8; //lines in request body
+//    string parseBody[len];
+//    //parse request.body() into string array
+//    for(int i = 0; i<len; i++){
+//    	getline(playerParams, parseBody[i]);
+//    }
+//    //index 3 and 7 contain the parameters (every 4th line)
+//    Player demo = addPlayer(stoi(parseBody[3]), parseBody[7]);
+//    cout << "Printing newly added player: \n";
+//    cout << demo.playerId << endl;
+//    cout << demo.loginName << endl;
+//    cout << demo.health << endl;
+//
+//
+    // Parse body to grab player arguments
+    Player player;
+    player = parser::playerDeserialize(request.body());
+    // Send to ODB
     auto success = true;
     if (success) {
-        response.send(Http::Code::Created, "Success. Returns Created Player Yaml.");
+        response.send(Http::Code::Created, parser::playerSerialize(player));
     }
     else {
         response.send(Http::Code::Bad_Request);
@@ -122,7 +128,7 @@ void PlayerEndpoint::retrievePlayer(const Rest::Request& request, Net::Http::Res
     auto playerId = request.param(":id").as<int>();
 
     Player demo = loadPlayer(playerId);
-    string player = to_string(demo.id) + ", " + demo.login_name + ", " + to_string(demo.health) + "\n ";
+    string player = to_string(demo.playerId) + ", " + demo.loginName + ", " + to_string(demo.health) + "\n ";
 
     auto success = true;
 
