@@ -32,10 +32,10 @@ int Player::getPlayerID(){
     return id;
 }
 
-vector<int> Player::getCoordinate(){
+int Player::getCoordinate(){
     return coordinate;
 }
 
-void Player::updateCoordinate(vector<int> newCoordinate){
+void Player::updateCoordinate(int newCoordinate){
     newCoordinate = newCoordinate;
 }

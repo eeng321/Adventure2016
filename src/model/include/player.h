@@ -20,20 +20,19 @@ public:
         ar & HIBERLITE_NVP(coordinate);
         ar & HIBERLITE_NVP(health);
     }
-    //Player();
-    //Player(int playerID);
-    //~Player();
-    int getPlayerID();
-    vector<int> getCoordinate();
-    void updateCoordinate(vector<int> newCoordinate);
 
-//private:
+    int getPlayerID();
+
+    int getCoordinate();
+
+    void updateCoordinate(int newCoordinate);
+
     // Player identification attributes
     int id;
     string login_name;
 
     // Player information attributes
-    vector<int> coordinate;
+    int coordinate;
 
     // Player stats
     int health;

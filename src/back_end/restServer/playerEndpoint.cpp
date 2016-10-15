@@ -75,6 +75,20 @@ Player addPlayer(int playerId, string name){
 	return player;
 }
 
+Player modifyPlayer(int playerId, int newHealth){
+	hiberlite::Database db("player.db");
+	hiberlite::bean_ptr<Player> editPlayer = db.loadBean<Player>(playerId);
+
+	editPlayer->health = newHealth;
+	return loadPlayer(playerId);
+}
+
+void removePlayer(int playerId){
+	hiberlite::Database db("player.db");
+	hiberlite::bean_ptr<Player> player = db.loadBean<Player>(playerId);
+	player.destroy();
+}
+
 void PlayerEndpoint::login(const Rest::Request& request, Net::Http::ResponseWriter response) {
     cout << "Request for resource: " << request.method() << request.resource() << endl;
 
@@ -138,12 +152,10 @@ void PlayerEndpoint::updatePlayer(const Rest::Request& request, Net::Http::Respo
     cout << "Request for resource: " << request.method() << request.resource() << endl;
 
     auto playerId = request.param(":id").as<int>();
-    auto age = 123;
-    auto destination = 123;
+    int parsedHealth = 90; //parse health input from request.body()
+    //no yaml parser yet
+   	Player player = modifyPlayer(playerId, parsedHealth);
 
-    // Parse body to grab player arguments
-
-    // Send to ODB
     auto success = true;
     if (success) {
         response.send(Http::Code::Ok, "Success. Returns Updated Player Yaml.");
@@ -157,10 +169,8 @@ void PlayerEndpoint::deletePlayer(const Rest::Request& request, Net::Http::Respo
     cout << "Request for resource: " << request.method() << request.resource() << endl;
 
     auto playerId = request.param(":id").as<int>();
+    removePlayer(playerId);
 
-    // Parse body to grab player arguments
-
-    // Send to ODB
     auto success = true;
     if (success) {
         response.send(Http::Code::Ok);
