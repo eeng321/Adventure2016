@@ -3,77 +3,49 @@
 
 #include <string>
 #include <stdexcept>
+#include <algorithm>
 
 #include "room.h"
+
 using std::string;
+using std::vector;
+using std::find;
 
-void Room::addPlayer(username player) {
-	bool inRoom = false;
-	for (int i = 0; i < playerList.size(); i++){
-		if(playerList[i] == player){
-			inRoom = true;
-			break;	
-		} 
-	}
-
-	if(!inRoom){
-		playerList.push_back(player);
-	}
-	throw std::domain_error("Player already in room");//will only run if 	
-}
-
-void Room::removePlayer(username player) {
-	try{
-		int position = indexInRoom(player);
-		playerList.erase(playerList.begin() + position);
-	} catch (const std::exception& e){
-		throw;//propogate error to the calling function
-	}
-}
-
-int Room::indexInRoom(username player){
-	for (int i = 0; i < playerList.size(); i++){
-		if(playerList[i] == player){
-			return i;
-		} 
-	}
-	throw std::domain_error("Player not in room");	
-}
-
-Room::~Room(){
+Room::~Room() {
 
 }
-Room::Room(const string& a,
-	id rid,
-	const string& n,
-	const description& des,
-	const vector<description>& ed,
-	const vector<Door>& d,
-	const vector<id>& nl,
-	const vector<string> pl,
-	const vector<id>& ol,
-	bool nav)
-: area(a), 
-	mainDescription(des), 
-	extendedDescriptions(ed), 
-	roomId(rid), 
-	name(n), 
-	doors(d),
-	npcList(nl),
-	playerList(pl),
-	objectList(ol),
-	navigable(nav){
+
+Room::Room(const string &a,
+		   id rid,
+		   const string &n,
+		   const description &des,
+		   const vector<description> &ed,
+		   const vector<Door> &d,
+		   const vector<id> &nl,
+		   const vector<string> pl,
+		   const vector<id> &ol,
+		   bool nav)
+		: area(a),
+		  mainDescription(des),
+		  extendedDescriptions(ed),
+		  roomId(rid),
+		  name(n),
+		  doors(d),
+		  npcList(nl),
+		  playerList(pl),
+		  objectList(ol),
+		  navigable(nav) {
 
 
 }
 
-Room::Room(const string& a,
-	const description& d, 
-	const vector<description>& ed, 
-	id idIn, 
-	const string& nameIn, 
-	const vector<Door>& doorsIn)
-:area(a), mainDescription(d), extendedDescriptions(ed), roomId(idIn), name(nameIn), doors(doorsIn){
+Room::Room(const string &a,
+		   const description &d,
+		   const vector<description> &ed,
+		   id idIn,
+		   const string &nameIn,
+		   const vector<Door> &doorsIn)
+		: area(a), mainDescription(d), extendedDescriptions(ed), roomId(idIn), name(nameIn), doors(doorsIn) {
 
 }
 
@@ -81,7 +53,7 @@ string Room::getArea() const {
 	return area;
 }
 
-/* a function for returning the raw description screen, not the function
+/* a function for returning the raw description string, not the function
    for returning the string that will be seen by the user */
 description Room::getDescription() const {
 	return mainDescription;
@@ -124,12 +96,71 @@ bool Room::isNavigable() const {
 	return navigable;
 }
 
-/* canMove checks to ensure that there is a room in the direction the player is trying to move */
-bool Room::canMove(Direction d){
-	for (auto door : doors){
-		if (d == door.direction){//possibly add in checks later for obstructions
+/* Ensure there is a room in the direction the player is trying to move */
+bool Room::canMove(Direction d) {
+	for (auto door : doors) {
+		if (d == door.direction) {//possibly add in checks later for obstructions
 			return true;
 		}
 	}
 	return false;
+}
+
+void Room::addPlayer(username player) {
+	auto element = find(playerList.begin(), playerList.end(), player);
+
+	/* Add the player to the room if they are not already in it */
+	if (element != playerList.end()) {
+		throw std::domain_error("Player already in room");
+	}
+	playerList.push_back(player);
+}
+
+void Room::removePlayer(username player) {
+
+	auto element = find(playerList.begin(), playerList.end(), player);
+
+	/* Tell the calling function that the player is not in the room
+	 * and don't try to remove them */
+	if (element == playerList.end()) {
+		throw std::domain_error("Player not in room");
+	}
+	playerList.erase(element);
+}
+
+/* Add the NPC to the room, doesn't check for duplicates b/c
+ * multiple instances of an NPC can be in a room at once */
+void Room::addNpc(id npc) {
+	npcList.push_back(npc);
+}
+
+void Room::removeNpc(id npc) {
+	auto element = find(npcList.begin(), npcList.end(), npc);
+
+	/* Tell the calling function that the player is not in the room
+	 * and don't try to remove them */
+	if (element == npcList.end()) {
+		throw std::domain_error("NPC not in room");
+	}
+	npcList.erase(element);
+}
+
+void Room::addObject(id object) {
+	auto element = find(objectList.begin(), objectList.end(), object);
+
+	if (element != objectList.end()) {
+		throw std::domain_error("Object already in room");
+	}
+	objectList.push_back(object);
+}
+
+void Room::removeObject(id object) {
+	auto element = find(objectList.begin(), objectList.end(), object);
+
+	/* Tell the calling function that the player is not in the room
+	 * and don't try to remove them */
+	if (element == objectList.end()) {
+		throw std::domain_error("Object not in room");
+	}
+	objectList.erase(element);
 }
