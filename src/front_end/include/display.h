@@ -19,11 +19,11 @@
 
 class Display {
 public:
-    static void getUserInput(char* command) const;
+    static void getUserInput(char* command);
     static void addStringToMainWindow(const char*);
-    static auto getScreenWidth() const;
-    static auto getScreenHeight() const;
-    static auto createLoginMenu();
+    static int getScreenWidth();
+    static int getScreenHeight();
+    static int createLoginMenu();
     static void clearMainWinDisplay();
 
 

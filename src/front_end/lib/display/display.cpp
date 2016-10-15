@@ -10,7 +10,7 @@ WINDOW *mainWindow;
 
 using namespace std;
 
-void Display::getUserInput(char* command) const{
+void Display::getUserInput(char* command) {
     echo();
     wgetnstr(mainWindow, command, MAX_CHAR_LIMIT);
 }
@@ -45,12 +45,12 @@ void Display::initDisplay() {
     wrefresh(mainWindow);
 }
 
-auto Display::getScreenWidth() const{
+int Display::getScreenWidth() {
     getmaxyx(stdscr, max_y, max_x);
     return max_x;
 }
 
-auto Display::getScreenHeight() const{
+int Display::getScreenHeight() {
     getmaxyx(stdscr, max_y, max_x);
     return max_y;
 }
@@ -60,11 +60,11 @@ void Display::clearMainWinDisplay() {
     wrefresh(mainWindow);
 }
 
-auto Display::createLoginMenu() {
+int Display::createLoginMenu() {
     Display::initDisplay();
     char menuList[NUM_LOGIN_MODES][40] = { "Login", "Make New Account" };
     char item[40];
-    auto ch, selectedItem = 0;
+    int ch, selectedItem = 0;
     loginWindow = createNewWindow(LOGIN_MENU_WINDOW_HEIGHT, LOGIN_MENU_WINDOW_WIDTH, WINDOW_START_Y+1, WINDOW_START_X+1);
 
     mvwprintw(loginWindow, selectedItem+1, MENU_PADDING_LEFT, "Please choose from the following:");
