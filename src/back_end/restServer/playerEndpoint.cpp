@@ -80,7 +80,7 @@ void PlayerEndpoint::updatePlayer(const Rest::Request& request, Net::Http::Respo
         response.send(Http::Code::Ok, "Success. Returns Updated Player Yaml.");
     }
     else {
-        response.send(Http::Code::No_Content);
+        response.send(Http::Code::Bad_Request);
     }
 }
 
@@ -97,6 +97,6 @@ void PlayerEndpoint::deletePlayer(const Rest::Request& request, Net::Http::Respo
         response.send(Http::Code::Ok);
     }
     else {
-        response.send(Http::Code::No_Content);
+        response.send(Http::Code::Bad_Request);
     }
 }

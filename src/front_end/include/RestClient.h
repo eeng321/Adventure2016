@@ -14,10 +14,10 @@ namespace Rest {
     class RestClient {
     public:
         RestClient();
-        std::string Get(std::string request);
-        std::string Post(std::string request, std::string payload);
-        std::string Put(std::string request, std::string payload);
-        std::string Delete(std::string request);
+        Net::Http::Response Get(std::string request);
+        Net::Http::Response Post(std::string request, std::string payload);
+        Net::Http::Response Put(std::string request, std::string payload);
+        Net::Http::Response Delete(std::string request);
 
     private:
         Net::Http::Client _client;

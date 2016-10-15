@@ -45,7 +45,7 @@ std::string Controller::parseCommand(std::string command) {
 
 std::string Controller::who() {
 
-    return client.Get(SERVER + "player/" + player.getPlayerId());
+    return client.Get(SERVER + "player/" + player.getPlayerId()).body();
 }
 
 std::string Controller::moveNorth() {
