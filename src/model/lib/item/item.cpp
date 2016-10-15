@@ -1,5 +1,4 @@
-//door.cpp
-//resources: cplusplus.com, cppreference.com
+//item.cpp
 
 #include <string>
 #include <vector>
@@ -9,7 +8,7 @@
 using std::string;
 using std::vector;
 
-void Item::build(){
+void Item::build() {
 
 }
 

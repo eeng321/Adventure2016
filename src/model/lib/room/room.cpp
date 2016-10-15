@@ -15,7 +15,7 @@ Room::~Room() {
 
 }
 
-Room::Room(){}
+Room::Room() {}
 
 Room::Room(const string &areaIn,
 		   id roomIdIn,
@@ -65,7 +65,7 @@ void Room::build(const string &areaIn,
 	const vector<id> &npcListIn,
 	const vector<string> playerListIn,
 	const vector<id> &objectListIn,
-	bool navigabilityIn){
+	bool navigabilityIn) {
 
 	area = areaIn;
 	mainDescription = descriptionIn;
@@ -84,7 +84,7 @@ void Room::build(const string &areaIn,
 	const vector<description> &extendedDescriptionIn,
 	id idIn,
 	const string &nameIn,
-	const vector<Door> &doorsIn){
+	const vector<Door> &doorsIn) {
 
 	area = areaIn;
 	mainDescription = descriptionIn;
