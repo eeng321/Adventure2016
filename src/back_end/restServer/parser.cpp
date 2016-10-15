@@ -4,35 +4,39 @@
 #include <fstream>
 
 using namespace std;
-//using namespace parser;
-//
-//int main(){
-//    std::string test = "test";
-//    std::string test2 = "test2";
-//
-//    YAML::Node nodeTest = parser::serializeLogin(test, test2);
-//    cout << "test: " << nodeTest["USERNAME"] << endl;
-//
-//
-//    string test3;
-//    string test4;
-//
-//    parser::deserializeLogin(test3, test4, nodeTest);
-//
-//    cout << "Test 3 and 4: " << test3 << " " << test4 << endl;
-//    return 0;
-//}
 
+std::string parser::playerSerialize(Player player){
 
-std::string parser::serializeLogin(std::string &body){
+    YAML::Emitter out;
+    out << YAML::BeginMap;
+    out << YAML::Key << LOGIN_NAME_KEY;
+    out << YAML::Value << player.loginName;
+    out << YAML::Key << LOGIN_ID_KEY;
+    out << YAML::Value << player.playerId;
+    out << YAML::EndMap;
 
-    YAML::Node node;
+    std::cout << "YAML representation of player: " << out.c_str() << endl;
 
+    return out.c_str();
 }
 
-std::string parser::deserializeLogin(std::string &body){
-    
-    YAML::Node node;
+Player parser::playerDeserialize(const std::string body){
+
+    if(body.empty()){
+        std::cout << "Request is empty. Error." << endl;
+        exit(1);
+    }
+
+    YAML::Node node = YAML::Load(body);
+
+    Player player;
+    player.loginName = node[LOGIN_NAME_KEY].as<string>();
+    player.playerId = node[LOGIN_ID_KEY].as<id>();
+
+
+    return player;
+
+
 }
 
 

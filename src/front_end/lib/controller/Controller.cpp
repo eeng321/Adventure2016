@@ -13,9 +13,9 @@ using namespace utility;
 const std::string SERVER = "http://localhost:8080/";
 
 // TODO: dynamic player ID
-Controller::Controller() : player(Player(1)) {
-
-}
+//Controller::Controller() : player(Player(1)) {
+//
+//}
 
 std::string Controller::parseCommand(std::string command) {
     std::transform(command.begin(), command.end(), command.begin(), ::tolower);

@@ -10,12 +10,13 @@ typedef int id;
 
 class Player {
 public:
-    Player(id pid);
+    //Player();
+    //Player(id pid);
     id getPlayerId();
     id getRoomId();
     void updateRoomId(id newRoomId);
 
-private:
+//private:
     // Player identification attributes
     id playerId;
     string loginName;

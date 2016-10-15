@@ -29,11 +29,12 @@ void PlayerEndpoint::createPlayer(const Rest::Request& request, Net::Http::Respo
     cout << "Request for resource: " << request.method() << request.resource() << endl;
 
     // Parse body to grab player arguments
-    cout << "test" << endl;
+    Player player;
+    player = parser::playerDeserialize(request.body());
     // Send to ODB
     auto success = true;
     if (success) {
-        response.send(Http::Code::Created, "Success. Returns Created Player Yaml.");
+        response.send(Http::Code::Created, parser::playerSerialize(player));
     }
     else {
         response.send(Http::Code::Bad_Request);
