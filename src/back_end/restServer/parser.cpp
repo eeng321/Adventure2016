@@ -13,6 +13,7 @@ int main(){
     YAML::Node nodeTest = parser::serializeLogin(test, test2);
     cout << "test: " << nodeTest["USERNAME"] << endl;
 
+
     string test3;
     string test4;
 

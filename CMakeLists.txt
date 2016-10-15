@@ -4,8 +4,7 @@ project (adventure2016)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
-include_directories(${YAML_CPP_SOURCE_DIR}/include
-        ${CURSES_INCLUDE_DIR})
+include_directories(${CURSES_INCLUDE_DIR})
 
 
 

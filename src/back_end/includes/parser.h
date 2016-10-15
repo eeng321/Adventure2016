@@ -5,7 +5,7 @@
 
 #ifndef ADVENTURE2016_PARSER_H
 #define ADVENTURE2016_PARSER_H
-#include "yaml-cpp/yaml.h"
+#include <yaml-cpp/yaml.h>
 #include <string>
 namespace parser{
 
