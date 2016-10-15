@@ -11,12 +11,12 @@ main() {
     char username[MAX_CHAR_LIMIT];
     char password[MAX_CHAR_LIMIT];
 
-    int loginMode = Display_createLoginMenu();
+    auto loginMode = Display::createLoginMenu();
     if(loginMode == LOGIN_MENU_SELECTION) {
-        checkExistingPlayerCredentials(command, username, password);
+        UserInput::checkExistingPlayerCredentials(command, username, password);
         //TODO: Now that we have the credentials, check to see if they are in the database
     }else if(loginMode == NEW_ACCOUNT_MENU_SELECTION){
-        createNewPlayerCredentials(command, username, password);
+        UserInput::createNewPlayerCredentials(command, username, password);
         //TODO: Store credentials somewhere and put them in database to access later
     }
 

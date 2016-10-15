@@ -1,28 +1,25 @@
 //Menu Code based off of example http://techlister.com/linux/creating-menu-with-ncurses-in-c/1293/
 
-#include <ncurses.h>
 #include <display.h>
 #include <string.h>
 #include <unistd.h>
 #include "userInput.h"
 #include <iostream>
 
-using namespace std;
-
 
 void checkExistingPlayerCredentials(char *command, char *username, char *password) {
-    Display_clearDisplay();
+    Display::clearMainWinDisplay();
 
-    Display_addStringToMainWindow("Please input your username:");
-    Display_getUserInput(command);
+    Display::addStringToMainWindow("Please input your username:");
+    Display::getUserInput(command);
     strcpy(username, command);
 
-    Display_addStringToMainWindow("Please input your password:");
-    Display_getUserInput(command);
+    Display::addStringToMainWindow("Please input your password:");
+    Display::getUserInput(command);
     strcpy(password, command);
 
-    Display_addStringToMainWindow(username);
-    Display_addStringToMainWindow(password);
+    Display::addStringToMainWindow(username);
+    Display::addStringToMainWindow(password);
     sleep(3); //TEMPORARY
 }
 
