@@ -1,27 +1,24 @@
 #include <string>
-#include <vector>
 #include "../include/player.h"
 
 using namespace std;
 
-Player::Player(int playerID){
-    // initialize values
-    id = playerID;
-    login_name = "";
-    // set default coordinate to 0,0
-    coordinate.assign(0,0);
+const int DEFAULT_SPAWN = 0;
+const int START_HEALTH = 100;
 
-    health = 100;
+Player::Player(id pid)
+    : playerId(pid), loginName(""), playerLocationId(DEFAULT_SPAWN), health(START_HEALTH) {
 }
 
-int Player::getPlayerID(){
-    return id;
+id Player::getPlayerId() {
+    return playerId;
 }
 
-vector<int> Player::getCoordinate(){
-    return coordinate;
+id Player::getRoomId() {
+    return playerLocationId;
 }
 
-void Player::updateCoordinate(vector<int> newCoordinate){
-    newCoordinate = newCoordinate;
+void Player::updateRoomId(id newRoomId) {
+    playerLocationId = newRoomId;
 }
+
