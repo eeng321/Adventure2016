@@ -4,8 +4,9 @@
 #include <string>
 #include "RestClient.h"
 #include "../../model/include/player.h"
+#include "../../model/include/room.h"
 
-enum StatusCode {OK = 0, USER_EXISTS = 1, BAD_PASSWORD = 2};
+enum StatusCode {STATUS_OK = 0, STATUS_USER_EXISTS = 1, STATUS_BAD_PASSWORD = 2};
 
 class Controller {
 public:
@@ -40,7 +41,7 @@ private:
     std::string take(std::string arg);
 
     Player player;
-    Room room;
+    Room* room;
     Rest::RestClient client;
 };
 

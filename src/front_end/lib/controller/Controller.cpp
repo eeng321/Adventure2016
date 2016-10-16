@@ -12,7 +12,7 @@ using namespace utility;
 // TODO
 const std::string SERVER = "http://localhost:8080/";
 
-Controller::Controller() : player(Player((id) 1)) {
+Controller::Controller() : player(Player((id) 1)), room(nullptr) {
 
 }
 
@@ -25,7 +25,7 @@ StatusCode Controller::logIn(std::string username, std::string password) {
 
     // TODO: set up current room
 
-    return StatusCode::OK;
+    return StatusCode::STATUS_OK;
 }
 
 std::string Controller::parseCommand(std::string command) {
