@@ -7,4 +7,5 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
 include_directories(${CURSES_INCLUDE_DIR})
 include_directories(${CMAKE_SOURCE_DIR}/hiberlite/src)
 
+
 add_subdirectory(src)

@@ -3,16 +3,11 @@
 //
 
 #include "playerEndpoint.h"
-#include <sstream>
-#include <iostream>
-#include "../lib/pistache/include/client.h"
-#include "../lib/pistache/include/endpoint.h"
-#include "../lib/hiberlite/include/hiberlite.h"
+#include "parser.h"
 #include "../../model/include/player.h"
 
 using namespace std;
 using namespace Net;
-
 
 void createDB(){
     hiberlite::Database db("player.db");
@@ -27,8 +22,8 @@ void createDB(){
 
     for(unsigned int i=0;i<5;i++) {
         Player demo;
-        demo.login_name=names[i%5];
-        demo.id = i+1;
+        demo.loginName=names[i%5];
+        demo.playerId = i+1;
         demo.health = 100;
 
         hiberlite::bean_ptr<Player> p=db.copyBean(demo);   //create a managed copy of the object
@@ -44,19 +39,19 @@ void printDB(){
     cout << "found " << v.size() << " players in the database:\n";
 
     for(size_t j=0;j<v.size();j++){
-        cout << "[username = " << v[j]->login_name << "     ";
-        cout << "id = " << v[j]->id << "]\n";
+        cout << "[username = " << v[j]->loginName << "     ";
+        cout << "id = " << v[j]->playerId << "]\n";
     }
 }
 
 Player loadPlayer(int playerId){
-	
+
     hiberlite::Database db("player.db");
     hiberlite::bean_ptr<Player> demo = db.loadBean<Player>(playerId);
 
     Player player;
-    player.id = demo->id;
-    player.login_name = demo->login_name;
+    player.playerId = demo->playerId;
+    player.loginName = demo->loginName;
     player.health = demo->health;
     return player;
 }
@@ -66,8 +61,8 @@ Player addPlayer(int playerId, string name){
 	hiberlite::Database db("player.db");
 
 	Player player;
-	player.id = playerId;
-	player.login_name = name;
+	player.playerId = playerId;
+	player.loginName = name;
 	player.health = 100;
 	hiberlite::bean_ptr<Player> p=db.copyBean(player);
 	printDB();
@@ -94,6 +89,7 @@ void PlayerEndpoint::login(const Rest::Request& request, Net::Http::ResponseWrit
 
     // Verify credentials with DB.
 
+
     auto success = true;
     if (success) {
         response.send(Http::Code::Ok, "Success. Returns the retrieved player YAML");
@@ -106,24 +102,13 @@ void PlayerEndpoint::login(const Rest::Request& request, Net::Http::ResponseWrit
 void PlayerEndpoint::createPlayer(const Rest::Request& request, Net::Http::ResponseWriter response) {
     cout << "Request for resource: " << request.method() << request.resource() << endl;
 
-    istringstream playerParams(request.body());
-    int len = 8; //lines in request body
-    string parseBody[len];
-    //parse request.body() into string array
-    for(int i = 0; i<len; i++){
-    	getline(playerParams, parseBody[i]);
-    }
-    //index 3 and 7 contain the parameters (every 4th line)
-    Player demo = addPlayer(stoi(parseBody[3]), parseBody[7]);
-    cout << "Printing newly added player: \n";
-    cout << demo.id << endl;
-    cout << demo.login_name << endl;
-    cout << demo.health << endl;
-    
-    
+    // Parse body to grab player arguments
+    Player player;
+    player = parser::playerDeserialize(request.body());
+    // Send to ODB
     auto success = true;
     if (success) {
-        response.send(Http::Code::Created, "Success. Returns Created Player Yaml.");
+        response.send(Http::Code::Created, parser::playerSerialize(player));
     }
     else {
         response.send(Http::Code::Bad_Request);
@@ -135,13 +120,13 @@ void PlayerEndpoint::retrievePlayer(const Rest::Request& request, Net::Http::Res
 
     auto playerId = request.param(":id").as<int>();
 
-    Player demo = loadPlayer(playerId);
-    string player = to_string(demo.id) + ", " + demo.login_name + ", " + to_string(demo.health) + "\n ";
+  //  Player demo = loadPlayer(playerId);
+    //string player = to_string(demo.playerId) + ", " + demo.loginName + ", " + to_string(demo.health) + "\n ";
 
     auto success = true;
 
     if (success) {
-        response.send(Http::Code::Ok, player);
+        response.send(Http::Code::Ok, "yes");
     }
     else {
         response.send(Http::Code::Bad_Request);
