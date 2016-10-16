@@ -8,7 +8,7 @@
 
 #include <yaml-cpp/yaml.h>
 #include <string>
-#include "../../model/include/player.h"
+#include "../../model/include/playerModel.h"
 
 std::string const PLAYER_NAME_KEY = "LOGIN";
 std::string const PLAYER_ID_KEY = "ID";
@@ -18,8 +18,8 @@ std::string const PLAYER_HEALTH_KEY = "HEALTH";
 
 namespace parser{
 
-   std::string playerSerialize(Player player);
-   Player playerDeserialize(const std::string body);
+   std::string playerSerialize(PlayerModel player);
+   PlayerModel playerDeserialize(const std::string body);
 };
 
 #endif //ADVENTURE2016_PARSER_H

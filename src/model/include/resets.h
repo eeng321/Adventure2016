@@ -4,7 +4,7 @@
 #define RESETS_H
 
 #include "room.h"
-#include "player.h"
+#include "playerModel.h"
 
 struct objectReset {
 	id objectId;

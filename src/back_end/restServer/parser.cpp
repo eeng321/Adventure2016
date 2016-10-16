@@ -4,7 +4,7 @@
 #include <fstream>
 using namespace std;
 
-std::string parser::playerSerialize(Player player){
+std::string parser::playerSerialize(PlayerModel player) {
 
     YAML::Emitter out;
     out << YAML::BeginMap;
@@ -23,16 +23,16 @@ std::string parser::playerSerialize(Player player){
     return out.c_str();
 }
 
-Player parser::playerDeserialize(const std::string body){
+PlayerModel parser::playerDeserialize(const std::string body) {
 
-    if(body.empty()){
+    if(body.empty()) {
         std::cout << "Request is empty. Error." << endl;
         exit(1);
     }
     std::cout << body << std::endl;
     YAML::Node node = YAML::Load(body);
 
-    Player player;
+    PlayerModel player;
     player.loginName = node[PLAYER_NAME_KEY].as<string>();
     player.playerId = node[PLAYER_ID_KEY].as<int>();
     player.coordinate = node[PLAYER_COORDINATE_KEY].as<int>();

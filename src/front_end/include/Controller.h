@@ -14,12 +14,21 @@ public:
 
     /**
      * Attempt to log into the server with the specified credentials.
-     * @param username      The user ID.
+     * @param username      The username.
      * @param password      The user password.
-     * @param result        A string reference to write the results of the player action to.
+     * @param result        A string reference to write the results of the operation to.
      * @return              A status code that reflects whether the operation was successful.
      */
     static StatusCode logIn(const std::string& username, const std::string& password, std::string& result);
+
+    /**
+     * Attempt to create an account on the server.
+     * @param username      The username.
+     * @param password      The user password.
+     * @param result        A string reference to write the results of the operation to.
+     * @return              A status code that reflects whether the operation was successful.
+     */
+    static StatusCode registerAccount(const std::string& username, const std::string& password, std::string& result);
 
     /**
      * Accept and process a user command. Legal values include the cardinal
