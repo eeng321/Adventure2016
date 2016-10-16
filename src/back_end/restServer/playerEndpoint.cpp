@@ -2,7 +2,10 @@
 // Created by michael on 10/10/16.
 //
 
+#include <sstream>
+#include <iostream>
 #include "playerEndpoint.h"
+#include "credential.h"
 #include "parser.h"
 
 using namespace std;
@@ -19,6 +22,7 @@ void createDB(){
     hiberlite::Database db("player.db");
     //register bean classes
     db.registerBeanClass<Player>();
+    db.registerBeanClass<Credential>();
     //drop all tables beans will use
     db.dropModel();
     //create those tables again with proper schema
@@ -42,13 +46,13 @@ void printDB(){
     hiberlite::Database db("player.db");
 
     cout << string(15,'=')+"\nreading the DB\n";
-    vector< hiberlite::bean_ptr<Player> > v=db.getAllBeans<Player>();
-    cout << "found " << v.size() << " players in the database:\n";
+    vector< hiberlite::bean_ptr<Player> > listPlayers=db.getAllBeans<Player>();
+    cout << "found " << listPlayers.size() << " players in the database:\n";
 
-    for(size_t j=0;j<v.size();j++){
-        cout << "[username = " << v[j]->loginName << "     ";
-        cout << "[coordinate = " << v[j]->coordinate << "     ";
-        cout << "id = " << v[j]->playerId << "]\n";
+    for(size_t j=0;j<listPlayers.size();j++){
+        cout << "[username = " << listPlayers[j]->loginName << "     ";
+        cout << "[coordinate = " << listPlayers[j]->coordinate << "     ";
+        cout << "id = " << listPlayers[j]->playerId << "]\n";
     }
 }
 
@@ -71,6 +75,8 @@ Player addPlayer(Player player){
 	hiberlite::Database db("player.db");
 
 	hiberlite::bean_ptr<Player> p=db.copyBean(player);
+    p->playerId = p.get_id();
+    player.playerId = p.get_id();
 	printDB();
 
 	return player;
@@ -94,11 +100,78 @@ void removePlayer(int playerId){
     printDB();
 }
 
+Player verifyCredentials(string username, string pw){
+    hiberlite::Database db("player.db");
+    db.registerBeanClass<Credential>();
+
+    vector< hiberlite::bean_ptr<Credential> > listAccounts = db.getAllBeans<Credential>();
+
+    //go through credentials return player if a match is found
+    for(size_t j=0;j<listAccounts.size();j++){
+        if(listAccounts[j]->player.loginName == username){
+            if(listAccounts[j]->password == pw){
+                return loadPlayer(listAccounts[j]->player.playerId);
+            }
+        }
+    }
+    Player player;
+    return player; //will give error
+}
+
+Player registerAccount(string username, string pw){
+    hiberlite::Database db("player.db");
+    db.registerBeanClass<Credential>();
+
+    Credential account;
+    Player newPlayer;
+    newPlayer.coordinate = 0;
+    newPlayer.loginName = username;
+    newPlayer.health = 100;
+    account.player = addPlayer(newPlayer);
+    account.password = pw;
+    //add account to Credential table
+    hiberlite::bean_ptr<Credential> p=db.copyBean(account);
+
+    return account.player;
+}
+
 void PlayerEndpoint::login(const Rest::Request& request, Net::Http::ResponseWriter response) {
     cout << "Request for resource: " << request.method() << request.resource() << endl;
 
+    istringstream accountInfo(request.body());
+    cout << request.body() << endl;
+    int length = 8; //8 lines for 2 inputs (4 lines per input)
+    string parseBody[length]; 
+    for(int i = 0; i<length; i++){
+        getline(accountInfo, parseBody[i]);
+    }
     // Verify credentials with DB.
+    //username = parseBody[3], password = parseBody[7]
+    cout << parseBody[3] << "  " << parseBody[7] << endl;
+    Player player = verifyCredentials(parseBody[3], parseBody[7]);
 
+    if (player.loginName == parseBody[3]) {
+        response.send(Http::Code::Ok, "Success. Returns the retrieved player YAML");
+    }
+    else {
+        response.send(Http::Code::Forbidden);
+    }
+}
+
+void PlayerEndpoint::registerPlayer(const Rest::Request& request, Net::Http::ResponseWriter response) {
+    cout << "Request for resource: " << request.method() << request.resource() << endl;
+
+    istringstream accountInfo(request.body());
+    cout << request.body() << endl;
+    int length = 8; //8 lines for 2 inputs (4 lines per input)
+    string parseBody[length]; 
+    for(int i = 0; i<length; i++){
+        getline(accountInfo, parseBody[i]);
+    }
+    // Verify credentials with DB.
+    //username = parseBody[3], password = parseBody[7]
+    cout << parseBody[3] << "  " << parseBody[7] << endl;
+    Player player = registerAccount(parseBody[3], parseBody[7]);
 
     auto success = true;
     if (success) {

@@ -50,6 +50,7 @@ private:
 
         // Authentication Routes
         Routes::Post(router, "/login", Routes::bind(&PlayerEndpoint::login));
+        Routes::Post(router, "/register", Routes::bind(&PlayerEndpoint::registerPlayer));
 
         // Player CRUDS
         Routes::Get(router, "/player/:id", Routes::bind(&PlayerEndpoint::retrievePlayer));
