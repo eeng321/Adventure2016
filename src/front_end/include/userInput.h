@@ -1,5 +1,10 @@
+#ifndef ADVENTURE2016_USERINPUT_H
+#define ADVENTURE2016_USERINPUT_H
 
-void checkExistingPlayerCredentials(char *, char *, char *);
+class UserInput {
+public:
+    static void checkExistingPlayerCredentials();
+    static void createNewPlayerCredentials();
+};
 
-void createNewPlayerCredentials(char*, char*, char*);
-
+#endif //ADVENTURE2016_USERINPUT_H
