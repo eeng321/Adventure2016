@@ -3,7 +3,7 @@
 
 #include <string>
 #include "RestClient.h"
-#include "../../model/include/player.h"
+#include "Player.h"
 #include "../../model/include/room.h"
 
 enum StatusCode {STATUS_OK = 0, STATUS_USER_EXISTS = 1, STATUS_BAD_PASSWORD = 2, STATUS_LOGGED_OUT = 3};

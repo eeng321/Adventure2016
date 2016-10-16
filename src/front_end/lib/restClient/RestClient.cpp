@@ -4,7 +4,7 @@
 //
 
 #include "RestClient.h"
-
+#include "../../../back_end/includes/parser.h"
 using namespace Rest;
 
 const int NUM_THREADS = 8;

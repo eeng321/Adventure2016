@@ -1,6 +1,5 @@
 //Menu logic is based off of this website: http://techlister.com/linux/creating-menu-with-ncurses-in-c/1293/
 #include "display.h"
-#include <ncurses.h>
 #include <iostream>
 #include <unistd.h>
 
@@ -11,20 +10,20 @@ WINDOW *mainWindow;
 
 using namespace std;
 
-void Display_getUserInput(char* command) {
+void Display::readUserInput(char *command) {
     echo();
     wgetnstr(mainWindow, command, MAX_CHAR_LIMIT);
 }
 
-void Display_addStringToMainWindow(const char* sentence){
+void Display::addStringToMainWindow(const char* sentence) {
     wprintw(mainWindow, sentence);
     wprintw(mainWindow, "\n");
     wrefresh(mainWindow);
 }
 
-WINDOW *createNewWindow (int height, int width, int starty, int startx) {
+WINDOW* Display::createNewWindow (int height, int width, int startY, int startX) {
     WINDOW *localWindow;
-    localWindow = newwin(height, width, starty, startx);
+    localWindow = newwin(height, width, startY, startX);
     box(localWindow, 0 , 0);
     wrefresh(localWindow);
     return localWindow;
@@ -35,34 +34,34 @@ void destroyWindow(WINDOW *localWindow) {
     delwin(localWindow);
 }
 
-void Display_initDisplay() {
+void Display::initDisplay() {
     initscr();
     clear();
     wclear(mainWindow);
     curs_set(TRUE);
     getmaxyx(stdscr, max_y, max_x);
-    mainWindow = createNewWindow(Display_getScreenHeight()-1, Display_getScreenWidth()-1, WINDOW_START_Y, WINDOW_START_X);
+    mainWindow = createNewWindow(Display::getScreenHeight()-1, Display::getScreenWidth()-1, WINDOW_START_Y, WINDOW_START_X);
     scrollok(mainWindow, TRUE);
     wrefresh(mainWindow);
 }
 
-int Display_getScreenWidth() {
+int Display::getScreenWidth() {
     getmaxyx(stdscr, max_y, max_x);
     return max_x;
 }
 
-int Display_getScreenHeight() {
+int Display::getScreenHeight() {
     getmaxyx(stdscr, max_y, max_x);
     return max_y;
 }
 
-void Display_clearDisplay() {
+void Display::clearMainWinDisplay() {
     wclear(mainWindow);
     wrefresh(mainWindow);
 }
 
-int Display_createLoginMenu() {
-    Display_initDisplay();
+int Display::createLoginMenu() {
+    Display::initDisplay();
     char menuList[NUM_LOGIN_MODES][40] = { "Login", "Make New Account" };
     char item[40];
     int ch, selectedItem = 0;
