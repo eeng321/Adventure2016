@@ -60,6 +60,9 @@ StatusCode Controller::parseCommand(std::string& command, std::string& result) {
         // TODO: tokenize input command so second word can be passed to take()
         return take("", result);
     }
+    else if (command == "exit" || command == || "quit") {
+        return STATUS_QUIT;
+    }
 }
 
 std::string Controller::makeGetRequest(const std::string& url) {

@@ -9,7 +9,9 @@
 void UserInput::checkExistingPlayerCredentials() {
     char username[MAX_CHAR_LIMIT];
     char password[MAX_CHAR_LIMIT];
-    _Bool doesLoginSucceed = false;
+    std::string loginResult;
+    std::string message;
+    bool doesLoginSucceed = false;
 
     Display::clearMainWinDisplay();
     while (doesLoginSucceed == false) {
@@ -22,10 +24,13 @@ void UserInput::checkExistingPlayerCredentials() {
         Display::addStringToMainWindow(username);
         Display::addStringToMainWindow(password);
 
-        if (Controller::logIn(username, password) != serverStatus.OK) {
+        if (Controller::logIn(username, password, loginResult) != STATUS_OK) {
             Display::addStringToMainWindow("You have input the wrong username or password. Please try again.");
         } else {
-            Display::addStringToMainWindow("You have input the wrong username or password. Please try again.");
+            Display::clearMainWinDisplay();
+            Display::addStringToMainWindow("You have logged in!");
+            Display::addStringToMainWindow("Welcome to the game world! Type in your commands!");
+            doesLoginSucceed = true;
         }
     }
 }
@@ -34,21 +39,34 @@ void UserInput::createNewPlayerCredentials() {
     char username[MAX_CHAR_LIMIT];
     char password[MAX_CHAR_LIMIT];
     char passwordRepeat[MAX_CHAR_LIMIT];
-    _Bool passwordMatches = false;
+    bool passwordMatches = false;
 
     Display::clearMainWinDisplay();
+    Display::addStringToMainWindow("Please input your username:");
+    Display::readUserInput(username);
     while(passwordMatches == false) {
-        Display::addStringToMainWindow("Please input your username:");
-        Display::readUserInput(username);
-
         Display::addStringToMainWindow("Please input your password:");
         Display::readUserInput(password);
 
         Display::addStringToMainWindow("Please input your password again:");
-        Display::readUserInput(password);
+        Display::readUserInput(passwordRepeat);
+
+        if(strcmp(password, passwordRepeat) != 0){
+            Display::addStringToMainWindow("Your passwords do not match.");
+        } else {
+            passwordMatches = true;
+        }
     }
+    //TODO: hook up to register function in Controller
+}
 
-
-
-
+StatusCode UserInput::readBasicInput() {
+    char command[MAX_CHAR_LIMIT];
+    std::string queryStringResult;
+    Display::readUserInput(command);
+    std::string commandConverted(command);
+    StatusCode queryReturnCode = Controller::parseCommand(commandConverted, queryStringResult);
+    strcpy(command, queryStringResult.c_str());
+    Display::addStringToMainWindow(command);
+    return queryReturnCode;
 }
