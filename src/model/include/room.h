@@ -4,20 +4,25 @@
 
 #include <string>
 #include <vector>
+#include <memory>
 #include "door.h"
+
+class RoomModel;
 
 class Room {//Tile interface
 private:
-	std::string area;
-	id roomId;
-	std::string name;
-	description mainDescription;
-	std::vector<description> extendedDescriptions;
-	std::vector<Door> doors;
-	std::vector<id> npcList;
-	std::vector<std::string> playerList;
-	std::vector<id> objectList;
-	bool navigable;
+//	std::string area;
+//	id roomId;
+//	std::string name;
+//	description mainDescription;
+//	std::vector<description> extendedDescriptions;
+//	std::vector<Door> doors;
+//	std::vector<id> npcList;
+//	std::vector<std::string> playerList;
+//	std::vector<id> objectList;
+//	bool navigable;
+
+	std::unique_ptr<RoomModel> model;
 
 public:
 
@@ -25,41 +30,41 @@ public:
 
 	Room();
 
-	Room(const std::string &a,
-		 id rid,
-		 const std::string &n,
-		 const description &des,
-		 const std::vector<description> &ed,
-		 const std::vector<Door> &d,
-		 const std::vector<id> &nl,
-		 const std::vector<std::string> pl,
-		 const std::vector<id> &ol,
-		 bool nav);
+	Room(const std::string &areaIn,
+		 id roomIdIn,
+		 const std::string &nameIn,
+		 const description &descriptionIn,
+		 const std::vector<description> &extendedDescriptionIn,
+		 const std::vector<Door> &doorsIn,
+		 const std::vector<id> &npcListIn,
+		 const std::vector<std::string> playerListIn,
+		 const std::vector<id> &itemListIn,
+		 bool navigabilityIn);
 
-	Room(const std::string &a,
-		 const description &d,
-		 const std::vector<description> &ed,
-		 id idIn,
+	Room(const std::string &areaIn,
+		 const description &descriptionIn,
+		 const std::vector<description> &extendedDescriptionIn,
+		 id roomIdIn,
 		 const std::string &nameIn,
 		 const std::vector<Door> &doorsIn);
 
-	void build(const std::string &a,
-		 id rid,
-		 const std::string &n,
-		 const description &des,
-		 const std::vector<description> &ed,
-		 const std::vector<Door> &d,
-		 const std::vector<id> &nl,
-		 const std::vector<std::string> pl,
-		 const std::vector<id> &ol,
-		 bool nav);
-
-	void build(const std::string &a,
-		 const description &d,
-		 const std::vector<description> &ed,
-		 id idIn,
-		 const std::string &nameIn,
-		 const std::vector<Door> &doorsIn);
+//	void build(const std::string &a,
+//		 id rid,
+//		 const std::string &n,
+//		 const description &des,
+//		 const std::vector<description> &ed,
+//		 const std::vector<Door> &d,
+//		 const std::vector<id> &nl,
+//		 const std::vector<std::string> pl,
+//		 const std::vector<id> &ol,
+//		 bool nav);
+//
+//	void build(const std::string &a,
+//		 const description &d,
+//		 const std::vector<description> &ed,
+//		 id idIn,
+//		 const std::string &nameIn,
+//		 const std::vector<Door> &doorsIn);
 
 	/* Getters */
 	std::string getArea() const;
