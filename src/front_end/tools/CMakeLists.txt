@@ -2,7 +2,7 @@ SET(CURSES_NEED_NCURSES TRUE)
 find_package(Curses REQUIRED)
 include_directories(${CURSES_INCLUDE_DIR})
 
-add_executable(adventure2016 main.cpp)
+add_executable(adventure2016 main.cpp ../../model/include/player.h)
 set_property(TARGET adventure2016 PROPERTY CXX_STANDARD 14)
 
 

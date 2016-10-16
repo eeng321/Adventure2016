@@ -7,6 +7,9 @@
 
 #include "../lib/pistache/include/http.h"
 #include "../lib/pistache/include/router.h"
+#include "../lib/pistache/include/client.h"
+#include "../lib/pistache/include/endpoint.h"
+
 
 namespace PlayerEndpoint {
 
@@ -16,7 +19,6 @@ namespace PlayerEndpoint {
     void retrievePlayer(const Net::Rest::Request& request, Net::Http::ResponseWriter response);
     void updatePlayer(const Net::Rest::Request& request, Net::Http::ResponseWriter response);
     void deletePlayer(const Net::Rest::Request& request, Net::Http::ResponseWriter response);
-
 }
 
 #endif //ADVENTURE2016_PLAYERENDPOINT_H

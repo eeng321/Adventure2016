@@ -10,7 +10,12 @@
 #include "../lib/pistache/include/endpoint.h"
 #include "../lib/pistache/include/router.h"
 
+//#include "../lib/hiberlite/include/hiberlite.h"
+//#include "../../model/include/player.h"
+
 #include "playerEndpoint.h"
+
+
 
 using namespace std;
 using namespace Net;
@@ -58,7 +63,6 @@ private:
 //        Routes::Post(router, "/room", Routes::bind(&RoomEndpoint::createRoom));
 //        Routes::Delete(router, "/room/:id", Routes::bind(&RoomEndpoint::deleteRoom));
 
-        // Todo: RPC
     }
 };
 
