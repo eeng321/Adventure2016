@@ -12,12 +12,27 @@ using namespace utility;
 // TODO
 const std::string SERVER = "http://localhost:8080/";
 
-// TODO: dynamic player ID
-Controller::Controller() : player(Player(1)) {
+Controller::Controller() : player(Player((id) 1)) {
 
 }
 
+StatusCode Controller::logIn(std::string username, std::string password) {
+    std::string responseBody = makeGetRequest(SERVER + "login/?username=" + username + "&password=" + password);
+
+    // TODO: set up logged in player using attributes in server response
+    player = Player((id) 1);
+    player.updateRoomId((id) 1);
+
+    // TODO: set up current room
+
+    return StatusCode::OK;
+}
+
 std::string Controller::parseCommand(std::string command) {
+    if (player.getPlayerId() == (id) 0) {
+        return "Not logged in.";
+    }
+
     std::transform(command.begin(), command.end(), command.begin(), ::tolower);
     if (command == "whoami") {
         return who();
@@ -43,12 +58,41 @@ std::string Controller::parseCommand(std::string command) {
     }
 }
 
-std::string Controller::who() {
+std::string Controller::makeGetRequest(std::string url) {
+    Net::Http::Response response = client.Get(url);
+    if (response.code() != Net::Http::Code::Ok) {
+        // TODO: handle
+        return "ERROR: HTTP error.";
+    }
+    return response.body();
+}
 
-    return client.Get(SERVER + "player/" + player.getPlayerId()).body();
+std::string Controller::makePutRequest(std::string url, std::string payload) {
+    Net::Http::Response response = client.Put(url, payload);
+    if (response.code() != Net::Http::Code::Ok) {
+        // TODO: handle
+        return "ERROR: HTTP error.";
+    }
+    return response.body();
+}
+
+std::string Controller::makePostRequest(std::string url, std::string payload) {
+    Net::Http::Response response = client.Post(url, payload);
+    if (response.code() != Net::Http::Code::Ok) {
+        // TODO: handle
+        return "ERROR: HTTP error.";
+    }
+    return response.body();
+}
+
+std::string Controller::who() {
+    std::string responseBody = makeGetRequest(SERVER + "player/" + player.getPlayerId());
+    // TODO: deserialize YAML Player object and return name or appropriate info
+    return responseBody;
 }
 
 std::string Controller::moveNorth() {
+    // TODO: make put request with player ID, and room ID north of current room
     return "The Earth itself blocks your way.";
 }
 

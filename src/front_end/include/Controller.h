@@ -1,17 +1,24 @@
-//
-// Created by josh on 29/09/16.
-//
-
-#ifndef ADVENTURE2016_PARSER_H
-#define ADVENTURE2016_PARSER_H
+#ifndef ADVENTURE2016_CONTROLLER_H
+#define ADVENTURE2016_CONTROLLER_H
 
 #include <string>
 #include "RestClient.h"
 #include "../../model/include/player.h"
 
+enum StatusCode {OK = 0, USER_EXISTS = 1, BAD_PASSWORD = 2};
+
 class Controller {
 public:
     Controller();
+
+    /**
+     * Attempt to log into the server with the specified credentials.
+     * @param username      The user ID.
+     * @param password      The user password.
+     * @return              Whether the login was accepted.
+     */
+    StatusCode logIn(std::string username, std::string password);
+
     /**
      * Accept and process a user command. Legal values include the cardinal
      * directions and the shorthands n, e, s, or w; whoami; look; and take
@@ -21,6 +28,9 @@ public:
     std::string parseCommand(std::string command);
 
 private:
+    std::string makeGetRequest(std::string url);
+    std::string makePutRequest(std::string url, std::string payload);
+    std::string makePostRequest(std::string url, std::string payload);
     std::string who();
     std::string moveNorth();
     std::string moveEast();
@@ -30,8 +40,7 @@ private:
     std::string take(std::string arg);
 
     Player player;
-    // TODO
-    //World world;
+    Room room;
     Rest::RestClient client;
 };
 
