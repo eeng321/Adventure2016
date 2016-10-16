@@ -1,27 +1,22 @@
 #include <string>
-#include <vector>
 #include "../include/player.h"
 
 using namespace std;
 
-Player::Player(int playerID){
-    // initialize values
-    id = playerID;
-    login_name = "";
-    // set default coordinate to 0,0
-    coordinate.assign(0,0);
+const int DEFAULT_SPAWN = 0;
+const int START_HEALTH = 100;
 
-    health = 100;
+
+int Player::getPlayerID() {
+    return playerId;
 }
 
-int Player::getPlayerID(){
-    return id;
-}
-
-vector<int> Player::getCoordinate(){
+int Player::getCoordinate() {
     return coordinate;
 }
 
-void Player::updateCoordinate(vector<int> newCoordinate){
-    newCoordinate = newCoordinate;
+void Player::updateCoordinate(int newRoomId) {
+    coordinate = newRoomId;
 }
+
+HIBERLITE_EXPORT_CLASS(Player)

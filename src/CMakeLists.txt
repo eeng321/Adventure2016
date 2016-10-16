@@ -1,3 +1,5 @@
-add_subdirectory(rest_server)
+
+add_subdirectory(back_end)
+add_subdirectory(model)
 add_subdirectory(front_end)
-include_directories(rest_server)
+
