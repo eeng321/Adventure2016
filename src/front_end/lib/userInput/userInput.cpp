@@ -1,7 +1,7 @@
 //Menu Code based off of example http://techlister.com/linux/creating-menu-with-ncurses-in-c/1293/
 
+#include "../../include/Controller.h"
 #include <display.h>
-#include "Controller.h"
 #include "userInput.h"
 #include <iostream>
 
