@@ -7,15 +7,19 @@
 #include <iostream>
 
 
-void UserInput::checkExistingPlayerCredentials(char *command, char *username, char *password) {
+void UserInput::checkExistingPlayerCredentials() {
+    char command[MAX_CHAR_LIMIT];
+    char username[MAX_CHAR_LIMIT];
+    char password[MAX_CHAR_LIMIT];
+
     Display::clearMainWinDisplay();
 
     Display::addStringToMainWindow("Please input your username:");
-    Display::getUserInput(command);
+    Display::readUserInput(command);
     strcpy(username, command);
 
     Display::addStringToMainWindow("Please input your password:");
-    Display::getUserInput(command);
+    Display::readUserInput(command);
     strcpy(password, command);
 
     Display::addStringToMainWindow(username);
@@ -23,7 +27,7 @@ void UserInput::checkExistingPlayerCredentials(char *command, char *username, ch
     sleep(3); //TEMPORARY
 }
 
-void UserInput::createNewPlayerCredentials(char *command, char *username, char *password) {
+void UserInput::createNewPlayerCredentials() {
     //TODO: Where do we store this information?
     //TODO: How do we pass this information?
 }

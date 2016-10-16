@@ -19,7 +19,7 @@
 
 class Display {
 public:
-    static void getUserInput(char* command);
+    static void readUserInput(char *command);
     static void addStringToMainWindow(const char*);
     static int getScreenWidth();
     static int getScreenHeight();

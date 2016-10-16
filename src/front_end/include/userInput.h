@@ -3,8 +3,8 @@
 
 class UserInput {
 public:
-    static void checkExistingPlayerCredentials(char *command, char *username, char *password);
-    static void createNewPlayerCredentials(char *command, char *username, char *password);
+    static void checkExistingPlayerCredentials();
+    static void createNewPlayerCredentials();
 };
 
 #endif //ADVENTURE2016_USERINPUT_H

@@ -10,7 +10,7 @@ WINDOW *mainWindow;
 
 using namespace std;
 
-void Display::getUserInput(char* command) {
+void Display::readUserInput(char *command){
     echo();
     wgetnstr(mainWindow, command, MAX_CHAR_LIMIT);
 }
@@ -45,12 +45,12 @@ void Display::initDisplay() {
     wrefresh(mainWindow);
 }
 
-int Display::getScreenWidth() {
+int Display::getScreenWidth(){
     getmaxyx(stdscr, max_y, max_x);
     return max_x;
 }
 
-int Display::getScreenHeight() {
+int Display::getScreenHeight(){
     getmaxyx(stdscr, max_y, max_x);
     return max_y;
 }
