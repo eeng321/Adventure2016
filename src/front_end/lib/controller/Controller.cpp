@@ -11,8 +11,10 @@ using namespace utility;
 
 // TODO
 const std::string SERVER = "http://localhost:8080/";
+Player Controller::player = Player((id) 1);
+Room* Controller::room = nullptr;
 
-Controller::Controller() : player(Player((id) 1)), room(nullptr) {
+Controller::Controller() {
 
 }
 
