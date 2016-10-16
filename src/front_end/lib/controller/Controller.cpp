@@ -2,9 +2,9 @@
 // Created by josh on 29/09/16.
 //
 
+#include "Controller.h"
 #include <algorithm>
 #include <iostream>
-#include "Controller.h"
 #include "../../include/utility.h"
 
 using namespace utility;
