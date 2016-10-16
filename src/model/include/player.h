@@ -36,7 +36,6 @@ public:
     int health;
 };
 
-HIBERLITE_EXPORT_CLASS(Player)
 
 #endif //ADVENTURE2016_PLAYER_H
 

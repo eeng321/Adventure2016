@@ -4,7 +4,6 @@
 
 #include "playerEndpoint.h"
 #include "parser.h"
-#include "../../model/include/player.h"
 
 using namespace std;
 using namespace Net;
@@ -56,14 +55,14 @@ Player loadPlayer(int playerId){
     return player;
 }
 
-Player addPlayer(int playerId, string name){
+Player addPlayer(Player player){
 	createDB();
 	hiberlite::Database db("player.db");
 
-	Player player;
-	player.playerId = playerId;
-	player.loginName = name;
-	player.health = 100;
+//	Player player;
+//	player.playerId = playerId;
+//	player.loginName = name;
+//	player.health = 100;
 	hiberlite::bean_ptr<Player> p=db.copyBean(player);
 	printDB();
 
@@ -92,6 +91,7 @@ void PlayerEndpoint::createPlayer(const Rest::Request& request, Net::Http::Respo
     Player player;
     player = parser::playerDeserialize(request.body());
     // Send to ODB
+    addPlayer(player);
     auto success = true;
     if (success) {
         response.send(Http::Code::Created, parser::playerSerialize(player));
