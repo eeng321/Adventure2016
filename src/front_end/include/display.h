@@ -1,3 +1,8 @@
+#ifndef ADVENTURE2016_DISPLAY_H
+#define ADVENTURE2016_DISPLAY_H
+
+#include <ncurses.h>
+
 #define MAX_CHAR_LIMIT 500
 #define WINDOW_START_X 0
 #define WINDOW_START_Y 0
@@ -12,11 +17,25 @@
 #define QUIT_CHAR 'q'
 #define BACK_CHAR 'b'
 
-void Display_getUserInput(char*);
-void Display_addStringToMainWindow(const char*);
-void Display_initDisplay();
-int Display_getScreenWidth();
-int Display_getScreenHeight();
-void Display_clearDisplay();
-int Display_createLoginMenu();
+class Display {
+public:
+    static void readUserInput(char *command);
+    static void addStringToMainWindow(const char* sentence);
+    static int getScreenWidth();
+    static int getScreenHeight();
+    static int createLoginMenu();
+    static void clearMainWinDisplay();
 
+
+private:
+    static WINDOW* createNewWindow(int height, int width, int startY, int startX);
+    static void initDisplay();
+};
+
+
+
+
+
+
+
+#endif //ADVENTURE2016_DISPLAY_H
