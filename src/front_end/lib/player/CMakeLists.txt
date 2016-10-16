@@ -1,6 +1,6 @@
 
-add_library(playerImpl STATIC Player.cpp)
-set_property(TARGET playerImpl PROPERTY CXX_STANDARD 14)
-target_link_libraries(playerImpl player)
+add_library(player STATIC Player.cpp)
+set_property(TARGET player PROPERTY CXX_STANDARD 14)
+target_link_libraries(player playerModel)
 
-install(TARGETS playerImpl DESTINATION lib)
+install(TARGETS player DESTINATION lib)

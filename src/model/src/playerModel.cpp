@@ -1,5 +1,5 @@
 #include <string>
-#include "../include/player.h"
+#include "playerModel.h"
 
 using namespace std;
 
@@ -7,16 +7,16 @@ const int DEFAULT_SPAWN = 0;
 const int START_HEALTH = 100;
 
 
-int Player::getPlayerID() {
+int PlayerModel::getPlayerID() {
     return playerId;
 }
 
-int Player::getCoordinate() {
+int PlayerModel::getCoordinate() {
     return coordinate;
 }
 
-void Player::updateCoordinate(int newRoomId) {
+void PlayerModel::updateCoordinate(int newRoomId) {
     coordinate = newRoomId;
 }
 
-HIBERLITE_EXPORT_CLASS(Player)
+HIBERLITE_EXPORT_CLASS(PlayerModel)

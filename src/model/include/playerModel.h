@@ -8,7 +8,7 @@
 using namespace std;
 
 
-class Player {
+class PlayerModel {
 public:
 
     friend class hiberlite::access;

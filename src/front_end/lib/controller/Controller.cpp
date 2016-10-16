@@ -20,7 +20,7 @@ Controller::Controller() {
 }
 
 StatusCode Controller::logIn(const std::string& username, const std::string& password, std::string& result) {
-    std::string responseBody = makeGetRequest(SERVER + "login/?username=" + username + "&password=" + password);
+    std::string responseBody = makePostRequest(SERVER + "login", "?username=" + username + "&password=" + password);
 
     // TODO: set up logged in player using attributes in server response
     player = Player((id) 1);
@@ -29,6 +29,14 @@ StatusCode Controller::logIn(const std::string& username, const std::string& pas
     // TODO: set up current room
 
     result = (int) player.getPlayerId();
+    return STATUS_OK;
+}
+
+StatusCode Controller::registerAccount(const std::string& username, const std::string& password, std::string& result) {
+    // TODO
+    //std::string responseBody = makePostRequest(SERVER + "player", "");
+
+    //result = responseBody;
     return STATUS_OK;
 }
 
