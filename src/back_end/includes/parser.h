@@ -10,8 +10,11 @@
 #include <string>
 #include "../../model/include/player.h"
 
-std::string const LOGIN_NAME_KEY = "LOGIN";
-std::string const LOGIN_ID_KEY = "ID";
+std::string const PLAYER_NAME_KEY = "LOGIN";
+std::string const PLAYER_ID_KEY = "ID";
+std::string const PLAYER_COORDINATE_KEY = "COORDINATE";
+std::string const PLAYER_HEALTH_KEY = "HEALTH";
+
 
 namespace parser{
 

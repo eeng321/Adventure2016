@@ -4,7 +4,7 @@
 //
 
 #include "RestClient.h"
-
+#include "../../../back_end/includes/parser.h"
 using namespace Rest;
 
 const int NUM_THREADS = 8;
@@ -17,67 +17,73 @@ RestClient::RestClient() {
     _client.init(options);
 }
 
-std::string RestClient::Get(std::string request) {
+Net::Http::Response RestClient::Get(std::string request) {
+
     std::vector<Async::Promise<Net::Http::Response>> responses;
-    std::string body;
+    Net::Http::Response response;
+
     auto resp = _client.get(request).send();
-    resp.then([&](Net::Http::Response response) {
-        if (response.code() == Net::Http::Code(400)){
-            body = "Fail";
-        }
-        body = response.body();
-
+    resp.then([&](Net::Http::Response promisedResponse) {
+        response = promisedResponse;
     }, Async::IgnoreException);
-    responses.push_back(std::move(resp));
 
+    responses.push_back(std::move(resp));
     auto sync = Async::whenAll(responses.begin(), responses.end());
     Async::Barrier<std::vector<Net::Http::Response>> barrier(sync);
-
     barrier.wait_for(std::chrono::seconds(5));
 
-    return body;
+    return response;
 }
 
-// proof of concept. need to talk via json
-std::string RestClient::Post(std::string request, std::string payload) {
+Net::Http::Response RestClient::Post(std::string request, std::string payload) {
 
     std::vector<Async::Promise<Net::Http::Response>> responses;
-    std::string body;
+    Net::Http::Response response;
+
     auto resp = _client.post(request).body(payload).send();
-    resp.then([&](Net::Http::Response response) {
-        if (response.code() == Net::Http::Code(400)){
-            body = "0";
-        }
-        body = response.body();
-
+    resp.then([&](Net::Http::Response promisedResponse) {
+        response = promisedResponse;
     }, Async::IgnoreException);
-    responses.push_back(std::move(resp));
 
+    responses.push_back(std::move(resp));
     auto sync = Async::whenAll(responses.begin(), responses.end());
     Async::Barrier<std::vector<Net::Http::Response>> barrier(sync);
-
     barrier.wait_for(std::chrono::seconds(5));
 
-    return body;
+    return response;
 }
 
-std::string RestClient::Put(std::string request, std::string payload) {
+Net::Http::Response RestClient::Put(std::string request, std::string payload) {
     std::vector<Async::Promise<Net::Http::Response>> responses;
-    std::string body;
+    Net::Http::Response response;
+
     auto resp = _client.put(request).body(payload).send();
-    resp.then([&](Net::Http::Response response) {
-        if (response.code() == Net::Http::Code(400)){
-            body = "0";
-        }
-        body = response.body();
-
+    resp.then([&](Net::Http::Response promisedResponse) {
+        response = promisedResponse;
     }, Async::IgnoreException);
-    responses.push_back(std::move(resp));
 
+    responses.push_back(std::move(resp));
     auto sync = Async::whenAll(responses.begin(), responses.end());
     Async::Barrier<std::vector<Net::Http::Response>> barrier(sync);
-
     barrier.wait_for(std::chrono::seconds(5));
 
-    return body;
+    return response;
+}
+
+Net::Http::Response RestClient::Delete(std::string request) {
+
+    std::vector<Async::Promise<Net::Http::Response>> responses;
+    Net::Http::Response response;
+
+    auto resp = _client.del(request).send();
+    resp.then([&](Net::Http::Response promisedResponse) {
+        response = promisedResponse;
+    }, Async::IgnoreException);
+
+    responses.push_back(std::move(resp));
+    auto sync = Async::whenAll(responses.begin(), responses.end());
+    Async::Barrier<std::vector<Net::Http::Response>> barrier(sync);
+    barrier.wait_for(std::chrono::seconds(5));
+
+    return response;
 }

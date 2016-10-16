@@ -18,3 +18,5 @@ int Player::getCoordinate() {
 void Player::updateCoordinate(int newRoomId) {
     coordinate = newRoomId;
 }
+
+HIBERLITE_EXPORT_CLASS(Player)

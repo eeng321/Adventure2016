@@ -34,9 +34,13 @@ find_library(YAMLCPP_LIBRARY
         /opt
         ${YAMLCPP_DIR}/lib)
 
-add_executable(rest_server restServer.cpp playerEndpoint.cpp parser.cpp)
-target_link_libraries(rest_server net_static hiber ${CMAKE_DL_LIBS} player yaml-cpp)
-target_link_libraries(rest_server yaml-cpp)
+add_library(parser STATIC parser.cpp)
+set_property(TARGET parser PROPERTY CXX_STANDARD 14)
+
+install(TARGETS parser DESTINATION lib)
+
+add_executable(rest_server restServer.cpp playerEndpoint.cpp)
+target_link_libraries(rest_server net_static hiber ${CMAKE_DL_LIBS} player parser yaml-cpp)
 set_target_properties(rest_server PROPERTIES COMPILE_FLAGS "-std=c++11")
 set_target_properties(rest_server PROPERTIES COMPILE_FLAGS "-lyaml-cpp")
 
