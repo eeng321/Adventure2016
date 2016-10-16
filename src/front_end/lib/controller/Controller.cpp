@@ -16,7 +16,7 @@ Controller::Controller() : player(Player((id) 1)), room(nullptr) {
 
 }
 
-StatusCode Controller::logIn(std::string username, std::string password) {
+StatusCode Controller::logIn(const std::string& username, const std::string& password, std::string& result) {
     std::string responseBody = makeGetRequest(SERVER + "login/?username=" + username + "&password=" + password);
 
     // TODO: set up logged in player using attributes in server response
@@ -25,40 +25,42 @@ StatusCode Controller::logIn(std::string username, std::string password) {
 
     // TODO: set up current room
 
-    return StatusCode::STATUS_OK;
+    result = (int) player.getPlayerId();
+    return STATUS_OK;
 }
 
-std::string Controller::parseCommand(std::string command) {
+StatusCode Controller::parseCommand(std::string& command, std::string& result) {
     if (player.getPlayerId() == (id) 0) {
-        return "Not logged in.";
+        result = "Not logged in.";
+        return STATUS_LOGGED_OUT;
     }
 
     std::transform(command.begin(), command.end(), command.begin(), ::tolower);
     if (command == "whoami") {
-        return who();
+        return who(result);
     }
     else if (command == "n" || command == "north" || command == "up") {
-        return moveNorth();
+        return moveNorth(result);
     }
     else if (command == "e" || command == "east" || command == "right") {
-        return moveEast();
+        return moveEast(result);
     }
     else if (command == "s" || command == "south" || command == "down") {
-        return moveSouth();
+        return moveSouth(result);
     }
     else if (command == "w" || command == "west" || command == "left") {
-        return moveWest();
+        return moveWest(result);
     }
     else if (command == "l" || command == "look") {
-        return look();
+        return look(result);
     }
     else if (command == "t" || command == "take") {
         // TODO: tokenize input command so second word can be passed to take()
-        return take("");
+        return take("", result);
     }
 }
 
-std::string Controller::makeGetRequest(std::string url) {
+std::string Controller::makeGetRequest(const std::string& url) {
     Net::Http::Response response = client.Get(url);
     if (response.code() != Net::Http::Code::Ok) {
         // TODO: handle
@@ -67,7 +69,7 @@ std::string Controller::makeGetRequest(std::string url) {
     return response.body();
 }
 
-std::string Controller::makePutRequest(std::string url, std::string payload) {
+std::string Controller::makePutRequest(const std::string& url, const std::string& payload) {
     Net::Http::Response response = client.Put(url, payload);
     if (response.code() != Net::Http::Code::Ok) {
         // TODO: handle
@@ -76,7 +78,7 @@ std::string Controller::makePutRequest(std::string url, std::string payload) {
     return response.body();
 }
 
-std::string Controller::makePostRequest(std::string url, std::string payload) {
+std::string Controller::makePostRequest(const std::string& url, const std::string& payload) {
     Net::Http::Response response = client.Post(url, payload);
     if (response.code() != Net::Http::Code::Ok) {
         // TODO: handle
@@ -85,33 +87,40 @@ std::string Controller::makePostRequest(std::string url, std::string payload) {
     return response.body();
 }
 
-std::string Controller::who() {
+StatusCode Controller::who(std::string& result) {
     std::string responseBody = makeGetRequest(SERVER + "player/" + player.getPlayerId());
     // TODO: deserialize YAML Player object and return name or appropriate info
-    return responseBody;
+    result = responseBody;
+    return STATUS_OK;
 }
 
-std::string Controller::moveNorth() {
+StatusCode Controller::moveNorth(std::string& result) {
     // TODO: make put request with player ID, and room ID north of current room
-    return "The Earth itself blocks your way.";
+    result = "The Earth itself blocks your way.";
+    return STATUS_OK;
 }
 
-std::string Controller::moveEast() {
-    return "The Earth itself blocks your way.";
+StatusCode Controller::moveEast(std::string& result) {
+    result = "The Earth itself blocks your way.";
+    return STATUS_OK;
 }
 
-std::string Controller::moveSouth() {
-    return "The Earth itself blocks your way.";
+StatusCode Controller::moveSouth(std::string& result) {
+    result = "The Earth itself blocks your way.";
+    return STATUS_OK;
 }
 
-std::string Controller::moveWest() {
-    return "The Earth itself blocks your way.";
+StatusCode Controller::moveWest(std::string& result) {
+    result = "The Earth itself blocks your way.";
+    return STATUS_OK;
 }
 
-std::string Controller::look() {
-    return "You see only darkness.";
+StatusCode Controller::look(std::string& result) {
+    result = "You see only darkness.";
+    return STATUS_OK;
 }
 
-std::string Controller::take(std::string arg) {
-    return "There is nothing to take.";
+StatusCode Controller::take(const std::string& arg, std::string& result) {
+    result = "There is nothing to take.";
+    return STATUS_OK;
 }
