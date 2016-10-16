@@ -2,28 +2,31 @@
 
 #include <ncurses.h>
 #include <display.h>
-#include <string.h>
-#include <unistd.h>
+#include "Controller.h"
 #include "userInput.h"
 #include <iostream>
 
-using namespace std;
+void checkExistingPlayerCredentials() {
+    _Bool doesLoginSucceed = false;
+    while (doesLoginSucceed == false) {
+        Display::clearMainWinDisplay();
 
+        Display::addStringToMainWindow("Please input your username:");
+        Display::readUserInput(username);
 
-void checkExistingPlayerCredentials(char *command, char *username, char *password) {
-    Display_clearDisplay();
+        Display::addStringToMainWindow("Please input your password:");
+        Display::readUserInput(password);
 
-    Display_addStringToMainWindow("Please input your username:");
-    Display_getUserInput(command);
-    strcpy(username, command);
+        Display::addStringToMainWindow(username);
+        Display::addStringToMainWindow(password);
 
-    Display_addStringToMainWindow("Please input your password:");
-    Display_getUserInput(command);
-    strcpy(password, command);
+        if(Controller::logIn(username, password) != serverStatus.OK) {
+            Display::addStringToMainWindow("You have input the wrong username or password. Please try again.");
+        } else {
+            
+        }
 
-    Display_addStringToMainWindow(username);
-    Display_addStringToMainWindow(password);
-    sleep(3); //TEMPORARY
+    }
 }
 
 void createNewPlayerCredentials(char *command, char *username, char *password) {
