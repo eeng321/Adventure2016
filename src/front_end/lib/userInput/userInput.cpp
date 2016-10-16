@@ -8,19 +8,16 @@
 
 
 void UserInput::checkExistingPlayerCredentials() {
-    char command[MAX_CHAR_LIMIT];
     char username[MAX_CHAR_LIMIT];
     char password[MAX_CHAR_LIMIT];
 
     Display::clearMainWinDisplay();
 
     Display::addStringToMainWindow("Please input your username:");
-    Display::readUserInput(command);
-    strcpy(username, command);
+    Display::readUserInput(username);
 
     Display::addStringToMainWindow("Please input your password:");
-    Display::readUserInput(command);
-    strcpy(password, command);
+    Display::readUserInput(password);
 
     Display::addStringToMainWindow(username);
     Display::addStringToMainWindow(password);
