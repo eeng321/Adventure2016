@@ -2,9 +2,9 @@
 // Created by josh on 29/09/16.
 //
 
+#include "Controller.h"
 #include <algorithm>
 #include <iostream>
-#include "Controller.h"
 #include "../../include/utility.h"
 
 using namespace utility;
@@ -13,6 +13,7 @@ using namespace utility;
 const std::string SERVER = "http://localhost:8080/";
 Player Controller::player = Player((id) 1);
 Room* Controller::room = nullptr;
+Rest::RestClient Controller::client;
 
 Controller::Controller() {
 
@@ -60,7 +61,7 @@ StatusCode Controller::parseCommand(std::string& command, std::string& result) {
         // TODO: tokenize input command so second word can be passed to take()
         return take("", result);
     }
-    else if (command == "exit" || command == || "quit") {
+    else if (command == "exit" || command == "quit") {
         return STATUS_QUIT;
     }
 }
