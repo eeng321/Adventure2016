@@ -53,7 +53,8 @@ void printDB(){
 
 PlayerModel loadPlayer(int playerId){
 
-    hiberlite::Database db("AdventureDatabase.db");
+    hiberlite::Database db;
+    db.open("AdventureDatabase.db");
     hiberlite::bean_ptr<PlayerModel> demo = db.loadBean<PlayerModel>(playerId);
 
     PlayerModel player;
@@ -66,8 +67,8 @@ PlayerModel loadPlayer(int playerId){
 }
 
 PlayerModel addPlayer(PlayerModel player){
-	hiberlite::Database db("AdventureDatabase.db");
-
+	hiberlite::Database db;
+    db.open("AdventureDatabase.db");
     hiberlite::bean_ptr<PlayerModel> p=db.copyBean(player);
     p->playerId = p.get_id();
     player.playerId = p.get_id();
@@ -77,7 +78,8 @@ PlayerModel addPlayer(PlayerModel player){
 }
 
 PlayerModel modifyPlayer(int playerId, PlayerModel updateFields){
-	hiberlite::Database db("AdventureDatabase.db");
+	hiberlite::Database db;
+    db.open("AdventureDatabase.db");
 	hiberlite::bean_ptr<PlayerModel> editPlayer = db.loadBean<PlayerModel>(playerId);
 
     editPlayer->roomId = updateFields.roomId;
@@ -88,7 +90,8 @@ PlayerModel modifyPlayer(int playerId, PlayerModel updateFields){
 }
 
 success removePlayer(int playerId){
-	hiberlite::Database db("AdventureDatabase.db");
+	hiberlite::Database db;
+    db.open("AdventureDatabase.db");
 	hiberlite::bean_ptr<PlayerModel> player = db.loadBean<PlayerModel>(playerId);
     hiberlite::bean_ptr<Credential> account = db.loadBean<Credential>(playerId);
     vector< hiberlite::bean_ptr<PlayerModel> > listPlayers=db.getAllBeans<PlayerModel>();
@@ -102,7 +105,8 @@ success removePlayer(int playerId){
 }
 
 PlayerModel verifyCredentials(string username, string pw){
-    hiberlite::Database db("AdventureDatabase.db");
+    hiberlite::Database db;
+    db.open("AdventureDatabase.db");
     //db.registerBeanClass<Credential>();
 
     vector< hiberlite::bean_ptr<Credential> > listAccounts = db.getAllBeans<Credential>();
@@ -121,7 +125,8 @@ PlayerModel verifyCredentials(string username, string pw){
 }
 
 PlayerModel registerAccount(string username, string pw){
-    hiberlite::Database db("AdventureDatabase.db");
+    hiberlite::Database db;
+    db.open("AdventureDatabase.db");
     //db.registerBeanClass<Credential>();
 
     Credential account;
