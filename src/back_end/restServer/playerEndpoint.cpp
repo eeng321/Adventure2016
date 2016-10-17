@@ -2,175 +2,146 @@
 // Created by michael on 10/10/16.
 //
 
+#include <sstream>
+#include <iostream>
 #include "playerEndpoint.h"
 #include "parser.h"
+#include "playerDriver.h"
+#include <boost/algorithm/string.hpp>
 
 using namespace std;
 using namespace Net;
 
-void printPlayer(PlayerModel player){
-    cout << "NAME: " << player.loginName << endl;
-    cout << "ID: " << player.playerId << endl;
-    cout << "COORDINATE: " << player.roomId << endl;
-    cout << "HEALTH: " << player.health << endl;
-}
-
-void createDB(){
-    hiberlite::Database db("player.db");
-    //register bean classes
-    db.registerBeanClass<PlayerModel>();
-    //drop all tables beans will use
-    db.dropModel();
-    //create those tables again with proper schema
-    db.createModel();
-
-    const char* names[5]={"Stanley", "Kyle", "Eric", "Kenny", "Michael"};
-
-    for(unsigned int i=0;i<5;i++) {
-        PlayerModel demo;
-        demo.loginName=names[i%5];
-        demo.playerId = i+1;
-        demo.roomId = 0;
-        demo.health = 100;
-
-        hiberlite::bean_ptr<PlayerModel> p=db.copyBean(demo);   //create a managed copy of the object
-    }
-}
-
-void printDB(){
-
-    hiberlite::Database db("player.db");
-
-    cout << string(15,'=')+"\nreading the DB\n";
-    vector< hiberlite::bean_ptr<PlayerModel> > v=db.getAllBeans<PlayerModel>();
-    cout << "found " << v.size() << " players in the database:\n";
-
-    for(size_t j=0;j<v.size();j++){
-        cout << "[username = " << v[j]->loginName << "     ";
-        cout << "[coordinate = " << v[j]->roomId << "     ";
-        cout << "id = " << v[j]->playerId << "]\n";
-    }
-}
-
-PlayerModel loadPlayer(int playerId){
-
-    hiberlite::Database db("player.db");
-    hiberlite::bean_ptr<PlayerModel> demo = db.loadBean<PlayerModel>(playerId);
-
-    PlayerModel player;
-    player.playerId = demo->playerId;
-    player.loginName = demo->loginName;
-    player.roomId = demo->roomId;
-    player.health = demo->health;
-    printPlayer(player);
-    return player;
-}
-
-PlayerModel addPlayer(PlayerModel player){
-	createDB();
-	hiberlite::Database db("player.db");
-
-	hiberlite::bean_ptr<PlayerModel> p=db.copyBean(player);
-	printDB();
-
-	return player;
-}
-
-PlayerModel modifyPlayer(int playerId, PlayerModel updateFields){
-	hiberlite::Database db("player.db");
-	hiberlite::bean_ptr<PlayerModel> editPlayer = db.loadBean<PlayerModel>(playerId);
-
-    // editPlayer->loginName = updateFields.loginName;
-    // editPlayer->id = updateFields.id;
-    editPlayer->roomId = updateFields.roomId;
-	editPlayer->health = updateFields.health;
-	return loadPlayer(playerId); //this will print the player
-}
-
-void removePlayer(int playerId){
-	hiberlite::Database db("player.db");
-	hiberlite::bean_ptr<PlayerModel> player = db.loadBean<PlayerModel>(playerId);
-	player.destroy();
-    printDB();
-}
-
 void PlayerEndpoint::login(const Rest::Request& request, Net::Http::ResponseWriter response) {
     cout << "Request for resource: " << request.method() << request.resource() << endl;
 
-    // Verify credentials with DB.
+    try {
+        string accountInfo(request.body());
+        vector<string> inputs;
+        boost::split(inputs, accountInfo, boost::is_any_of("?=&"));
 
+        PlayerModel player = verifyCredentials(inputs[2], inputs[4]);
 
-    auto success = true;
-    if (success) {
-        response.send(Http::Code::Ok, "Success. Returns the retrieved player YAML");
+        if (player.loginName == inputs[2]) {
+            response.send(Http::Code::Ok, parser::playerSerialize(player));
+        }
+        else {
+            response.send(Http::Code::Forbidden);
+        }
     }
-    else {
-        response.send(Http::Code::Forbidden);
+    catch (...) {
+        response.send(Http::Code::Internal_Server_Error);
     }
+}
+
+void PlayerEndpoint::registerPlayer(const Rest::Request& request, Net::Http::ResponseWriter response) {
+    cout << "Request for resource: " << request.method() << request.resource() << endl;
+
+    try {
+        string accountInfo(request.body());
+        vector<string> inputs;
+        boost::split(inputs, accountInfo, boost::is_any_of("?=&"));
+
+        PlayerModel player = registerAccount(inputs[2], inputs[4]);
+
+        if (player.loginName == inputs[2]) {
+            response.send(Http::Code::Ok, parser::playerSerialize(player));
+        }
+        else {
+            response.send(Http::Code::Forbidden);
+        }
+    }
+    catch (...) {
+        response.send(Http::Code::Internal_Server_Error);
+    }
+
 }
 
 void PlayerEndpoint::createPlayer(const Rest::Request& request, Net::Http::ResponseWriter response) {
     cout << "Request for resource: " << request.method() << request.resource() << endl;
 
-    // Parse body to grab player arguments
-    PlayerModel player;
-    player = parser::playerDeserialize(request.body());
+    try {
+        // Parse body to grab player arguments
+        PlayerModel player;
+        player = parser::playerDeserialize(request.body());
 
-    addPlayer(player);
-    auto success = true;
-    if (success) {
-        response.send(Http::Code::Created, parser::playerSerialize(player));
+        addPlayer(player);
+
+        //todo: fix this with proper returns
+        auto success = true;
+        if (success) {
+            response.send(Http::Code::Created, parser::playerSerialize(player));
+        }
+        else {
+            response.send(Http::Code::Bad_Request);
+        }
     }
-    else {
-        response.send(Http::Code::Bad_Request);
+    catch (...) {
+        response.send(Http::Code::Internal_Server_Error);
     }
 }
 
 void PlayerEndpoint::retrievePlayer(const Rest::Request& request, Net::Http::ResponseWriter response) {
     cout << "Request for resource: " << request.method() << request.resource() << endl;
 
-    auto playerId = request.param(":id").as<int>();
+    try {
+        auto playerId = request.param(":id").as<int>();
 
-    PlayerModel demo = loadPlayer(playerId);
-    string player = to_string(demo.playerId) + ", " + demo.loginName + ", " + to_string(demo.health) + "\n ";
+        PlayerModel player;
+        player.loginName = "";
+        player = loadPlayer(playerId);
 
-    auto success = true;
-
-    if (success) {
-        response.send(Http::Code::Ok, "yes");
+        if (player.loginName != "") {
+            response.send(Http::Code::Ok, parser::playerSerialize(player));
+        }
+        else {
+            response.send(Http::Code::Bad_Request);
+        }
     }
-    else {
-        response.send(Http::Code::Bad_Request);
+    catch (...) {
+        response.send(Http::Code::Internal_Server_Error);
     }
 }
 
 void PlayerEndpoint::updatePlayer(const Rest::Request& request, Net::Http::ResponseWriter response) {
     cout << "Request for resource: " << request.method() << request.resource() << endl;
 
-    auto playerId = request.param(":id").as<int>();
-    PlayerModel updateFields = parser::playerDeserialize(request.body());
-    PlayerModel player = modifyPlayer(playerId, updateFields);
+    try {
+        auto playerId = request.param(":id").as<int>();
+        PlayerModel updateFields = parser::playerDeserialize(request.body());
 
-    auto success = true;
-    if (success) {
-        response.send(Http::Code::Ok, "Success. Returns Updated Player Yaml.");
+        auto updatedPlayer = modifyPlayer(playerId, updateFields);
+
+        //todo: fix this with proper returns
+        if (true) {
+            response.send(Http::Code::Ok, parser::playerSerialize(updatedPlayer));
+        }
+        else {
+            response.send(Http::Code::Bad_Request);
+        }
     }
-    else {
-        response.send(Http::Code::Bad_Request);
+    catch (...) {
+        response.send(Http::Code::Internal_Server_Error);
     }
 }
 
 void PlayerEndpoint::deletePlayer(const Rest::Request& request, Net::Http::ResponseWriter response) {
     cout << "Request for resource: " << request.method() << request.resource() << endl;
 
-    auto playerId = request.param(":id").as<int>();
-    removePlayer(playerId);
+    try {
+        auto playerId = request.param(":id").as<int>();
+        removePlayer(playerId);
 
-    auto success = true;
-    if (success) {
-        response.send(Http::Code::Ok);
+        //todo: fix this with proper returns
+        auto success = true;
+        if (success) {
+            response.send(Http::Code::Ok);
+        }
+        else {
+            response.send(Http::Code::Bad_Request);
+        }
     }
-    else {
-        response.send(Http::Code::Bad_Request);
+    catch (...) {
+        response.send(Http::Code::Internal_Server_Error);
     }
 }
