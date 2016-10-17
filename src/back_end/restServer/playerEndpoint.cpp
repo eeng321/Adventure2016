@@ -152,7 +152,7 @@ void PlayerEndpoint::login(const Rest::Request& request, Net::Http::ResponseWrit
     Player player = verifyCredentials(parseBody[3], parseBody[7]);
 
     if (player.loginName == parseBody[3]) {
-        response.send(Http::Code::Ok, "Success. Returns the retrieved player YAML");
+        response.send(Http::Code::Ok, parser::playerSerialize(player));
     }
     else {
         response.send(Http::Code::Forbidden);
@@ -174,9 +174,8 @@ void PlayerEndpoint::registerPlayer(const Rest::Request& request, Net::Http::Res
     cout << parseBody[3] << "  " << parseBody[7] << endl;
     Player player = registerAccount(parseBody[3], parseBody[7]);
 
-    auto success = true;
-    if (success) {
-        response.send(Http::Code::Ok, "Success. Returns the retrieved player YAML");
+    if (player.loginName == parseBody[3]) {
+        response.send(Http::Code::Ok, parser::playerSerialize(player));
     }
     else {
         response.send(Http::Code::Forbidden);
@@ -205,13 +204,13 @@ void PlayerEndpoint::retrievePlayer(const Rest::Request& request, Net::Http::Res
 
     auto playerId = request.param(":id").as<int>();
 
-    PlayerModel demo = loadPlayer(playerId);
-    string player = to_string(demo.playerId) + ", " + demo.loginName + ", " + to_string(demo.health) + "\n ";
+    PlayerModel player;
+    player.loginName = "";
+    player = loadPlayer(playerId);
+    //string player = to_string(demo.playerId) + ", " + demo.loginName + ", " + to_string(demo.health) + "\n ";
 
-    auto success = true;
-
-    if (success) {
-        response.send(Http::Code::Ok, "yes");
+    if (player.loginName != "") {
+        response.send(Http::Code::Ok, parser::playerSerialize(player));
     }
     else {
         response.send(Http::Code::Bad_Request);
@@ -223,11 +222,12 @@ void PlayerEndpoint::updatePlayer(const Rest::Request& request, Net::Http::Respo
 
     auto playerId = request.param(":id").as<int>();
     PlayerModel updateFields = parser::playerDeserialize(request.body());
-    PlayerModel player = modifyPlayer(playerId, updateFields);
+    PlayerModel player;
+    player.health = -999;
+    player = modifyPlayer(playerId, updateFields);
 
-    auto success = true;
-    if (success) {
-        response.send(Http::Code::Ok, "Success. Returns Updated Player Yaml.");
+    if (player.health != -999) {
+        response.send(Http::Code::Ok, parser::playerSerialize(player));
     }
     else {
         response.send(Http::Code::Bad_Request);
