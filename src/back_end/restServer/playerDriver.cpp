@@ -3,7 +3,7 @@
 #include <iostream>
 
 using namespace std;
-hiberlite::Database db("AdventureDatabase.db");
+//hiberlite::Database db("AdventureDatabase.db");
 
 void printPlayer(PlayerModel player){
     cout << "NAME: " << player.loginName << endl;
@@ -13,7 +13,7 @@ void printPlayer(PlayerModel player){
 }
 
 void createDB(){
-    //hiberlite::Database db("AdventureDatabase.db");
+    hiberlite::Database db("AdventureDatabase.db");
     //register bean classes
     db.registerBeanClass<PlayerModel>();
     db.registerBeanClass<Credential>();
@@ -37,7 +37,7 @@ void createDB(){
 
 void printDB(){
 
-    //hiberlite::Database db("AdventureDatabase.db");
+    hiberlite::Database db("AdventureDatabase.db");
 
     cout << string(15,'=')+"\nreading the DB\n";
 
@@ -53,7 +53,7 @@ void printDB(){
 
 PlayerModel loadPlayer(int playerId){
 
-    //hiberlite::Database db("AdventureDatabase.db");
+    hiberlite::Database db("AdventureDatabase.db");
     hiberlite::bean_ptr<PlayerModel> demo = db.loadBean<PlayerModel>(playerId);
 
     PlayerModel player;
@@ -66,7 +66,7 @@ PlayerModel loadPlayer(int playerId){
 }
 
 PlayerModel addPlayer(PlayerModel player){
-	//hiberlite::Database db("AdventureDatabase.db");
+	hiberlite::Database db("AdventureDatabase.db");
 
     hiberlite::bean_ptr<PlayerModel> p=db.copyBean(player);
     p->playerId = p.get_id();
@@ -77,7 +77,7 @@ PlayerModel addPlayer(PlayerModel player){
 }
 
 PlayerModel modifyPlayer(int playerId, PlayerModel updateFields){
-	//hiberlite::Database db("AdventureDatabase.db");
+	hiberlite::Database db("AdventureDatabase.db");
 	hiberlite::bean_ptr<PlayerModel> editPlayer = db.loadBean<PlayerModel>(playerId);
 
     editPlayer->roomId = updateFields.roomId;
@@ -87,18 +87,23 @@ PlayerModel modifyPlayer(int playerId, PlayerModel updateFields){
 	return loadPlayer(playerId);
 }
 
-void removePlayer(int playerId){
-	//hiberlite::Database db("AdventureDatabase.db");
+success removePlayer(int playerId){
+	hiberlite::Database db("AdventureDatabase.db");
 	hiberlite::bean_ptr<PlayerModel> player = db.loadBean<PlayerModel>(playerId);
     hiberlite::bean_ptr<Credential> account = db.loadBean<Credential>(playerId);
+    vector< hiberlite::bean_ptr<PlayerModel> > listPlayers=db.getAllBeans<PlayerModel>();
+    int numOfPlayers = listPlayers.size();
 	player.destroy();
     account.destroy();
     //printDB();
+    //return true if number of players in db changes after deleting
+    return (numOfPlayers != listPlayers.size());
+    
 }
 
 PlayerModel verifyCredentials(string username, string pw){
-    //hiberlite::Database db("AdventureDatabase.db");
-    db.registerBeanClass<Credential>();
+    hiberlite::Database db("AdventureDatabase.db");
+    //db.registerBeanClass<Credential>();
 
     vector< hiberlite::bean_ptr<Credential> > listAccounts = db.getAllBeans<Credential>();
 
@@ -116,8 +121,8 @@ PlayerModel verifyCredentials(string username, string pw){
 }
 
 PlayerModel registerAccount(string username, string pw){
-    //hiberlite::Database db("AdventureDatabase.db");
-    db.registerBeanClass<Credential>();
+    hiberlite::Database db("AdventureDatabase.db");
+    //db.registerBeanClass<Credential>();
 
     Credential account;
     PlayerModel newPlayer;
