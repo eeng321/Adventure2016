@@ -2,22 +2,25 @@
 // Created by josh on 29/09/16.
 //
 
+#include "Controller.h"
 #include <algorithm>
 #include <iostream>
-#include "Controller.h"
 #include "../../include/utility.h"
 
 using namespace utility;
 
 // TODO
 const std::string SERVER = "http://localhost:8080/";
+Player Controller::player = Player((id) 1);
+Room* Controller::room = nullptr;
+Rest::RestClient Controller::client;
 
-Controller::Controller() : player(Player((id) 1)), room(nullptr) {
+Controller::Controller() {
 
 }
 
 StatusCode Controller::logIn(const std::string& username, const std::string& password, std::string& result) {
-    std::string responseBody = makeGetRequest(SERVER + "login/?username=" + username + "&password=" + password);
+    std::string responseBody = makePostRequest(SERVER + "login", "?username=" + username + "&password=" + password);
 
     // TODO: set up logged in player using attributes in server response
     player = Player((id) 1);
@@ -26,6 +29,14 @@ StatusCode Controller::logIn(const std::string& username, const std::string& pas
     // TODO: set up current room
 
     result = (int) player.getPlayerId();
+    return STATUS_OK;
+}
+
+StatusCode Controller::registerAccount(const std::string& username, const std::string& password, std::string& result) {
+    // TODO
+    //std::string responseBody = makePostRequest(SERVER + "player", "");
+
+    //result = responseBody;
     return STATUS_OK;
 }
 
@@ -57,6 +68,9 @@ StatusCode Controller::parseCommand(std::string& command, std::string& result) {
     else if (command == "t" || command == "take") {
         // TODO: tokenize input command so second word can be passed to take()
         return take("", result);
+    }
+    else if (command == "exit" || command == "quit") {
+        return STATUS_QUIT;
     }
 }
 

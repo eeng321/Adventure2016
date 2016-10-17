@@ -11,7 +11,7 @@
 using namespace std;
 using namespace Net;
 
-void printPlayer(Player player){
+void printPlayer(PlayerModel player){
     cout << "NAME: " << player.loginName << endl;
     cout << "ID: " << player.playerId << endl;
     cout << "COORDINATE: " << player.coordinate << endl;
@@ -21,7 +21,7 @@ void printPlayer(Player player){
 void createDB(){
     hiberlite::Database db("player.db");
     //register bean classes
-    db.registerBeanClass<Player>();
+    db.registerBeanClass<PlayerModel>();
     db.registerBeanClass<Credential>();
     //drop all tables beans will use
     db.dropModel();
@@ -31,13 +31,13 @@ void createDB(){
     const char* names[5]={"Stanley", "Kyle", "Eric", "Kenny", "Michael"};
 
     for(unsigned int i=0;i<5;i++) {
-        Player demo;
+        PlayerModel demo;
         demo.loginName=names[i%5];
         demo.playerId = i+1;
         demo.coordinate = 0;
         demo.health = 100;
 
-        hiberlite::bean_ptr<Player> p=db.copyBean(demo);   //create a managed copy of the object
+        hiberlite::bean_ptr<PlayerModel> p=db.copyBean(demo);   //create a managed copy of the object
     }
 }
 
@@ -46,7 +46,8 @@ void printDB(){
     hiberlite::Database db("player.db");
 
     cout << string(15,'=')+"\nreading the DB\n";
-    vector< hiberlite::bean_ptr<Player> > listPlayers=db.getAllBeans<Player>();
+
+    vector< hiberlite::bean_ptr<PlayerModel> > listPlayers=db.getAllBeans<PlayerModel>();
     cout << "found " << listPlayers.size() << " players in the database:\n";
 
     for(size_t j=0;j<listPlayers.size();j++){
@@ -56,12 +57,12 @@ void printDB(){
     }
 }
 
-Player loadPlayer(int playerId){
+PlayerModel loadPlayer(int playerId){
 
     hiberlite::Database db("player.db");
-    hiberlite::bean_ptr<Player> demo = db.loadBean<Player>(playerId);
+    hiberlite::bean_ptr<PlayerModel> demo = db.loadBean<PlayerModel>(playerId);
 
-    Player player;
+    PlayerModel player;
     player.playerId = demo->playerId;
     player.loginName = demo->loginName;
     player.coordinate = demo->coordinate;
@@ -70,11 +71,11 @@ Player loadPlayer(int playerId){
     return player;
 }
 
-Player addPlayer(Player player){
+PlayerModel addPlayer(PlayerModel player){
 	createDB();
 	hiberlite::Database db("player.db");
 
-	hiberlite::bean_ptr<Player> p=db.copyBean(player);
+    hiberlite::bean_ptr<PlayerModel> p=db.copyBean(player);
     p->playerId = p.get_id();
     player.playerId = p.get_id();
 	printDB();
@@ -82,9 +83,9 @@ Player addPlayer(Player player){
 	return player;
 }
 
-Player modifyPlayer(int playerId, Player updateFields){
+PlayerModel modifyPlayer(int playerId, PlayerModel updateFields){
 	hiberlite::Database db("player.db");
-	hiberlite::bean_ptr<Player> editPlayer = db.loadBean<Player>(playerId);
+	hiberlite::bean_ptr<PlayerModel> editPlayer = db.loadBean<PlayerModel>(playerId);
 
     // editPlayer->loginName = updateFields.loginName;
     // editPlayer->id = updateFields.id;
@@ -95,7 +96,7 @@ Player modifyPlayer(int playerId, Player updateFields){
 
 void removePlayer(int playerId){
 	hiberlite::Database db("player.db");
-	hiberlite::bean_ptr<Player> player = db.loadBean<Player>(playerId);
+	hiberlite::bean_ptr<PlayerModel> player = db.loadBean<PlayerModel>(playerId);
 	player.destroy();
     printDB();
 }
@@ -186,7 +187,7 @@ void PlayerEndpoint::createPlayer(const Rest::Request& request, Net::Http::Respo
     cout << "Request for resource: " << request.method() << request.resource() << endl;
 
     // Parse body to grab player arguments
-    Player player;
+    PlayerModel player;
     player = parser::playerDeserialize(request.body());
 
     addPlayer(player);
@@ -204,7 +205,7 @@ void PlayerEndpoint::retrievePlayer(const Rest::Request& request, Net::Http::Res
 
     auto playerId = request.param(":id").as<int>();
 
-    Player demo = loadPlayer(playerId);
+    PlayerModel demo = loadPlayer(playerId);
     string player = to_string(demo.playerId) + ", " + demo.loginName + ", " + to_string(demo.health) + "\n ";
 
     auto success = true;
@@ -221,8 +222,8 @@ void PlayerEndpoint::updatePlayer(const Rest::Request& request, Net::Http::Respo
     cout << "Request for resource: " << request.method() << request.resource() << endl;
 
     auto playerId = request.param(":id").as<int>();
-    Player updateFields = parser::playerDeserialize(request.body());
-   	Player player = modifyPlayer(playerId, updateFields);
+    PlayerModel updateFields = parser::playerDeserialize(request.body());
+    PlayerModel player = modifyPlayer(playerId, updateFields);
 
     auto success = true;
     if (success) {

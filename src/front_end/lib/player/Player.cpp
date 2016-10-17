@@ -1,5 +1,5 @@
 #include <string>
-#include "../include/player.h"
+#include "../../include/Player.h"
 
 using namespace std;
 

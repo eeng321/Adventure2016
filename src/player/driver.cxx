@@ -9,7 +9,7 @@
 
 #include <odb/mysql/database.hxx>
 
-#include "player.h"
+#include "playerModel.h"
 #include "player-odb.hxx"
 
 using namespace std;
