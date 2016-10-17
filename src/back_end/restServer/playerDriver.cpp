@@ -67,37 +67,37 @@ PlayerModel loadPlayer(int playerId){
 }
 
 PlayerModel addPlayer(PlayerModel player){
-	hiberlite::Database db;
+    hiberlite::Database db;
     db.open("AdventureDatabase.db");
     hiberlite::bean_ptr<PlayerModel> p=db.copyBean(player);
     p->playerId = p.get_id();
     player.playerId = p.get_id();
     p.save();
-	printDB();
+    printDB();
 
-	return player;
+    return player;
 }
 
 PlayerModel modifyPlayer(int playerId, PlayerModel updateFields){
-	hiberlite::Database db;
+    hiberlite::Database db;
     db.open("AdventureDatabase.db");
-	hiberlite::bean_ptr<PlayerModel> editPlayer = db.loadBean<PlayerModel>(playerId);
+    hiberlite::bean_ptr<PlayerModel> editPlayer = db.loadBean<PlayerModel>(playerId);
 
     editPlayer->roomId = updateFields.roomId;
-	editPlayer->health = updateFields.health;
+    editPlayer->health = updateFields.health;
     editPlayer.save();
 
-	return loadPlayer(playerId);
+    return loadPlayer(playerId);
 }
 
 success removePlayer(int playerId){
-	hiberlite::Database db;
+    hiberlite::Database db;
     db.open("AdventureDatabase.db");
-	hiberlite::bean_ptr<PlayerModel> player = db.loadBean<PlayerModel>(playerId);
+    hiberlite::bean_ptr<PlayerModel> player = db.loadBean<PlayerModel>(playerId);
     hiberlite::bean_ptr<Credential> account = db.loadBean<Credential>(playerId);
     vector< hiberlite::bean_ptr<PlayerModel> > listPlayers=db.getAllBeans<PlayerModel>();
     int numOfPlayers = listPlayers.size();
-	player.destroy();
+    player.destroy();
     account.destroy();
     //printDB();
     //return true if number of players in db changes after deleting
