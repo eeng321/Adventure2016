@@ -87,3 +87,7 @@ Net::Http::Response RestClient::Delete(std::string request) {
 
     return response;
 }
+
+void RestClient::Shutdown() {
+    _client.shutdown();
+}

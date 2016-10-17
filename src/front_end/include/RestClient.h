@@ -18,6 +18,7 @@ namespace Rest {
         Net::Http::Response Post(std::string request, std::string payload);
         Net::Http::Response Put(std::string request, std::string payload);
         Net::Http::Response Delete(std::string request);
+        void Shutdown();
 
     private:
         Net::Http::Client _client;

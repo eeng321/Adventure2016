@@ -70,6 +70,7 @@ StatusCode Controller::parseCommand(std::string& command, std::string& result) {
         return take("", result);
     }
     else if (command == "exit" || command == "quit") {
+        client.Shutdown();
         return STATUS_QUIT;
     }
 }
