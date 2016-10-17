@@ -72,7 +72,8 @@ PlayerModel addPlayer(PlayerModel player){
     hiberlite::bean_ptr<PlayerModel> p=db.copyBean(player);
     p->playerId = p.get_id();
     player.playerId = p.get_id();
-	//printDB();
+    p.save();
+	printDB();
 
 	return player;
 }
