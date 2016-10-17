@@ -68,8 +68,14 @@ StatusCode Controller::parseCommand(std::string& command, std::string& result) {
     }
 
     std::transform(command.begin(), command.end(), command.begin(), ::tolower);
-    if (command == "whoami") {
+    if (command == "help" || command == "h") {
+        return help(result);
+    }
+    else if (command == "whoami" || command == "who") {
         return who(result);
+    }
+    else if (command == "whereami" || command == "where") {
+        return where(result);
     }
     else if (command == "n" || command == "north" || command == "up") {
         return moveNorth(result);
@@ -90,9 +96,13 @@ StatusCode Controller::parseCommand(std::string& command, std::string& result) {
         // TODO: tokenize input command so second word can be passed to take()
         return take("", result);
     }
-    else if (command == "exit" || command == "quit") {
+    else if (command == "exit" || command == "quit" || command == "q") {
         client.Shutdown();
         return STATUS_QUIT;
+    }
+    else {
+        result = "Unrecognized command. Say \"help\" to view available commands.";
+        return STATUS_OK;
     }
 }
 
@@ -123,10 +133,19 @@ std::string Controller::makePostRequest(const std::string& url, const std::strin
     return response.body();
 }
 
+StatusCode Controller::help(std::string& result) {
+    result = "You can say:\n";
+    result += "help whoami whereami north east south west look take quit";
+    return STATUS_OK;
+}
+
 StatusCode Controller::who(std::string& result) {
-    std::string responseBody = makeGetRequest(SERVER + "player/" + player.getPlayerId());
-    // TODO: deserialize YAML Player object and return name or appropriate info
-    result = responseBody;
+    result = "You are player ID " + std::to_string((int) player.getPlayerId());
+    return STATUS_OK;
+}
+
+StatusCode Controller::where(std::string& result) {
+    result = "You are in room " + std::to_string((int) player.getRoomId());
     return STATUS_OK;
 }
 

@@ -50,7 +50,9 @@ private:
     static std::string makeGetRequest(const std::string& url);
     static std::string makePutRequest(const std::string& url, const std::string& payload);
     static std::string makePostRequest(const std::string& url, const std::string& payload);
+    static StatusCode help(std::string& result);
     static StatusCode who(std::string& result);
+    static StatusCode where(std::string& result);
     static StatusCode moveNorth(std::string& result);
     static StatusCode moveEast(std::string& result);
     static StatusCode moveSouth(std::string& result);
