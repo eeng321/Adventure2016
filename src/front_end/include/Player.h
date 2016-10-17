@@ -3,28 +3,22 @@
 
 
 #include <string>
-
-using namespace std;
+#include <memory>
+#include "../../model/include/playerModel.h"
 
 typedef int id;
 
 class Player {
 public:
     Player(id pid);
+    PlayerModel getModel();
+    void setModel(PlayerModel model);
     id getPlayerId();
     id getRoomId();
     void updateRoomId(id newRoomId);
 
 private:
-    // Player identification attributes
-    id playerId;
-    string loginName;
-
-    // Player information attributes
-    id playerLocationId;
-
-    // Player stats
-    int health;
+    PlayerModel model;
 };
 
 #endif //ADVENTURE2016_PLAYER_H

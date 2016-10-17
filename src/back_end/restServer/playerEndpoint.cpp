@@ -11,7 +11,7 @@ using namespace Net;
 void printPlayer(PlayerModel player){
     cout << "NAME: " << player.loginName << endl;
     cout << "ID: " << player.playerId << endl;
-    cout << "COORDINATE: " << player.coordinate << endl;
+    cout << "COORDINATE: " << player.roomId << endl;
     cout << "HEALTH: " << player.health << endl;
 }
 
@@ -30,7 +30,7 @@ void createDB(){
         PlayerModel demo;
         demo.loginName=names[i%5];
         demo.playerId = i+1;
-        demo.coordinate = 0;
+        demo.roomId = 0;
         demo.health = 100;
 
         hiberlite::bean_ptr<PlayerModel> p=db.copyBean(demo);   //create a managed copy of the object
@@ -47,7 +47,7 @@ void printDB(){
 
     for(size_t j=0;j<v.size();j++){
         cout << "[username = " << v[j]->loginName << "     ";
-        cout << "[coordinate = " << v[j]->coordinate << "     ";
+        cout << "[coordinate = " << v[j]->roomId << "     ";
         cout << "id = " << v[j]->playerId << "]\n";
     }
 }
@@ -60,7 +60,7 @@ PlayerModel loadPlayer(int playerId){
     PlayerModel player;
     player.playerId = demo->playerId;
     player.loginName = demo->loginName;
-    player.coordinate = demo->coordinate;
+    player.roomId = demo->roomId;
     player.health = demo->health;
     printPlayer(player);
     return player;
@@ -82,7 +82,7 @@ PlayerModel modifyPlayer(int playerId, PlayerModel updateFields){
 
     // editPlayer->loginName = updateFields.loginName;
     // editPlayer->id = updateFields.id;
-    editPlayer->coordinate = updateFields.coordinate;
+    editPlayer->roomId = updateFields.roomId;
 	editPlayer->health = updateFields.health;
 	return loadPlayer(playerId); //this will print the player
 }

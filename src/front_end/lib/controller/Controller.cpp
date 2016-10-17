@@ -6,13 +6,14 @@
 #include <algorithm>
 #include <iostream>
 #include "../../include/utility.h"
+#include "../../../back_end/includes/parser.h"
 
 using namespace utility;
 
 // TODO
 const std::string SERVER = "http://localhost:8080/";
 Player Controller::player = Player((id) 1);
-Room* Controller::room = nullptr;
+//Room Controller::room = Room();
 Rest::RestClient Controller::client;
 
 Controller::Controller() {
@@ -22,21 +23,19 @@ Controller::Controller() {
 StatusCode Controller::logIn(const std::string& username, const std::string& password, std::string& result) {
     std::string responseBody = makePostRequest(SERVER + "login", "?username=" + username + "&password=" + password);
 
-    // TODO: set up logged in player using attributes in server response
-    player = Player((id) 1);
-    player.updateRoomId((id) 1);
+    PlayerModel playerModel = parser::playerDeserialize(responseBody);
+    player = Player((id) playerModel.playerId);
+    player.setModel(playerModel);
 
     // TODO: set up current room
-
     result = (int) player.getPlayerId();
     return STATUS_OK;
 }
 
 StatusCode Controller::registerAccount(const std::string& username, const std::string& password, std::string& result) {
-    // TODO
-    //std::string responseBody = makePostRequest(SERVER + "player", "");
+    std::string responseBody = makePostRequest(SERVER + "register", "?username=" + username + "&password=" + password);
 
-    //result = responseBody;
+    result = responseBody;
     return STATUS_OK;
 }
 

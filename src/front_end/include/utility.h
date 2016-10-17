@@ -6,6 +6,8 @@
 #ifndef ADVENTURE2016_UTILITY_H
 #define ADVENTURE2016_UTILITY_H
 
+#include <string>
+
 typedef int id;
 
 namespace utility {
