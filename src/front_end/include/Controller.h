@@ -6,7 +6,14 @@
 #include "Player.h"
 #include "../../model/include/room.h"
 
-enum StatusCode {STATUS_OK = 0, STATUS_USER_EXISTS = 1, STATUS_BAD_PASSWORD = 2, STATUS_LOGGED_OUT = 3, STATUS_QUIT = 4};
+enum StatusCode {
+    STATUS_OK = 0,
+    STATUS_USER_EXISTS = 1,
+    STATUS_BAD_PASSWORD = 2,
+    STATUS_LOGGED_OUT = 3,
+    STATUS_QUIT = 4,
+    STATUS_SERVER_ERROR = 5
+};
 
 class Controller {
 public:
