@@ -22,9 +22,6 @@ void UserInput::checkExistingPlayerCredentials() {
         Display::addStringToMainWindow("Please input your password:");
         Display::readUserInput(password);
 
-        Display::addStringToMainWindow(username);
-        Display::addStringToMainWindow(password);
-
         if (Controller::logIn(username, password, loginResult) != STATUS_OK) {
             Display::addStringToMainWindow("You have input the wrong username or password. Please try again.");
         } else {
@@ -41,24 +38,38 @@ void UserInput::createNewPlayerCredentials() {
     char password[MAX_CHAR_LIMIT];
     char passwordRepeat[MAX_CHAR_LIMIT];
     bool passwordMatches = false;
+    bool loggedIn = false;
+    std::string loginResult;
 
-    Display::clearMainWinDisplay();
-    Display::addStringToMainWindow("Please input your username:");
-    Display::readUserInput(username);
-    while(passwordMatches == false) {
-        Display::addStringToMainWindow("Please input your password:");
-        Display::readUserInput(password);
+    while (!loggedIn) {
+        Display::clearMainWinDisplay();
+        Display::addStringToMainWindow("Please input your username:");
+        Display::readUserInput(username);
+        while (!passwordMatches) {
+            Display::addStringToMainWindow("Please input your password:");
+            Display::readUserInput(password);
 
-        Display::addStringToMainWindow("Please input your password again:");
-        Display::readUserInput(passwordRepeat);
+            Display::addStringToMainWindow("Please input your password again:");
+            Display::readUserInput(passwordRepeat);
 
-        if(strcmp(password, passwordRepeat) != 0){
-            Display::addStringToMainWindow("Your passwords do not match.");
+            if (strcmp(password, passwordRepeat) != 0) {
+                Display::addStringToMainWindow("Your passwords do not match.");
+            } else {
+                passwordMatches = true;
+            }
+        }
+        if(Controller::registerAccount(username, password, loginResult) == STATUS_USER_EXISTS) {
+            Display::addStringToMainWindow("Sorry that username is already taken, please try again with a different username.");
+        } else if(Controller::registerAccount(username, password, loginResult) != STATUS_OK) {
+            Display::addStringToMainWindow("Sorry, creating a new account did not work. Please try again.");
         } else {
-            passwordMatches = true;
+            Display::clearMainWinDisplay();
+            Display::addStringToMainWindow("You have logged in!");
+            Display::addStringToMainWindow("Welcome to the game world! Type in your commands!");
+            loggedIn = true;
         }
     }
-    //TODO: hook up to register function in Controller
+
 }
 
 StatusCode UserInput::readBasicInput() {
