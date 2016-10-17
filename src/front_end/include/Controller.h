@@ -6,7 +6,14 @@
 #include "Player.h"
 #include "../../model/include/room.h"
 
-enum StatusCode {STATUS_OK = 0, STATUS_USER_EXISTS = 1, STATUS_BAD_PASSWORD = 2, STATUS_LOGGED_OUT = 3, STATUS_QUIT = 4};
+enum StatusCode {
+    STATUS_OK = 0,
+    STATUS_USER_EXISTS = 1,
+    STATUS_BAD_PASSWORD = 2,
+    STATUS_LOGGED_OUT = 3,
+    STATUS_QUIT = 4,
+    STATUS_SERVER_ERROR = 5
+};
 
 class Controller {
 public:
@@ -43,7 +50,9 @@ private:
     static std::string makeGetRequest(const std::string& url);
     static std::string makePutRequest(const std::string& url, const std::string& payload);
     static std::string makePostRequest(const std::string& url, const std::string& payload);
+    static StatusCode help(std::string& result);
     static StatusCode who(std::string& result);
+    static StatusCode where(std::string& result);
     static StatusCode moveNorth(std::string& result);
     static StatusCode moveEast(std::string& result);
     static StatusCode moveSouth(std::string& result);

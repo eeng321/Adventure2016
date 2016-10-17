@@ -12,7 +12,7 @@ using namespace utility;
 
 // TODO
 const std::string SERVER = "http://localhost:8080/";
-Player Controller::player = Player((id) 1);
+Player Controller::player = Player((id) 0);
 //Room Controller::room = Room();
 Rest::RestClient Controller::client;
 
@@ -21,21 +21,43 @@ Controller::Controller() {
 }
 
 StatusCode Controller::logIn(const std::string& username, const std::string& password, std::string& result) {
-    std::string responseBody = makePostRequest(SERVER + "login", "?username=" + username + "&password=" + password);
+    result = "";
+    Net::Http::Response response = client.Post(SERVER + "login", "?username=" + username + "&password=" + password);
+    if (response.code() == Net::Http::Code::Forbidden) {
+        return STATUS_BAD_PASSWORD;
+    }
+    else if (response.code() != Net::Http::Code::Ok) {
+        return STATUS_SERVER_ERROR;
+    }
 
-    PlayerModel playerModel = parser::playerDeserialize(responseBody);
+    PlayerModel playerModel = parser::playerDeserialize(response.body());
     player = Player((id) playerModel.playerId);
     player.setModel(playerModel);
 
     // TODO: set up current room
-    result = (int) player.getPlayerId();
+    //result = (int) player.getPlayerId();
+    result = response.body();
     return STATUS_OK;
 }
 
 StatusCode Controller::registerAccount(const std::string& username, const std::string& password, std::string& result) {
-    std::string responseBody = makePostRequest(SERVER + "register", "?username=" + username + "&password=" + password);
+    result = "";
+    Net::Http::Response response = client.Post(SERVER + "register", "?username=" + username + "&password=" + password);
+    if (response.code() == Net::Http::Code::Forbidden) {
+        // TODO: any other reasons for 403?
+        return STATUS_USER_EXISTS;
+    }
+    else if (response.code() == Net::Http::Code::Internal_Server_Error) {
+        return STATUS_SERVER_ERROR;
+    }
 
-    result = responseBody;
+    PlayerModel playerModel = parser::playerDeserialize(response.body());
+    player = Player((id) playerModel.playerId);
+    player.setModel(playerModel);
+
+    // TODO: set up current room
+    //result = (int) player.getPlayerId();
+    result = response.body();
     return STATUS_OK;
 }
 
@@ -46,8 +68,14 @@ StatusCode Controller::parseCommand(std::string& command, std::string& result) {
     }
 
     std::transform(command.begin(), command.end(), command.begin(), ::tolower);
-    if (command == "whoami") {
+    if (command == "help" || command == "h") {
+        return help(result);
+    }
+    else if (command == "whoami" || command == "who") {
         return who(result);
+    }
+    else if (command == "whereami" || command == "where") {
+        return where(result);
     }
     else if (command == "n" || command == "north" || command == "up") {
         return moveNorth(result);
@@ -68,9 +96,13 @@ StatusCode Controller::parseCommand(std::string& command, std::string& result) {
         // TODO: tokenize input command so second word can be passed to take()
         return take("", result);
     }
-    else if (command == "exit" || command == "quit") {
+    else if (command == "exit" || command == "quit" || command == "q") {
         client.Shutdown();
         return STATUS_QUIT;
+    }
+    else {
+        result = "Unrecognized command. Say \"help\" to view available commands.";
+        return STATUS_OK;
     }
 }
 
@@ -101,10 +133,19 @@ std::string Controller::makePostRequest(const std::string& url, const std::strin
     return response.body();
 }
 
+StatusCode Controller::help(std::string& result) {
+    result = "You can say:\n";
+    result += "help whoami whereami north east south west look take quit";
+    return STATUS_OK;
+}
+
 StatusCode Controller::who(std::string& result) {
-    std::string responseBody = makeGetRequest(SERVER + "player/" + player.getPlayerId());
-    // TODO: deserialize YAML Player object and return name or appropriate info
-    result = responseBody;
+    result = "You are player ID " + std::to_string((int) player.getPlayerId());
+    return STATUS_OK;
+}
+
+StatusCode Controller::where(std::string& result) {
+    result = "You are in room " + std::to_string((int) player.getRoomId());
     return STATUS_OK;
 }
 
