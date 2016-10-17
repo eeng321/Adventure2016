@@ -52,7 +52,7 @@ private:
     static StatusCode take(const std::string& arg, std::string& result);
 
     static Player player;
-    static Room* room;
+    //static Room room;
     static Rest::RestClient client;
 };
 

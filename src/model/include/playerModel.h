@@ -1,11 +1,9 @@
-#ifndef ADVENTURE2016_PLAYER_H
-#define ADVENTURE2016_PLAYER_H
+#ifndef ADVENTURE2016_PLAYERMODEL_H
+#define ADVENTURE2016_PLAYERMODEL_H
 
 #pragma once
 #include "../../back_end/lib/hiberlite/include/hiberlite.h"
 #include <string>
-
-using namespace std;
 
 
 class PlayerModel {
@@ -17,7 +15,7 @@ public:
     {
         ar & HIBERLITE_NVP(playerId);
         ar & HIBERLITE_NVP(loginName);
-        ar & HIBERLITE_NVP(coordinate);
+        ar & HIBERLITE_NVP(roomId);
         ar & HIBERLITE_NVP(health);
     }
 
@@ -27,10 +25,10 @@ public:
 
     // Player identification attributes
     int playerId;
-    string loginName;
+    std::string loginName;
 
     // Player information attributes
-    int coordinate;
+    int roomId;
 
     // Player stats
     int health;

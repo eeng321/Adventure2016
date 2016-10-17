@@ -3,6 +3,7 @@
 #ifndef RESETS_H
 #define RESETS_H
 
+#include <string>
 #include "room.h"
 #include "playerModel.h"
 
@@ -12,14 +13,14 @@ struct objectReset {
 };
 
 struct npcReset {
-	string comment;
+	std::string comment;
 	id npcId;
 	int limit;
 	id roomId;
 };
 
 struct giveReset {
-	string comment;
+	std::string comment;
 	id objectId;//not sure what this ID refers to, object id's?
 };
 

@@ -13,7 +13,7 @@ std::string parser::playerSerialize(PlayerModel player) {
     out << YAML::Key << PLAYER_ID_KEY;
     out << YAML::Value << player.playerId;
     out << YAML::Key << PLAYER_COORDINATE_KEY;
-    out << YAML::Value << player.coordinate;
+    out << YAML::Value << player.roomId;
     out << YAML::Key << PLAYER_HEALTH_KEY;
     out << YAML::Value << player.health;
     out << YAML::EndMap;
@@ -35,7 +35,7 @@ PlayerModel parser::playerDeserialize(const std::string body) {
     PlayerModel player;
     player.loginName = node[PLAYER_NAME_KEY].as<string>();
     player.playerId = node[PLAYER_ID_KEY].as<int>();
-    player.coordinate = node[PLAYER_COORDINATE_KEY].as<int>();
+    player.roomId = node[PLAYER_COORDINATE_KEY].as<int>();
     player.health = node[PLAYER_HEALTH_KEY].as<int>();
     return player;
 

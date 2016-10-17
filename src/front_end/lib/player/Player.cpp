@@ -6,18 +6,29 @@ using namespace std;
 const int DEFAULT_SPAWN = 0;
 const int START_HEALTH = 100;
 
-Player::Player(id pid)
-        : playerId(pid), loginName(""), playerLocationId(DEFAULT_SPAWN), health(START_HEALTH) {
+Player::Player(id pid) {
+    model.playerId = (int) pid;
+    model.loginName = "";
+    model.roomId = DEFAULT_SPAWN;
+    model.health = START_HEALTH;
+}
+
+PlayerModel Player::getModel() {
+    return model;
+}
+
+void Player::setModel(PlayerModel model) {
+    this->model = model;
 }
 
 id Player::getPlayerId() {
-    return playerId;
+    return (id) model.playerId;
 }
 
 id Player::getRoomId() {
-    return playerLocationId;
+    return (id) model.roomId;
 }
 
 void Player::updateRoomId(id newRoomId) {
-    playerLocationId = newRoomId;
+    model.roomId = (int) newRoomId;
 }
