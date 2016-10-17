@@ -29,7 +29,7 @@ WINDOW* Display::createNewWindow (int height, int width, int startY, int startX)
     return localWindow;
 }
 
-void destroyWindow(WINDOW *localWindow) {
+void Display::destroyWindow(WINDOW *localWindow) {
     wrefresh(localWindow);
     delwin(localWindow);
 }
@@ -60,8 +60,14 @@ void Display::clearMainWinDisplay() {
     wrefresh(mainWindow);
 }
 
+void Display::destroyMainWindow() {
+    Display::destroyWindow(mainWindow);
+    Display::destroyWindow(stdscr);
+}
+
 int Display::createLoginMenu() {
     Display::initDisplay();
+
     char menuList[NUM_LOGIN_MODES][40] = { "Login", "Make New Account" };
     char item[40];
     int ch, selectedItem = 0;
@@ -115,6 +121,7 @@ int Display::createLoginMenu() {
         mvwprintw( loginWindow, selectedItem+3, MENU_PADDING_LEFT, "%s", item);
         wattroff( loginWindow, A_STANDOUT );
     }
-    destroyWindow(loginWindow);
+    wclear(loginWindow);
+    Display::destroyWindow(loginWindow);
     return selectedItem;
 }

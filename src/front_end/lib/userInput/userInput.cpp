@@ -5,16 +5,17 @@
 #include "userInput.h"
 #include <iostream>
 
-
 void UserInput::checkExistingPlayerCredentials() {
+
     char username[MAX_CHAR_LIMIT];
     char password[MAX_CHAR_LIMIT];
     std::string loginResult;
     std::string message;
-    bool doesLoginSucceed = false;
+    bool loggedIn = false;
+
 
     Display::clearMainWinDisplay();
-    while (doesLoginSucceed == false) {
+    while (!loggedIn) {
         Display::addStringToMainWindow("Please input your username:");
         Display::readUserInput(username);
 
@@ -30,7 +31,7 @@ void UserInput::checkExistingPlayerCredentials() {
             Display::clearMainWinDisplay();
             Display::addStringToMainWindow("You have logged in!");
             Display::addStringToMainWindow("Welcome to the game world! Type in your commands!");
-            doesLoginSucceed = true;
+            loggedIn = true;
         }
     }
 }

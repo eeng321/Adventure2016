@@ -25,11 +25,13 @@ public:
     static int getScreenHeight();
     static int createLoginMenu();
     static void clearMainWinDisplay();
+    static void destroyMainWindow();
 
 
 private:
     static WINDOW* createNewWindow(int height, int width, int startY, int startX);
     static void initDisplay();
+    static void destroyWindow(WINDOW* localWindow);
 };
 
 
