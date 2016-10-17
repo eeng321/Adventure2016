@@ -45,7 +45,7 @@ void UserInput::createNewPlayerCredentials() {
         Display::clearMainWinDisplay();
         Display::addStringToMainWindow("Please input your username:");
         Display::readUserInput(username);
-        while (passwordMatches == false) {
+        while (!passwordMatches) {
             Display::addStringToMainWindow("Please input your password:");
             Display::readUserInput(password);
 
