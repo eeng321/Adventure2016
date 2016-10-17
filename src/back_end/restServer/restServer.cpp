@@ -9,10 +9,7 @@
 #include "../lib/pistache/include/client.h"
 #include "../lib/pistache/include/endpoint.h"
 #include "../lib/pistache/include/router.h"
-
-//#include "../lib/hiberlite/include/hiberlite.h"
-//#include "../../model/include/player.h"
-
+#include "playerDriver.h"
 #include "playerEndpoint.h"
 
 
@@ -83,6 +80,7 @@ int main(int argc, char *argv[]) {
     cout << "CPU Cores = " << hardware_concurrency() << endl;
     cout << "Using " << numThreads << " threads" << endl;
 
+    createDB();
     Endpoints endpoints(addr);
 
     endpoints.init(numThreads);

@@ -65,7 +65,6 @@ PlayerModel loadPlayer(int playerId){
 }
 
 PlayerModel addPlayer(PlayerModel player){
-	createDB();
 	hiberlite::Database db("player.db");
 
     hiberlite::bean_ptr<PlayerModel> p=db.copyBean(player);
