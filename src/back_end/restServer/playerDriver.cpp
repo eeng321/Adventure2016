@@ -12,7 +12,7 @@ void printPlayer(PlayerModel player){
 }
 
 void createDB(){
-    hiberlite::Database db("player.db");
+    hiberlite::Database db("AdventureDatabase.db");
     //register bean classes
     db.registerBeanClass<PlayerModel>();
     db.registerBeanClass<Credential>();
@@ -21,22 +21,22 @@ void createDB(){
     //create those tables again with proper schema
     db.createModel();
 
-    const char* names[5]={"Stanley", "Kyle", "Eric", "Kenny", "Michael"};
+    // const char* names[5]={"Stanley", "Kyle", "Eric", "Kenny", "Michael"};
 
-    for(unsigned int i=0;i<5;i++) {
-        PlayerModel demo;
-        demo.loginName=names[i%5];
-        demo.playerId = i+1;
-        demo.coordinate = 0;
-        demo.health = 100;
+    // for(unsigned int i=0;i<5;i++) {
+    //     PlayerModel demo;
+    //     demo.loginName=names[i%5];
+    //     demo.playerId = i+1;
+    //     demo.coordinate = 0;
+    //     demo.health = 100;
 
-        hiberlite::bean_ptr<PlayerModel> p=db.copyBean(demo);   //create a managed copy of the object
-    }
+    //     hiberlite::bean_ptr<PlayerModel> p=db.copyBean(demo);   //create a managed copy of the object
+    // }
 }
 
 void printDB(){
 
-    hiberlite::Database db("player.db");
+    hiberlite::Database db("AdventureDatabase.db");
 
     cout << string(15,'=')+"\nreading the DB\n";
 
@@ -52,7 +52,7 @@ void printDB(){
 
 PlayerModel loadPlayer(int playerId){
 
-    hiberlite::Database db("player.db");
+    hiberlite::Database db("AdventureDatabase.db");
     hiberlite::bean_ptr<PlayerModel> demo = db.loadBean<PlayerModel>(playerId);
 
     PlayerModel player;
@@ -65,7 +65,7 @@ PlayerModel loadPlayer(int playerId){
 }
 
 PlayerModel addPlayer(PlayerModel player){
-	hiberlite::Database db("player.db");
+	hiberlite::Database db("AdventureDatabase.db");
 
     hiberlite::bean_ptr<PlayerModel> p=db.copyBean(player);
     p->playerId = p.get_id();
@@ -75,26 +75,29 @@ PlayerModel addPlayer(PlayerModel player){
 	return player;
 }
 
-PlayerModel modifyPlayer(int playerId, PlayerModel updateFields){
-	hiberlite::Database db("player.db");
+success modifyPlayer(int playerId, PlayerModel updateFields){
+	hiberlite::Database db("AdventureDatabase.db");
 	hiberlite::bean_ptr<PlayerModel> editPlayer = db.loadBean<PlayerModel>(playerId);
-
+    
     // editPlayer->loginName = updateFields.loginName;
     // editPlayer->id = updateFields.id;
     editPlayer->coordinate = updateFields.coordinate;
 	editPlayer->health = updateFields.health;
-	return loadPlayer(playerId); //this will print the player
+	return (editPlayer->coordinate == updateFields.coordinate && 
+            editPlayer->health == updateFields.health);
 }
 
 void removePlayer(int playerId){
-	hiberlite::Database db("player.db");
+	hiberlite::Database db("AdventureDatabase.db");
 	hiberlite::bean_ptr<PlayerModel> player = db.loadBean<PlayerModel>(playerId);
+    hiberlite::bean_ptr<Credential> account = db.loadBean<Credential>(playerId);
 	player.destroy();
+    account.destroy();
     printDB();
 }
 
 PlayerModel verifyCredentials(string username, string pw){
-    hiberlite::Database db("player.db");
+    hiberlite::Database db("AdventureDatabase.db");
     db.registerBeanClass<Credential>();
 
     vector< hiberlite::bean_ptr<Credential> > listAccounts = db.getAllBeans<Credential>();
@@ -108,11 +111,12 @@ PlayerModel verifyCredentials(string username, string pw){
         }
     }
     PlayerModel player;
+    player.loginName = "";
     return player; //will give error
 }
 
 PlayerModel registerAccount(string username, string pw){
-    hiberlite::Database db("player.db");
+    hiberlite::Database db("AdventureDatabase.db");
     db.registerBeanClass<Credential>();
 
     Credential account;

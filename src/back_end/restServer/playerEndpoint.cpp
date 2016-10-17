@@ -7,6 +7,7 @@
 #include "playerEndpoint.h"
 #include "parser.h"
 #include "playerDriver.h"
+#include <boost/algorithm/string.hpp>
 
 using namespace std;
 using namespace Net;
@@ -15,19 +16,18 @@ using namespace Net;
 void PlayerEndpoint::login(const Rest::Request& request, Net::Http::ResponseWriter response) {
     cout << "Request for resource: " << request.method() << request.resource() << endl;
 
-    istringstream accountInfo(request.body());
-    cout << request.body() << endl;
-    int length = 8; //8 lines for 2 inputs (4 lines per input)
-    string parseBody[length]; 
-    for(int i = 0; i<length; i++){
-        getline(accountInfo, parseBody[i]);
-    }
+    string accountInfo(request.body());
+    vector<string> inputs;
+    boost::split(inputs, accountInfo, boost::is_any_of("?=&"));
+    //print for testing
+    // for(int i = 0; i<inputs.size(); i++){
+    //     cout << inputs[i] << endl;
+    // }
+    // cout << inputs[2] << " " << inputs[4] << endl;
     // Verify credentials with DB.
-    //username = parseBody[3], password = parseBody[7]
-    cout << parseBody[3] << "  " << parseBody[7] << endl;
-    PlayerModel player = verifyCredentials(parseBody[3], parseBody[7]);
+    PlayerModel player = verifyCredentials(inputs[2], inputs[4]);
 
-    if (player.loginName == parseBody[3]) {
+    if (player.loginName == inputs[2]) {
         response.send(Http::Code::Ok, parser::playerSerialize(player));
     }
     else {
@@ -38,19 +38,13 @@ void PlayerEndpoint::login(const Rest::Request& request, Net::Http::ResponseWrit
 void PlayerEndpoint::registerPlayer(const Rest::Request& request, Net::Http::ResponseWriter response) {
     cout << "Request for resource: " << request.method() << request.resource() << endl;
 
-    istringstream accountInfo(request.body());
-    cout << request.body() << endl;
-    int length = 8; //8 lines for 2 inputs (4 lines per input)
-    string parseBody[length]; 
-    for(int i = 0; i<length; i++){
-        getline(accountInfo, parseBody[i]);
-    }
-    // Verify credentials with DB.
-    //username = parseBody[3], password = parseBody[7]
-    cout << parseBody[3] << "  " << parseBody[7] << endl;
-    PlayerModel player = registerAccount(parseBody[3], parseBody[7]);
+    string accountInfo(request.body());
+    vector<string> inputs;
+    boost::split(inputs, accountInfo, boost::is_any_of("?=&"));
+    
+    PlayerModel player = registerAccount(inputs[2], inputs[4]);
 
-    if (player.loginName == parseBody[3]) {
+    if (player.loginName == inputs[2]) {
         response.send(Http::Code::Ok, parser::playerSerialize(player));
     }
     else {
@@ -100,9 +94,8 @@ void PlayerEndpoint::updatePlayer(const Rest::Request& request, Net::Http::Respo
     PlayerModel updateFields = parser::playerDeserialize(request.body());
     PlayerModel player;
     player.health = -999;
-    player = modifyPlayer(playerId, updateFields);
 
-    if (player.health != -999) {
+    if (modifyPlayer(playerId, updateFields)) {
         response.send(Http::Code::Ok, parser::playerSerialize(player));
     }
     else {
