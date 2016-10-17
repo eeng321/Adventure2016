@@ -79,11 +79,11 @@ PlayerModel modifyPlayer(int playerId, PlayerModel updateFields){
 	hiberlite::Database db("player.db");
 	hiberlite::bean_ptr<PlayerModel> editPlayer = db.loadBean<PlayerModel>(playerId);
 
-    // editPlayer->loginName = updateFields.loginName;
-    // editPlayer->id = updateFields.id;
     editPlayer->coordinate = updateFields.coordinate;
 	editPlayer->health = updateFields.health;
-	return loadPlayer(playerId); //this will print the player
+    editPlayer.save();
+
+	return loadPlayer(playerId);
 }
 
 void removePlayer(int playerId){
