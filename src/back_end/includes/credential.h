@@ -2,7 +2,7 @@
 #define ADVENTURE2016_CREDENTIAL_H
 
 #include "../../back_end/lib/hiberlite/include/hiberlite.h"
-#include "../../model/include/player.h"
+#include "../../model/include/playerModel.h"
 #include <string>
 
 class Credential {
@@ -17,7 +17,7 @@ public:
     }
 
     // Player identification attributes
-    Player player;
+    PlayerModel player;
     string password;
 };
 HIBERLITE_EXPORT_CLASS(Credential)
