@@ -75,16 +75,15 @@ PlayerModel addPlayer(PlayerModel player){
 	return player;
 }
 
-success modifyPlayer(int playerId, PlayerModel updateFields){
+PlayerModel modifyPlayer(int playerId, PlayerModel updateFields){
 	hiberlite::Database db("AdventureDatabase.db");
 	hiberlite::bean_ptr<PlayerModel> editPlayer = db.loadBean<PlayerModel>(playerId);
-    
-    // editPlayer->loginName = updateFields.loginName;
-    // editPlayer->id = updateFields.id;
+
     editPlayer->coordinate = updateFields.coordinate;
 	editPlayer->health = updateFields.health;
-	return (editPlayer->coordinate == updateFields.coordinate && 
-            editPlayer->health == updateFields.health);
+    editPlayer.save();
+
+	return loadPlayer(playerId);
 }
 
 void removePlayer(int playerId){

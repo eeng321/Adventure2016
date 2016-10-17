@@ -8,7 +8,7 @@ void printDB();
 
 PlayerModel loadPlayer(int playerId);
 PlayerModel addPlayer(PlayerModel player);
-success modifyPlayer(int playerId, PlayerModel updateFields);
+PlayerModel modifyPlayer(int playerId, PlayerModel updateFields);
 void removePlayer(int playerId);
 PlayerModel verifyCredentials(string username, string pw);
 PlayerModel registerAccount(string username, string pw);
