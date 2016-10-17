@@ -24,7 +24,8 @@ void UserInput::checkExistingPlayerCredentials() {
 
         if (Controller::logIn(username, password, loginResult) != STATUS_OK) {
             Display::addStringToMainWindow("You have input the wrong username or password. Please try again.");
-        } else {
+        }
+        else {
             Display::clearMainWinDisplay();
             Display::addStringToMainWindow("You have logged in!");
             Display::addStringToMainWindow("Welcome to the game world! Type in your commands!");
@@ -45,6 +46,7 @@ void UserInput::createNewPlayerCredentials() {
         Display::clearMainWinDisplay();
         Display::addStringToMainWindow("Please input your username:");
         Display::readUserInput(username);
+
         while (!passwordMatches) {
             Display::addStringToMainWindow("Please input your password:");
             Display::readUserInput(password);
@@ -54,22 +56,26 @@ void UserInput::createNewPlayerCredentials() {
 
             if (strcmp(password, passwordRepeat) != 0) {
                 Display::addStringToMainWindow("Your passwords do not match.");
-            } else {
+            }
+            else {
                 passwordMatches = true;
             }
         }
-        if(Controller::registerAccount(username, password, loginResult) == STATUS_USER_EXISTS) {
+
+        StatusCode registrationStatus = Controller::registerAccount(username, password, loginResult);
+        if (registrationStatus == STATUS_USER_EXISTS) {
             Display::addStringToMainWindow("Sorry that username is already taken, please try again with a different username.");
-        } else if(Controller::registerAccount(username, password, loginResult) != STATUS_OK) {
+        }
+        else if (registrationStatus != STATUS_OK) {
             Display::addStringToMainWindow("Sorry, creating a new account did not work. Please try again.");
-        } else {
+        }
+        else {
             Display::clearMainWinDisplay();
             Display::addStringToMainWindow("You have logged in!");
             Display::addStringToMainWindow("Welcome to the game world! Type in your commands!");
             loggedIn = true;
         }
     }
-
 }
 
 StatusCode UserInput::readBasicInput() {
