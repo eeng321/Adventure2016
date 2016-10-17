@@ -31,6 +31,7 @@ Net::Http::Response RestClient::Get(std::string request) {
     auto sync = Async::whenAll(responses.begin(), responses.end());
     Async::Barrier<std::vector<Net::Http::Response>> barrier(sync);
     barrier.wait_for(std::chrono::seconds(5));
+    _client.shutdown();
 
     return response;
 }
@@ -49,6 +50,7 @@ Net::Http::Response RestClient::Post(std::string request, std::string payload) {
     auto sync = Async::whenAll(responses.begin(), responses.end());
     Async::Barrier<std::vector<Net::Http::Response>> barrier(sync);
     barrier.wait_for(std::chrono::seconds(5));
+    _client.shutdown();
 
     return response;
 }
@@ -66,6 +68,7 @@ Net::Http::Response RestClient::Put(std::string request, std::string payload) {
     auto sync = Async::whenAll(responses.begin(), responses.end());
     Async::Barrier<std::vector<Net::Http::Response>> barrier(sync);
     barrier.wait_for(std::chrono::seconds(5));
+    _client.shutdown();
 
     return response;
 }
@@ -84,6 +87,7 @@ Net::Http::Response RestClient::Delete(std::string request) {
     auto sync = Async::whenAll(responses.begin(), responses.end());
     Async::Barrier<std::vector<Net::Http::Response>> barrier(sync);
     barrier.wait_for(std::chrono::seconds(5));
+    _client.shutdown();
 
     return response;
 }
