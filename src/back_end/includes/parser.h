@@ -20,6 +20,7 @@ namespace parser{
 
    std::string playerSerialize(PlayerModel player);
    PlayerModel playerDeserialize(const std::string body);
+   
 };
 
 #endif //ADVENTURE2016_PARSER_H

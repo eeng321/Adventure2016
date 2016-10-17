@@ -9,10 +9,7 @@
 #include "../lib/pistache/include/client.h"
 #include "../lib/pistache/include/endpoint.h"
 #include "../lib/pistache/include/router.h"
-
-//#include "../lib/hiberlite/include/hiberlite.h"
-//#include "../../model/include/player.h"
-
+#include "playerDriver.h"
 #include "playerEndpoint.h"
 
 
@@ -50,6 +47,7 @@ private:
 
         // Authentication Routes
         Routes::Post(router, "/login", Routes::bind(&PlayerEndpoint::login));
+        Routes::Post(router, "/register", Routes::bind(&PlayerEndpoint::registerPlayer));
 
         // Player CRUDS
         Routes::Get(router, "/player/:id", Routes::bind(&PlayerEndpoint::retrievePlayer));
@@ -82,6 +80,7 @@ int main(int argc, char *argv[]) {
     cout << "CPU Cores = " << hardware_concurrency() << endl;
     cout << "Using " << numThreads << " threads" << endl;
 
+    createDB();
     Endpoints endpoints(addr);
 
     endpoints.init(numThreads);

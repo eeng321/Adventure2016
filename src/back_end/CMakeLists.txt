@@ -5,4 +5,4 @@ include_directories(lib)
 
 add_subdirectory(restServer)
 include_directories(restServer)
-include_directories(lib)
+

@@ -14,6 +14,7 @@
 namespace PlayerEndpoint {
 
     void login(const Net::Rest::Request& request, Net::Http::ResponseWriter response);
+    void registerPlayer(const Net::Rest::Request& request, Net::Http::ResponseWriter response);
 
     void createPlayer(const Net::Rest::Request& request, Net::Http::ResponseWriter response);
     void retrievePlayer(const Net::Rest::Request& request, Net::Http::ResponseWriter response);
