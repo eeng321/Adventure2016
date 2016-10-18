@@ -6,12 +6,11 @@
 
 #include "door.h"
 
-using std::string;
 using std::vector;
 
-void Door::build(Direction d, vector<string> k, id dID) {
-	direction = d;
-	keywords = k;
-	doorId = dID;
+void Door::build(Direction directionIn, std::vector<keyword> keywordsIn, id doorIdIn) {
+	direction = directionIn;
+	keywords = keywordsIn;
+	doorId = doorIdIn;
 }
 

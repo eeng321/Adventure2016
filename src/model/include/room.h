@@ -7,6 +7,9 @@
 #include <memory>
 #include "door.h"
 
+using description = std::string;
+using username = std::string;
+
 class RoomModel;
 
 class Room {//Tile interface
@@ -37,7 +40,7 @@ public:
 		 const std::vector<description> &extendedDescriptionIn,
 		 const std::vector<Door> &doorsIn,
 		 const std::vector<id> &npcListIn,
-		 const std::vector<std::string> playerListIn,
+		 const std::vector<username> playerListIn,
 		 const std::vector<id> &itemListIn,
 		 bool navigabilityIn);
 

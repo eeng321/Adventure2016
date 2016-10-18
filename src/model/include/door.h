@@ -10,18 +10,15 @@ enum class Direction {
 	north, south, east, west
 };
 
-typedef int id;
-
-typedef std::string description;
-
-typedef std::string username;
+using id = int;
+using keyword = std::string;
 
 class Door {
 public:
 	Direction direction;
-	std::vector<std::string> keywords;
+	std::vector<keyword> keywords;
 	id doorId;
-	void build(Direction d, std::vector<std::string> k, id dID);
+	void build(Direction directionIn, std::vector<keyword> keywordsIn, id doorIdIn);
 };
 
 

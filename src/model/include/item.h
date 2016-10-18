@@ -5,22 +5,13 @@
 #ifndef ITEM_H
 #define ITEM_H
 
+#include<memory>
 
-
-
-typedef int id;
-
-typedef std::string description;
-
-typedef std::string username;
+class ItemModel;
 
 class Item {
 private:
-	std::vector<std::string> extra;
-	id itemId;
-	std::vector<std::string> keywords;
-	std::string longdesc;
-	std::string shortdesc;
+	std::unique_ptr<ItemModel> model;
 
 public:
 

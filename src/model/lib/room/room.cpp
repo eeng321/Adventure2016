@@ -27,10 +27,11 @@ Room::Room(const string &areaIn,
 		   const vector<description> &extendedDescriptionIn,
 		   const vector<Door> &doorsIn,
 		   const vector<id> &npcListIn,
-		   const vector<string> playerListIn,
+		   const vector<username> playerListIn,
 		   const vector<id> &itemListIn,
 		   bool navigabilityIn) {
 
+	model = std::make_unique<RoomModel>();
 	model->area = areaIn;
 	model->roomId = roomIdIn;
 	model->name = nameIn;
@@ -49,6 +50,8 @@ Room::Room(const string &areaIn,
 		   id roomIdIn,
 		   const string &nameIn,
 		   const vector<Door> &doorsIn) {
+
+	model = std::make_unique<RoomModel>();
 	model->area = areaIn;
 	model->roomId = roomIdIn;
 	model->name = nameIn;
