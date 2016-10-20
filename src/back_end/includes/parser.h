@@ -9,18 +9,46 @@
 #include <yaml-cpp/yaml.h>
 #include <string>
 #include "../../model/include/playerModel.h"
+#include "../../model/include/roomModel.h"
 
-std::string const PLAYER_NAME_KEY = "LOGIN";
-std::string const PLAYER_ID_KEY = "ID";
-std::string const PLAYER_COORDINATE_KEY = "COORDINATE";
-std::string const PLAYER_HEALTH_KEY = "HEALTH";
+
 
 
 namespace parser{
 
-   std::string playerSerialize(PlayerModel player);
-   PlayerModel playerDeserialize(const std::string body);
-   
+    std::string const PLAYER_NAME_KEY = "loginName";
+    std::string const PLAYER_ID_KEY = "playerId";
+    std::string const PLAYER_COORDINATE_KEY = "roomId";
+    std::string const PLAYER_HEALTH_KEY = "health";
+    std::string playerSerialize(PlayerModel const player);
+    PlayerModel playerDeserialize(std::string const body);
+
+
+//    std::string area;
+//    id roomId;
+//    std::string name;
+//    description mainDescription;
+//    std::vector<description> extendedDescriptions;
+//    std::vector<Door> doors;
+//    std::vector<id> npcList;
+//    std::vector<std::string> playerList;
+//    std::vector<id> itemList;
+//    bool navigable;
+
+    std::string const ROOM_AREA_KEY = "area";
+    std::string const ROOM_ID_KEY = "roomId";
+    std::string const ROOM_DESCRIPTION_KEY = "mainDescription";
+    std::string const ROOM_EX_DESCRIPTION_KEY = "extendedDescriptions";
+    std::string const ROOM_DOOR_KEY = "doors";
+    std::string const ROOM_NPCLIST_KEY = "npcList";
+    std::string const ROOM_PLAYERLIST_KEY = "playerList";
+    std::string const ROOM_ITEMLIST_KEY = "itemList";
+    std::string const ROOM_NAVIGABLE_KEY = "navigable";
+    std::string roomSerialize(RoomModel const room);
+    RoomModel roomDeserialize(std::string const body);
+
+
+
 };
 
 #endif //ADVENTURE2016_PARSER_H
