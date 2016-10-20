@@ -71,45 +71,33 @@ public:
 
 	/* Getters */
 	std::string getArea() const;
-
 	description getDescription() const;
-
 	id getId() const;
-
 	std::string getName() const;
-
 	std::vector<description> getExtendedDescriptions() const;
-
 	std::vector<Door> getDoors() const;
-
 	std::vector<id> getNpcList() const;
-
 	std::vector<username> getPlayerList() const;
-
 	std::vector<id> getObjectList() const;
 
 	/* Navigation management */
 	void makeUnnavigable();
-
 	void makeNavigable();
-
 	bool isNavigable() const;
 
 	/* Player Management */
 	void addPlayer(username player);
-
 	void removePlayer(username player);
 
-	bool canMove(Direction d);
+//	bool canMove(Direction d);
+	id getDoorId(Direction d);
 
 	/* NPC management */
 	void addNpc(id npc);
-
 	void removeNpc(id npc);
 
 	/* Object management */
 	void addObject(id object);
-
 	void removeObject(id object);
 
 

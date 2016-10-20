@@ -146,13 +146,23 @@ bool Room::isNavigable() const {
 }
 
 /* Ensure there is a room in the direction the player is trying to move */
-bool Room::canMove(Direction d) {
+//bool Room::canMove(Direction d) {
+//	for (auto door : model->doors) {
+//		if (d == door.direction) {//possibly add in checks later for obstructions
+//			return true;
+//		}
+//	}
+//	return false;
+//}
+
+id Room::getDoorId(Direction d){
 	for (auto door : model->doors) {
-		if (d == door.direction) {//possibly add in checks later for obstructions
-			return true;
+		if (d == door.direction) {
+			return door.doorId;
 		}
 	}
-	return false;
+	throw std::domain_error("No door in that direction");
+
 }
 
 void Room::addPlayer(username player) {
