@@ -8,7 +8,7 @@
 
 using std::vector;
 
-void Door::build(Direction directionIn, std::vector<keyword> keywordsIn, id doorIdIn) {
+void Door::build(const Direction& directionIn, const std::vector<keyword>& keywordsIn, id doorIdIn) {
 	direction = directionIn;
 	keywords = keywordsIn;
 	doorId = doorIdIn;

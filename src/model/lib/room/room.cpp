@@ -4,7 +4,6 @@
 #include <string>
 #include <stdexcept>
 #include <algorithm>
-#include <unordered_map>
 
 #include "room.h"
 #include "roomModel.h"
@@ -12,13 +11,7 @@
 using std::string;
 using std::vector;
 using std::find;
-using std::unordered_map;
 
-Room::~Room() {
-
-}
-
-Room::Room() {}
 
 Room::Room(const string &areaIn,
 		   id roomIdIn,

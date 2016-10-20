@@ -18,7 +18,7 @@ public:
 	Direction direction;
 	std::vector<keyword> keywords;
 	id doorId;
-	void build(Direction directionIn, std::vector<keyword> keywordsIn, id doorIdIn);
+	void build(const Direction& directionIn, const std::vector<keyword>& keywordsIn, id doorIdIn);
 };
 
 
