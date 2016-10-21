@@ -16,28 +16,28 @@
 
 namespace parser{
 
-    std::string const PLAYER_NAME_KEY = "loginName";
-    std::string const PLAYER_ID_KEY = "playerId";
-    std::string const PLAYER_COORDINATE_KEY = "roomId";
-    std::string const PLAYER_HEALTH_KEY = "health";
+    char constexpr PLAYER_NAME_KEY[] = "loginName";
+    char constexpr PLAYER_ID_KEY[] = "playerId";
+    char constexpr PLAYER_COORDINATE_KEY[] = "roomId";
+    char constexpr PLAYER_HEALTH_KEY[] = "health";
     std::string playerSerialize(PlayerModel const player);
     PlayerModel playerDeserialize(std::string const body);
 
 
-    std::string const ROOM_AREA_KEY = "area";
-    std::string const ROOM_ID_KEY = "roomId";
-    std::string const ROOM_DESCRIPTION_KEY = "mainDescription";
-    std::string const ROOM_EX_DESCRIPTION_KEY = "extendedDescriptions";
-    std::string const ROOM_DOOR_KEY = "doors";
-    std::string const ROOM_NPCLIST_KEY = "npcList";
-    std::string const ROOM_PLAYERLIST_KEY = "playerList";
-    std::string const ROOM_ITEMLIST_KEY = "itemList";
-    std::string const ROOM_NAVIGABLE_KEY = "navigable";
+    char constexpr ROOM_AREA_KEY[] = "area";
+    char constexpr ROOM_ID_KEY[] = "roomId";
+    char constexpr ROOM_DESCRIPTION_KEY[] = "mainDescription";
+    char constexpr ROOM_EX_DESCRIPTION_KEY[] = "extendedDescriptions";
+    char constexpr ROOM_DOOR_KEY[] = "doors";
+    char constexpr ROOM_NPCLIST_KEY[] = "npcList";
+    char constexpr ROOM_PLAYERLIST_KEY[] = "playerList";
+    char constexpr ROOM_ITEMLIST_KEY[] = "itemList";
+    char constexpr ROOM_NAVIGABLE_KEY[] = "navigable";
 
-    std::string const DOOR_DESCRIPTION_KEY = "descriptions";
-    std::string const DOOR_DIRECTION_KEY = "direction";
-    std::string const DOOR_KEYWORDS_KEY = "keywords";
-    std::string const DOOR_ID_KEY = "doorId";
+    char constexpr DOOR_DESCRIPTION_KEY[] = "descriptions";
+    char constexpr DOOR_DIRECTION_KEY[] = "direction";
+    char constexpr DOOR_KEYWORDS_KEY[] = "keywords";
+    char constexpr DOOR_ID_KEY[] = "doorId";
 
     std::string roomSerialize(RoomModel const room);
     RoomModel roomDeserialize(std::string body);
