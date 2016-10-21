@@ -97,7 +97,7 @@ std::string parser::roomSerialize(RoomModel const room) {
 }
 
 RoomModel parser::roomDeserialize(std::string body) {
-
+    //TODO error checking
     YAML::Node roomNode = YAML::Load(body);
     RoomModel model;
     model.mainDescription = roomNode[parser::ROOM_DESCRIPTION_KEY].as<std::string>();

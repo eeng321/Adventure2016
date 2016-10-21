@@ -1,5 +1,6 @@
 //
 // Created by william on 19/10/16.
+// TEST FILE FOR BACKEND, JUST MODIFY THE CMAKELIST.TXT
 //
 #include <iostream>
 #include "parser.h"
@@ -13,7 +14,7 @@ int main(){
     keywords.push_back("test2");
     door.direction = Direction ::north;
     door.keywords = keywords;
-    door.doorId = (id)1;
+    door.doorId = (id)300;
     door.description = "DOOR 1 DESCRIPTION";
     //door.build(Direction::north, keywords, (id)1);
     Door door2;
@@ -21,14 +22,14 @@ int main(){
     keywordz.push_back("testz1");
     keywordz.push_back("testz2");
     //door2.build(Direction::south, keywordz, (id)2);
-    door2.doorId = (id)2;
+    door2.doorId = (id)200;
     door2.description = "DESCRIPTION DOOR 2";
     door2.direction = Direction::east;
     door2.keywords = keywordz;
     RoomModel test;
     test.mainDescription = "test main desc";
     test.area = "test area";
-    test.roomId = (id)1;
+    test.roomId = (id)3;
     test.name = "test name";
     test.navigable = true;
     test.doors.push_back(door);
@@ -44,12 +45,12 @@ int main(){
 
     //parser::roomSerialize(test);
     std::string testss = parser::roomSerialize(test);// << std::cout;
-    std::cout << testss << std::endl;
+   // std::cout << testss << std::endl;
     RoomModel model = parser::roomDeserialize(testss);
-    //std::cout << model.area << std::endl;
+    std::cout << model.area << model.mainDescription << model.roomId << model.name << std::endl;
 
     for(auto s: model.doors){
-        std::cout << s.description << std::endl;
+        std::cout << s.description << parser::serializeDirection(s.direction) << s.doorId << std::endl;
         for(auto i: s.keywords){
             std::cout << i << std::endl;
         }
