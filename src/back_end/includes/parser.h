@@ -40,7 +40,7 @@ namespace parser{
     std::string const DOOR_ID_KEY = "doorId";
 
     std::string roomSerialize(RoomModel const room);
-    RoomModel roomDeserialize(std::string const body);
+    RoomModel roomDeserialize(std::string body);
 
     std::string serializeDirection(Direction const directionEnum);
     Direction deserializeDirection(std::string const directionString);

@@ -96,23 +96,48 @@ std::string parser::roomSerialize(RoomModel const room) {
     return out.c_str();
 }
 
-RoomModel parser::roomDeserialize(std::string const body) {
+RoomModel parser::roomDeserialize(std::string body) {
 
     YAML::Node roomNode = YAML::Load(body);
-
     RoomModel model;
-    model.mainDescription = roomNode[ROOM_DESCRIPTION_KEY].as<string>();
+    model.mainDescription = roomNode[parser::ROOM_DESCRIPTION_KEY].as<std::string>();
 
-    YAML::Node doorNode = roomNode[ROOM_DOOR_KEY];
-    for(auto s: doorNode){
+    YAML::Node doorNode = roomNode[parser::ROOM_DOOR_KEY];
+    for(auto currentNode: doorNode){
         Door door;
-        door.description = s[DOOR_DESCRIPTION_KEY].as<std::string>();
-        std::cout << door.description;
-        door.direction = parser::deserializeDirection(s[DOOR_DIRECTION_KEY].as<string>());
+        door.description = currentNode[parser::DOOR_DESCRIPTION_KEY].as<std::string>();
+        door.doorId = (id)currentNode[parser::DOOR_ID_KEY].as<int>();
+        Direction dir = parser::deserializeDirection(currentNode[parser::DOOR_DIRECTION_KEY].as<std::string>());
+        door.direction = dir;
+        for(auto innerString: currentNode[parser::DOOR_KEYWORDS_KEY]){
+            door.keywords.push_back(innerString.as<std::string>());
+        }
+        model.doors.push_back(door);
     }
 
-    model.area = roomNode[ROOM_AREA_KEY].as<std::string>();
+    model.area = roomNode[parser::ROOM_AREA_KEY].as<std::string>();
 
+    for(auto innerString: roomNode[parser::ROOM_EX_DESCRIPTION_KEY]){
+        model.extendedDescriptions.push_back(innerString.as<std::string>());
+    }
+
+    model.roomId = (id)roomNode[parser::ROOM_ID_KEY].as<int>();
+
+    model.navigable = roomNode[parser::ROOM_NAVIGABLE_KEY].as<bool>();
+
+    for(auto innerString: roomNode[parser::ROOM_ITEMLIST_KEY]){
+        model.itemList.push_back( (id)innerString.as<int>() );
+    }
+
+    for(auto innerString: roomNode[parser::ROOM_NPCLIST_KEY]){
+        model.npcList.push_back( (id)innerString.as<int>() );
+    }
+
+    for(auto innerString: roomNode[parser::ROOM_PLAYERLIST_KEY]){
+        model.playerList.push_back(innerString.as<std::string>());
+    }
+
+    return model;
 
 }
 

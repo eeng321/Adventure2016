@@ -45,26 +45,15 @@ int main(){
     //parser::roomSerialize(test);
     std::string testss = parser::roomSerialize(test);// << std::cout;
     std::cout << testss << std::endl;
+    RoomModel model = parser::roomDeserialize(testss);
+    //std::cout << model.area << std::endl;
 
-    YAML::Node nodeTest = YAML::Load(testss);
-    RoomModel model;
-    model.mainDescription = nodeTest["mainDescription"].as<std::string>();
-
-    YAML::Node doorNode = nodeTest["doors"];
-    for(auto s: doorNode){
-        Door door;
-        door.description = s[parser::DOOR_DESCRIPTION_KEY].as<std::string>();
-        std::cout << door.description;
-        door.doorId = (id)s[parser::DOOR_ID_KEY].as<int>();
-        Direction dir = parser::deserializeDirection(s[parser::DOOR_DIRECTION_KEY].as<std::string>());
-        door.direction = dir;
-        for(auto i: s[parser::DOOR_KEYWORDS_KEY]){
-            door.keywords.push_back(i.as<std::string>());
-            std::cout << i.as<std::string>() << std::endl;
+    for(auto s: model.doors){
+        std::cout << s.description << std::endl;
+        for(auto i: s.keywords){
+            std::cout << i << std::endl;
         }
     }
-
-    model.area = nodeTest[parser::ROOM_AREA_KEY].as<std::string>();
     return 0;
 }
 
