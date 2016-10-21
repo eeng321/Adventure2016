@@ -9,11 +9,11 @@
 int main(){
 
     Door door;
-    std::vector<std::string> keywords;
-    keywords.push_back("test1");
-    keywords.push_back("test2");
+//    std::vector<std::string> keywords;
+//    keywords.push_back("test1");
+//    keywords.push_back("test2");
     door.direction = Direction ::north;
-    door.keywords = keywords;
+//    door.keywords = keywords;
     door.doorId = (id)300;
     door.description = "DOOR 1 DESCRIPTION";
     //door.build(Direction::north, keywords, (id)1);
@@ -35,17 +35,17 @@ int main(){
     test.doors.push_back(door);
     test.doors.push_back(door2);
     test.extendedDescriptions.push_back("ex desc 1");
-    test.extendedDescriptions.push_back("ex desc 2");
-    test.npcList.push_back((id)102);
-    test.npcList.push_back((id)105);
-    test.playerList.push_back("bob");
+//    test.extendedDescriptions.push_back("ex desc 2");
+//    test.npcList.push_back((id)102);
+//    test.npcList.push_back((id)105);
+//    test.playerList.push_back("bob");
     test.playerList.push_back("joe");
     test.itemList.push_back((id) 75);
     test.itemList.push_back((id) 129);
 
     //parser::roomSerialize(test);
     std::string testss = parser::roomSerialize(test);// << std::cout;
-   // std::cout << testss << std::endl;
+    std::cout << testss << std::endl;
     RoomModel model = parser::roomDeserialize(testss);
     std::cout << model.area << model.mainDescription << model.roomId << model.name << std::endl;
 
