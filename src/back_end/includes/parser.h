@@ -24,17 +24,6 @@ namespace parser{
     PlayerModel playerDeserialize(std::string const body);
 
 
-//    std::string area;
-//    id roomId;
-//    std::string name;
-//    description mainDescription;
-//    std::vector<description> extendedDescriptions;
-//    std::vector<Door> doors;
-//    std::vector<id> npcList;
-//    std::vector<std::string> playerList;
-//    std::vector<id> itemList;
-//    bool navigable;
-
     std::string const ROOM_AREA_KEY = "area";
     std::string const ROOM_ID_KEY = "roomId";
     std::string const ROOM_DESCRIPTION_KEY = "mainDescription";
@@ -44,10 +33,17 @@ namespace parser{
     std::string const ROOM_PLAYERLIST_KEY = "playerList";
     std::string const ROOM_ITEMLIST_KEY = "itemList";
     std::string const ROOM_NAVIGABLE_KEY = "navigable";
+
+    std::string const DOOR_DESCRIPTION_KEY = "descriptions";
+    std::string const DOOR_DIRECTION_KEY = "direction";
+    std::string const DOOR_KEYWORDS_KEY = "keywords";
+    std::string const DOOR_ID_KEY = "doorId";
+
     std::string roomSerialize(RoomModel const room);
     RoomModel roomDeserialize(std::string const body);
 
-
+    std::string serializeDirection(Direction const directionEnum);
+    Direction deserializeDirection(std::string const directionString);
 
 };
 
