@@ -5,7 +5,11 @@
 #ifndef ITEM_H
 #define ITEM_H
 
-#include<memory>
+#include <memory>
+#include <vector>
+#include <string>
+
+#include "id.h"
 
 using id = int;
 
@@ -16,27 +20,27 @@ private:
 	std::unique_ptr<ItemModel> model;
 
 public:
-	Item(id itemIdIn,
+	Item(itemID idIn,
 		const std::vector<std::string>& keywordsIn,
 		const std::string& longDescIn,
 		const std::string& shortDescIn,
 		const std::vector<std::string>& extra);
 
-	void build(id itemIdIn,
+	void build(itemID idIn,
 		const std::vector<std::string>& keywordsIn,
 		const std::string& longDescIn,
 		const std::string& shortDescIn,
 		const std::vector<std::string>& extra);
 
 	/* Getters */
-	id getId();
-	std::vector<std::string> getKeywords();
-	std::string getlongDesc();
-	std::string getShortDesc();
-	std::vector<std::string> getExtra();
+	itemID getId() const;
+	std::vector<std::string> getKeywords() const;
+	std::string getlongDesc() const;
+	std::string getShortDesc() const;
+	std::vector<std::string> getExtra() const;
 
 	/* Setters */
-	void setId(id idIn);
+	void setId(itemID idIn);
 	void setKeywords(const std::vector<std::string>& keywordsIn);
 	void setlongDesc(const std::string& longDescIn);
 	void setShortDesc(const std::string& shortDescIn);

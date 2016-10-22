@@ -6,27 +6,28 @@
 
 #include "item.h"
 #include "itemModel.h"
+#include "id.h"
 
 using std::string;
 using std::vector;
 
-Item::Item(id itemIdIn,
+Item::Item(itemID idIn,
 	const std::vector<std::string>& keywordsIn,
 	const std::string& longDescIn,
 	const std::string& shortDescIn,
 	const std::vector<std::string>& extraIn)
-	:model(std::make_unique<ItemModel>()){
+	:model(std::make_unique<ItemModel>()) {
 
-	build(itemIdIn, keywordsIn, longDescIn, shortDescIn, extraIn);
+	build(idIn, keywordsIn, longDescIn, shortDescIn, extraIn);
 }
 
-void Item::build(id itemIdIn,
+void Item::build(itemID idIn,
 	const std::vector<std::string>& keywordsIn,
 	const std::string& longDescIn,
 	const std::string& shortDescIn,
 	const std::vector<std::string>& extraIn){
 
-	model->itemId = itemIdIn;
+	model->id = idIn;
 	model->keywords = keywordsIn;
 	model->longdesc = longDescIn;
 	model->shortdesc = shortDescIn;
@@ -34,29 +35,29 @@ void Item::build(id itemIdIn,
 
 }
 
-id Item::getId(){
-	return model->itemId;
+itemID Item::getId() const {
+	return model->id;
 }
 
-std::vector<std::string> Item::getKeywords(){
+std::vector<std::string> Item::getKeywords() const {
 	return model->keywords;
 }
 
-std::string Item::getlongDesc(){
+std::string Item::getlongDesc() const {
 	return model->longdesc;
 }
 
-std::string Item::getShortDesc(){
+std::string Item::getShortDesc() const {
 	return model->shortdesc;
 }
 
-std::vector<std::string> Item::getExtra(){
+std::vector<std::string> Item::getExtra() const {
 	return model->extra;
 }
 
 /* Setters */
-void Item::setId(id idIn){
-	model->itemId = idIn;
+void Item::setId(itemID idIn){
+	model->id = idIn;
 }
 void Item::setKeywords(const std::vector<std::string>& keywordsIn){
 	model->keywords = keywordsIn;

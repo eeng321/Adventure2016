@@ -7,27 +7,27 @@
 #include "room.h"
 #include "playerModel.h"
 
-struct objectReset {
-	id objectId;
-	id roomId;
+struct itemReset {
+	itemID item;
+	roomID room;
 };
 
 struct npcReset {
 	std::string comment;
-	id npcId;
+	npcID npc;
 	int limit;
-	id roomId;
+	roomID room;
 };
 
 struct giveReset {
 	std::string comment;
-	id objectId;//not sure what this ID refers to, object id's?
+	itemID item;//not sure what this ID refers to, object id's?
 };
 
 
 class resets {
 private:
-	std::vector<objectReset> objectResets;
+	std::vector<itemReset> itemResets;
 	std::vector<npcReset> npcResets;
 	std::vector<giveReset> giveResets;
 
@@ -38,11 +38,11 @@ public:
 
 	void runNpc();
 
-	void runObject();
+	void runItem();
 
 	void runGive();
 
-	void addObject(const objectReset &object);
+	void addItem(const itemReset &item);
 
 	void addNpc(const npcReset &npc);
 

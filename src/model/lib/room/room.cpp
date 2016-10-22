@@ -4,6 +4,7 @@
 #include <string>
 #include <stdexcept>
 #include <algorithm>
+#include <memory>
 
 #include "room.h"
 #include "roomModel.h"
@@ -13,83 +14,78 @@ using std::vector;
 using std::find;
 
 
-Room::Room(const string &areaIn,
-		   id roomIdIn,
-		   const string &nameIn,
-		   const description &descriptionIn,
-		   const vector<description> &extendedDescriptionIn,
-		   const vector<Door> &doorsIn,
-		   const vector<id> &npcListIn,
-		   const vector<username> playerListIn,
-		   const vector<id> &itemListIn,
-		   bool navigabilityIn) {
+Room::Room(const string& areaIn,
+	const roomID& idIn,
+	const string& nameIn,
+	const description& descriptionIn,
+	const vector<description>& extendedDescriptionIn,
+	const vector<Door>& doorsIn,
+	const vector<npcID>& npcListIn,
+	const vector<username>& playerListIn,
+	const vector<itemID>& itemListIn,
+	bool navigabilityIn)
+	:model(std::make_unique<RoomModel>()) {
 
-	model = std::make_unique<RoomModel>();
-	model->area = areaIn;
-	model->roomId = roomIdIn;
-	model->name = nameIn;
-	model->mainDescription = descriptionIn;
-	model->extendedDescriptions = extendedDescriptionIn;
-	model->doors = doorsIn;
+	build(areaIn,
+	  idIn,
+	  nameIn,
+	  descriptionIn,
+	  extendedDescriptionIn,
+	  doorsIn,
+	  npcListIn,
+	  playerListIn,
+	  itemListIn,
+	  navigabilityIn);
+
+
+}
+
+void Room::build(const std::string& areaIn,
+	const roomID& idIn,
+	const std::string& nameIn,
+	const description& descriptionIn,
+	const std::vector<description>& extendedDescriptionIn,
+	const std::vector<Door>& doorsIn,
+	const std::vector<npcID>& npcListIn,
+	const std::vector<username>& playerListIn,
+	const std::vector<itemID>& itemListIn,
+	bool navigabilityIn){
+
+	build(areaIn, idIn, nameIn, descriptionIn, extendedDescriptionIn, doorsIn);
 	model->npcList = npcListIn;
 	model->playerList = playerListIn;
 	model->itemList = itemListIn;
 	model->navigable = navigabilityIn;
 }
 
-Room::Room(const string &areaIn,
-		   const description &descriptionIn,
-		   const vector<description> &extendedDescriptionIn,
-		   id roomIdIn,
-		   const string &nameIn,
-		   const vector<Door> &doorsIn) {
 
-	model = std::make_unique<RoomModel>();
+Room::Room(const string& areaIn,
+	const roomID& idIn,
+	const string& nameIn,
+	const description& descriptionIn,
+	const vector<description>& extendedDescriptionIn,
+	const vector<Door>& doorsIn)
+	:model(std::make_unique<RoomModel>()) {
+
+	build(areaIn, idIn, nameIn, descriptionIn, extendedDescriptionIn, doorsIn);
+
+}
+
+
+void Room::build(const std::string& areaIn,
+	const roomID& idIn,
+	const std::string& nameIn,
+	const description& descriptionIn,
+	const std::vector<description>& extendedDescriptionIn,
+	const std::vector<Door>& doorsIn){
+
 	model->area = areaIn;
-	model->roomId = roomIdIn;
+	model->id = idIn;
 	model->name = nameIn;
 	model->mainDescription = descriptionIn;
 	model->extendedDescriptions = extendedDescriptionIn;
 	model->doors = doorsIn;
 }
-
-//void Room::build(const string &areaIn,
-//	id idIn,
-//	const string &nameIn,
-//	const description &descriptionIn,
-//	const vector<description> &extendedDescriptionIn,
-//	const vector<Door> &doorsIn,
-//	const vector<id> &npcListIn,
-//	const vector<string> playerListIn,
-//	const vector<id> &objectListIn,
-//	bool navigabilityIn) {
-//
-//	area = areaIn;
-//	mainDescription = descriptionIn;
-//	extendedDescriptions = extendedDescriptionIn;
-//	roomId = idIn;
-//	name = nameIn;
-//	doors = doorsIn;
-//	npcList = npcListIn;
-//	playerList = playerListIn;
-//	objectList = objectListIn;
-//	navigable = navigabilityIn;
-//}
-
-//void Room::build(const string &areaIn,
-//	const description &descriptionIn,
-//	const vector<description> &extendedDescriptionIn,
-//	id idIn,
-//	const string &nameIn,
-//	const vector<Door> &doorsIn) {
-//
-//	area = areaIn;
-//	mainDescription = descriptionIn;
-//	extendedDescriptions = extendedDescriptionIn;
-//	roomId = idIn;
-//	name = nameIn;
-//	doors = doorsIn;
-//}
 
 string Room::getArea() const {
 	return model->area;
@@ -101,8 +97,8 @@ description Room::getDescription() const {
 	return  model->mainDescription;
 }
 
-id Room::getId() const {
-	return  model->roomId;
+roomID Room::getId() const {
+	return  model->id;
 }
 
 string Room::getName() const {
@@ -117,7 +113,7 @@ vector<Door> Room::getDoors() const {
 	return  model->doors;
 }
 
-vector<id> Room::getNpcList() const {
+vector<npcID> Room::getNpcList() const {
 	return  model->npcList;
 }
 
@@ -125,6 +121,9 @@ vector<username> Room::getPlayerList() const {
 	return  model->playerList;
 }
 
+vector<itemID> Room::getItemList() const {
+	return model->itemList;
+}
 
 void Room::makeUnnavigable() {
 	model->navigable = false;
@@ -148,14 +147,18 @@ bool Room::isNavigable() const {
 //	return false;
 //}
 
-id Room::getDoorId(Direction d){
-	for (auto door : model->doors) {
-		if (d == door.direction) {
-			return door.doorId;
+roomID Room::getRoomInDirection(Direction d) const{
+	Door door = getDoor(d);//throws an exception if no door is found
+	return door.room;
+}
+
+Door Room::getDoor(Direction d) const {
+	for (const auto &door : model->doors) {
+		if (door.direction == d) {
+			return door;
 		}
 	}
 	throw std::domain_error("No door in that direction");
-
 }
 
 void Room::addPlayer(username player) {
@@ -169,7 +172,6 @@ void Room::addPlayer(username player) {
 }
 
 void Room::removePlayer(username player) {
-
 	auto element = find( model->playerList.begin(),  model->playerList.end(), player);
 
 	/* Tell the calling function that the player is not in the room
@@ -182,11 +184,11 @@ void Room::removePlayer(username player) {
 
 /* Add the NPC to the room, doesn't check for duplicates b/c
  * multiple instances of an NPC can be in a room at once */
-void Room::addNpc(id npc) {
+void Room::addNpc(npcID npc) {
 	model->npcList.push_back(npc);
 }
 
-void Room::removeNpc(id npc) {
+void Room::removeNpc(npcID npc) {
 	auto element = find( model->npcList.begin(),  model->npcList.end(), npc);
 
 	/* Tell the calling function that the player is not in the room
@@ -197,22 +199,22 @@ void Room::removeNpc(id npc) {
 	model->npcList.erase(element);
 }
 
-void Room::addObject(id object) {
-	auto element = find( model->itemList.begin(),  model->itemList.end(), object);
+void Room::addItem(itemID item) {
+	auto element = find( model->itemList.begin(),  model->itemList.end(), item);
 
 	if (element !=  model->itemList.end()) {
-		throw std::domain_error("Object already in room");
+		throw std::domain_error("Item already in room");
 	}
-	model->itemList.push_back(object);
+	model->itemList.push_back(item);
 }
 
-void Room::removeObject(id object) {
-	auto element = find( model->itemList.begin(),  model->itemList.end(), object);
+void Room::removeItem(itemID item) {
+	auto element = find( model->itemList.begin(),  model->itemList.end(), item);
 
 	/* Tell the calling function that the player is not in the room
 	 * and don't try to remove them */
 	if (element ==  model->itemList.end()) {
-		throw std::domain_error("Object not in room");
+		throw std::domain_error("Item not in room");
 	}
 	model->itemList.erase(element);
 }

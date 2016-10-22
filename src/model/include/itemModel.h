@@ -5,15 +5,21 @@
 #ifndef ITEM_MODEL_H
 #define ITEM_MODEL_H
 
+#include <string>
+#include <vector>
+
+#include "id.h"
+
 using id = int;
 
 class ItemModel {
 public:
 	std::vector<std::string> extra;
-	id itemId;
+	itemID id;
 	std::vector<std::string> keywords;
 	std::string longdesc;
 	std::string shortdesc;
+	ItemModel();
 };
 
 
