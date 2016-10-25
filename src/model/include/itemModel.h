@@ -15,7 +15,7 @@ using id = int;
 class ItemModel {
 public:
 	std::vector<std::string> extra;
-	itemID id;
+	int id;
 	std::vector<std::string> keywords;
 	std::string longdesc;
 	std::string shortdesc;

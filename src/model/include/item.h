@@ -17,7 +17,11 @@ class ItemModel;
 
 class Item {
 private:
-	std::unique_ptr<ItemModel> model;
+	std::vector<std::string> extra;
+	itemID id;
+	std::vector<std::string> keywords;
+	std::string longdesc;
+	std::string shortdesc;
 
 public:
 	Item(itemID idIn,
@@ -31,6 +35,9 @@ public:
 		const std::string& longDescIn,
 		const std::string& shortDescIn,
 		const std::vector<std::string>& extra);
+
+	ItemModel getModel() const;
+	void setModel(const ItemModel& model);
 
 	/* Getters */
 	itemID getId() const;

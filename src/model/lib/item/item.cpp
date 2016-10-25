@@ -16,10 +16,11 @@ Item::Item(itemID idIn,
 	const std::string& longDescIn,
 	const std::string& shortDescIn,
 	const std::vector<std::string>& extraIn)
-	:model(std::make_unique<ItemModel>()) {
-
-	build(idIn, keywordsIn, longDescIn, shortDescIn, extraIn);
-}
+	:id(idIn),
+	keywords(keywordsIn),
+	longdesc(longDescIn),
+	shortdesc(shortDescIn),
+	extra(extraIn){}
 
 void Item::build(itemID idIn,
 	const std::vector<std::string>& keywordsIn,
@@ -27,50 +28,68 @@ void Item::build(itemID idIn,
 	const std::string& shortDescIn,
 	const std::vector<std::string>& extraIn){
 
-	model->id = idIn;
-	model->keywords = keywordsIn;
-	model->longdesc = longDescIn;
-	model->shortdesc = shortDescIn;
-	model->extra = extraIn;
+	id = idIn;
+	keywords = keywordsIn;
+	longdesc = longDescIn;
+	shortdesc = shortDescIn;
+	extra = extraIn;
 
+}
+
+ItemModel Item::getModel() const {
+	ItemModel model;
+	model.id = id.value;
+	model.keywords = keywords;
+	model.shortdesc = shortdesc;
+	model.longdesc = longdesc;
+	model.extra = extra;
+	return model;
+}
+
+void Item::setModel(const ItemModel& model) {
+	id = itemID(model.id);
+	keywords = model.keywords;
+	shortdesc = model.shortdesc;
+	longdesc = model.longdesc;
+	extra = model.extra;
 }
 
 itemID Item::getId() const {
-	return model->id;
+	return id;
 }
 
 std::vector<std::string> Item::getKeywords() const {
-	return model->keywords;
+	return keywords;
 }
 
 std::string Item::getlongDesc() const {
-	return model->longdesc;
+	return longdesc;
 }
 
 std::string Item::getShortDesc() const {
-	return model->shortdesc;
+	return shortdesc;
 }
 
 std::vector<std::string> Item::getExtra() const {
-	return model->extra;
+	return extra;
 }
 
 /* Setters */
 void Item::setId(itemID idIn){
-	model->id = idIn;
+	id = idIn;
 }
 void Item::setKeywords(const std::vector<std::string>& keywordsIn){
-	model->keywords = keywordsIn;
+	keywords = keywordsIn;
 }
 
 void Item::setlongDesc(const std::string& longDescIn){
-	model->longdesc = longDescIn;
+	longdesc = longDescIn;
 }
 
 void Item::setShortDesc(const std::string& shortDescIn){
-	model->shortdesc = shortDescIn;
+	shortdesc = shortDescIn;
 }
 
 void Item::setExtra(const std::vector<std::string>& extraIn){
-	model->extra = extraIn;
+	extra = extraIn;
 }
