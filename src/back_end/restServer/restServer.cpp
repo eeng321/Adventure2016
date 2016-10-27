@@ -18,6 +18,7 @@
 #include "npcEndpoint.h"
 
 #include "chatEndpoint.h"
+#include "itemEndpoint.h"
 
 
 using namespace std;
@@ -65,7 +66,13 @@ private:
         Routes::Post(router, "/player", Routes::bind(&PlayerEndpoint::createPlayer));
         Routes::Delete(router, "/player/:id", Routes::bind(&PlayerEndpoint::deletePlayer));
 
-        //Room CRUDS
+        // Item CRUDS
+        Routes::Get(router, "/item/:id", Routes::bind(&ItemEndpoint::retrieveItem));
+        Routes::Put(router, "/item/:id", Routes::bind(&ItemEndpoint::updateItem));
+        Routes::Post(router, "/item", Routes::bind(&ItemEndpoint::createItem));
+        Routes::Delete(router, "/item/:id", Routes::bind(&ItemEndpoint::deleteItem));
+
+        // Todo: Room Routes
         Routes::Get(router, "/room/:id", Routes::bind(&RoomEndpoint::retrieveRoom));
         Routes::Put(router, "/room/:id", Routes::bind(&RoomEndpoint::updateRoom));
         Routes::Post(router, "/room", Routes::bind(&RoomEndpoint::createRoom));
