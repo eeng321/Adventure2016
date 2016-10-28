@@ -1,20 +1,19 @@
 #include "id.h"
 
-playerID::playerID(int id){
-	value = id;
-}
+ID::ID(int id)
+:value(id) {}
 
-itemID::itemID(int id) {
-	value = id;
-}
+playerID::playerID(int id)
+:ID(id) {}
 
-roomID::roomID(int id) {
-	value = id;
-}
+itemID::itemID(int id)
+:ID(id) {}
 
-npcID::npcID(int id) {
-	value = id;
-}
+roomID::roomID(int id)
+:ID(id) {}
+
+npcID::npcID(int id)
+:ID(id) {}
 
 bool playerID::operator==(const playerID& arg){
 	return this->value == arg.value;

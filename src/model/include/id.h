@@ -5,31 +5,33 @@
 #ifndef ID_H
 #define ID_H
 
-class playerID {
+class ID{
+public:
+	int value;
+	ID(int id);
+};
+
+class playerID : public ID {
 public:
 	playerID(int id);
-	int value;
 	bool operator==(const playerID& arg);
 };
 
-class itemID {
+class itemID : public ID {
 public:
 	itemID(int id);
-	int value;
 	bool operator==(const itemID& arg);
 };
 
-class npcID {
+class npcID : public ID {
 public:
 	npcID(int id);
-	int value;
 	bool operator==(const npcID& arg);
 };
 
-class roomID {
+class roomID : public ID {
 public:
 	roomID(int id);
-	int value;
 	bool operator==(const roomID& arg);
 };
 
