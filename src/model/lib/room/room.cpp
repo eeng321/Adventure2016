@@ -15,14 +15,14 @@ using std::find;
 
 
 Room::Room(const string& areaIn,
-	const roomID& idIn,
+	const roomId& idIn,
 	const string& nameIn,
 	const description& descriptionIn,
 	const vector<description>& extendedDescriptionsIn,
 	const vector<Door>& doorsIn,
-	const vector<npcID>& npcListIn,
+	const vector<npcId>& npcListIn,
 	const vector<username>& playerListIn,
-	const vector<itemID>& itemListIn,
+	const vector<itemId>& itemListIn,
 	bool navigabilityIn)
 	: area(areaIn),
 	id(idIn),
@@ -36,7 +36,7 @@ Room::Room(const string& areaIn,
 	navigable(navigabilityIn) {}
 
 Room::Room(const string& areaIn,
-		   const roomID& idIn,
+		   const roomId& idIn,
 		   const string& nameIn,
 		   const description& descriptionIn,
 		   const vector<description>& extendedDescriptionsIn,
@@ -49,14 +49,14 @@ Room::Room(const string& areaIn,
 		  doors(doorsIn){}
 
 void Room::build(const std::string& areaIn,
-	const roomID& idIn,
+	const roomId& idIn,
 	const string& nameIn,
 	const description& descriptionIn,
 	const vector<description>& extendedDescriptionIn,
 	const vector<Door>& doorsIn,
-	const vector<npcID>& npcListIn,
+	const vector<npcId>& npcListIn,
 	const vector<username>& playerListIn,
-	const vector<itemID>& itemListIn,
+	const vector<itemId>& itemListIn,
 	bool navigabilityIn) {
 
 	build(areaIn, idIn, nameIn, descriptionIn, extendedDescriptionIn, doorsIn, navigable = navigabilityIn);
@@ -66,7 +66,7 @@ void Room::build(const std::string& areaIn,
 }
 
 void Room::build(const std::string& areaIn,
-	const roomID& idIn,
+	const roomId& idIn,
 	const std::string& nameIn,
 	const description& descriptionIn,
 	const std::vector<description>& extendedDescriptionIn,
@@ -83,13 +83,13 @@ void Room::build(const std::string& areaIn,
 }
 
 void Room::setModel(const RoomModel& model){
-	build(model.area, roomID(model.id), model.name, model.mainDescription, model.extendedDescriptions, model.doors, model.navigable);
+	build(model.area, roomId(model.id), model.name, model.mainDescription, model.extendedDescriptions, model.doors, model.navigable);
 	playerList = model.playerList;
 	for(int id : model.itemList){
-		itemList.push_back(itemID(id));
+		itemList.push_back(itemId(id));
 	}
 	for(int id : model.npcList) {
-		npcList.push_back(npcID(id));
+		npcList.push_back(npcId(id));
 	}
 }
 
@@ -103,10 +103,10 @@ RoomModel Room::getModel() const {
 	model.doors = doors;
 	model.playerList = playerList;
 	model.navigable = navigable;
-	for(const itemID& itemid : itemList){
+	for(const itemId& itemid : itemList){
 		model.itemList.push_back(itemid.value);
 	}
-	for(const npcID& npcid : npcList) {
+	for(const npcId& npcid : npcList) {
 		model.npcList.push_back(npcid.value);
 	}
 	return model;
@@ -122,7 +122,7 @@ description Room::getDescription() const {
 	return  mainDescription;
 }
 
-roomID Room::getId() const {
+roomId Room::getId() const {
 	return  id;
 }
 
@@ -138,7 +138,7 @@ vector<Door> Room::getDoors() const {
 	return  doors;
 }
 
-vector<npcID> Room::getNpcList() const {
+vector<npcId> Room::getNpcList() const {
 	return  npcList;
 }
 
@@ -146,7 +146,7 @@ vector<username> Room::getPlayerList() const {
 	return  playerList;
 }
 
-vector<itemID> Room::getItemList() const {
+vector<itemId> Room::getItemList() const {
 	return itemList;
 }
 
@@ -172,7 +172,7 @@ bool Room::isNavigable() const {
 //	return false;
 //}
 
-roomID Room::getRoomInDirection(Direction d) const{
+roomId Room::getRoomInDirection(Direction d) const{
 	Door door = getDoor(d);//throws an exception if no door is found
 	return door.room;
 }
@@ -209,11 +209,11 @@ void Room::removePlayer(username player) {
 
 /* Add the NPC to the room, doesn't check for duplicates b/c
  * multiple instances of an NPC can be in a room at once */
-void Room::addNpc(npcID npc) {
+void Room::addNpc(npcId npc) {
 	npcList.push_back(npc);
 }
 
-void Room::removeNpc(npcID npc) {
+void Room::removeNpc(npcId npc) {
 	auto element = find( npcList.begin(),  npcList.end(), npc);
 
 	/* Tell the calling function that the player is not in the room
@@ -224,7 +224,7 @@ void Room::removeNpc(npcID npc) {
 	npcList.erase(element);
 }
 
-void Room::addItem(itemID item) {
+void Room::addItem(itemId item) {
 	auto element = find( itemList.begin(),  itemList.end(), item);
 
 	if (element !=  itemList.end()) {
@@ -233,7 +233,7 @@ void Room::addItem(itemID item) {
 	itemList.push_back(item);
 }
 
-void Room::removeItem(itemID item) {
+void Room::removeItem(itemId item) {
 	auto element = find( itemList.begin(),  itemList.end(), item);
 
 	/* Tell the calling function that the player is not in the room

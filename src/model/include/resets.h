@@ -8,20 +8,20 @@
 #include "playerModel.h"
 
 struct itemReset {
-	itemID item;
-	roomID room;
+	itemId item;
+	roomId room;
 };
 
 struct npcReset {
 	std::string comment;
-	npcID npc;
+	npcId npc;
 	int limit;
-	roomID room;
+	roomId room;
 };
 
 struct giveReset {
 	std::string comment;
-	itemID item;//not sure what this ID refers to, object id's?
+	itemId item;//not sure what this ID refers to, object id's?
 };
 
 

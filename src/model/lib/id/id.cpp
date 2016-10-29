@@ -1,32 +1,32 @@
 #include "id.h"
 
-ID::ID(int id)
+Id::Id(int id)
 :value(id) {}
 
-playerID::playerID(int id)
-:ID(id) {}
+playerId::playerId(int id)
+:Id(id) {}
 
-itemID::itemID(int id)
-:ID(id) {}
+itemId::itemId(int id)
+:Id(id) {}
 
-roomID::roomID(int id)
-:ID(id) {}
+roomId::roomId(int id)
+:Id(id) {}
 
-npcID::npcID(int id)
-:ID(id) {}
+npcId::npcId(int id)
+:Id(id) {}
 
-bool playerID::operator==(const playerID& arg){
+bool playerId::operator==(const playerId& arg){
 	return this->value == arg.value;
 }
 
-bool itemID::operator==(const itemID& arg){
+bool itemId::operator==(const itemId& arg){
 	return this->value == arg.value;
 }
 
-bool roomID::operator==(const roomID& arg){
+bool roomId::operator==(const roomId& arg){
 	return this->value == arg.value;
 }
 
-bool npcID::operator==(const npcID& arg){
+bool npcId::operator==(const npcId& arg){
 	return this->value == arg.value;
 }

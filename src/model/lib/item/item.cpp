@@ -11,7 +11,7 @@
 using std::string;
 using std::vector;
 
-Item::Item(itemID idIn,
+Item::Item(itemId idIn,
 	const std::vector<std::string>& keywordsIn,
 	const std::string& longDescIn,
 	const std::string& shortDescIn,
@@ -22,7 +22,7 @@ Item::Item(itemID idIn,
 	shortdesc(shortDescIn),
 	extra(extraIn){}
 
-void Item::build(itemID idIn,
+void Item::build(itemId idIn,
 	const std::vector<std::string>& keywordsIn,
 	const std::string& longDescIn,
 	const std::string& shortDescIn,
@@ -47,14 +47,14 @@ ItemModel Item::getModel() const {
 }
 
 void Item::setModel(const ItemModel& model) {
-	id = itemID(model.id);
+	id = itemId(model.id);
 	keywords = model.keywords;
 	shortdesc = model.shortdesc;
 	longdesc = model.longdesc;
 	extra = model.extra;
 }
 
-itemID Item::getId() const {
+itemId Item::getId() const {
 	return id;
 }
 
@@ -75,7 +75,7 @@ std::vector<std::string> Item::getExtra() const {
 }
 
 /* Setters */
-void Item::setId(itemID idIn){
+void Item::setId(itemId idIn){
 	id = idIn;
 }
 void Item::setKeywords(const std::vector<std::string>& keywordsIn){

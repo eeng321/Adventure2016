@@ -18,8 +18,8 @@ class Door {
 public:
 	Direction direction;
 	std::vector<keyword> keywords;
-	roomID room;
-	void build(const Direction& directionIn, const std::vector<keyword>& keywordsIn, roomID roomIn);
+	roomId room;
+	void build(const Direction& directionIn, const std::vector<keyword>& keywordsIn, const roomId& roomIn);
 };
 
 

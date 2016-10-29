@@ -17,14 +17,14 @@ class Room {
 private:
 //	std::unique_ptr<RoomModel> model;
 	std::string area;
-	roomID id;
+	roomId id;
 	std::string name;
 	description mainDescription;
 	std::vector<description> extendedDescriptions;
 	std::vector<Door> doors;
-	std::vector<npcID> npcList;
+	std::vector<npcId> npcList;
 	std::vector<username> playerList;
-	std::vector<itemID> itemList;
+	std::vector<itemId> itemList;
 	bool navigable;
 
 public:
@@ -34,36 +34,36 @@ public:
 	Room();
 
 	Room(const std::string& areaIn,
-		 const roomID& idIn,
+		 const roomId& idIn,
 		 const std::string& nameIn,
 		 const description& descriptionIn,
 		 const std::vector<description>& extendedDescriptionsIn,
 		 const std::vector<Door>& doorsIn,
-		 const std::vector<npcID>& npcListIn,
+		 const std::vector<npcId>& npcListIn,
 		 const std::vector<username>& playerListIn,
-		 const std::vector<itemID>& itemListIn,
+		 const std::vector<itemId>& itemListIn,
 		 bool navigabilityIn);
 
 	Room(const std::string& areaIn,
-		 const roomID& idIn,
+		 const roomId& idIn,
 		 const std::string& nameIn,
 		 const description& descriptionIn,
 		 const std::vector<description>& extendedDescriptionsIn,
 		 const std::vector<Door>& doorsIn);
 
 	void build(const std::string& areaIn,
-			   const roomID& idIn,
+			   const roomId& idIn,
 			   const std::string& nameIn,
 			   const description& descriptionIn,
 			   const std::vector<description>& extendedDescriptionIn,
 			   const std::vector<Door>& doorsIn,
-			   const std::vector<npcID>& npcListIn,
+			   const std::vector<npcId>& npcListIn,
 			   const std::vector<username>& playerListIn,
-			   const std::vector<itemID>& itemListIn,
+			   const std::vector<itemId>& itemListIn,
 			   bool navigabilityIn);
 
 	void build(const std::string& areaIn,
-			   const roomID& idIn,
+			   const roomId& idIn,
 			   const std::string& nameIn,
 			   const description& descriptionIn,
 			   const std::vector<description>& extendedDescriptionIn,
@@ -76,13 +76,13 @@ public:
 	/* Getters */
 	std::string getArea() const;
 	description getDescription() const;
-	roomID getId() const;
+	roomId getId() const;
 	std::string getName() const;
 	std::vector<description> getExtendedDescriptions() const;
 	std::vector<Door> getDoors() const;
-	std::vector<npcID> getNpcList() const;
+	std::vector<npcId> getNpcList() const;
 	std::vector<username> getPlayerList() const;
-	std::vector<itemID> getItemList() const;
+	std::vector<itemId> getItemList() const;
 
 	/* Navigation management */
 	void makeUnnavigable();
@@ -93,16 +93,16 @@ public:
 	void addPlayer(username player);
 	void removePlayer(username player);
 
-	roomID getRoomInDirection(Direction d) const;
+	roomId getRoomInDirection(Direction d) const;
 	Door getDoor(Direction d) const;
 
 	/* NPC management */
-	void addNpc(npcID npc);
-	void removeNpc(npcID npc);
+	void addNpc(npcId npc);
+	void removeNpc(npcId npc);
 
 	/* Object management */
-	void addItem(itemID item);
-	void removeItem(itemID item);
+	void addItem(itemId item);
+	void removeItem(itemId item);
 
 };//Room class
 
