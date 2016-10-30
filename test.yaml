@@ -1,0 +1,20 @@
+- desc:
+  - This path is made of crushed granite with curious blue streaks in it.
+  - The path continues north to a village, or south to the west gate.
+  doors:
+  - desc:
+    - The path continues toward the village.
+    dir: north
+    keywords: []
+    to: 102
+  - desc:
+    - The path back toward the forest.
+    dir: south
+    keywords: []
+    to: 3040
+  extended_descriptions: []
+  id: 101
+  name: Dimly Lit Path
+- desc:
+  - This section of the road is badly worn and frequently traversed.  There is
+  - faint singing to the north.  The road back to the forest lies to the south.

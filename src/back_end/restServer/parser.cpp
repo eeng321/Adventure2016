@@ -42,11 +42,16 @@ std::string parser::roomSerialize(RoomModel const room) {
     //TODO Error Checking
 
     YAML::Emitter out;
-    //out << YAML::BeginSeq;
     out << YAML::BeginMap;
 
     out << YAML::Key << ROOM_DESCRIPTION_KEY;
-    out << YAML::Value << room.mainDescription;
+    out << YAML::BeginSeq;
+    int size = 0;
+    for(auto &s : room.mainDescription){
+        out << YAML::Value << s;
+        cout << size++;
+    }
+    out<< YAML::EndSeq;
 
     out << YAML::Key << ROOM_DOOR_KEY;
     out << YAML::BeginSeq;
@@ -65,11 +70,13 @@ std::string parser::roomSerialize(RoomModel const room) {
         out << YAML::Value << s.doorId;
         out << YAML::EndMap;
     }
-    out <<YAML::EndSeq;
-    YAML::EndMap;
-    YAML::BeginMap;
+    out << YAML::EndSeq;
+
     out << YAML::Key << ROOM_AREA_KEY;
     out << YAML::Value << room.area;
+
+    out << YAML::Key << ROOM_NAME_KEY;
+    out << YAML::Value << room.name;
 
     out << YAML::Key << ROOM_EX_DESCRIPTION_KEY;
     out << YAML::Flow << room.extendedDescriptions;
@@ -91,7 +98,6 @@ std::string parser::roomSerialize(RoomModel const room) {
     out << YAML::Flow << room.playerList;
 
     out << YAML::EndMap;
-    //out << YAML::EndSeq;
 
     return out.c_str();
 }
@@ -100,46 +106,63 @@ RoomModel parser::roomDeserialize(std::string body) {
     //TODO error checking
     YAML::Node roomNode = YAML::Load(body);
     RoomModel model;
-    model.mainDescription = roomNode[parser::ROOM_DESCRIPTION_KEY].as<std::string>();
 
-    YAML::Node doorNode = roomNode[parser::ROOM_DOOR_KEY];
-    for(auto currentNode: doorNode){
+    for(auto innerString : roomNode[ROOM_DESCRIPTION_KEY]){
+        model.mainDescription.push_back(innerString.as<std::string>());
+    }
+
+    for(auto currentNode: roomNode[ROOM_DOOR_KEY]){
         Door door;
-        door.description = currentNode[parser::DOOR_DESCRIPTION_KEY].as<std::string>();
-        door.doorId = (id)currentNode[parser::DOOR_ID_KEY].as<int>();
-        Direction dir = parser::deserializeDirection(currentNode[parser::DOOR_DIRECTION_KEY].as<std::string>());
+        for(auto innerString : currentNode[DOOR_DESCRIPTION_KEY]){
+            door.description.push_back(innerString.as<std::string>());
+            std::cout << innerString.as<std::string>() << endl;
+        }
+        door.doorId = (id)currentNode[DOOR_ID_KEY].as<int>();
+        Direction dir = deserializeDirection(currentNode[DOOR_DIRECTION_KEY].as<std::string>());
         door.direction = dir;
-        for(auto innerString: currentNode[parser::DOOR_KEYWORDS_KEY]){
+        for(auto innerString: currentNode[DOOR_KEYWORDS_KEY]){
             door.keywords.push_back(innerString.as<std::string>());
         }
         model.doors.push_back(door);
     }
 
-    model.area = roomNode[parser::ROOM_AREA_KEY].as<std::string>();
+    model.area = roomNode[ROOM_AREA_KEY].as<std::string>();
 
-    for(auto innerString: roomNode[parser::ROOM_EX_DESCRIPTION_KEY]){
+    model.name = roomNode[ROOM_NAME_KEY].as<std::string>();
+
+    for(auto innerString: roomNode[ROOM_EX_DESCRIPTION_KEY]){
         model.extendedDescriptions.push_back(innerString.as<std::string>());
     }
 
-    model.roomId = (id)roomNode[parser::ROOM_ID_KEY].as<int>();
+    model.roomId = (id)roomNode[ROOM_ID_KEY].as<int>();
 
-    model.navigable = roomNode[parser::ROOM_NAVIGABLE_KEY].as<bool>();
+    model.navigable = roomNode[ROOM_NAVIGABLE_KEY].as<bool>();
 
-    for(auto innerString: roomNode[parser::ROOM_ITEMLIST_KEY]){
+    for(auto innerString: roomNode[ROOM_ITEMLIST_KEY]){
         model.itemList.push_back( (id)innerString.as<int>() );
     }
 
-    for(auto innerString: roomNode[parser::ROOM_NPCLIST_KEY]){
+    for(auto innerString: roomNode[ROOM_NPCLIST_KEY]){
         model.npcList.push_back( (id)innerString.as<int>() );
     }
 
-    for(auto innerString: roomNode[parser::ROOM_PLAYERLIST_KEY]){
+    for(auto innerString: roomNode[ROOM_PLAYERLIST_KEY]){
         model.playerList.push_back(innerString.as<std::string>());
     }
 
     return model;
 
 }
+
+std::string parser::doorSerialize(Door door) {
+
+}
+
+
+Door parser::doorDeserialize(YAML::Emitter &out, YAML::Node const doorNode) {
+
+}
+
 
 std::string parser::serializeDirection(Direction const directionEnum){
     switch (directionEnum) {

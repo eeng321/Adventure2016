@@ -11,7 +11,7 @@ public:
 	std::string area;
 	id roomId;
 	std::string name;
-	description mainDescription;
+	std::vector<description> mainDescription;
 	std::vector<description> extendedDescriptions;
 	std::vector<Door> doors;
 	std::vector<id> npcList;
