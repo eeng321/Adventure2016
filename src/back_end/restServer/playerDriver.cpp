@@ -69,7 +69,7 @@ PlayerModel loadPlayer(int playerId){
 PlayerModel addPlayer(PlayerModel player){
     hiberlite::Database db;
     db.open("AdventureDatabase.db");
-    hiberlite::bean_ptr<PlayerModel> p=db.copyBean(player);
+    hiberlite::bean_ptr<PlayerModel> p = db.copyBean(player);
     p->playerId = p.get_id();
     player.playerId = p.get_id();
     p.save();
