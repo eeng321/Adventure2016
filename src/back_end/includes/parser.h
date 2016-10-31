@@ -51,6 +51,7 @@ namespace parser{
     std::string serializeDirection(Direction const directionEnum);
     Direction deserializeDirection(std::string const directionString);
 
+    std::vector<RoomModel> extractRoomsFromSequence(YAML::Node const roomNode);
 
 };
 

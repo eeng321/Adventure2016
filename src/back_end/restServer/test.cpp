@@ -47,29 +47,38 @@ int main(){
 //    test.itemList.push_back((id) 75);
 //    test.itemList.push_back((id) 129);
 
-    YAML::Node testNode = YAML::LoadFile("/home/william/cmpt373/adventure2016/test.yaml");
-    YAML::Node roomsNode = testNode["ROOMS"];
-    YAML::Emitter out;
-    std::vector<RoomModel> rooms;
-    for(auto s : roomsNode){
-        rooms.push_back(parser::roomDeserializeFromNode(s));
-    }
-//    std::cout << testNode.as<std::string>();
+//    YAML::Node testNode = YAML::LoadFile("/home/william/cmpt373/adventure2016/test.yaml");
+//    YAML::Node roomsNode = testNode["ROOMS"];
+//    if(roomsNode){
+//        cout << "found rooms node" << endl;
+//    }else{
+//        cout << "did not find" << endl;
+//    }
+//    std::vector<RoomModel> rooms = parser::extractRoomsFromSequence(roomsNode);
+//    cout << "extracted" << endl;
+//    std::vector<RoomModel> rooms2;
+//    for(auto s : rooms){
+//        std::string test = parser::roomSerialize(s);
+//        std::cout << test << endl;
+//        rooms2.push_back(parser::roomDeserialize(test));
+//    }
 
+////    std::cout << testNode.as<std::string>();
+//
     std::string testss = parser::roomSerialize(test);// << std::cout;
     std::cout << testss << std::endl;
-    std::cout << "after testss" << endl;
-    RoomModel model = parser::roomDeserialize(testss);
-    std::cout << model.name << endl;
-    for(auto s: model.doors){
-        for(auto i : s.description){
-            std::cout << i << std::endl;
-        }
-        std::cout << parser::serializeDirection(s.direction) << s.doorId << std::endl;
-        for(auto i: s.keywords){
-            std::cout << i << std::endl;
-        }
-    }
+//    std::cout << "after testss" << endl;
+//    RoomModel model = parser::roomDeserialize(testss);
+//    std::cout << model.name << endl;
+//    for(auto s: model.doors){
+//        for(auto i : s.description){
+//            std::cout << i << std::endl;
+//        }
+//        std::cout << parser::serializeDirection(s.direction) << s.doorId << std::endl;
+//        for(auto i: s.keywords){
+//            std::cout << i << std::endl;
+//        }
+//    }
     return 0;
 }
 

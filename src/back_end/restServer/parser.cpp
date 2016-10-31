@@ -75,7 +75,7 @@ std::string parser::roomSerialize(RoomModel const room) {
     out << YAML::Value << room.navigable;
 
     out << YAML::Key << ROOM_ITEMLIST_KEY;
-    out << YAML::Flow << room.itemList;
+    out << YAML::Flow << room.itemList;//TODO Critical Extended Descriptions must be rewritten
 
     out << YAML::Key << ROOM_NPCLIST_KEY;
     out << YAML::Flow << room.npcList;
@@ -95,10 +95,12 @@ std::string parser::doorSerialize(YAML::Emitter &out, Door door) {
 
     out << YAML::Key << DOOR_DIRECTION_KEY;
     out << YAML::Value << parser::serializeDirection(door.direction);
-
     out << YAML::Key << DOOR_KEYWORDS_KEY;
-    out << YAML::Flow << door.keywords;
-
+    out << YAML::BeginSeq;
+    for(auto keyWords : door.keywords){
+        out << keyWords;
+    }
+    out << YAML::EndSeq;
     out << YAML::Key << DOOR_ID_KEY;
     out << YAML::Value << door.doorId;
     out << YAML::EndMap;
@@ -205,3 +207,12 @@ Direction parser::deserializeDirection(std::string const directionString) {
     }//TODO error checking?
 }
 
+std::vector<RoomModel> parser::extractRoomsFromSequence(YAML::Node const roomNode) {
+    std::vector<RoomModel> rooms;
+    for(auto s : roomNode){
+        rooms.push_back(parser::roomDeserializeFromNode(s));
+        std::cout << "test" << endl;
+    }
+
+    return rooms;
+}
