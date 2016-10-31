@@ -41,10 +41,12 @@ namespace parser{
     char constexpr DOOR_ID_KEY[] = "to";
 
     std::string roomSerialize(RoomModel const room);
-    RoomModel roomDeserialize(std::string body);
+    RoomModel roomDeserialize(std::string const body);
+    RoomModel roomDeserializeFromNode(YAML::Node roomNode);
+    void roomDeserializeAndAppendExtras(RoomModel &model, YAML::Node const roomNode);
 
-    std::string doorSerialize(Door door);
-    Door doorDeserialize(YAML::Emitter &out, YAML::Node const doorNode);
+    std::string doorSerialize(YAML::Emitter &out, Door door);
+    Door doorDeserialize(YAML::Node const doorNode);
 
     std::string serializeDirection(Direction const directionEnum);
     Direction deserializeDirection(std::string const directionString);

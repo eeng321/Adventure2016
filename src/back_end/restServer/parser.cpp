@@ -46,29 +46,15 @@ std::string parser::roomSerialize(RoomModel const room) {
 
     out << YAML::Key << ROOM_DESCRIPTION_KEY;
     out << YAML::BeginSeq;
-    int size = 0;
     for(auto &s : room.mainDescription){
         out << YAML::Value << s;
-        cout << size++;
     }
     out<< YAML::EndSeq;
 
     out << YAML::Key << ROOM_DOOR_KEY;
     out << YAML::BeginSeq;
     for(auto& s : room.doors){
-        out << YAML::BeginMap;
-        out << YAML::Key << DOOR_DESCRIPTION_KEY;
-        out << YAML::Value << s.description;
-
-        out << YAML::Key << DOOR_DIRECTION_KEY;
-        out << YAML::Value << parser::serializeDirection(s.direction);
-
-        out << YAML::Key << DOOR_KEYWORDS_KEY;
-        out << YAML::Flow << s.keywords;
-
-        out << YAML::Key << DOOR_ID_KEY;
-        out << YAML::Value << s.doorId;
-        out << YAML::EndMap;
+        doorSerialize(out, s);
     }
     out << YAML::EndSeq;
 
@@ -102,9 +88,28 @@ std::string parser::roomSerialize(RoomModel const room) {
     return out.c_str();
 }
 
-RoomModel parser::roomDeserialize(std::string body) {
+std::string parser::doorSerialize(YAML::Emitter &out, Door door) {
+    out << YAML::BeginMap;
+    out << YAML::Key << DOOR_DESCRIPTION_KEY;
+    out << YAML::Value << door.description;
+
+    out << YAML::Key << DOOR_DIRECTION_KEY;
+    out << YAML::Value << parser::serializeDirection(door.direction);
+
+    out << YAML::Key << DOOR_KEYWORDS_KEY;
+    out << YAML::Flow << door.keywords;
+
+    out << YAML::Key << DOOR_ID_KEY;
+    out << YAML::Value << door.doorId;
+    out << YAML::EndMap;
+
+    return out.c_str();
+}
+
+
+
+RoomModel parser::roomDeserializeFromNode(YAML::Node roomNode) {
     //TODO error checking
-    YAML::Node roomNode = YAML::Load(body);
     RoomModel model;
 
     for(auto innerString : roomNode[ROOM_DESCRIPTION_KEY]){
@@ -112,55 +117,65 @@ RoomModel parser::roomDeserialize(std::string body) {
     }
 
     for(auto currentNode: roomNode[ROOM_DOOR_KEY]){
-        Door door;
-        for(auto innerString : currentNode[DOOR_DESCRIPTION_KEY]){
-            door.description.push_back(innerString.as<std::string>());
-            std::cout << innerString.as<std::string>() << endl;
-        }
-        door.doorId = (id)currentNode[DOOR_ID_KEY].as<int>();
-        Direction dir = deserializeDirection(currentNode[DOOR_DIRECTION_KEY].as<std::string>());
-        door.direction = dir;
-        for(auto innerString: currentNode[DOOR_KEYWORDS_KEY]){
-            door.keywords.push_back(innerString.as<std::string>());
-        }
+        Door door = doorDeserialize(currentNode);
         model.doors.push_back(door);
     }
-
-    model.area = roomNode[ROOM_AREA_KEY].as<std::string>();
-
     model.name = roomNode[ROOM_NAME_KEY].as<std::string>();
-
+    model.roomId = (id)roomNode[ROOM_ID_KEY].as<int>();
     for(auto innerString: roomNode[ROOM_EX_DESCRIPTION_KEY]){
         model.extendedDescriptions.push_back(innerString.as<std::string>());
     }
 
-    model.roomId = (id)roomNode[ROOM_ID_KEY].as<int>();
+    roomDeserializeAndAppendExtras(model, roomNode);
 
-    model.navigable = roomNode[ROOM_NAVIGABLE_KEY].as<bool>();
-
-    for(auto innerString: roomNode[ROOM_ITEMLIST_KEY]){
-        model.itemList.push_back( (id)innerString.as<int>() );
-    }
-
-    for(auto innerString: roomNode[ROOM_NPCLIST_KEY]){
-        model.npcList.push_back( (id)innerString.as<int>() );
-    }
-
-    for(auto innerString: roomNode[ROOM_PLAYERLIST_KEY]){
-        model.playerList.push_back(innerString.as<std::string>());
-    }
 
     return model;
-
 }
 
-std::string parser::doorSerialize(Door door) {
+void parser::roomDeserializeAndAppendExtras(RoomModel &model, YAML::Node const roomNode){
 
+
+    if(roomNode[ROOM_NAVIGABLE_KEY]){
+        model.navigable = roomNode[ROOM_NAVIGABLE_KEY].as<bool>();
+    }
+    if(roomNode[ROOM_AREA_KEY]){
+        model.area = roomNode[ROOM_AREA_KEY].as<std::string>();
+    }
+    if(roomNode[ROOM_ITEMLIST_KEY]){
+        for(auto innerString: roomNode[ROOM_ITEMLIST_KEY]){
+            model.itemList.push_back( (id)innerString.as<int>() );
+        }
+    }
+    if(roomNode[ROOM_NPCLIST_KEY]){
+        for(auto innerString: roomNode[ROOM_NPCLIST_KEY]){
+            model.npcList.push_back( (id)innerString.as<int>() );
+        }
+    }
+    if(roomNode[ROOM_PLAYERLIST_KEY]){
+        for(auto innerString: roomNode[ROOM_PLAYERLIST_KEY]){
+            model.playerList.push_back(innerString.as<std::string>());
+        }
+    }
 }
 
+RoomModel parser::roomDeserialize(std::string const body) {
+    YAML::Node roomNode = YAML::Load(body);
+    return roomDeserializeFromNode(roomNode);
+}
 
-Door parser::doorDeserialize(YAML::Emitter &out, YAML::Node const doorNode) {
+Door parser::doorDeserialize(YAML::Node const doorNode) {
+    Door door;
+    for(auto innerString : doorNode[DOOR_DESCRIPTION_KEY]){
+        door.description.push_back(innerString.as<std::string>());
+    }
+    door.doorId = (id)doorNode[DOOR_ID_KEY].as<int>();
+    Direction dir = deserializeDirection(doorNode[DOOR_DIRECTION_KEY].as<std::string>());
+    door.direction = dir;
+    for(auto innerString: doorNode[DOOR_KEYWORDS_KEY]){
+        door.keywords.push_back(innerString.as<std::string>());
+    }
 
+    return door;
 }
 
 

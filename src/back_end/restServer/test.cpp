@@ -5,7 +5,10 @@
 #include <iostream>
 #include "parser.h"
 #include "../../model/include/room.h"
+#include <typeinfo>
 
+
+using namespace std;
 int main(){
 
     Door door;
@@ -36,7 +39,6 @@ int main(){
 //    test.navigable = true;
     test.doors.push_back(door);
     test.doors.push_back(door2);
-    test.extendedDescriptions.push_back("ex desc 1");
 //    test.extendedDescriptions.push_back("ex desc 2");
 //    test.npcList.push_back((id)102);
 //    test.npcList.push_back((id)105);
@@ -45,21 +47,29 @@ int main(){
 //    test.itemList.push_back((id) 75);
 //    test.itemList.push_back((id) 129);
 
-//    YAML::Node testNode = YAML::LoadFile("/home/william/cmpt373/adventure2016/test.yaml");
-//    std::cout << testNode["name"].as<std::string>();
+    YAML::Node testNode = YAML::LoadFile("/home/william/cmpt373/adventure2016/test.yaml");
+    YAML::Node roomsNode = testNode["ROOMS"];
+    YAML::Emitter out;
+    std::vector<RoomModel> rooms;
+    for(auto s : roomsNode){
+        rooms.push_back(parser::roomDeserializeFromNode(s));
+    }
+//    std::cout << testNode.as<std::string>();
 
-//    parser::roomSerialize(test);
     std::string testss = parser::roomSerialize(test);// << std::cout;
     std::cout << testss << std::endl;
+    std::cout << "after testss" << endl;
     RoomModel model = parser::roomDeserialize(testss);
-//    std::cout << model.area << model.mainDescription << model.roomId << model.name << std::endl;
-//
-//    for(auto s: model.doors){
-//        std::cout << s.description << parser::serializeDirection(s.direction) << s.doorId << std::endl;
-//        for(auto i: s.keywords){
-//            std::cout << i << std::endl;
-//        }
-//    }
+    std::cout << model.name << endl;
+    for(auto s: model.doors){
+        for(auto i : s.description){
+            std::cout << i << std::endl;
+        }
+        std::cout << parser::serializeDirection(s.direction) << s.doorId << std::endl;
+        for(auto i: s.keywords){
+            std::cout << i << std::endl;
+        }
+    }
     return 0;
 }
 
