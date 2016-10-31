@@ -17,8 +17,8 @@ private:
 	std::vector<std::string> extra;
 	itemId id;
 	std::vector<std::string> keywords;
-	std::string longdesc;
-	std::string shortdesc;
+	std::string longDesc;
+	std::string shortDesc;
 
 public:
 	Item(itemId idIn,

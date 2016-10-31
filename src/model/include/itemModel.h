@@ -17,8 +17,8 @@ public:
 	std::vector<std::string> extra;
 	int id;
 	std::vector<std::string> keywords;
-	std::string longdesc;
-	std::string shortdesc;
+	std::string longDesc;
+	std::string shortDesc;
 	ItemModel();
 };
 

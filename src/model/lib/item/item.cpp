@@ -18,8 +18,8 @@ Item::Item(itemId idIn,
 	const std::vector<std::string>& extraIn)
 	:id(idIn),
 	keywords(keywordsIn),
-	longdesc(longDescIn),
-	shortdesc(shortDescIn),
+	longDesc(longDescIn),
+	shortDesc(shortDescIn),
 	extra(extraIn){}
 
 void Item::build(itemId idIn,
@@ -30,8 +30,8 @@ void Item::build(itemId idIn,
 
 	id = idIn;
 	keywords = keywordsIn;
-	longdesc = longDescIn;
-	shortdesc = shortDescIn;
+	longDesc = longDescIn;
+	shortDesc = shortDescIn;
 	extra = extraIn;
 
 }
@@ -40,8 +40,8 @@ ItemModel Item::getModel() const {
 	ItemModel model;
 	model.id = id.value;
 	model.keywords = keywords;
-	model.shortdesc = shortdesc;
-	model.longdesc = longdesc;
+	model.shortDesc = shortDesc;
+	model.longDesc = longDesc;
 	model.extra = extra;
 	return model;
 }
@@ -49,8 +49,8 @@ ItemModel Item::getModel() const {
 void Item::setModel(const ItemModel& model) {
 	id = itemId(model.id);
 	keywords = model.keywords;
-	shortdesc = model.shortdesc;
-	longdesc = model.longdesc;
+	shortDesc = model.shortDesc;
+	longDesc = model.longDesc;
 	extra = model.extra;
 }
 
@@ -63,11 +63,11 @@ std::vector<std::string> Item::getKeywords() const {
 }
 
 std::string Item::getlongDesc() const {
-	return longdesc;
+	return longDesc;
 }
 
 std::string Item::getShortDesc() const {
-	return shortdesc;
+	return shortDesc;
 }
 
 std::vector<std::string> Item::getExtra() const {
@@ -83,11 +83,11 @@ void Item::setKeywords(const std::vector<std::string>& keywordsIn){
 }
 
 void Item::setlongDesc(const std::string& longDescIn){
-	longdesc = longDescIn;
+	longDesc = longDescIn;
 }
 
 void Item::setShortDesc(const std::string& shortDescIn){
-	shortdesc = shortDescIn;
+	shortDesc = shortDescIn;
 }
 
 void Item::setExtra(const std::vector<std::string>& extraIn){
