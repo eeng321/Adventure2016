@@ -5,6 +5,8 @@
 #ifndef ADVENTURE2016_MESSAGEMODEL_H
 #define ADVENTURE2016_MESSAGEMODEL_H
 
+#include <string>
+
 class MessageModel {
 public:
     std::string To;

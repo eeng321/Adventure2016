@@ -41,7 +41,7 @@ PlayerModel parser::playerDeserialize(const std::string body) {
 
 }
 
-std::string modelSerialize(MessageModel message) {
+std::string parser::modelSerialize(MessageModel message) {
     YAML::Emitter out;
     out << YAML::BeginMap;
     out << YAML::Key << MESSAGE_TO;
@@ -54,13 +54,13 @@ std::string modelSerialize(MessageModel message) {
 
     return out.c_str();
 }
-MessageModel messageDeserialize(const std::string body) {
+MessageModel parser::messageDeserialize(const std::string body) {
     YAML::Node node = YAML::Load(body);
 
     MessageModel message;
     message.To = node[MESSAGE_TO].as<string>();
-    message.From = node[MESSAGE_TO].as<string>();
-    message.Message = node[MESSAGE_TO].as<string>();
+    message.From = node[MESSAGE_FROM].as<string>();
+    message.Message = node[MESSAGE_BODY].as<string>();
 
     return message;
 }
