@@ -9,16 +9,7 @@
 #include "../lib/pistache/include/router.h"
 #include "../lib/pistache/include/client.h"
 #include "../lib/pistache/include/endpoint.h"
-#include <ctime>
-
-
-class Message {
-public:
-    std::string To;
-    std::string From;
-    std::string Message;
-    std::time_t TimeStamp;
-};
+#include "../../model/include/messageModel.h"
 
 class ChatEndpoint {
 
@@ -29,7 +20,7 @@ public:
 
 
 private:
-    std::vector<Message> _messageBuffer;
+    std::vector<MessageModel> _messageBuffer;
 };
 
 

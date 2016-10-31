@@ -18,16 +18,11 @@ void ChatEndpoint::getMessage(const Net::Rest::Request &request, Net::Http::Resp
     cout << "Request for resource: " << request.method() << request.resource() << endl;
 
     try {
-        auto success = true;
-        if (success) {
 
-            auto message = _messageBuffer[0].Message;
+        auto message = _messageBuffer[0].Message;
 
-            response.send(Http::Code::Ok, message);
+        response.send(Http::Code::Ok, message);
 
-        }
-        else {
-        }
     }
     catch (...) {
         response.send(Http::Code::Internal_Server_Error);
@@ -39,24 +34,28 @@ void ChatEndpoint::sendMessage(const Net::Rest::Request &request, Net::Http::Res
 
     try {
 
-        Message message;
+        // parse body into messsage.
+        // add to buffer
+
+        MessageModel message;
         message.From = "Michael";
         message.To = "Steffi";
         message.Message = "Hello World!";
-        message.TimeStamp = time(0);
 
         _messageBuffer.push_back(message);
 
-        auto success = true;
-        if (success) {
+        MessageModel message2;
+        message2.From = "Michael";
+        message2.To = "Steffi";
+        message2.Message = "Hello World2!";
 
-            auto message = _messageBuffer[0].Message;
+        _messageBuffer.push_back(message2);
 
-            response.send(Http::Code::Ok, message);
 
-        }
-        else {
-        }
+        auto msg = _messageBuffer[0].Message;
+
+        response.send(Http::Code::Ok, msg);
+
     }
     catch (...) {
         response.send(Http::Code::Internal_Server_Error);

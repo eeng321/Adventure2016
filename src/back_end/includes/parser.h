@@ -9,17 +9,25 @@
 #include <yaml-cpp/yaml.h>
 #include <string>
 #include "../../model/include/playerModel.h"
+#include "../../model/include/messageModel.h"
+
 
 std::string const PLAYER_NAME_KEY = "LOGIN";
 std::string const PLAYER_ID_KEY = "ID";
 std::string const PLAYER_COORDINATE_KEY = "COORDINATE";
 std::string const PLAYER_HEALTH_KEY = "HEALTH";
 
+std::string const MESSAGE_TO = "TO";
+std::string const MESSAGE_FROM = "FROM";
+std::string const MESSAGE_BODY = "MESSAGE";
 
-namespace parser{
+namespace parser {
 
-   std::string playerSerialize(PlayerModel player);
-   PlayerModel playerDeserialize(const std::string body);
+    std::string playerSerialize(PlayerModel player);
+    PlayerModel playerDeserialize(const std::string body);
+
+    std::string modelSerialize(MessageModel message);
+    MessageModel messageDeserialize(const std::string body);
    
 };
 
