@@ -21,6 +21,7 @@ public:
 	Direction direction;
 	std::vector<std::string> keywords;
 	id doorId;
+	std::vector<std::string> description;
 	void build(Direction d, std::vector<std::string> k, id dID);
 };
 

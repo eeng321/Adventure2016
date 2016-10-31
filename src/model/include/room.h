@@ -33,7 +33,7 @@ public:
 	Room(const std::string &areaIn,
 		 id roomIdIn,
 		 const std::string &nameIn,
-		 const description &descriptionIn,
+		 const std::vector<description> &descriptionIn,
 		 const std::vector<description> &extendedDescriptionIn,
 		 const std::vector<Door> &doorsIn,
 		 const std::vector<id> &npcListIn,
@@ -42,7 +42,7 @@ public:
 		 bool navigabilityIn);
 
 	Room(const std::string &areaIn,
-		 const description &descriptionIn,
+		 const std::vector<description> &descriptionIn,
 		 const std::vector<description> &extendedDescriptionIn,
 		 id roomIdIn,
 		 const std::string &nameIn,
@@ -69,7 +69,7 @@ public:
 	/* Getters */
 	std::string getArea() const;
 
-	description getDescription() const;
+	std::vector<description> getDescription() const;
 
 	id getId() const;
 
