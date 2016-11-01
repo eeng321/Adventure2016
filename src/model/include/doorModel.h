@@ -11,10 +11,8 @@ class DoorModel {
 public:
 	Direction direction;
 	std::vector<std::string> keywords;
-	int roomTo;
+	int roomTo;//The room this door leads too
 	std::vector<std::string> description;
-
-	int doorId;
 };
 
 
