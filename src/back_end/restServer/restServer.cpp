@@ -58,10 +58,10 @@ private:
         Routes::Delete(router, "/player/:id", Routes::bind(&PlayerEndpoint::deletePlayer));
 
         // Todo: Room Routes
-       Routes::Get(router, "/room/:id", Routes::bind(&RoomEndpoint::retrieveRoom));
-//        Routes::Put(router, "/room/:id", Routes::bind(&RoomEndpoint::updateRoom));
-//        Routes::Post(router, "/room", Routes::bind(&RoomEndpoint::createRoom));
-//        Routes::Delete(router, "/room/:id", Routes::bind(&RoomEndpoint::deleteRoom));
+        Routes::Get(router, "/room/:id", Routes::bind(&RoomEndpoint::retrieveRoom));
+        Routes::Put(router, "/room/:id", Routes::bind(&RoomEndpoint::updateRoom));
+        Routes::Post(router, "/room", Routes::bind(&RoomEndpoint::createRoom));
+        Routes::Delete(router, "/room/:id", Routes::bind(&RoomEndpoint::deleteRoom));
 
     }
 };
@@ -84,6 +84,7 @@ int main(int argc, char *argv[]) {
 
     //createDB();
     createRoomDB();
+    printRoomDB();
 
     Endpoints endpoints(addr);
 

@@ -8,6 +8,7 @@
 
 #include "roomDriver.h"
 #include <boost/algorithm/string.hpp>
+#include "parser.h"
 
 using namespace std;
 using namespace Net;
@@ -15,39 +16,39 @@ using namespace Net;
 
 
 void RoomEndpoint::createRoom(const Net::Rest::Request& request, Net::Http::ResponseWriter response){
-  /*  cout << "Request for resource: " << request.method() << request.resource() << endl;
-    //auto roomModel = parser::roomDesearialize(request.body()); //if parser is complete
-    //auto createdRoom = //wait for parser
+    cout << "Request for resource: " << request.method() << request.resource() << endl;
 
-    istringstream roomParams(request.body());
-    int linesRequestBody = 8;
-    string parseBody(linesRequestBody);
+    try {
+        auto roomId = request.param(":id").as<int>();
+        auto roomName = request.param(":name").as<std::string>();
 
-    for (int i =0; i < linesRequestBody; i++){
-         getline(roomParams, parseBody[i]);
+        // Parse body to grab player arguments
+        RoomModel room;
+        room.name = roomName;
+        room.roomId = (id)roomId;
+
+        //room = parser::roomDeserialize(request.body());
+
+        addRoom(room);
+
+        auto success = true;
+        if (success) {
+            response.send(Http::Code::Created, room.name);
+        }
+        else {
+            response.send(Http::Code::Bad_Request);
+        }
     }
-
-    RoomModel demo = addRoom(stoi(parseBody[3], parseBody[7]));
-    cout << "Printing newly added room \n";
-    cout << demo.roomId << endl;
-    cout << demo.mainDescription << endl;
-    cout << demo.name << endl;
-
-    auto success = true;
-
-    if (success) {
-        response.send(Http::Code::Ok, demo);
+    catch (...) {
+        response.send(Http::Code::Internal_Server_Error);
     }
-    else {
-        response.send(Http::Code::Bad_Request);
-    }
-
-*/
 }
 void RoomEndpoint::retrieveRoom(const Net::Rest::Request& request, Net::Http::ResponseWriter response){
     cout << "Request for resource: " << request.method() << request.resource() << endl;
     try {
+
         auto roomId = request.param(":id").as<int>();
+        cout << "ID: " << roomId << endl;
 
         RoomModel room;
         room.name = "";
@@ -65,6 +66,43 @@ void RoomEndpoint::retrieveRoom(const Net::Rest::Request& request, Net::Http::Re
     }
 }
 void RoomEndpoint::updateRoom(const Net::Rest::Request& request, Net::Http::ResponseWriter response){
+    cout << "Request for resource: " << request.method() << request.resource() << endl;
 
+    /*try {
+        auto roomId = request.param(":id").as<int>();
+        RoomModel updateFields = parser::roomDeserialize(request.body());
+
+        auto updatedRoom = modifyRoom(roomId, updateFields);
+
+        //todo: fix this with proper returns
+        if (true) {
+            response.send(Http::Code::Ok, parser::roomSerialize(updatedRoom));
+        }
+        else {
+            response.send(Http::Code::Bad_Request);
+        }
+    }
+    catch (...) {
+        response.send(Http::Code::Internal_Server_Error);
+    }*/
 }
-void RoomEndpoint::deleteRoom(const Net::Rest::Request& request, Net::Http::ResponseWriter response);
+void RoomEndpoint::deleteRoom(const Net::Rest::Request& request, Net::Http::ResponseWriter response){
+    cout << "Request for resource: " << request.method() << request.resource() << endl;
+
+    try {
+        auto roomId = request.param(":id").as<int>();
+        removeRoom(roomId);
+
+        //todo: fix this with proper returns
+        auto success = true;
+        if (success) {
+            response.send(Http::Code::Ok);
+        }
+        else {
+            response.send(Http::Code::Bad_Request);
+        }
+    }
+    catch (...) {
+        response.send(Http::Code::Internal_Server_Error);
+    }
+}

@@ -40,7 +40,7 @@ set_property(TARGET parser PROPERTY CXX_STANDARD 14)
 install(TARGETS parser DESTINATION lib)
 
 add_executable(rest_server restServer.cpp playerEndpoint.cpp playerDriver.cpp roomEndpoint.cpp roomDriver.cpp)
-target_link_libraries(rest_server net_static hiber ${CMAKE_DL_LIBS} playerModel parser yaml-cpp)
+target_link_libraries(rest_server net_static hiber ${CMAKE_DL_LIBS} playerModel roomModel parser yaml-cpp)
 set_target_properties(rest_server PROPERTIES COMPILE_FLAGS "-std=c++11")
 set_target_properties(rest_server PROPERTIES COMPILE_FLAGS "-lyaml-cpp")
 

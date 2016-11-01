@@ -6,7 +6,7 @@ using namespace std;
 void printRoom(RoomModel room){
     cout << "AREA NAME: " << room.area << endl;
     cout << "ID: " << room.roomId << endl;
-    cout << "description: " << room.mainDescription << endl;
+    //cout << "description: " << room.mainDescription << endl;
    // cout << "EXTENDED DESCRIPTION: " << room.extendedDescriptions << endl;
     //cout << "DOORS: " << room.doors << endl;
     //cout << "NPCLIST: " << room.npcList << endl;
@@ -17,9 +17,10 @@ void printRoom(RoomModel room){
 }
 
 void createRoomDB(){
-    hiberlite::Database db("AdventureDatabase.db");
+    hiberlite::Database db("AdventureDatabase2.db");
     //register bean classes
     db.registerBeanClass<RoomModel>();
+    //db.registerBeanClass<Door>();
     //drop all tables beans will use
     db.dropModel();
     //create those tables again with proper schema
@@ -27,7 +28,7 @@ void createRoomDB(){
 
     RoomModel demo;
     demo.area = "White Plains";
-    demo.roomId = 1;
+    demo.roomId = (id)1;
     demo.name =  "the field";
     demo.mainDescription = "the empty green field filled with flowers ";
    // demo.navigable = true;
@@ -37,7 +38,8 @@ void createRoomDB(){
 
 void printRoomDB(){
 
-    hiberlite::Database db("AdventureDatabase.db");
+    hiberlite::Database db;
+    db.open("AdventureDatabase2.db");
 
     cout << string(15,'=')+"\nreading the DB\n";
 
@@ -54,7 +56,7 @@ void printRoomDB(){
 RoomModel loadRoom(int roomId){
 
     hiberlite::Database db;
-    db.open("AdventureDatabase.db");
+    db.open("AdventureDatabase2.db");
     hiberlite::bean_ptr<RoomModel> demo = db.loadBean<RoomModel>(roomId);
 
     RoomModel room;
@@ -66,48 +68,45 @@ RoomModel loadRoom(int roomId){
     room.npcList = demo->npcList;
     room.playerList = demo->playerList;
     room.itemList = demo->itemList;
-    room.navigable = demo->navigable; */
-
+    room.navigable = demo->navigable;
+    */
     return room;
 }
 
 RoomModel addRoom(RoomModel room){
     hiberlite::Database db;
-    db.open("AdventureDatabase.db");
+    db.open("AdventureDatabase2.db");
     hiberlite::bean_ptr<RoomModel> r=db.copyBean(room);
-    r->roomId = r.get_id();
-    room.roomId = r.get_id();
+    r->roomId = (id)r.get_id();
+    room.roomId = (id)r.get_id();
     r.save();
     printRoomDB();
 
     return room;
 }
-/*
-PlayerModel modifyPlayer(int playerId, PlayerModel updateFields){
+
+RoomModel modifyRoom(int roomId, RoomModel updateFields){
     hiberlite::Database db;
-    db.open("AdventureDatabase.db");
-    hiberlite::bean_ptr<PlayerModel> editPlayer = db.loadBean<PlayerModel>(playerId);
+    db.open("AdventureDatabase2.db");
+    hiberlite::bean_ptr<RoomModel> editRoom = db.loadBean<RoomModel>(roomId);
 
-    editPlayer->roomId = updateFields.roomId;
-    editPlayer->health = updateFields.health;
-    editPlayer.save();
+    editRoom->roomId = updateFields.roomId;
+    editRoom->name = updateFields.name;
+    editRoom.save();
 
-    return loadPlayer(playerId);
+    return loadRoom(roomId);
 }
 
-success removePlayer(int playerId){
+bool removeRoom(int roomId){
     hiberlite::Database db;
-    db.open("AdventureDatabase.db");
-    hiberlite::bean_ptr<PlayerModel> player = db.loadBean<PlayerModel>(playerId);
-    hiberlite::bean_ptr<Credential> account = db.loadBean<Credential>(playerId);
-    vector< hiberlite::bean_ptr<PlayerModel> > listPlayers=db.getAllBeans<PlayerModel>();
+    db.open("AdventureDatabase2.db");
+    hiberlite::bean_ptr<RoomModel> room = db.loadBean<RoomModel>(roomId);
+    vector< hiberlite::bean_ptr<RoomModel> > listPlayers=db.getAllBeans<RoomModel>();
     int numOfPlayers = listPlayers.size();
-    player.destroy();
-    account.destroy();
-    //printDB();
+    room.destroy();
+    printRoomDB();
     //return true if number of players in db changes after deleting
     return (numOfPlayers != listPlayers.size());
     
 }
 
-*/
