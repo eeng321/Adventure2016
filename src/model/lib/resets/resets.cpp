@@ -6,30 +6,30 @@ resets::resets(){}
 
 void resets::runAll(){
     runNpc();
-    runObject();
+    runItem();
     runGive();
 }
 
 void resets::runNpc(){
     for (auto npcReset : npcResets){
-        //TODO place npcReset.npcId into npcReset.roomId up to npcReset.limit times
+        //TODO
     }
 }
 
-void resets::runObject(){
-    for (auto objectReset : objectResets){
-        //TODO place  objectReset.objectId into objectReset.roomId
+void resets::runItem(){
+    for (auto itemReset : itemResets){
+        //TODO
     }
 }
 
 void resets::runGive(){
     for (auto giveReset : giveResets){
-        //TODO not sure what a give action does!!!!
+        //TODO
     }
 }
 
-void resets::addObject(const objectReset& object){
-    objectResets.push_back(object);
+void resets::addItem(const itemReset& item){
+    itemResets.push_back(item);
 }
 
 void resets::addNpc(const npcReset& npc){

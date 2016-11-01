@@ -4,21 +4,26 @@
 
 #include <string>
 #include <vector>
-#include "door.h"
 
-class RoomModel {//Tile interface
+#include "door.h"
+#include "extendedDescription.h"
+
+using id = int;
+
+class RoomModel {
 public:
 	std::string area;
-	id roomId;
+	int id;
 	std::string name;
-	std::vector<description> mainDescription;
-	std::vector<description> extendedDescriptions;
+	std::vector<std::string> mainDescription;
+	std::vector<extendedDescription> extendedDescriptions;
 	std::vector<Door> doors;
-	std::vector<id> npcList;
+	std::vector<int> npcList;
 	std::vector<std::string> playerList;
-	std::vector<id> itemList;
+	std::vector<int> itemList;
 	bool navigable;
 
+	RoomModel();
 };
 
 #endif
