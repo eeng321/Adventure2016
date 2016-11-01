@@ -23,7 +23,7 @@ Room::Room() {}
 Room::Room(const string &areaIn,
 		   id roomIdIn,
 		   const string &nameIn,
-		   const description &descriptionIn,
+		   const vector<description> &descriptionIn,
 		   const vector<description> &extendedDescriptionIn,
 		   const vector<Door> &doorsIn,
 		   const vector<id> &npcListIn,
@@ -44,7 +44,7 @@ Room::Room(const string &areaIn,
 }
 
 Room::Room(const string &areaIn,
-		   const description &descriptionIn,
+		   const std::vector<description> &descriptionIn,
 		   const vector<description> &extendedDescriptionIn,
 		   id roomIdIn,
 		   const string &nameIn,
@@ -101,7 +101,7 @@ string Room::getArea() const {
 
 /* a function for returning the raw description string, not the function
    for returning the string that will be seen by the user */
-description Room::getDescription() const {
+std::vector<description> Room::getDescription() const {
 	return  model->mainDescription;
 }
 
