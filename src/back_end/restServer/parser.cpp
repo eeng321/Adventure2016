@@ -4,8 +4,52 @@
 #include <fstream>
 
 
-std::string parser::playerSerialize(PlayerModel const &player) {
+std::string parser::itemSerialize(ItemModel const &item) {
 
+    YAML::Emitter out;
+    out << YAML::BeginMap;
+    out << YAML::Key << ITEM_EXTRA_KEY;
+    out << YAML::BeginSeq;
+    for(auto e : item.extra{
+        out << e;
+    }
+    out << YAML::Key << ITEM_ID_KEY;
+    out << YAML::Value << item.id;
+    out << YAML::Key << ITEM_KEYWORDS_KEY;
+    out << YAML::BeginSeq;
+    for(auto keyword : item.keywords){
+        out << keyword;
+    }
+    out << YAML::EndSeq;
+    out << YAML::Key << ITEM_LONGDESC_KEY;
+    out << YAML::Value << item.longDesc;
+    out << YAML::Key << ITEM_SHORTDESC_KEY;
+    out << YAML::Value << item.shortDesc;
+    out << YAML::EndMap;
+
+    return out.c_str();
+}
+
+ItemModel parser::itemDeserialize(std::string const &body) {
+
+    YAML::Node itemNode = YAML::Load(body);
+
+    //TODO if itemNode[""].isDefined() ERROR CHECKING
+    ItemModel item;
+    for(auto e: itemNode[ITEM_EXTRA_KEY]){
+        item.extra.push_back(e.as<std::string>());
+    }
+    item.id = itemNode[ITEM_ID_KEY].as<int>();
+    for(auto keyword: itemNode[ITEM_KEYWORDS_KEY]){
+        item.keywords.push_back(keyword.as<std::string>());
+    }
+    item.longDesc = itemNode[ITEM_LONGDESC_KEY].as<std::string>();
+    item.shortDesc = itemNode[ITEM_SHORTDESC_KEY].as<std::string>();
+    return item;
+
+}
+
+std::string parser::playerSerialize(PlayerModel const &player) {
     YAML::Emitter out;
     out << YAML::BeginMap;
     out << YAML::Key << PLAYER_NAME_KEY;
