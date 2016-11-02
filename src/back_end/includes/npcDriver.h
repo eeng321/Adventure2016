@@ -3,7 +3,7 @@
 
 typedef bool success;
 
-void createDB();
+//void createDB();
 void printDB();
 
 NpcModel loadNpc(int npcId);

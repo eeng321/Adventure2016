@@ -3,16 +3,16 @@
 
 using namespace std;
 
-void createDB(){
-    hiberlite::Database db("AdventureDatabase.db");
-    //register bean classes
-    db.registerBeanClass<NpcModel>(); 
-    //drop all tables beans will use
-    db.dropModel();
-    //create those tables again with proper schema
-    db.createModel();
+// void createDB(){
+//     hiberlite::Database db("AdventureDatabase.db");
+//     //register bean classes
+//     db.registerBeanClass<NpcModel>(); 
+//     //drop all tables beans will use
+//     db.dropModel();
+//     //create those tables again with proper schema
+//     db.createModel();
 
-}
+// }
 
 void printDB(){
 

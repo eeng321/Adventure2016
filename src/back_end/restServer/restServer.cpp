@@ -11,11 +11,14 @@
 #include "../lib/pistache/include/router.h"
 #include "playerDriver.h"
 #include "playerEndpoint.h"
-
+#include "npcDriver.h"
+#include "npcEndpoint.h"
 
 
 using namespace std;
 using namespace Net;
+
+
 
 class Endpoints {
 public:

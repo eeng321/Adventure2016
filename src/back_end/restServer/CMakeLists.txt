@@ -43,7 +43,7 @@ add_executable(testex test.cpp)
 target_link_libraries(testex parser yaml-cpp playerModel)
 set_target_properties(testex PROPERTIES COMPILE_FLAGS "-std=c++14")
 add_executable(rest_server restServer.cpp playerEndpoint.cpp playerDriver.cpp)
-target_link_libraries(rest_server net_static hiber ${CMAKE_DL_LIBS} playerModel parser yaml-cpp)
+target_link_libraries(rest_server net_static hiber ${CMAKE_DL_LIBS} playerModel npcModel parser yaml-cpp)
 set_target_properties(rest_server PROPERTIES COMPILE_FLAGS "-std=c++14")
 set_target_properties(rest_server PROPERTIES COMPILE_FLAGS "-lyaml-cpp")
 
