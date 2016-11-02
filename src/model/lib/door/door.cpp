@@ -9,9 +9,9 @@
 
 using std::vector;
 using keyword_t = std::string;
-using description_t = std::vector<std::string>
+using description_t = std::vector<std::string>;
 
-void Door::build(const Direction& directionIn, const vector<keyword_t>& keywordsIn, const roomId& roomIn, const description_t desc) {
+void Door::build(const Direction& directionIn, const vector<keyword_t>& keywordsIn, const roomId& roomIn, const description_t& desc) {
 	direction = directionIn;
 	keywords = keywordsIn;
 	roomTo = roomIn;
@@ -19,7 +19,7 @@ void Door::build(const Direction& directionIn, const vector<keyword_t>& keywords
 }
 
 DoorModel Door::getModel() const{
-	model DoorModel;
+	DoorModel model;
 	model.direction = direction;
 	model.keywords = keywords;
 	model.roomTo = roomTo.value;
@@ -27,10 +27,10 @@ DoorModel Door::getModel() const{
 	return model;
 }
 
-void loadModel(doorModel model){
+void Door::loadModel(DoorModel model){
 	direction = model.direction;
 	keywords = model.keywords;
-	direction = model.direction;
+	description = model.description;
 	roomTo = roomId(model.roomTo.value);
 }
 

@@ -69,7 +69,7 @@ std::string parser::roomSerialize(RoomModel const room) {
 
 
     out << YAML::Key << ROOM_ID_KEY;
-    out << YAML::Value << room.roomId;
+    out << YAML::Value << room.id;
 
     out << YAML::Key << ROOM_NAVIGABLE_KEY;
     out << YAML::Value << room.navigable;
@@ -101,8 +101,8 @@ std::string parser::doorSerialize(YAML::Emitter &out, Door door) {
         out << keyWords;
     }
     out << YAML::EndSeq;
-    out << YAML::Key << DOOR_ID_KEY;
-    out << YAML::Value << door.doorId;
+    out << YAML::Key << DOOR_ROOMTO_KEY;
+    out << YAML::Value << door.roomTo;
     out << YAML::EndMap;
 
     return out.c_str();
@@ -123,7 +123,7 @@ RoomModel parser::roomDeserializeFromNode(YAML::Node roomNode) {
         model.doors.push_back(door);
     }
     model.name = roomNode[ROOM_NAME_KEY].as<std::string>();
-    model.roomId = (id)roomNode[ROOM_ID_KEY].as<int>();
+    model.id = roomNode[ROOM_ID_KEY].as<int>();
     for(auto innerString: roomNode[ROOM_EX_DESCRIPTION_KEY]){
         model.extendedDescriptions.push_back(innerString.as<std::string>());
     }
@@ -145,12 +145,12 @@ void parser::roomDeserializeAndAppendExtras(RoomModel &model, YAML::Node const r
     }
     if(roomNode[ROOM_ITEMLIST_KEY]){
         for(auto innerString: roomNode[ROOM_ITEMLIST_KEY]){
-            model.itemList.push_back( (id)innerString.as<int>() );
+            model.itemList.push_back( innerString.as<int>() );
         }
     }
     if(roomNode[ROOM_NPCLIST_KEY]){
         for(auto innerString: roomNode[ROOM_NPCLIST_KEY]){
-            model.npcList.push_back( (id)innerString.as<int>() );
+            model.npcList.push_back( innerString.as<int>() );
         }
     }
     if(roomNode[ROOM_PLAYERLIST_KEY]){
@@ -170,7 +170,7 @@ Door parser::doorDeserialize(YAML::Node const doorNode) {
     for(auto innerString : doorNode[DOOR_DESCRIPTION_KEY]){
         door.description.push_back(innerString.as<std::string>());
     }
-    door.doorId = (id)doorNode[DOOR_ID_KEY].as<int>();
+    door.roomTo = doorNode[DOOR_ROOMTO_KEY].as<int>();
     Direction dir = deserializeDirection(doorNode[DOOR_DIRECTION_KEY].as<std::string>());
     door.direction = dir;
     for(auto innerString: doorNode[DOOR_KEYWORDS_KEY]){

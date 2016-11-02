@@ -38,7 +38,7 @@ namespace parser{
     char constexpr DOOR_DESCRIPTION_KEY[] = "desc";
     char constexpr DOOR_DIRECTION_KEY[] = "dir";
     char constexpr DOOR_KEYWORDS_KEY[] = "keywords";
-    char constexpr DOOR_ID_KEY[] = "to";
+    char constexpr DOOR_ROOMTO_KEY[] = "roomTo";
 
     std::string roomSerialize(RoomModel const room);
     RoomModel roomDeserialize(std::string const body);

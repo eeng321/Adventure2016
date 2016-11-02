@@ -19,7 +19,7 @@ public:
 	std::vector<std::string> keywords;
 	roomId roomTo;
 	std::vector<std::string> description;
-	void build(const Direction& directionIn, const std::vector<std::string>& keywordsIn, const roomId& rId, const std::vector<std::string>& desc);
+	void build(const Direction& directionIn, const std::vector<std::string>& keywordsIn, const roomId& roomIn, const std::vector<std::string>& desc);
 	DoorModel getModel() const;
 	void loadModel(DoorModel model);
 };
