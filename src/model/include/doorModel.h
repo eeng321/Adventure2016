@@ -7,6 +7,7 @@
 
 #pragma once
 #include "../../back_end/lib/hiberlite/include/hiberlite.h"
+#include <string>
 
 
 
@@ -23,20 +24,20 @@ typedef std::string username;
 class Door {
 public:
 
-	friend class hiberlite::access;
+	/*friend class hiberlite::access;
 	template<class Archive>
 	void hibernate(Archive & ar)
 	{
 		//ar & HIBERLITE_NVP(direction);
 		//ar & HIBERLITE_NVP(keywords);
 		//ar & HIBERLITE_NVP(doorId);
-	}
+	}*/
 
 	Direction direction;
 	std::vector<std::string> keywords;
 	id doorId;
+	std::string description;
 	void build(Direction d, std::vector<std::string> k, id dID);
 };
-
 
 #endif //DOOR_H

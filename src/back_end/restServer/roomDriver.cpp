@@ -28,9 +28,13 @@ void createRoomDB(){
 
     RoomModel demo;
     demo.area = "White Plains";
-    demo.roomId = (id)1;
+    demo.roomId = 1;
     demo.name =  "the field";
     demo.mainDescription = "the empty green field filled with flowers ";
+    extendedDescription description;
+    description.description = {"test"};
+    description.keywords = {"sppoky", "dangerous"};
+    demo.extendedDescriptions = {description};
    // demo.navigable = true;
     hiberlite::bean_ptr<RoomModel> db_room =db.copyBean(demo);
 
@@ -77,8 +81,8 @@ RoomModel addRoom(RoomModel room){
     hiberlite::Database db;
     db.open("AdventureDatabase2.db");
     hiberlite::bean_ptr<RoomModel> r=db.copyBean(room);
-    r->roomId = (id)r.get_id();
-    room.roomId = (id)r.get_id();
+    r->roomId = r.get_id();
+    room.roomId = r.get_id();
     r.save();
     printRoomDB();
 

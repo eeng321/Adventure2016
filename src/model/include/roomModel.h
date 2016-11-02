@@ -5,11 +5,10 @@
 #pragma once
 #include <string>
 #include <vector>
-//#include "door.h"
+#include "doorModel.h"
+#include "extendedDescription.h"
 #include "../../back_end/lib/hiberlite/include/hiberlite.h"
 
-
-typedef int id;
 
 class RoomModel {//Tile interface
 public:
@@ -21,26 +20,26 @@ public:
         ar & HIBERLITE_NVP(area);
         ar & HIBERLITE_NVP(roomId);
         ar & HIBERLITE_NVP(name);
-        /*ar & HIBERLITE_NVP(mainDescription);
-       // ar & HIBERLITE_NVP(extendedDescriptions);
-       // ar & HIBERLITE_NVP(doors);
+        ar & HIBERLITE_NVP(mainDescription);
+        //ar & HIBERLITE_NVP(extendedDescriptions);
+        ar & HIBERLITE_NVP(doors);
         ar & HIBERLITE_NVP(npcList);
         ar & HIBERLITE_NVP(playerList);
         ar & HIBERLITE_NVP(itemList);
-        ar & HIBERLITE_NVP(navigable); */
+    //    ar & HIBERLITE_NVP(navigable);
     }
 
 	std::string area;
-	id roomId;
+	int roomId;
 	std::string name;
-	std::string mainDescription; /*
-	//std::vector<description> extendedDescriptions;
-	//std::vector<Door> doors;
-	std::vector<id> npcList;
+	std::string mainDescription;
+	std::vector<extendedDescription> extendedDescriptions;
+	std::vector<DoorModel> doors;
+	std::vector<int> npcList;
 	std::vector<std::string> playerList;
-	std::vector<id> itemList;
+	std::vector<int> itemList;
 	bool navigable;
-*/
+
 };
 
 #endif

@@ -25,7 +25,7 @@ void RoomEndpoint::createRoom(const Net::Rest::Request& request, Net::Http::Resp
         // Parse body to grab player arguments
         RoomModel room;
         room.name = roomName;
-        room.roomId = (id)roomId;
+        room.roomId = roomId;
 
         //room = parser::roomDeserialize(request.body());
 
