@@ -67,18 +67,23 @@ std::string parser::roomSerialize(RoomModel const room) {
     out << YAML::Key << ROOM_EX_DESCRIPTION_KEY;
     out << YAML::BeginSeq;
     for(auto &s : room.extendedDescriptions){
-        out << YAML::Key << ROOM_DESCRIPTION_KEY;
+        out << YAML::BeginMap;
+        out << YAML::Key << ROOM_EX_DESCRIPTION_KEYWORDS_KEY;
+        out << YAML::BeginSeq;
         for(auto &i : s.description){
-            out << YAML::Value << i;
+            out << i;
         }
-        out << YAML::Key << DOOR_KEYWORDS_KEY;
+        out << YAML::EndSeq;
+
+        out << YAML::Key << ROOM_EX_DESCRIPTION_KEYWORDS_KEY;
+        out << YAML::BeginSeq;
         for(auto &i : s.keywords){
-            out << YAML::Value << i;
+            out << i;
         }
+        out << YAML::EndSeq;
+        out << YAML::EndMap;
     }
     out << YAML::EndSeq;
-    //out << YAML::Flow << room.extendedDescriptions;
-
 
     out << YAML::Key << ROOM_ID_KEY;
     out << YAML::Value << room.id;
@@ -100,7 +105,7 @@ std::string parser::roomSerialize(RoomModel const room) {
     return out.c_str();
 }
 
-std::string parser::doorSerialize(YAML::Emitter &out, DoorModel door) {
+std::string parser::doorSerialize(YAML::Emitter &out, DoorModel const door) {
     out << YAML::BeginMap;
     out << YAML::Key << DOOR_DESCRIPTION_KEY;
     out << YAML::BeginSeq;
@@ -139,23 +144,28 @@ RoomModel parser::roomDeserializeFromNode(YAML::Node roomNode) {
         DoorModel door = doorDeserialize(currentNode);
         model.doors.push_back(door);
     }
+
     model.name = roomNode[ROOM_NAME_KEY].as<std::string>();
     model.id = roomNode[ROOM_ID_KEY].as<int>();
 
     for(auto innerStruct: roomNode[ROOM_EX_DESCRIPTION_KEY]){
         extendedDescription ex_desc;
-        for(auto desc : innerStruct[ROOM_DESCRIPTION_KEY]){
+        cout << "innerStruct";
+        for(auto desc : innerStruct[ROOM_EX_DESCRIPTION_DESC_KEY]){
+            cout << desc << endl;
             ex_desc.description.push_back(desc.as<std::string>());
         }
-        for(auto keyword : innerStruct[DOOR_KEYWORDS_KEY]){
+
+        cout << "after ex desc" << endl;
+        for(auto keyword : innerStruct[ROOM_EX_DESCRIPTION_KEYWORDS_KEY]){
+            cout << keyword << endl;
             ex_desc.keywords.push_back(keyword.as<std::string>());
         }
         model.extendedDescriptions.push_back(ex_desc);
     }
-
     roomDeserializeAndAppendExtras(model, roomNode);
 
-
+    cout << "returning model";
     return model;
 }
 
@@ -233,7 +243,6 @@ Direction parser::deserializeDirection(std::string const directionString) {
 
 std::vector<RoomModel> parser::extractRoomsFromSequence(YAML::Node const roomNode) {
     std::vector<RoomModel> rooms;
-    std::cout << "before" << endl;
     int count = 0;
     for(auto s : roomNode){
         rooms.push_back(parser::roomDeserializeFromNode(s));

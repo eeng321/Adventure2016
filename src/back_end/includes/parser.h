@@ -35,6 +35,8 @@ namespace parser{
     char constexpr ROOM_ITEMLIST_KEY[] = "itemList";
     char constexpr ROOM_NAVIGABLE_KEY[] = "navigable";
     char constexpr ROOM_NAME_KEY[] = "name";
+    char constexpr ROOM_EX_DESCRIPTION_DESC_KEY[] = "desc";
+    char constexpr ROOM_EX_DESCRIPTION_KEYWORDS_KEY[] = "keywords";
 
     char constexpr DOOR_DESCRIPTION_KEY[] = "desc";
     char constexpr DOOR_DIRECTION_KEY[] = "dir";
@@ -46,7 +48,7 @@ namespace parser{
     RoomModel roomDeserializeFromNode(YAML::Node roomNode);
     void roomDeserializeAndAppendExtras(RoomModel &model, YAML::Node const roomNode);
 
-    std::string doorSerialize(YAML::Emitter &out, DoorModel door);
+    std::string doorSerialize(YAML::Emitter &out, DoorModel const door);
     DoorModel doorDeserialize(YAML::Node const doorNode);
 
     std::string serializeDirection(Direction const directionEnum);
