@@ -11,6 +11,8 @@
 #include "../lib/pistache/include/router.h"
 #include "playerDriver.h"
 #include "playerEndpoint.h"
+#include "roomDriver.h"
+#include "roomEndpoint.h"
 
 
 
@@ -56,10 +58,10 @@ private:
         Routes::Delete(router, "/player/:id", Routes::bind(&PlayerEndpoint::deletePlayer));
 
         // Todo: Room Routes
-//        Routes::Get(router, "/room/:id", Routes::bind(&RoomEndpoint::retrieveRoom));
-//        Routes::Put(router, "/room/:id", Routes::bind(&RoomEndpoint::updateRoom));
-//        Routes::Post(router, "/room", Routes::bind(&RoomEndpoint::createRoom));
-//        Routes::Delete(router, "/room/:id", Routes::bind(&RoomEndpoint::deleteRoom));
+        Routes::Get(router, "/room/:id", Routes::bind(&RoomEndpoint::retrieveRoom));
+        Routes::Put(router, "/room/:id", Routes::bind(&RoomEndpoint::updateRoom));
+        Routes::Post(router, "/room", Routes::bind(&RoomEndpoint::createRoom));
+        Routes::Delete(router, "/room/:id", Routes::bind(&RoomEndpoint::deleteRoom));
 
     }
 };
@@ -80,7 +82,10 @@ int main(int argc, char *argv[]) {
     cout << "CPU Cores = " << hardware_concurrency() << endl;
     cout << "Using " << numThreads << " threads" << endl;
 
-    createDB();
+    //createDB();
+    createRoomDB();
+    printRoomDB();
+
     Endpoints endpoints(addr);
 
     endpoints.init(numThreads);

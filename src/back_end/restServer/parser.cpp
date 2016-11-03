@@ -136,7 +136,7 @@ RoomModel parser::roomDeserializeFromNode(YAML::Node roomNode) {
     RoomModel model;
 
     for(auto innerString : roomNode[ROOM_DESCRIPTION_KEY]){
-        model.mainDescription.push_back(innerString.as<std::string>());
+        model.mainDescription.push_back(innerString.as<string>());
     }
 
     for(auto currentNode: roomNode[ROOM_DOOR_KEY]){

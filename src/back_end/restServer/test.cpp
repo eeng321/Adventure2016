@@ -34,6 +34,7 @@ int main(){
     test.mainDescription.push_back("test main desc1");
     test.mainDescription.push_back("test main desc2");
     test.area = "test area";
+
     test.id = 3;
     test.name = "test name";
     test.navigable = true;
