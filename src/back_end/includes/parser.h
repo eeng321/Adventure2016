@@ -26,9 +26,11 @@ namespace parser {
     std::string playerSerialize(PlayerModel player);
     PlayerModel playerDeserialize(const std::string body);
 
-    std::string modelSerialize(MessageModel message);
-    MessageModel messageDeserialize(const std::string body);
-   
+    std::string messageSerialize(MessageModel message);
+    MessageModel messageDeserialize(const std::string& body);
+
+    std::string messageVectorSerialize(std::vector<MessageModel> message);
+    std::vector<MessageModel> messageVectorDeserialize(const std::string& body);
 };
 
 #endif //ADVENTURE2016_PARSER_H

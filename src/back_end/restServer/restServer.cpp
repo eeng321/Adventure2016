@@ -13,7 +13,6 @@
 #include "playerEndpoint.h"
 #include "chatEndpoint.h"
 
-
 using namespace std;
 using namespace Net;
 

@@ -41,7 +41,7 @@ PlayerModel parser::playerDeserialize(const std::string body) {
 
 }
 
-std::string parser::modelSerialize(MessageModel message) {
+std::string parser::messageSerialize(MessageModel message) {
     YAML::Emitter out;
     out << YAML::BeginMap;
     out << YAML::Key << MESSAGE_TO;
@@ -54,7 +54,8 @@ std::string parser::modelSerialize(MessageModel message) {
 
     return out.c_str();
 }
-MessageModel parser::messageDeserialize(const std::string body) {
+
+MessageModel parser::messageDeserialize(const std::string& body) {
     YAML::Node node = YAML::Load(body);
 
     MessageModel message;
@@ -63,4 +64,46 @@ MessageModel parser::messageDeserialize(const std::string body) {
     message.Message = node[MESSAGE_BODY].as<string>();
 
     return message;
+}
+
+YAML::Emitter& operator << (YAML::Emitter& out, const MessageModel& message) {
+    out << YAML::BeginMap;
+    out << YAML::Key << MESSAGE_TO;
+    out << YAML::Value << message.To;
+    out << YAML::Key << MESSAGE_FROM;
+    out << YAML::Value << message.From;
+    out << YAML::Key << MESSAGE_BODY;
+    out << YAML::Value << message.Message;
+    out << YAML::EndMap;
+    return out;
+}
+
+std::string parser::messageVectorSerialize(std::vector<MessageModel> messages){
+
+    YAML::Emitter out;
+
+    out << YAML::BeginSeq;
+    for (auto message : messages) {
+        out << message;
+    }
+    out << YAML::EndSeq;
+
+    return out.c_str();
+}
+
+std::vector<MessageModel> parser::messageVectorDeserialize(const std::string& body) {
+
+    std::vector<MessageModel> messageModels;
+
+    // TODO: [mn]: Best way to do this is to set-up YAML::convert<> template.
+    YAML::Node messages = YAML::Load(body);
+    for (auto message : messages) {
+        MessageModel temp;
+        temp.To = message[MESSAGE_TO].as<string>();
+        temp.From = message[MESSAGE_FROM].as<string>();
+        temp.Message = message[MESSAGE_BODY].as<string>();
+        messageModels.push_back(temp);
+    }
+
+    return messageModels;
 }

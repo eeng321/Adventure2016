@@ -8,27 +8,39 @@
 using namespace std;
 using namespace Net;
 
+static constexpr int MAX_MESSAGE_SIZE = 20;
+
 ChatEndpoint::ChatEndpoint() {
 
+}
+
+void ChatEndpoint::cleanMessageBuffer() {
+    // TODO: [mn]: This will shift the entire array during deletion.
+    // Code better solution if this takes a huge performance impact.
+    if (_messageBuffer.size() > MAX_MESSAGE_SIZE) {
+        _messageBuffer.erase(_messageBuffer.begin());
+    }
+}
+
+void ChatEndpoint::bufferMessage(MessageModel msg){
+    _messageMutex.lock();
+    {
+        _messageBuffer.push_back(msg);
+        cleanMessageBuffer();
+    }
+    _messageMutex.unlock();
 }
 
 void ChatEndpoint::getMessage(const Net::Rest::Request &request, Net::Http::ResponseWriter response) {
     cout << "Request for resource: " << request.method() << request.resource() << endl;
 
     try {
-
-        string messages = "";
-
-        // todo: testing. need to cut off at 10? or deserialize into message vector
-        for (int i = 0; i < _messageBuffer.size(); i ++) {
-            messages = messages + parser::modelSerialize(_messageBuffer[i]) + "\n";
-        }
-
-        response.send(Http::Code::Ok, messages);
+        auto messagesYaml = parser::messageVectorSerialize(_messageBuffer);
+        response.send(Http::Code::Ok, messagesYaml);
 
     }
-    catch (...) {
-        response.send(Http::Code::Internal_Server_Error);
+    catch (exception& e) {
+        response.send(Http::Code::Internal_Server_Error, e.what());
     }
 }
 
@@ -36,17 +48,15 @@ void ChatEndpoint::sendMessage(const Net::Rest::Request &request, Net::Http::Res
     cout << "Request for resource: " << request.method() << request.resource() << endl;
 
     try {
-        cout << request.body() << endl;
-
         MessageModel message = parser::messageDeserialize(request.body());
-        _messageBuffer.push_back(message);
+        bufferMessage(message);
 
-        //todo: should it turn more messages?
-        response.send(Http::Code::Ok, parser::modelSerialize(message));
+        auto messagesYaml = parser::messageVectorSerialize(_messageBuffer);
+
+        response.send(Http::Code::Ok, messagesYaml);
 
     }
-    catch (...) {
-        response.send(Http::Code::Internal_Server_Error);
+    catch (exception& e) {
+        response.send(Http::Code::Internal_Server_Error, e.what());
     }
-
 }
