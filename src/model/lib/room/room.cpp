@@ -6,20 +6,23 @@
 #include <algorithm>
 #include <memory>
 
-#include "room.h"
 #include "roomModel.h"
+#include "room.h"
 
 
 using std::string;
 using std::vector;
 using std::find;
 
+using description = std::vector<std::string>;
+using keyword = std::string;
+using username = std::string;
 
 Room::Room(const string& areaIn,
 	const roomId& idIn,
 	const string& nameIn,
 	const description& descriptionIn,
-	const vector<description>& extendedDescriptionsIn,
+	const vector<extendedDescription>& extendedDescriptionsIn,
 	const vector<Door>& doorsIn,
 	const vector<npcId>& npcListIn,
 	const vector<username>& playerListIn,
@@ -40,7 +43,7 @@ Room::Room(const string& areaIn,
 		   const roomId& idIn,
 		   const string& nameIn,
 		   const description& descriptionIn,
-		   const vector<description>& extendedDescriptionsIn,
+		   const vector<extendedDescription>& extendedDescriptionsIn,
 		   const vector<Door>& doorsIn)
 		: area(areaIn),
 		  id(idIn),
@@ -53,7 +56,7 @@ void Room::build(const std::string& areaIn,
 	const roomId& idIn,
 	const string& nameIn,
 	const description& descriptionIn,
-	const vector<description>& extendedDescriptionIn,
+	const vector<extendedDescription>& extendedDescriptionIn,
 	const vector<Door>& doorsIn,
 	const vector<npcId>& npcListIn,
 	const vector<username>& playerListIn,
@@ -70,7 +73,7 @@ void Room::build(const std::string& areaIn,
 	const roomId& idIn,
 	const std::string& nameIn,
 	const description& descriptionIn,
-	const std::vector<description>& extendedDescriptionIn,
+	const std::vector<extendedDescription>& extendedDescriptionIn,
 	const std::vector<Door>& doorsIn,
 	bool navigabilityIn){
 
@@ -83,19 +86,19 @@ void Room::build(const std::string& areaIn,
 	navigable = navigabilityIn;
 }
 
-void Room::setModel(const RoomModel& model){
-	build(model.area, roomId(model.id), model.name, model.mainDescription, model.extendedDescriptions, model.doors, model.navigable);
-	playerList = model.playerList;
-	for(int id : model.itemList){
-		itemList.push_back(itemId(id));
-	}
-	for(int id : model.npcList) {
-		npcList.push_back(npcId(id));
-	}
-}
+//void Room::setModel(const Room& model){
+//	build(model.area, roomId(model.id), model.name, model.mainDescription, model.extendedDescriptions, model.doors, model.navigable);
+//	playerList = model.playerList;
+//	for(int id : model.itemList){
+//		itemList.push_back(itemId(id));
+//	}
+//	for(int id : model.npcList) {
+//		npcList.push_back(npcId(id));
+//	}
+//}
 
-RoomModel Room::getModel() const {
-	RoomModel model;
+Room Room::getModel() const {
+	Room model;
 	model.name = name;
 	model.id = id.value;
 	model.area = area;
@@ -131,8 +134,18 @@ string Room::getName() const {
 	return  name;
 }
 
-vector<description> Room::getExtendedDescriptions() const {
+vector<extendedDescription> Room::getExtendedDescriptions() const {
 	return  extendedDescriptions;
+}
+
+description Room::getExtendedDescriptionByKey(keyword key) const {
+	for(const auto& extendedDesc : extendedDescriptions){
+		auto keyItr = find(extendedDesc.keywords.begin(), extendedDesc.keywords.end(), key);
+		if(keyItr != extendedDesc.keywords.end()){
+			return extendedDesc.description;
+		}
+	}
+	throw std::domain_error("Keyword not found");
 }
 
 vector<Door> Room::getDoors() const {
@@ -163,19 +176,9 @@ bool Room::isNavigable() const {
 	return  navigable;
 }
 
-/* Ensure there is a room in the direction the player is trying to move */
-//bool Room::canMove(Direction d) {
-//	for (auto door : doors) {
-//		if (d == door.direction) {//possibly add in checks later for obstructions
-//			return true;
-//		}
-//	}
-//	return false;
-//}
-
 roomId Room::getRoomInDirection(Direction d) const{
 	Door door = getDoor(d);//throws an exception if no door is found
-	return door.room;
+	return door.roomTo;
 }
 
 Door Room::getDoor(Direction d) const {
