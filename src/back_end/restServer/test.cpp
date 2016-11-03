@@ -31,10 +31,10 @@ int main(){
     door2.direction = Direction::east;
     door2.keywords = keywordz;
     RoomModel test;
-    test.mainDescription.push_back("test main desc1");
-    test.mainDescription.push_back("test main desc2");
+    //test.mainDescription.push_back("test main desc1");
+    //test.mainDescription.push_back("test main desc2");
 //    test.area = "test area";
-    test.id = 3;
+    test.roomId = 3;
     test.name = "test name";
 //    test.navigable = true;
     test.doors.push_back(door);
@@ -60,7 +60,7 @@ int main(){
         for(auto i: s.mainDescription){
             std:cout << i << endl;
         }
-        std::cout << "id: " << s.id << endl;
+        std::cout << "id: " << s.roomId << endl;
         std::cout << "area: " << s.area << endl;
         std::cout << "navigable: " << s.navigable << endl;
         std::cout << "name: " << s.name << endl;

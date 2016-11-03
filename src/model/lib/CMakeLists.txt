@@ -1,6 +1,6 @@
 add_subdirectory(id)
 add_subdirectory(door)
-#add_subdirectory(room)
+add_subdirectory(room)
 add_subdirectory(item)
 add_subdirectory(resets)
 add_subdirectory(npc)

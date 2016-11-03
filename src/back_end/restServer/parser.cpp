@@ -81,7 +81,7 @@ std::string parser::roomSerialize(RoomModel const room) {
 
 
     out << YAML::Key << ROOM_ID_KEY;
-    out << YAML::Value << room.id;
+    out << YAML::Value << room.roomId;
 
     out << YAML::Key << ROOM_NAVIGABLE_KEY;
     out << YAML::Value << room.navigable;
@@ -130,9 +130,9 @@ RoomModel parser::roomDeserializeFromNode(YAML::Node roomNode) {
     //TODO error checking
     RoomModel model;
 
-    for(auto innerString : roomNode[ROOM_DESCRIPTION_KEY]){
-        model.mainDescription.push_back(innerString.as<std::string>());
-    }
+    /*for(auto innerString : roomNode[ROOM_DESCRIPTION_KEY]){
+        model.mainDescription.push_back(innerString.as<string>());
+    }*/
 
     for(auto currentNode: roomNode[ROOM_DOOR_KEY]){
 
@@ -140,7 +140,7 @@ RoomModel parser::roomDeserializeFromNode(YAML::Node roomNode) {
         model.doors.push_back(door);
     }
     model.name = roomNode[ROOM_NAME_KEY].as<std::string>();
-    model.id = roomNode[ROOM_ID_KEY].as<int>();
+    model.roomId = roomNode[ROOM_ID_KEY].as<int>();
 
     for(auto innerStruct: roomNode[ROOM_EX_DESCRIPTION_KEY]){
         extendedDescription ex_desc;
