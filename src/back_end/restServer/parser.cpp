@@ -150,13 +150,11 @@ RoomModel parser::roomDeserializeFromNode(YAML::Node roomNode) {
 
     for(auto innerStruct: roomNode[ROOM_EX_DESCRIPTION_KEY]){
         extendedDescription ex_desc;
-        cout << "innerStruct";
         for(auto desc : innerStruct[ROOM_EX_DESCRIPTION_DESC_KEY]){
             cout << desc << endl;
             ex_desc.description.push_back(desc.as<std::string>());
         }
 
-        cout << "after ex desc" << endl;
         for(auto keyword : innerStruct[ROOM_EX_DESCRIPTION_KEYWORDS_KEY]){
             cout << keyword << endl;
             ex_desc.keywords.push_back(keyword.as<std::string>());
@@ -165,7 +163,6 @@ RoomModel parser::roomDeserializeFromNode(YAML::Node roomNode) {
     }
     roomDeserializeAndAppendExtras(model, roomNode);
 
-    cout << "returning model";
     return model;
 }
 
@@ -174,9 +171,13 @@ void parser::roomDeserializeAndAppendExtras(RoomModel &model, YAML::Node const r
 
     if(roomNode[ROOM_NAVIGABLE_KEY]){
         model.navigable = roomNode[ROOM_NAVIGABLE_KEY].as<bool>();
+    }else{
+        model.navigable = true; //TODO CHANGE DEFAULT BEHAVIOUR
     }
     if(roomNode[ROOM_AREA_KEY]){
         model.area = roomNode[ROOM_AREA_KEY].as<std::string>();
+    }else{
+        model.area = "no area";
     }
     if(roomNode[ROOM_ITEMLIST_KEY]){
         for(auto innerString: roomNode[ROOM_ITEMLIST_KEY]){
@@ -246,8 +247,8 @@ std::vector<RoomModel> parser::extractRoomsFromSequence(YAML::Node const roomNod
     int count = 0;
     for(auto s : roomNode){
         rooms.push_back(parser::roomDeserializeFromNode(s));
-        std::cout << count++ << endl;
+        count++;
     }
-
+    cout << count << " rooms extracted" << endl;
     return rooms;
 }
