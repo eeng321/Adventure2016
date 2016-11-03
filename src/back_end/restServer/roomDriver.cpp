@@ -5,7 +5,7 @@ using namespace std;
 
 void printRoom(RoomModel room){
     cout << "AREA NAME: " << room.area << endl;
-    cout << "ID: " << room.roomId << endl;
+    cout << "ID: " << room.id << endl;
     //cout << "description: " << room.mainDescription << endl;
    // cout << "EXTENDED DESCRIPTION: " << room.extendedDescriptions << endl;
     //cout << "DOORS: " << room.doors << endl;
@@ -28,9 +28,9 @@ void createRoomDB(){
 
     RoomModel demo;
     demo.area = "White Plains";
-    demo.roomId = 1;
+    demo.id = 1;
     demo.name =  "the field";
-    demo.mainDescription = "the empty green field filled with flowers ";
+    demo.mainDescription = {"the empty green field filled with flowers "};
     extendedDescription description;
     description.description = {"test"};
     description.keywords = {"sppoky", "dangerous"};
@@ -53,7 +53,7 @@ void printRoomDB(){
     for(size_t j=0;j<listRooms.size();j++){
         cout << "[name = " << listRooms[j]->name << "     ";
         cout << "[area = " << listRooms[j]->area << "     ";
-        cout << "id = " << listRooms[j]->roomId << "]\n";
+        cout << "id = " << listRooms[j]->id << "]\n";
     }
 }
 
@@ -65,7 +65,7 @@ RoomModel loadRoom(int roomId){
 
     RoomModel room;
     room.area = demo->area;
-    room.roomId = demo->roomId;
+    room.id = demo->id;
     room.name = demo->name;
     room.mainDescription = demo->mainDescription;
     /*room.doors = demo->doors;
@@ -81,8 +81,8 @@ RoomModel addRoom(RoomModel room){
     hiberlite::Database db;
     db.open("AdventureDatabase2.db");
     hiberlite::bean_ptr<RoomModel> r=db.copyBean(room);
-    r->roomId = r.get_id();
-    room.roomId = r.get_id();
+    r->id = r.get_id();
+    room.id = r.get_id();
     r.save();
     printRoomDB();
 
@@ -94,7 +94,7 @@ RoomModel modifyRoom(int roomId, RoomModel updateFields){
     db.open("AdventureDatabase2.db");
     hiberlite::bean_ptr<RoomModel> editRoom = db.loadBean<RoomModel>(roomId);
 
-    editRoom->roomId = updateFields.roomId;
+    editRoom->id = updateFields.id;
     editRoom->name = updateFields.name;
     editRoom.save();
 

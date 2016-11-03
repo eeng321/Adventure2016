@@ -9,6 +9,7 @@
 #include "extendedDescription.h"
 #include "../../back_end/lib/hiberlite/include/hiberlite.h"
 
+using id = int;
 
 class RoomModel {//Tile interface
 public:
@@ -18,7 +19,7 @@ public:
     void hibernate(Archive & ar)
     {
         ar & HIBERLITE_NVP(area);
-        ar & HIBERLITE_NVP(roomId);
+        ar & HIBERLITE_NVP(id);
         ar & HIBERLITE_NVP(name);
         ar & HIBERLITE_NVP(mainDescription);
         //ar & HIBERLITE_NVP(extendedDescriptions);
@@ -30,9 +31,9 @@ public:
     }
 
     std::string area;
-    int roomId;
+    int id;
     std::string name;
-    std::string mainDescription;
+    std::vector <std::string> mainDescription;
     std::vector<extendedDescription> extendedDescriptions;
     std::vector<DoorModel> doors;
     std::vector<int> npcList;
