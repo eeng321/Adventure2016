@@ -40,9 +40,9 @@ namespace parser{
     char constexpr DOOR_KEYWORDS_KEY[] = "keywords";
     char constexpr DOOR_ROOMTO_KEY[] = "to";
 
-    char constexpr MESSAGE_TO = "to";
-    char constexpr MESSAGE_FROM = "from";
-    char constexpr MESSAGE_BODY = "message";
+    char constexpr MESSAGE_TO[] = "to";
+    char constexpr MESSAGE_FROM[] = "from";
+    char constexpr MESSAGE_BODY[] = "message";
 
     std::string playerSerialize(PlayerModel const player);
     PlayerModel playerDeserialize(std::string const body);
