@@ -38,12 +38,15 @@ add_library(parser STATIC parser.cpp)
 set_property(TARGET parser PROPERTY CXX_STANDARD 14)
 
 install(TARGETS parser DESTINATION lib)
+
 target_link_libraries(parser room)
 add_executable(testex test.cpp)
-target_link_libraries(testex parser yaml-cpp playerModel)
+target_link_libraries(testex parser yaml-cpp playerModel roomModel door)
 set_target_properties(testex PROPERTIES COMPILE_FLAGS "-std=c++14")
-add_executable(rest_server restServer.cpp playerEndpoint.cpp playerDriver.cpp)
-target_link_libraries(rest_server net_static hiber ${CMAKE_DL_LIBS} playerModel npcModel parser yaml-cpp)
+
+add_executable(rest_server restServer.cpp playerEndpoint.cpp playerDriver.cpp roomEndpoint.cpp roomDriver.cpp)
+target_link_libraries(rest_server net_static hiber ${CMAKE_DL_LIBS} playerModel npcModel roomModel door parser yaml-cpp)
+
 set_target_properties(rest_server PROPERTIES COMPILE_FLAGS "-std=c++14")
 set_target_properties(rest_server PROPERTIES COMPILE_FLAGS "-lyaml-cpp")
 
