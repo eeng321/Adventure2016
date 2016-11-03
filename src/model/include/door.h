@@ -6,10 +6,11 @@
 #define DOOR_H
 
 #include "id.h"
-
-enum class Direction {
-	north, south, east, west
-};
+#include "doorModel.h"
+//TODO Why here again?
+//enum class Direction {
+//	north, south, east, west
+//};
 
 class DoorModel;
 

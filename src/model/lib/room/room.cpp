@@ -6,8 +6,8 @@
 #include <algorithm>
 #include <memory>
 
-#include "room.h"
 #include "roomModel.h"
+#include "room.h"
 
 using std::string;
 using std::vector;
@@ -85,19 +85,19 @@ void Room::build(const std::string& areaIn,
 	navigable = navigabilityIn;
 }
 
-void Room::setModel(const RoomModel& model){
-	build(model.area, roomId(model.id), model.name, model.mainDescription, model.extendedDescriptions, model.doors, model.navigable);
-	playerList = model.playerList;
-	for(int id : model.itemList){
-		itemList.push_back(itemId(id));
-	}
-	for(int id : model.npcList) {
-		npcList.push_back(npcId(id));
-	}
-}
+//void Room::setModel(const Room& model){
+//	build(model.area, roomId(model.id), model.name, model.mainDescription, model.extendedDescriptions, model.doors, model.navigable);
+//	playerList = model.playerList;
+//	for(int id : model.itemList){
+//		itemList.push_back(itemId(id));
+//	}
+//	for(int id : model.npcList) {
+//		npcList.push_back(npcId(id));
+//	}
+//}
 
-RoomModel Room::getModel() const {
-	RoomModel model;
+Room Room::getModel() const {
+	Room model;
 	model.name = name;
 	model.id = id.value;
 	model.area = area;

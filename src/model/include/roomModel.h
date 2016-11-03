@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-#include "door.h"
+#include "doorModel.h"
 #include "extendedDescription.h"
 
 using id = int;
@@ -17,7 +17,7 @@ public:
 	std::string name;
 	std::vector<std::string> mainDescription;
 	std::vector<extendedDescription> extendedDescriptions;
-	std::vector<Door> doors;
+	std::vector<DoorModel> doors;
 	std::vector<int> npcList;
 	std::vector<std::string> playerList;
 	std::vector<int> itemList;

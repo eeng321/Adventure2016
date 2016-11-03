@@ -31,7 +31,7 @@ void Door::loadModel(DoorModel model){
 	direction = model.direction;
 	keywords = model.keywords;
 	description = model.description;
-	roomTo = roomId(model.roomTo.value);
+	roomTo = roomId(model.roomTo);
 }
 
 

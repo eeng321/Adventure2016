@@ -1,7 +1,8 @@
 
 
-#ifndef DOOR_H
-#define DOOR_H
+#ifndef DOOR_MODEL_H
+#define DOOR_MODEL_H
+
 
 enum class Direction {
 	north, south, east, west

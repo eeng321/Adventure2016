@@ -11,22 +11,22 @@
 using namespace std;
 int main(){
 
-    Door door;
+    DoorModel door;
 //    std::vector<std::string> keywords;
 //    keywords.push_back("test1");
 //    keywords.push_back("test2");
     door.direction = Direction ::north;
 //    door.keywords = keywords;
-    door.doorId = (id)300;
+    door.roomTo = 300;
     door.description.push_back("DOOR 1 DESCRIPTION test1");
     door.description.push_back("DOOR 1 DESCRIPTION test2");
     //door.build(Direction::north, keywords, (id)1);
-    Door door2;
+    DoorModel door2;
     std::vector<std::string> keywordz;
     keywordz.push_back("testz1");
     keywordz.push_back("testz2");
     //door2.build(Direction::south, keywordz, (id)2);
-    door2.doorId = (id)200;
+    door2.roomTo = 23;
     door2.description.push_back("DESCRIPTION DOOR 2");
     door2.direction = Direction::east;
     door2.keywords = keywordz;
@@ -34,7 +34,7 @@ int main(){
     test.mainDescription.push_back("test main desc1");
     test.mainDescription.push_back("test main desc2");
 //    test.area = "test area";
-    test.roomId = (id)3;
+    test.id = 3;
     test.name = "test name";
 //    test.navigable = true;
     test.doors.push_back(door);

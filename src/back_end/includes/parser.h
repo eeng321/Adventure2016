@@ -10,6 +10,7 @@
 #include <string>
 #include "../../model/include/playerModel.h"
 #include "../../model/include/roomModel.h"
+#include "../../model/include/door.h"
 
 
 
@@ -45,8 +46,8 @@ namespace parser{
     RoomModel roomDeserializeFromNode(YAML::Node roomNode);
     void roomDeserializeAndAppendExtras(RoomModel &model, YAML::Node const roomNode);
 
-    std::string doorSerialize(YAML::Emitter &out, Door door);
-    Door doorDeserialize(YAML::Node const doorNode);
+    std::string doorSerialize(YAML::Emitter &out, DoorModel door);
+    DoorModel doorDeserialize(YAML::Node const doorNode);
 
     std::string serializeDirection(Direction const directionEnum);
     Direction deserializeDirection(std::string const directionString);
