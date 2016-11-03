@@ -23,7 +23,7 @@ public:
 	std::vector<int> itemList;
 	bool navigable;
 
-	RoomModel();
+
 };
 
 #endif

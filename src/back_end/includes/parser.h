@@ -16,7 +16,7 @@
 
 
 namespace parser{
-
+    //Do not change any of these unless required. Must match the yaml files given, NOT CLASS FIELD NAMES
     char constexpr PLAYER_NAME_KEY[] = "loginName";
     char constexpr PLAYER_ID_KEY[] = "playerId";
     char constexpr PLAYER_COORDINATE_KEY[] = "roomId";
@@ -39,7 +39,7 @@ namespace parser{
     char constexpr DOOR_DESCRIPTION_KEY[] = "desc";
     char constexpr DOOR_DIRECTION_KEY[] = "dir";
     char constexpr DOOR_KEYWORDS_KEY[] = "keywords";
-    char constexpr DOOR_ROOMTO_KEY[] = "roomTo";
+    char constexpr DOOR_ROOMTO_KEY[] = "to";
 
     std::string roomSerialize(RoomModel const room);
     RoomModel roomDeserialize(std::string const body);
