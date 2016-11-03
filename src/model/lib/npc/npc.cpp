@@ -1,30 +1,139 @@
 #include <string>
-#include "../../include/npc.h"
+#include <utility>
+#include <algorithm>
+#include <stdexcept>
+
+#include "npcModel.h"
+#include "npc.h"
+
+using description = std::vector<std::string>;
+using keyword = std::string;
 
 Npc::Npc(description desc,
-         id nid,
-         std::vector<std::string> key,
+         npcId nid,
+         std::vector<keyword> key,
          description ldesc,
-         description sdesc)
-        : mainDesc(desc), npcId(nid), keywords(key), longDesc(ldesc), shortDesc(sdesc) {
+         description sdesc,
+         std::string damageIn,
+         int armorIn,
+         std::string hitIn,
+         int expIn,
+         int goldIn,
+         int levelIn,
+         int thac0In)
+        : mainDesc(std::move(desc)),
+          id(nid),
+          keywords(std::move(key)),
+          longDesc(std::move(ldesc)),
+          shortDesc(std::move(sdesc)),
+          damage(std::move(damageIn)),
+          armor(armorIn),
+          hit(std::move(hitIn)),
+          exp(expIn),
+          gold(goldIn),
+          level(levelIn),
+          thac0(thac0In) {}
+
+NpcModel Npc::getModel() {
+    NpcModel model;
+    model.mainDesc = mainDesc;
+    model.npcId = id.value;
+    model.keywords = keywords;
+    model.longDesc = longDesc;
+    model.shortDesc = shortDesc;
+    model.damage = damage;
+    model.armor = armor;
+    model.hit = hit;
+    model.exp = exp;
+    model.gold = gold;
+    model.level = level;
+    model.thac0 = thac0;
+    for (const itemId& item: inventory) {
+        model.inventory.push_back(item.value);
+    }
+    return model;
 }
 
-std::string Npc::getMainDesc() {
+void Npc::setModel(const NpcModel &model) {
+    mainDesc = model.mainDesc;
+    id.value = model.npcId;
+    keywords = model.keywords;
+    longDesc = model.longDesc;
+    shortDesc = model.shortDesc;
+    damage = model.damage;
+    armor = model.armor;
+    hit = model.hit;
+    exp = model.exp;
+    gold = model.gold;
+    level = model.level;
+    thac0 = model.thac0;
+
+    inventory.clear();
+    for(int item : model.inventory){
+        inventory.push_back(itemId(item));
+    }
+}
+
+description Npc::getMainDesc() const {
     return mainDesc;
 }
 
-id Npc::getNpcId() {
-    return npcId;
+npcId Npc::getNpcId() const {
+    return id;
 }
 
-std::vector<std::string> Npc::getKeywords() {
+std::vector<keyword> Npc::getKeywords() const {
     return keywords;
 }
 
-std::string Npc::getLongDesc() {
+description Npc::getLongDesc() const{
     return longDesc;
 }
 
-std::string Npc::getShortDesc() {
+description Npc::getShortDesc() const{
     return shortDesc;
+}
+
+std::string Npc::getDamage() const{
+    return damage;
+}
+
+int Npc::getArmor() const {
+    return armor;
+}
+
+std::string Npc::getHit() const {
+    return hit;
+}
+
+int Npc::getExp() const {
+    return exp;
+}
+
+int Npc::getGold() const {
+    return gold;
+}
+
+int Npc::getLevel() const {
+    return level;
+}
+
+int Npc::getThac0() const {
+    return thac0;
+}
+
+std::vector<itemId> Npc::getInventory() const {
+ return inventory;
+}
+
+void Npc::addToInventory(itemId item) {
+    inventory.push_back(std::move(item));
+}
+
+void Npc::removeFromInventory(const itemId& item) {
+    auto element = std::find(inventory.begin(), inventory.end(), item);
+    if(element == inventory.end()){
+        throw std::domain_error("item not in inventory");
+    }
+    inventory.erase(element);
 }

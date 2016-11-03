@@ -22,6 +22,7 @@ public:
 	int gold;
 	int level;
 	int thac0;
+	std::vector<int> inventory;
 };
 
 #endif //ADVENTURE2016_NPCMODEL_H
