@@ -1,10 +1,8 @@
-<<<<<<< HEAD
+
 #include "../../back_end/lib/hiberlite/include/hiberlite.h"
 #include <string>
 #include <vector>
-=======
 
->>>>>>> 802e2297afec0991082322ee57c940da3a66c340
 
 #ifndef DOOR_MODEL_H
 #define DOOR_MODEL_H
@@ -14,7 +12,6 @@ enum class Direction {
 	north, south, east, west
 };
 
-<<<<<<< HEAD
 namespace hiberlite {
     template <class A>
     void hibernate(A& ar, Direction& value, const unsigned int) {
@@ -49,11 +46,7 @@ public:
         ar & HIBERLITE_NVP(roomTo);
         ar & HIBERLITE_NVP(description);
     }
-
-=======
-class DoorModel {
-public:
->>>>>>> 802e2297afec0991082322ee57c940da3a66c340
+    
 	Direction direction;
 	std::vector<std::string> keywords;
 	int roomTo;//The room this door leads too

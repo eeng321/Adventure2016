@@ -43,15 +43,11 @@ target_link_libraries(parser room)
 add_executable(testex test.cpp)
 target_link_libraries(testex parser yaml-cpp playerModel roomModel door)
 set_target_properties(testex PROPERTIES COMPILE_FLAGS "-std=c++14")
-<<<<<<< HEAD
+
 
 add_executable(rest_server restServer.cpp playerEndpoint.cpp playerDriver.cpp roomEndpoint.cpp roomDriver.cpp)
 target_link_libraries(rest_server net_static hiber ${CMAKE_DL_LIBS} playerModel npcModel roomModel door parser yaml-cpp)
 
-=======
-add_executable(rest_server restServer.cpp playerEndpoint.cpp playerDriver.cpp roomEndpoint.cpp roomDriver.cpp)
-target_link_libraries(rest_server net_static hiber ${CMAKE_DL_LIBS} playerModel roomModel door parser yaml-cpp)
->>>>>>> 802e2297afec0991082322ee57c940da3a66c340
 set_target_properties(rest_server PROPERTIES COMPILE_FLAGS "-std=c++14")
 set_target_properties(rest_server PROPERTIES COMPILE_FLAGS "-lyaml-cpp")
 
