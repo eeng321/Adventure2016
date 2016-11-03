@@ -10,6 +10,7 @@
 #include <string>
 #include "../../model/include/playerModel.h"
 #include "../../model/include/roomModel.h"
+#include "../../model/include/door.h"
 
 #include "../../model/include/npcModel.h"
 
@@ -18,7 +19,10 @@
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 802e2297afec0991082322ee57c940da3a66c340
 namespace parser{
     //Do not change any of these unless required. Must match the yaml files given, NOT CLASS FIELD NAMES
     char constexpr PLAYER_NAME_KEY[] = "loginName";
@@ -46,6 +50,7 @@ namespace parser{
     char constexpr DOOR_DIRECTION_KEY[] = "dir";
     char constexpr DOOR_KEYWORDS_KEY[] = "keywords";
     char constexpr DOOR_ROOMTO_KEY[] = "to";
+<<<<<<< HEAD
 
     char constexpr NPC_ID_KEY[] = "npcId";
     char constexpr NPC_MAINDESC_KEY[] = "mainDesc";
@@ -60,6 +65,8 @@ namespace parser{
     char constexpr NPC_LEVEL_KEY[] = "level";
     char constexpr NPC_THAC0_KEY[] = "thac0";
     
+=======
+>>>>>>> 802e2297afec0991082322ee57c940da3a66c340
 
     std::string roomSerialize(RoomModel const room);
     RoomModel roomDeserialize(std::string const body);

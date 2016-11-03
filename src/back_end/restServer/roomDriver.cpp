@@ -1,5 +1,8 @@
 #include "roomDriver.h"
+<<<<<<< HEAD
 #include "../../model/include/doorModel.h"
+=======
+>>>>>>> 802e2297afec0991082322ee57c940da3a66c340
 #include <iostream>
 
 using namespace std;
@@ -21,7 +24,10 @@ void createRoomDB(){
     hiberlite::Database db("AdventureDatabase2.db");
     //register bean classes
     db.registerBeanClass<RoomModel>();
+<<<<<<< HEAD
     db.registerBeanClass<DoorModel>();
+=======
+>>>>>>> 802e2297afec0991082322ee57c940da3a66c340
     //db.registerBeanClass<Door>();
     //drop all tables beans will use
     db.dropModel();

@@ -11,6 +11,8 @@
 #include "../lib/pistache/include/router.h"
 #include "playerDriver.h"
 #include "playerEndpoint.h"
+#include "roomDriver.h"
+#include "roomEndpoint.h"
 
 #include "npcDriver.h"
 #include "npcEndpoint.h"

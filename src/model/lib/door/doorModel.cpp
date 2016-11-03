@@ -6,7 +6,10 @@
 
 #include "door.h"
 #include "doorModel.h"
+<<<<<<< HEAD
 #include "id.h"
+=======
+>>>>>>> 802e2297afec0991082322ee57c940da3a66c340
 
 using std::vector;
 using keyword_t = std::string;
@@ -32,8 +35,15 @@ void Door::loadModel(DoorModel model){
 	direction = model.direction;
 	keywords = model.keywords;
 	description = model.description;
+<<<<<<< HEAD
 	//roomTo = roomId(model.roomTo);
 	roomTo.value = model.roomTo;
 }
 
 HIBERLITE_EXPORT_CLASS(DoorModel)
+=======
+	roomTo = roomId(model.roomTo);
+}
+
+
+>>>>>>> 802e2297afec0991082322ee57c940da3a66c340
