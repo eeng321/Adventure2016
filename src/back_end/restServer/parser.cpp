@@ -270,11 +270,11 @@ MessageModel parser::messageDeserialize(const std::string& body) {
 
 YAML::Emitter& operator << (YAML::Emitter& out, const MessageModel& message) {
     out << YAML::BeginMap;
-    out << YAML::Key << MESSAGE_TO;
+    out << YAML::Key << parser::MESSAGE_TO;
     out << YAML::Value << message.To;
-    out << YAML::Key << MESSAGE_FROM;
+    out << YAML::Key << parser::MESSAGE_FROM;
     out << YAML::Value << message.From;
-    out << YAML::Key << MESSAGE_BODY;
+    out << YAML::Key << parser::MESSAGE_BODY;
     out << YAML::Value << message.Message;
     out << YAML::EndMap;
     return out;

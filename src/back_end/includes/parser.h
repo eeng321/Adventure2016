@@ -13,11 +13,7 @@
 #include "../../model/include/door.h"
 #include "../../model/include/messageModel.h"
 
-
-
-
-
-namespace parser{
+namespace parser {
     //Do not change any of these unless required. Must match the yaml files given, NOT CLASS FIELD NAMES
     char constexpr PLAYER_NAME_KEY[] = "loginName";
     char constexpr PLAYER_ID_KEY[] = "playerId";
