@@ -5,24 +5,24 @@
 #ifndef DOOR_H
 #define DOOR_H
 
+#include "id.h"
+#include "doorModel.h"
+//TODO Why here again?
+//enum class Direction {
+//	north, south, east, west
+//};
 
-enum class Direction {
-	north, south, east, west
-};
-
-typedef int id;
-
-typedef std::string description;
-
-typedef std::string username;
+class DoorModel;
 
 class Door {
 public:
 	Direction direction;
 	std::vector<std::string> keywords;
-	id doorId;
+	roomId roomTo;
 	std::vector<std::string> description;
-	void build(Direction d, std::vector<std::string> k, id dID);
+	void build(const Direction& directionIn, const std::vector<std::string>& keywordsIn, const roomId& roomIn, const std::vector<std::string>& desc);
+	DoorModel getModel() const;
+	void loadModel(DoorModel model);
 };
 
 
