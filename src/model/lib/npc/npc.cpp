@@ -146,3 +146,23 @@ void Npc::removeFromInventory(const itemId& item) {
     }
     inventory.erase(element);
 }
+
+void Npc::incrementLevel(){
+	level++;
+}
+
+void Npc::addExp(int expAdded){
+	exp = exp + expAdded;
+	if(exp > 100){
+		exp = exp - 100;
+		incrementLevel();
+	}
+}
+
+void Npc::deceaseHealth(int change){
+	health = health - change;
+}
+
+void Npc::increaseHealth(int change){
+	health = health + change;
+}
