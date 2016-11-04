@@ -10,4 +10,5 @@ public:
     static StatusCode readBasicInput();
 };
 
+
 #endif //ADVENTURE2016_USERINPUT_H
