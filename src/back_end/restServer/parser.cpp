@@ -243,7 +243,7 @@ std::vector<RoomModel> parser::extractRoomsFromSequence(YAML::Node const roomNod
     return rooms;
 }
 
-std::string parser::messageSerialize(MessageModel message) {
+std::string parser::messageSerialize(MessageModel const &message) {
     YAML::Emitter out;
     out << YAML::BeginMap;
     out << YAML::Key << MESSAGE_TO;
@@ -257,7 +257,7 @@ std::string parser::messageSerialize(MessageModel message) {
     return out.c_str();
 }
 
-MessageModel parser::messageDeserialize(const std::string& body) {
+MessageModel parser::messageDeserialize(const std::string &body) {
     YAML::Node node = YAML::Load(body);
 
     MessageModel message;
@@ -268,7 +268,7 @@ MessageModel parser::messageDeserialize(const std::string& body) {
     return message;
 }
 
-YAML::Emitter& operator << (YAML::Emitter& out, const MessageModel& message) {
+YAML::Emitter& operator << (YAML::Emitter& out, const MessageModel &message) {
     out << YAML::BeginMap;
     out << YAML::Key << parser::MESSAGE_TO;
     out << YAML::Value << message.To;
@@ -280,7 +280,7 @@ YAML::Emitter& operator << (YAML::Emitter& out, const MessageModel& message) {
     return out;
 }
 
-std::string parser::messageVectorSerialize(std::vector<MessageModel> messages){
+std::string parser::messageVectorSerialize(std::vector<MessageModel> const &messages){
 
     YAML::Emitter out;
 
@@ -293,7 +293,7 @@ std::string parser::messageVectorSerialize(std::vector<MessageModel> messages){
     return out.c_str();
 }
 
-std::vector<MessageModel> parser::messageVectorDeserialize(const std::string& body) {
+std::vector<MessageModel> parser::messageVectorDeserialize(std::string const &body) {
 
     std::vector<MessageModel> messageModels;
 

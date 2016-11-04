@@ -56,11 +56,11 @@ namespace parser {
 
     std::vector<RoomModel> extractRoomsFromSequence(YAML::Node const roomNode);
 
-    std::string messageSerialize(MessageModel message);
-    MessageModel messageDeserialize(const std::string& body);
+    std::string messageSerialize(MessageModel const &message);
+    MessageModel messageDeserialize(std::string const &body);
 
-    std::string messageVectorSerialize(std::vector<MessageModel> message);
-    std::vector<MessageModel> messageVectorDeserialize(const std::string& body);
+    std::string messageVectorSerialize(std::vector<MessageModel> const &message);
+    std::vector<MessageModel> messageVectorDeserialize(std::string const &body);
 
 };
 
