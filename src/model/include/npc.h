@@ -18,13 +18,16 @@ public:
         std::vector<std::string> key,
         std::vector<std::string> ldesc,
 		std::vector<std::string> sdesc,
-		std::string damage,
-		int armor,
-		std::string hit,
-		int exp,
-		int gold,
-		int level,
-		int thac0);
+		std::string damageIn,
+		int armorIn,
+		std::string hitIn,
+		int expIn,
+		int goldIn,
+		int levelIn,
+		int thac0In,
+		int healthIn,
+		std::vector<itemId> inventoryIn);
+
 	Npc();
 
 	void setModel(const NpcModel& model);
@@ -43,9 +46,17 @@ public:
 	int getLevel() const;
 	int getThac0() const;
 	std::vector<itemId> getInventory() const;
+	int getHealth() const;
+
 
 	void addToInventory(itemId item);
 	void removeFromInventory(const itemId& item);
+
+	void incrementLevel();
+	void addExp(int expAdded);
+	void setLocation(roomId id);
+	void deceaseHealth(int change);
+	void increaseHealth(int change);
 
 private:
 	std::vector<std::string> mainDesc;
@@ -61,6 +72,7 @@ private:
 	int level;
 	int thac0;
 	std::vector<itemId> inventory;
+	int health;
 
 };
 

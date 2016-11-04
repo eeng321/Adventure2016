@@ -20,9 +20,11 @@ Npc::Npc(description desc,
          int expIn,
          int goldIn,
          int levelIn,
-         int thac0In)
+         int thac0In,
+		 int healthIn,
+		 std::vector<itemId> inventoryIn)
         : mainDesc(std::move(desc)),
-          id(nid),
+          id(std::move(nid)),
           keywords(std::move(key)),
           longDesc(std::move(ldesc)),
           shortDesc(std::move(sdesc)),
@@ -32,7 +34,9 @@ Npc::Npc(description desc,
           exp(expIn),
           gold(goldIn),
           level(levelIn),
-          thac0(thac0In) {}
+          thac0(thac0In),
+		  health(healthIn),
+		  inventory(std::move(inventoryIn)){}
 
 NpcModel Npc::getModel() {
     NpcModel model;
@@ -48,6 +52,7 @@ NpcModel Npc::getModel() {
     model.gold = gold;
     model.level = level;
     model.thac0 = thac0;
+	model.health = health;
     for (const itemId& item: inventory) {
         model.inventory.push_back(item.value);
     }
@@ -123,7 +128,11 @@ int Npc::getThac0() const {
 }
 
 std::vector<itemId> Npc::getInventory() const {
- return inventory;
+ 	return inventory;
+}
+
+int Npc::getHealth() const {
+	return health;
 }
 
 void Npc::addToInventory(itemId item) {
