@@ -19,15 +19,12 @@ void RoomEndpoint::createRoom(const Net::Rest::Request& request, Net::Http::Resp
     cout << "Request for resource: " << request.method() << request.resource() << endl;
 
     try {
-        auto roomId = request.param(":id").as<int>();
-        auto roomName = request.param(":name").as<std::string>();
+        //auto roomId = request.param(":id").as<int>();
+        //auto roomName = request.param(":name").as<std::string>();
 
-        // Parse body to grab player arguments
+        // Parse body to grab room arguments
         RoomModel room;
-        room.name = roomName;
-        room.id = roomId;
-
-        //room = parser::roomDeserialize(request.body());
+        room = parser::roomDeserialize(request.body());
 
         addRoom(room);
 
@@ -51,11 +48,10 @@ void RoomEndpoint::retrieveRoom(const Net::Rest::Request& request, Net::Http::Re
         cout << "ID: " << roomId << endl;
 
         RoomModel room;
-        room.name = "";
         room = loadRoom(roomId);
 
         if (room.name != "") {
-            response.send(Http::Code::Ok, room.name);
+            response.send(Http::Code::Ok, std::to_string(room.id));
         }
         else {
             response.send(Http::Code::Bad_Request);
@@ -68,7 +64,7 @@ void RoomEndpoint::retrieveRoom(const Net::Rest::Request& request, Net::Http::Re
 void RoomEndpoint::updateRoom(const Net::Rest::Request& request, Net::Http::ResponseWriter response){
     cout << "Request for resource: " << request.method() << request.resource() << endl;
 
-    /*try {
+    try {
         auto roomId = request.param(":id").as<int>();
         RoomModel updateFields = parser::roomDeserialize(request.body());
 
@@ -84,17 +80,15 @@ void RoomEndpoint::updateRoom(const Net::Rest::Request& request, Net::Http::Resp
     }
     catch (...) {
         response.send(Http::Code::Internal_Server_Error);
-    }*/
+    }
 }
 void RoomEndpoint::deleteRoom(const Net::Rest::Request& request, Net::Http::ResponseWriter response){
     cout << "Request for resource: " << request.method() << request.resource() << endl;
 
     try {
         auto roomId = request.param(":id").as<int>();
-        removeRoom(roomId);
+        auto success = removeRoom(roomId);
 
-        //todo: fix this with proper returns
-        auto success = true;
         if (success) {
             response.send(Http::Code::Ok);
         }
