@@ -1,4 +1,7 @@
 #include "roomDriver.h"
+
+#include "../../model/include/doorModel.h"
+
 #include <iostream>
 
 using namespace std;
@@ -22,6 +25,8 @@ void createRoomDB(){
     //db.open("AdventureDatabase.db");
     //register bean classes
     db.registerBeanClass<RoomModel>();
+    db.registerBeanClass<DoorModel>();
+
     //db.registerBeanClass<Door>();
     //drop all tables beans will use
     db.dropModel();

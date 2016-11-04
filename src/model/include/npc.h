@@ -14,6 +14,17 @@ typedef std::string description;
 
 class Npc {
 public:
+    friend class hiberlite::access;
+    template<class Archive>
+    void hibernate(Archive & ar)
+    {
+        ar & HIBERLITE_NVP(desc);
+        ar & HIBERLITE_NVP(nid);
+        ar & HIBERLITE_NVP(key);
+        ar & HIBERLITE_NVP(ldesc);
+        ar & HIBERLITE_NVP(sdesc);
+    }
+
     Npc(description desc,
         id nid,
         std::vector<std::string> key,

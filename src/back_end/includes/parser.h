@@ -12,8 +12,9 @@
 #include "../../model/include/roomModel.h"
 #include "../../model/include/door.h"
 
+#include "../../model/include/npcModel.h"
 
-
+#include "../../model/include/door.h"
 
 namespace parser{
     //Do not change any of these unless required. Must match the yaml files given, NOT CLASS FIELD NAMES
@@ -43,6 +44,19 @@ namespace parser{
     char constexpr DOOR_KEYWORDS_KEY[] = "keywords";
     char constexpr DOOR_ROOMTO_KEY[] = "to";
 
+    char constexpr NPC_ID_KEY[] = "npcId";
+    char constexpr NPC_MAINDESC_KEY[] = "mainDesc";
+    char constexpr NPC_LONGDESC_KEY[] = "longDesc";
+    char constexpr NPC_SHORTDESC_KEY[] = "shortDesc";
+    char constexpr NPC_KEYWORDS_KEY[] = "keywords";
+    char constexpr NPC_DAMAGE_KEY[] = "damage";
+    char constexpr NPC_ARMOR_KEY[] = "armor";
+    char constexpr NPC_HIT_KEY[] = "hit";
+    char constexpr NPC_EXP_KEY[] = "exp";
+    char constexpr NPC_GOLD_KEY[] = "gold";
+    char constexpr NPC_LEVEL_KEY[] = "level";
+    char constexpr NPC_THAC0_KEY[] = "thac0";
+
     std::string roomSerialize(RoomModel const room);
     RoomModel roomDeserialize(std::string const body);
     RoomModel roomDeserializeFromNode(YAML::Node roomNode);
@@ -55,6 +69,10 @@ namespace parser{
     Direction deserializeDirection(std::string const directionString);
 
     std::vector<RoomModel> extractRoomsFromSequence(YAML::Node const roomNode);
+
+    NpcModel npcDeserialize(std::string const body);
+    std::string npcSerialize(NpcModel const npc);
+
 
 };
 
