@@ -28,7 +28,7 @@ void createRoomDB(){
     //create those tables again with proper schema
     db.createModel();
 
-    RoomModel demo;
+/*    RoomModel demo;
     demo.area = "White Plains";
     demo.id = 1;
     demo.name =  "the field";
@@ -37,7 +37,7 @@ void createRoomDB(){
     description.description = {"test"};
     description.keywords = {"sppoky", "dangerous"};
     demo.extendedDescriptions = {description};
-    /*
+
     try{
         YAML::Node testNode = YAML::LoadFile("/home/sukh/Documents/CMPT_373/adventure2016/smurf.yaml");//TODO Couldn't use ~/cmpt373/adventure2016.... must have path be absolute? how to fix
         YAML::Node roomsNode = testNode["ROOMS"];
@@ -53,9 +53,9 @@ void createRoomDB(){
         }
     }catch(exception ex){
         std::cout << "Could not load yaml file or rooms not available in the file" << endl;
-    } */
-
-   //demo.navigable = true;
+    }
+*/
+   // demo.navigable = true;
     hiberlite::bean_ptr<RoomModel> db_room =db.copyBean(demo);
 
 }
@@ -101,7 +101,6 @@ RoomModel addRoom(RoomModel room){
     hiberlite::Database db;
     db.open("AdventureDatabase2.db");
     hiberlite::bean_ptr<RoomModel> r=db.copyBean(room);
-    cout << "copied Bean";
     r->id = r.get_id();
     room.id = r.get_id();
     r.save();
@@ -136,7 +135,7 @@ bool removeRoom(int roomId){
     vector< hiberlite::bean_ptr<RoomModel> > listRooms=db.getAllBeans<RoomModel>();
     int numOfRooms = listRooms.size();
     room.destroy();
-    printRoomDB();
+    //printRoomDB();
     //return true if number of players in db changes after deleting
     return (numOfRooms != listRooms.size());
     
