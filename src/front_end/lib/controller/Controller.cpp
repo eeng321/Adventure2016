@@ -60,3 +60,30 @@ StatusCode Controller::registerAccount(const std::string& username, const std::s
     result = response.body();
     return STATUS_OK;
 }
+
+std::string Controller::makeGetRequest(const std::string& url) {
+    Net::Http::Response response = client.Get(url);
+    if (response.code() != Net::Http::Code::Ok) {
+        // TODO: handle
+        return "ERROR: HTTP error.";
+    }
+    return response.body();
+}
+
+std::string Controller::makePutRequest(const std::string& url, const std::string& payload) {
+    Net::Http::Response response = client.Put(url, payload);
+    if (response.code() != Net::Http::Code::Ok) {
+        // TODO: handle
+        return "ERROR: HTTP error.";
+    }
+    return response.body();
+}
+
+std::string Controller::makePostRequest(const std::string& url, const std::string& payload) {
+    Net::Http::Response response = client.Post(url, payload);
+    if (response.code() != Net::Http::Code::Ok) {
+        // TODO: handle
+        return "ERROR: HTTP error.";
+    }
+    return response.body();
+}

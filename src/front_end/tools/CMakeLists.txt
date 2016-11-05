@@ -11,5 +11,6 @@ target_link_libraries(adventure2016 display)
 target_link_libraries(adventure2016 ${CURSES_LIBRARIES})
 target_link_libraries(adventure2016 restClient)
 target_link_libraries(adventure2016 dictionary)
+target_link_libraries(adventure2016 command)
 
 install(TARGETS adventure2016 DESTINATION bin)

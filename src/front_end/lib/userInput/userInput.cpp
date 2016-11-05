@@ -4,6 +4,7 @@
 #include <display.h>
 #include "userInput.h"
 #include "Dictionary.h"
+#include "Command.h"
 #include <iostream>
 
 void UserInput::checkExistingPlayerCredentials() {
@@ -86,7 +87,7 @@ StatusCode UserInput::readBasicInput(Dictionary *dictionary) {
     std::string commandConverted(command);
 
     StatusCode queryReturnCode;
-    commandExecuter* con = dictionary->lookup(commandConverted);
+    Command* con = dictionary->lookup(commandConverted);
     if(con != NULL) {
         queryReturnCode = con->execute(queryStringResult);
     } else {
@@ -97,10 +98,4 @@ StatusCode UserInput::readBasicInput(Dictionary *dictionary) {
     strcpy(command, queryStringResult.c_str());
     Display::addStringToMainWindow(command);
     return queryReturnCode;
-    /*
-    StatusCode queryReturnCode = Controller::parseCommand(commandConverted, queryStringResult);
-    strcpy(command, queryStringResult.c_str());
-    Display::addStringToMainWindow(command);
-    return queryReturnCode;
-    */
 }
