@@ -156,7 +156,7 @@ void Player::addExp(int expAdded) {
     }
 }
 
-void Player::deceaseHealth(int change) {
+void Player::decreaseHealth(int change) {
     health = health - change;
 }
 

@@ -45,7 +45,7 @@ public:
     void incrementLevel();
     void addExp(int expAdded);
     void setLocation(roomId id);;//used to be updateRoomId
-    void deceaseHealth(int change);
+    void decreaseHealth(int change);
     void increaseHealth(int change);
 
     void addToInventory(itemId item);
