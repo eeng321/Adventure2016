@@ -21,8 +21,8 @@ Npc::Npc(description desc,
          int goldIn,
          int levelIn,
          int thac0In,
-		 int healthIn,
-		 std::vector<itemId> inventoryIn)
+         int healthIn,
+         std::vector<itemId> inventoryIn)
         : mainDesc(std::move(desc)),
           id(std::move(nid)),
           keywords(std::move(key)),
@@ -35,8 +35,8 @@ Npc::Npc(description desc,
           gold(goldIn),
           level(levelIn),
           thac0(thac0In),
-		  health(healthIn),
-		  inventory(std::move(inventoryIn)){}
+          health(healthIn),
+          inventory(std::move(inventoryIn)) {}
 
 NpcModel Npc::getModel() {
     NpcModel model;
@@ -52,8 +52,8 @@ NpcModel Npc::getModel() {
     model.gold = gold;
     model.level = level;
     model.thac0 = thac0;
-	model.health = health;
-    for (const itemId& item: inventory) {
+    model.health = health;
+    for (const itemId &item: inventory) {
         model.inventory.push_back(item.value);
     }
     return model;
@@ -74,7 +74,7 @@ void Npc::setModel(const NpcModel &model) {
     thac0 = model.thac0;
 
     inventory.clear();
-    for(int item : model.inventory){
+    for (int item : model.inventory) {
         inventory.push_back(itemId(item));
     }
 }
@@ -91,15 +91,15 @@ std::vector<keyword> Npc::getKeywords() const {
     return keywords;
 }
 
-description Npc::getLongDesc() const{
+description Npc::getLongDesc() const {
     return longDesc;
 }
 
-description Npc::getShortDesc() const{
+description Npc::getShortDesc() const {
     return shortDesc;
 }
 
-std::string Npc::getDamage() const{
+std::string Npc::getDamage() const {
     return damage;
 }
 
@@ -128,41 +128,41 @@ int Npc::getThac0() const {
 }
 
 std::vector<itemId> Npc::getInventory() const {
- 	return inventory;
+    return inventory;
 }
 
 int Npc::getHealth() const {
-	return health;
+    return health;
 }
 
 void Npc::addToInventory(itemId item) {
     inventory.push_back(std::move(item));
 }
 
-void Npc::removeFromInventory(const itemId& item) {
+void Npc::removeFromInventory(const itemId &item) {
     auto element = std::find(inventory.begin(), inventory.end(), item);
-    if(element == inventory.end()){
+    if (element == inventory.end()) {
         throw std::domain_error("item not in inventory");
     }
     inventory.erase(element);
 }
 
-void Npc::incrementLevel(){
-	level++;
+void Npc::incrementLevel() {
+    level++;
 }
 
-void Npc::addExp(int expAdded){
-	exp = exp + expAdded;
-	if(exp > 100){
-		exp = exp - 100;
-		incrementLevel();
-	}
+void Npc::addExp(int expAdded) {
+    exp = exp + expAdded;
+    if (exp > 100) {
+        exp = exp - 100;
+        incrementLevel();
+    }
 }
 
-void Npc::deceaseHealth(int change){
-	health = health - change;
+void Npc::deceaseHealth(int change) {
+    health = health - change;
 }
 
-void Npc::increaseHealth(int change){
-	health = health + change;
+void Npc::increaseHealth(int change) {
+    health = health + change;
 }

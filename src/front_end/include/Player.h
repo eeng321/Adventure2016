@@ -27,42 +27,28 @@ public:
            std::vector<itemId> inventoryIn);
 
     PlayerModel getModel();
-
     void setModel(PlayerModel model);
 
     playerId getId() const;//used to be get getPlayerId
     std::string getUsername() const;
-
     roomId getLocation() const;//used to be getRoomId
     int getHealth() const;
-
     std::string getDamage() const;
-
     int getArmor() const;
-
     std::string getHit() const;
-
     int getExp() const;
-
     int getGold() const;
-
     int getLevel() const;
-
     int getThac0() const;
-
     std::vector<itemId> getInventory() const;
 
     void incrementLevel();
-
     void addExp(int expAdded);
-
     void setLocation(roomId id);;//used to be updateRoomId
     void deceaseHealth(int change);
-
     void increaseHealth(int change);
 
     void addToInventory(itemId item);
-
     void removeFromInventory(const itemId &item);
 
 private:
