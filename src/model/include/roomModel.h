@@ -22,8 +22,8 @@ public:
         ar & HIBERLITE_NVP(id);
         ar & HIBERLITE_NVP(name);
         ar & HIBERLITE_NVP(mainDescription);
-        //ar & HIBERLITE_NVP(extendedDescriptions);
-        //ar & HIBERLITE_NVP(doors);
+        ar & HIBERLITE_NVP(extendedDescriptions);
+        ar & HIBERLITE_NVP(doors);
         ar & HIBERLITE_NVP(npcList);
         ar & HIBERLITE_NVP(playerList);
         ar & HIBERLITE_NVP(itemList);

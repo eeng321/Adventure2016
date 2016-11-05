@@ -95,7 +95,7 @@ int main(int argc, char *argv[]) {
     cout << "CPU Cores = " << hardware_concurrency() << endl;
     cout << "Using " << numThreads << " threads" << endl;
 
-    //createDB();
+    createDB();
     createRoomDB();
     printRoomDB();
 

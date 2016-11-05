@@ -51,7 +51,7 @@ void RoomEndpoint::retrieveRoom(const Net::Rest::Request& request, Net::Http::Re
         room = loadRoom(roomId);
 
         if (room.name != "") {
-            response.send(Http::Code::Ok, std::to_string(room.id));
+            response.send(Http::Code::Ok, room.name);
         }
         else {
             response.send(Http::Code::Bad_Request);
