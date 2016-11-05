@@ -12,7 +12,7 @@ using namespace utility;
 
 // TODO
 const std::string SERVER = "http://localhost:8080/";
-Player Controller::player = Player((id) 0);
+Player Controller::player = Player(playerId(0));
 //Room Controller::room = Room();
 Rest::RestClient Controller::client;
 
@@ -31,7 +31,7 @@ StatusCode Controller::logIn(const std::string& username, const std::string& pas
     }
 
     PlayerModel playerModel = parser::playerDeserialize(response.body());
-    player = Player((id) playerModel.playerId);
+    player = Player(playerId(playerModel.playerId));
     player.setModel(playerModel);
 
     // TODO: set up current room
@@ -52,7 +52,7 @@ StatusCode Controller::registerAccount(const std::string& username, const std::s
     }
 
     PlayerModel playerModel = parser::playerDeserialize(response.body());
-    player = Player((id) playerModel.playerId);
+    player = Player(playerId(playerModel.playerId));
     player.setModel(playerModel);
 
     // TODO: set up current room
@@ -62,7 +62,7 @@ StatusCode Controller::registerAccount(const std::string& username, const std::s
 }
 
 StatusCode Controller::parseCommand(std::string& command, std::string& result) {
-    if (player.getPlayerId() == (id) 0) {
+    if (player.getId().value == 0) {
         result = "Not logged in.";
         return STATUS_LOGGED_OUT;
     }
@@ -140,12 +140,12 @@ StatusCode Controller::help(std::string& result) {
 }
 
 StatusCode Controller::who(std::string& result) {
-    result = "You are player ID " + std::to_string((int) player.getPlayerId());
+    result = "You are player ID " + std::to_string(player.getId().value);
     return STATUS_OK;
 }
 
 StatusCode Controller::where(std::string& result) {
-    result = "You are in room " + std::to_string((int) player.getRoomId());
+    result = "You are in room " + std::to_string(player.getLocation().value);
     return STATUS_OK;
 }
 
