@@ -1,9 +1,9 @@
 #include <iostream>
 #include <algorithm>
+#include <map>
 #include "Controller.h"
 #include "Dictionary.h"
 
-//TODO: Fill up language map with something
 //TODO: Actually have movement and connect with the player class properly
 //TODO: Hook this up with UserInput and test
 
@@ -13,10 +13,17 @@ Dictionary::Dictionary() {
     dictionaryCmdMap.insert(std::make_pair("east", new eastCommand));
     dictionaryCmdMap.insert(std::make_pair("west", new westCommand));
     dictionaryCmdMap.insert(std::make_pair("help", new helpCommand));
-    dictionaryCmdMap.insert(std::make_pair("who", new whoCommand));
-    dictionaryCmdMap.insert(std::make_pair("where", new whereCommand));
+    //dictionaryCmdMap.insert(std::make_pair("who", new whoCommand));
+    //dictionaryCmdMap.insert(std::make_pair("where", new whereCommand));
     dictionaryCmdMap.insert(std::make_pair("look", new lookCommand));
     dictionaryCmdMap.insert(std::make_pair("take", new takeCommand));
+}
+
+Dictionary::~Dictionary() {
+    while(dictionaryCmdMap.begin() != dictionaryCmdMap.end()) {
+        delete dictionaryCmdMap.begin()->second;
+        dictionaryCmdMap.erase(dictionaryCmdMap.begin());
+    }
 }
 
 void Dictionary::insertIntoLanguageMap(std::string key, std::string value) {
@@ -26,12 +33,11 @@ void Dictionary::insertIntoLanguageMap(std::string key, std::string value) {
 commandExecuter* Dictionary::lookup(std::string command) {
     std::transform(command.begin(), command.end(), command.begin(), ::tolower);
     std::map<std::string, std::string>::const_iterator iterLanguage;
-    iterLanguage = providedLanguageMap.find(command);
-    std::string userIntendedCmd;
-    if(iterLanguage != providedLanguageMap.end()) {
-        userIntendedCmd = iterLanguage->first;
-    } else {
-        userIntendedCmd = "";
+    std::string userIntendedCmd = "";
+    for(iterLanguage = providedLanguageMap.begin(); iterLanguage != providedLanguageMap.end(); ++iterLanguage){
+        if(iterLanguage->second == command) {
+            userIntendedCmd = iterLanguage->first;
+        }
     }
 
     std::transform(userIntendedCmd.begin(), userIntendedCmd.end(), userIntendedCmd.begin(), ::tolower);
@@ -67,6 +73,8 @@ StatusCode helpCommand::execute(std::string &result) {
     result += "help whoami whereami north east south west look take quit";
     return STATUS_OK;
 }
+
+/*
 StatusCode whoCommand::execute(std::string &result) {
     result = "You are player ID " + std::to_string((int) player.getPlayerId());
     return STATUS_OK;
@@ -75,6 +83,8 @@ StatusCode whereCommand::execute(std::string &result) {
     result = "You are in room " + std::to_string((int) player.getRoomId());
     return STATUS_OK;
 }
+ */
+
 StatusCode lookCommand::execute(std::string &result) {
     result = "You see only darkness.";
     return STATUS_OK;

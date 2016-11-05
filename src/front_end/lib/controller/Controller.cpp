@@ -61,6 +61,7 @@ StatusCode Controller::registerAccount(const std::string& username, const std::s
     return STATUS_OK;
 }
 
+/*
 StatusCode Controller::parseCommand(std::string& command, std::string& result) {
     if (player.getPlayerId() == (id) 0) {
         result = "Not logged in.";
@@ -179,3 +180,4 @@ StatusCode Controller::take(const std::string& arg, std::string& result) {
     result = "There is nothing to take.";
     return STATUS_OK;
 }
+ */
