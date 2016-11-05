@@ -242,3 +242,70 @@ std::vector<RoomModel> parser::extractRoomsFromSequence(YAML::Node const roomNod
 
     return rooms;
 }
+
+std::string parser::messageSerialize(MessageModel const &message) {
+    YAML::Emitter out;
+    out << YAML::BeginMap;
+    out << YAML::Key << MESSAGE_TO;
+    out << YAML::Value << message.To;
+    out << YAML::Key << MESSAGE_FROM;
+    out << YAML::Value << message.From;
+    out << YAML::Key << MESSAGE_BODY;
+    out << YAML::Value << message.Message;
+    out << YAML::EndMap;
+
+    return out.c_str();
+}
+
+MessageModel parser::messageDeserialize(const std::string &body) {
+    YAML::Node node = YAML::Load(body);
+
+    MessageModel message;
+    message.To = node[MESSAGE_TO].as<string>();
+    message.From = node[MESSAGE_FROM].as<string>();
+    message.Message = node[MESSAGE_BODY].as<string>();
+
+    return message;
+}
+
+YAML::Emitter& operator << (YAML::Emitter& out, const MessageModel &message) {
+    out << YAML::BeginMap;
+    out << YAML::Key << parser::MESSAGE_TO;
+    out << YAML::Value << message.To;
+    out << YAML::Key << parser::MESSAGE_FROM;
+    out << YAML::Value << message.From;
+    out << YAML::Key << parser::MESSAGE_BODY;
+    out << YAML::Value << message.Message;
+    out << YAML::EndMap;
+    return out;
+}
+
+std::string parser::messageVectorSerialize(std::vector<MessageModel> const &messages){
+
+    YAML::Emitter out;
+
+    out << YAML::BeginSeq;
+    for (auto message : messages) {
+        out << message;
+    }
+    out << YAML::EndSeq;
+
+    return out.c_str();
+}
+
+std::vector<MessageModel> parser::messageVectorDeserialize(std::string const &body) {
+
+    std::vector<MessageModel> messageModels;
+
+    // TODO: [mn]: Best way to do this is to set-up YAML::convert<> template.
+    YAML::Node messages = YAML::Load(body);
+    for (auto message : messages) {
+        MessageModel temp;
+        temp.To = message[MESSAGE_TO].as<string>();
+        temp.From = message[MESSAGE_FROM].as<string>();
+        temp.Message = message[MESSAGE_BODY].as<string>();
+        messageModels.push_back(temp);
+    }
+
+    return messageModels;
+}
