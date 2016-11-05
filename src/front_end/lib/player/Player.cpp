@@ -16,23 +16,23 @@ const int DEFAULT_SPAWN = 0;
 const int START_HEALTH = 100;
 
 Player::Player(playerId idIn)
-    : id(std::move(idIn)),
-    username(""),
-    location(DEFAULT_SPAWN),
-    health(START_HEALTH){}
+		: id(std::move(idIn)),
+		  username(""),
+		  location(DEFAULT_SPAWN),
+		  health(START_HEALTH) {}
 
 Player::Player(playerId idIn,
-		 string usernameIn,
-		 roomId locationIn,
-		 string damageIn,
-	     int healthIn,
-	     int armorIn,
-		 string hitIn,
-		 int expIn,
-		 int goldIn,
-		 int levelIn,
-		 int thac0In,
-		 std::vector<itemId> inventoryIn)
+			   string usernameIn,
+			   roomId locationIn,
+			   string damageIn,
+			   int healthIn,
+			   int armorIn,
+			   string hitIn,
+			   int expIn,
+			   int goldIn,
+			   int levelIn,
+			   int thac0In,
+			   std::vector<itemId> inventoryIn)
 		: id(std::move(idIn)),
 		  username(std::move(usernameIn)),
 		  location(std::move(locationIn)),
@@ -44,7 +44,7 @@ Player::Player(playerId idIn,
 		  level(levelIn),
 		  thac0(thac0In),
 		  health(healthIn),
-		  inventory(std::move(inventoryIn)){}
+		  inventory(std::move(inventoryIn)) {}
 
 PlayerModel Player::getModel() {
 	PlayerModel model;
@@ -59,7 +59,7 @@ PlayerModel Player::getModel() {
 	model.level = level;
 	model.thac0 = thac0;
 	model.health = health;
-	for (const itemId& item: inventory) {
+	for (const itemId &item: inventory) {
 		model.inventory.push_back(item.value);
 	}
 	return model;
@@ -79,7 +79,7 @@ void Player::setModel(PlayerModel model) {
 	health = model.health;
 
 	inventory.clear();
-	for(int item : model.inventory){
+	for (int item : model.inventory) {
 		inventory.push_back(itemId(item));
 	}
 }
@@ -96,7 +96,7 @@ roomId Player::getLocation() const {
 	return location;
 }
 
-string Player::getDamage() const{
+string Player::getDamage() const {
 	return damage;
 }
 
@@ -136,31 +136,31 @@ void Player::addToInventory(itemId item) {
 	inventory.push_back(std::move(item));
 }
 
-void Player::removeFromInventory(const itemId& item) {
+void Player::removeFromInventory(const itemId &item) {
 	auto element = std::find(inventory.begin(), inventory.end(), item);
-	if(element == inventory.end()){
+	if (element == inventory.end()) {
 		throw std::domain_error("item not in inventory");
 	}
 	inventory.erase(element);
 }
 
-void Player::incrementLevel(){
+void Player::incrementLevel() {
 	level++;
 }
 
-void Player::addExp(int expAdded){
+void Player::addExp(int expAdded) {
 	exp = exp + expAdded;
-	if(exp > 100){
+	if (exp > 100) {
 		exp = exp - 100;
 		incrementLevel();
 	}
 }
 
-void Player::deceaseHealth(int change){
+void Player::deceaseHealth(int change) {
 	health = health - change;
 }
 
-void Player::increaseHealth(int change){
+void Player::increaseHealth(int change) {
 	health = health + change;
 }
 
