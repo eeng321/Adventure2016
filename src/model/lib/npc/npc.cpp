@@ -28,5 +28,3 @@ std::string Npc::getLongDesc() {
 std::string Npc::getShortDesc() {
     return shortDesc;
 }
-
-HIBERLITE_EXPORT_CLASS(Npc)
