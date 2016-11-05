@@ -81,10 +81,10 @@ void UserInput::createNewPlayerCredentials() {
 }
 
 StatusCode UserInput::readBasicInput(Dictionary *dictionary) {
-    char command[MAX_CHAR_LIMIT];
+    char commandString[MAX_CHAR_LIMIT];
     std::string queryStringResult;
-    Display::readUserInput(command);
-    std::string commandConverted(command);
+    Display::readUserInput(commandString);
+    std::string commandConverted(commandString);
 
     StatusCode queryReturnCode;
     Command* con = dictionary->lookup(commandConverted);
@@ -95,7 +95,7 @@ StatusCode UserInput::readBasicInput(Dictionary *dictionary) {
         queryReturnCode = STATUS_COMMAND_NOT_FOUND;
     }
 
-    strcpy(command, queryStringResult.c_str());
-    Display::addStringToMainWindow(command);
+    strcpy(commandString, queryStringResult.c_str());
+    Display::addStringToMainWindow(commandString);
     return queryReturnCode;
 }

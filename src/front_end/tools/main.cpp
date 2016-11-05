@@ -27,7 +27,7 @@ int main() {
     dictionary.insertIntoLanguageMap("who", "who");
     dictionary.insertIntoLanguageMap("where", "where");
     dictionary.insertIntoLanguageMap("take", "take");
-    dictionary.insertIntoLanguageMap("look", "regarde"); //This is french for Look. Will be the test for now
+    dictionary.insertIntoLanguageMap("regarde", "look"); //This is french for Look. Will be the test for now
 
     while(keepPlaying) {
        if(UserInput::readBasicInput(&dictionary) == STATUS_QUIT){

@@ -21,10 +21,10 @@ Dictionary::Dictionary() {
 }
 
 Dictionary::~Dictionary() {
-    while(dictionaryCmdMap.begin() != dictionaryCmdMap.end()) {
-        delete dictionaryCmdMap.begin()->second;
-        dictionaryCmdMap.erase(dictionaryCmdMap.begin());
+    for (auto& pair : dictionaryCmdMap) {
+        delete pair.second;
     }
+    dictionaryCmdMap.clear();
 }
 
 void Dictionary::insertIntoLanguageMap(std::string key, std::string value) {
@@ -33,13 +33,7 @@ void Dictionary::insertIntoLanguageMap(std::string key, std::string value) {
 
 Command* Dictionary::lookup(std::string command) {
     std::transform(command.begin(), command.end(), command.begin(), ::tolower);
-    std::map<std::string, std::string>::const_iterator iterLanguage;
-    std::string userIntendedCmd = "";
-    for(iterLanguage = providedLanguageMap.begin(); iterLanguage != providedLanguageMap.end(); ++iterLanguage){
-        if(iterLanguage->second == command) {
-            userIntendedCmd = iterLanguage->first;
-        }
-    }
+    std::string userIntendedCmd = providedLanguageMap[command];
 
     std::transform(userIntendedCmd.begin(), userIntendedCmd.end(), userIntendedCmd.begin(), ::tolower);
     std::map<std::string, Command*>::const_iterator iterDictionary;
