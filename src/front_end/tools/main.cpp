@@ -31,7 +31,7 @@ int main() {
     dictionary.insertIntoLanguageMap("regarde", "look"); //This is french for Look. Will be the test for now
 
     Display::createChatWindow();
-    std::thread chat(Display::updateChatWindow());
+    std::thread chat(&Display::updateChatWindow, Display());
 
     while(keepPlaying) {
        if(UserInput::readBasicInput(&dictionary) == STATUS_QUIT){
