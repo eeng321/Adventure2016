@@ -11,20 +11,18 @@
 #include "../../model/include/playerModel.h"
 #include "../../model/include/roomModel.h"
 #include "../../model/include/door.h"
+#include "../../model/include/messageModel.h"
 
 #include "../../model/include/npcModel.h"
-
 #include "../../model/include/door.h"
 
 namespace parser{
+
     //Do not change any of these unless required. Must match the yaml files given, NOT CLASS FIELD NAMES
     char constexpr PLAYER_NAME_KEY[] = "loginName";
     char constexpr PLAYER_ID_KEY[] = "playerId";
     char constexpr PLAYER_COORDINATE_KEY[] = "roomId";
     char constexpr PLAYER_HEALTH_KEY[] = "health";
-    std::string playerSerialize(PlayerModel const player);
-    PlayerModel playerDeserialize(std::string const body);
-
 
     char constexpr ROOM_AREA_KEY[] = "area";
     char constexpr ROOM_ID_KEY[] = "id";
@@ -57,6 +55,13 @@ namespace parser{
     char constexpr NPC_LEVEL_KEY[] = "level";
     char constexpr NPC_THAC0_KEY[] = "thac0";
 
+    char constexpr MESSAGE_TO[] = "to";
+    char constexpr MESSAGE_FROM[] = "from";
+    char constexpr MESSAGE_BODY[] = "message";
+
+    std::string playerSerialize(PlayerModel const player);
+    PlayerModel playerDeserialize(std::string const body);
+
     std::string roomSerialize(RoomModel const room);
     RoomModel roomDeserialize(std::string const body);
     RoomModel roomDeserializeFromNode(YAML::Node roomNode);
@@ -73,6 +78,11 @@ namespace parser{
     NpcModel npcDeserialize(std::string const body);
     std::string npcSerialize(NpcModel const npc);
 
+    std::string messageSerialize(MessageModel const &message);
+    MessageModel messageDeserialize(std::string const &body);
+
+    std::string messageVectorSerialize(std::vector<MessageModel> const &message);
+    std::vector<MessageModel> messageVectorDeserialize(std::string const &body);
 
 };
 

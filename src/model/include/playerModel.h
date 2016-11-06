@@ -32,6 +32,14 @@ public:
 
     // Player stats
     int health;
+    std::string damage;
+    int armor;
+    std::string hit;
+    int exp;
+    int gold;
+    int level;
+    int thac0;
+    std::vector<int> inventory;
 };
 
 

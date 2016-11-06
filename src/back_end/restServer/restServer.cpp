@@ -17,15 +17,11 @@
 #include "npcDriver.h"
 #include "npcEndpoint.h"
 
-#include "roomDriver.h"
-#include "roomEndpoint.h"
-
+#include "chatEndpoint.h"
 
 
 using namespace std;
 using namespace Net;
-
-
 
 class Endpoints {
 public:
@@ -36,6 +32,8 @@ public:
                 .threads(thr)
                 .flags(Net::Tcp::Options::InstallSignalHandler);
         httpEndpoint->init(opts);
+        //todo: [mn]: Pistache is having trouble using smart pointers. Using crappy pointers in the mean time.
+        chatEndpoint = new ChatEndpoint();
         setupRoutes();
     }
 
@@ -45,12 +43,14 @@ public:
     }
 
     void shutdown() {
+        delete chatEndpoint;
         httpEndpoint->shutdown();
     }
 
 private:
     std::shared_ptr<Net::Http::Endpoint> httpEndpoint;
     Rest::Router router;
+    ChatEndpoint *chatEndpoint;
 
     void setupRoutes() {
         using namespace Net::Rest;
@@ -76,6 +76,9 @@ private:
         Routes::Post(router, "/room", Routes::bind(&RoomEndpoint::createRoom));
         Routes::Delete(router, "/room/:id", Routes::bind(&RoomEndpoint::deleteRoom));
 
+        // Chat Routes
+        Routes::Get(router, "/chat", Routes::bind(&ChatEndpoint::getMessage, chatEndpoint));
+        Routes::Post(router, "/chat", Routes::bind(&ChatEndpoint::sendMessage, chatEndpoint));
     }
 };
 
@@ -105,4 +108,5 @@ int main(int argc, char *argv[]) {
     endpoints.start();
 
     endpoints.shutdown();
+
 }

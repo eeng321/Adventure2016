@@ -3,6 +3,8 @@
 #include "../../include/Controller.h"
 #include <display.h>
 #include "userInput.h"
+#include "Dictionary.h"
+#include "Command.h"
 #include <iostream>
 
 void UserInput::checkExistingPlayerCredentials() {
@@ -78,13 +80,22 @@ void UserInput::createNewPlayerCredentials() {
     }
 }
 
-StatusCode UserInput::readBasicInput() {
-    char command[MAX_CHAR_LIMIT];
+StatusCode UserInput::readBasicInput(Dictionary *dictionary) {
+    char commandString[MAX_CHAR_LIMIT];
     std::string queryStringResult;
-    Display::readUserInput(command);
-    std::string commandConverted(command);
-    StatusCode queryReturnCode = Controller::parseCommand(commandConverted, queryStringResult);
-    strcpy(command, queryStringResult.c_str());
-    Display::addStringToMainWindow(command);
+    Display::readUserInput(commandString);
+    std::string commandConverted(commandString);
+
+    StatusCode queryReturnCode;
+    Command* con = dictionary->lookup(commandConverted);
+    if(con != NULL) {
+        queryReturnCode = con->execute(queryStringResult);
+    } else {
+        queryStringResult = "We do not recognize that input, please try again!";
+        queryReturnCode = STATUS_COMMAND_NOT_FOUND;
+    }
+
+    strcpy(commandString, queryStringResult.c_str());
+    Display::addStringToMainWindow(commandString);
     return queryReturnCode;
 }
