@@ -90,9 +90,9 @@ int main(int argc, char *argv[]) {
     cout << "CPU Cores = " << hardware_concurrency() << endl;
     cout << "Using " << numThreads << " threads" << endl;
 
-    createDB();
-    //createRoomDB();
-    //printRoomDB();
+    //createDB();
+    createRoomDB();
+    printRoomDB();
 
     Endpoints endpoints(addr);
 

@@ -20,7 +20,6 @@ void createDB(){
     db.registerBeanClass<PlayerModel>();
     db.registerBeanClass<Credential>();
     db.registerBeanClass<NpcModel>();
-    db.registerBeanClass<RoomModel>();
     //drop all tables beans will use
     db.dropModel();
     //create those tables again with proper schema
