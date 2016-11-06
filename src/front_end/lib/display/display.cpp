@@ -1,11 +1,10 @@
 //Menu logic is based off of this website: http://techlister.com/linux/creating-menu-with-ncurses-in-c/1293/
 #include "../../../back_end/includes/parser.h"
 #include "../../../model/include/messageModel.h"
-#include "display.h"
 #include "Controller.h"
 #include <iostream>
 #include <unistd.h>
-
+#include "display.h"
 
 int max_x = 0;
 int max_y = 0;

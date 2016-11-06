@@ -1,9 +1,9 @@
-#include <iostream>
-#include <algorithm>
-#include <map>
 #include "Controller.h"
 #include "Dictionary.h"
 #include "Command.h"
+#include <iostream>
+#include <algorithm>
+#include <map>
 
 //TODO: Actually have movement and connect with the player class properly
 //TODO: Hook this up with UserInput and test
