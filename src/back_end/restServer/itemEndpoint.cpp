@@ -41,10 +41,9 @@ void ItemEndpoint::retrieveItem(const Rest::Request& request, Net::Http::Respons
         auto itemId = request.param(":id").as<int>();
 
         ItemModel item;
-        item.loginName = "";
         item = loadItem(itemId);
 
-        if (item.loginName != "") {
+        if (item.id != nullptr) {
             response.send(Http::Code::Ok, parser::itemSerialize(item));
         }
         else {
