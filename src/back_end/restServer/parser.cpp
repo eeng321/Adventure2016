@@ -308,7 +308,6 @@ std::vector<MessageModel> parser::messageVectorDeserialize(std::string const &bo
     }
 
     return messageModels;
-<<<<<<< HEAD
 }
 
 NpcModel parser::npcDeserialize(std::string const body) {
@@ -355,6 +354,4 @@ std::string parser::npcSerialize(NpcModel const npc) {
     std::cout << "YAML representation of npc:\n " << out.c_str() << endl;
 
     return out.c_str();
-=======
->>>>>>> master
 }
