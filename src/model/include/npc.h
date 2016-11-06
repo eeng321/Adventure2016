@@ -7,8 +7,6 @@
 #include <string>
 #include <vector>
 
-#include "npcModel.h"
-
 typedef int id;
 typedef std::string description;
 

@@ -13,6 +13,76 @@
 using std::string;
 using std::vector;
 using std::find;
+<<<<<<< HEAD
+=======
+using std::unordered_map;
+
+Room::~Room() {
+
+}
+
+Room::Room() {}
+
+Room::Room(const string &areaIn,
+		   id roomIdIn,
+		   const string &nameIn,
+		   const description &descriptionIn,
+		   const vector<description> &extendedDescriptionIn,
+		   const vector<Door> &doorsIn,
+		   const vector<id> &npcListIn,
+		   const vector<string> playerListIn,
+		   const vector<id> &itemListIn,
+		   bool navigabilityIn) {
+
+	model->area = areaIn;
+	model->roomId = roomIdIn;
+	model->name = nameIn;
+	model->mainDescription = descriptionIn;
+	model->extendedDescriptions = extendedDescriptionIn;
+	model->doors = doorsIn;
+	model->npcList = npcListIn;
+	model->playerList = playerListIn;
+	model->itemList = itemListIn;
+	model->navigable = navigabilityIn;
+}
+
+Room::Room(const string &areaIn,
+		   const description &descriptionIn,
+		   const vector<description> &extendedDescriptionIn,
+		   id roomIdIn,
+		   const string &nameIn,
+		   const vector<Door> &doorsIn) {
+	model->area = areaIn;
+	model->roomId = roomIdIn;
+	model->name = nameIn;
+	model->mainDescription = descriptionIn;
+	model->extendedDescriptions = extendedDescriptionIn;
+	model->doors = doorsIn;
+}
+
+//void Room::build(const string &areaIn,
+//	id idIn,
+//	const string &nameIn,
+//	const description &descriptionIn,
+//	const vector<description> &extendedDescriptionIn,
+//	const vector<Door> &doorsIn,
+//	const vector<id> &npcListIn,
+//	const vector<string> playerListIn,
+//	const vector<id> &objectListIn,
+//	bool navigabilityIn) {
+//
+//	area = areaIn;
+//	mainDescription = descriptionIn;
+//	extendedDescriptions = extendedDescriptionIn;
+//	roomId = idIn;
+//	name = nameIn;
+//	doors = doorsIn;
+//	npcList = npcListIn;
+//	playerList = playerListIn;
+//	objectList = objectListIn;
+//	navigable = navigabilityIn;
+//}
+>>>>>>> parent of 58fff20... npc-controller finished
 
 using description = std::vector<std::string>;
 using keyword = std::string;
@@ -123,7 +193,11 @@ string Room::getArea() const {
 /* a function for returning the raw description string, not the function
    for returning the string that will be seen by the user */
 description Room::getDescription() const {
+<<<<<<< HEAD
 	return  mainDescription;
+=======
+	return  model->mainDescription;
+>>>>>>> parent of 58fff20... npc-controller finished
 }
 
 roomId Room::getId() const {

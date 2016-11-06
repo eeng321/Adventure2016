@@ -4,7 +4,7 @@
 #include <fstream>
 using namespace std;
 
-std::string parser::playerSerialize(PlayerModel const player) {
+std::string parser::playerSerialize(PlayerModel player) {
 
     YAML::Emitter out;
     out << YAML::BeginMap;
@@ -23,20 +23,25 @@ std::string parser::playerSerialize(PlayerModel const player) {
     return out.c_str();
 }
 
-PlayerModel parser::playerDeserialize(std::string const body) {
+PlayerModel parser::playerDeserialize(const std::string body) {
 
-    YAML::Node playerNode = YAML::Load(body);
+    if(body.empty()) {
+        std::cout << "Request is empty. Error." << endl;
+        exit(1);
+    }
+    std::cout << body << std::endl;
+    YAML::Node node = YAML::Load(body);
 
-    //TODO if playerNode[""].isDefined() ERROR CHECKING
     PlayerModel player;
-    player.loginName = playerNode[PLAYER_NAME_KEY].as<string>();
-    player.playerId = playerNode[PLAYER_ID_KEY].as<int>();
-    player.roomId = playerNode[PLAYER_COORDINATE_KEY].as<int>();
-    player.health = playerNode[PLAYER_HEALTH_KEY].as<int>();
+    player.loginName = node[PLAYER_NAME_KEY].as<string>();
+    player.playerId = node[PLAYER_ID_KEY].as<int>();
+    player.roomId = node[PLAYER_COORDINATE_KEY].as<int>();
+    player.health = node[PLAYER_HEALTH_KEY].as<int>();
     return player;
 
 }
 
+<<<<<<< HEAD
 std::string parser::roomSerialize(RoomModel const room) {
 
     //TODO Error Checking
@@ -298,3 +303,5 @@ std::string parser::npcSerialize(NpcModel const npc) {
 
     return out.c_str();
 }
+=======
+>>>>>>> parent of 58fff20... npc-controller finished

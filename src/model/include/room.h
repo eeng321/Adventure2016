@@ -29,6 +29,7 @@ public:
 
 	Room();
 
+<<<<<<< HEAD
 	Room(const std::string& areaIn,
 		 const roomId& idIn,
 		 const std::string& nameIn,
@@ -68,6 +69,50 @@ public:
 
 	void setModel(const Room& model);
 	Room getModel() const;
+=======
+	Room(const std::string &areaIn,
+		 id roomIdIn,
+		 const std::string &nameIn,
+		 const description &descriptionIn,
+		 const std::vector<description> &extendedDescriptionIn,
+		 const std::vector<Door> &doorsIn,
+		 const std::vector<id> &npcListIn,
+		 const std::vector<std::string> playerListIn,
+		 const std::vector<id> &itemListIn,
+		 bool navigabilityIn);
+
+	Room(const std::string &areaIn,
+		 const description &descriptionIn,
+		 const std::vector<description> &extendedDescriptionIn,
+		 id roomIdIn,
+		 const std::string &nameIn,
+		 const std::vector<Door> &doorsIn);
+
+//	void build(const std::string &a,
+//		 id rid,
+//		 const std::string &n,
+//		 const description &des,
+//		 const std::vector<description> &ed,
+//		 const std::vector<Door> &d,
+//		 const std::vector<id> &nl,
+//		 const std::vector<std::string> pl,
+//		 const std::vector<id> &ol,
+//		 bool nav);
+//
+//	void build(const std::string &a,
+//		 const description &d,
+//		 const std::vector<description> &ed,
+//		 id idIn,
+//		 const std::string &nameIn,
+//		 const std::vector<Door> &doorsIn);
+
+	/* Getters */
+	std::string getArea() const;
+
+	description getDescription() const;
+
+	id getId() const;
+>>>>>>> parent of 58fff20... npc-controller finished
 
 	std::string getArea() const;
 	std::vector<std::string> getDescription() const;

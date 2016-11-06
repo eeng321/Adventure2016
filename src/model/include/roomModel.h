@@ -13,6 +13,7 @@ using id = int;
 
 class RoomModel {//Tile interface
 public:
+<<<<<<< HEAD
 
     friend class hiberlite::access;
     template<class Archive>
@@ -40,6 +41,18 @@ public:
     std::vector<std::string> playerList;
     std::vector<int> itemList;
     bool navigable;
+=======
+	std::string area;
+	id roomId;
+	std::string name;
+	description mainDescription;
+	std::vector<description> extendedDescriptions;
+	std::vector<Door> doors;
+	std::vector<id> npcList;
+	std::vector<std::string> playerList;
+	std::vector<id> itemList;
+	bool navigable;
+>>>>>>> parent of 58fff20... npc-controller finished
 
 };
 
