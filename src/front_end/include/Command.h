@@ -53,4 +53,9 @@ public:
     StatusCode execute(std::string& result);
 };
 
+class GlobalChatCommand : public Command {
+public:
+    StatusCode execute(std::string& result);
+};
+
 #endif //ADVENTURE2016_COMMAND_H

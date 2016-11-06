@@ -46,6 +46,8 @@ public:
      * @return              A status code that reflects whether the operation was successful.
      */
     static StatusCode parseCommand(std::string& command, std::string& result);
+    static StatusCode sendGlobalMessage(const std::string& payload, std::string& result);
+    static std::string getLatestGlobalMessages();
 
 private:
     static std::string makeGetRequest(const std::string& url);

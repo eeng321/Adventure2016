@@ -1,9 +1,10 @@
-#include "userInput.h"
 #include "RestClient.h"
 #include <iostream>
 #include <ncurses.h>
+#include <thread>
 #include "display.h"
 #include "Controller.h"
+#include "userInput.h"
 #include "Dictionary.h"
 
 int main() {
@@ -29,12 +30,16 @@ int main() {
     dictionary.insertIntoLanguageMap("take", "take");
     dictionary.insertIntoLanguageMap("regarde", "look"); //This is french for Look. Will be the test for now
 
+    Display::createChatWindow();
+    std::thread chat(Display::updateChatWindow());
+
     while(keepPlaying) {
        if(UserInput::readBasicInput(&dictionary) == STATUS_QUIT){
            keepPlaying = false;
        }
     }
-
+    Display::setGameFinished();
+    chat.join();
     Display::destroyMainWindow();
     endwin();
     return 0;

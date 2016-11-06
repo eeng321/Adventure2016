@@ -1,9 +1,12 @@
 //
 // Created by jmedwid on 11/4/16.
 //
-
+#include "../../../back_end/includes/parser.h"
+#include "../../../model/include/messageModel.h"
 #include "Command.h"
 #include "Controller.h"
+#include "display.h"
+
 
 StatusCode NorthCommand::execute(std::string &result) {
     // TODO: make put request with player ID, and room ID north of current room
@@ -47,4 +50,18 @@ StatusCode LookCommand::execute(std::string &result) {
 StatusCode TakeCommand::execute(std::string &result) {
     result = "There is nothing to take.";
     return STATUS_OK;
+}
+
+StatusCode GlobalChatCommand::execute(std::string &result) {
+    Display::addStringToMainWindow("Please type what you want to say:");
+    char commandString[MAX_CHAR_LIMIT];
+    Display::readUserInput(commandString);
+    std::string commandStringConverted(commandString);
+    MessageModel playerMessage;
+    playerMessage.To = "global";
+    playerMessage.From = "Justin"; //TODO: Faking until can grab username
+    playerMessage.Message = commandStringConverted;
+    std::string postPayload = parser::messageSerialize(playerMessage);
+
+    return Controller::sendGlobalMessage(postPayload, result);
 }

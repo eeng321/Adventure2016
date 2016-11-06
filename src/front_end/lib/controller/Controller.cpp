@@ -1,12 +1,12 @@
 //
 // Created by josh on 29/09/16.
 //
-
+#include "../../../back_end/includes/parser.h"
+#include "../../include/utility.h"
 #include "Controller.h"
 #include <algorithm>
 #include <iostream>
-#include "../../include/utility.h"
-#include "../../../back_end/includes/parser.h"
+
 
 using namespace utility;
 
@@ -59,6 +59,26 @@ StatusCode Controller::registerAccount(const std::string& username, const std::s
     //result = (int) player.getPlayerId();
     result = response.body();
     return STATUS_OK;
+}
+
+StatusCode Controller::sendGlobalMessage(const std::string &payload, std::string &result) {
+    result = "";
+    Net::Http::Response response = client.Post(SERVER + "chat/", payload);
+    if (response.code() == Net::Http::Code::Internal_Server_Error) {
+        // TODO: handle
+        return STATUS_SERVER_ERROR;
+    }
+    result = response.body();
+    return STATUS_OK;
+}
+
+std::string Controller::getLatestGlobalMessages() {
+    Net::Http::Response response = client.Get(SERVER + "chat/");
+    if (response.code() != Net::Http::Code::Ok) {
+        // TODO: handle
+        return "ERROR: HTTP error.";
+    }
+    return response.body();
 }
 
 std::string Controller::makeGetRequest(const std::string& url) {

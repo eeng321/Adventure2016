@@ -26,6 +26,10 @@ public:
     static int createLoginMenu();
     static void clearMainWinDisplay();
     static void destroyMainWindow();
+    static void createChatWindow();
+    static void addStringToChatWindow(const char* sentence);
+    static void updateChatWindow();
+    static void setGameFinished();
 
 
 private:

@@ -1,14 +1,24 @@
 //Menu logic is based off of this website: http://techlister.com/linux/creating-menu-with-ncurses-in-c/1293/
+#include "../../../back_end/includes/parser.h"
+#include "../../../model/include/messageModel.h"
 #include "display.h"
+#include "Controller.h"
 #include <iostream>
 #include <unistd.h>
 
+
 int max_x = 0;
 int max_y = 0;
+bool gameFinished = false;
 WINDOW *loginWindow;
 WINDOW *mainWindow;
+WINDOW *chatWindow;
 
 using namespace std;
+
+void setGameFinished() {
+    gameFinished = true;
+}
 
 void Display::readUserInput(char *command) {
     echo();
@@ -40,7 +50,7 @@ void Display::initDisplay() {
     wclear(mainWindow);
     curs_set(TRUE);
     getmaxyx(stdscr, max_y, max_x);
-    mainWindow = createNewWindow(Display::getScreenHeight()-1, Display::getScreenWidth()-1, WINDOW_START_Y, WINDOW_START_X);
+    mainWindow = createNewWindow(Display::getScreenHeight()/2, Display::getScreenWidth()/2, WINDOW_START_Y, WINDOW_START_X);
     scrollok(mainWindow, TRUE);
     wrefresh(mainWindow);
 }
@@ -63,6 +73,36 @@ void Display::clearMainWinDisplay() {
 void Display::destroyMainWindow() {
     Display::destroyWindow(mainWindow);
     Display::destroyWindow(stdscr);
+}
+
+void Display::createChatWindow() {
+    chatWindow = createNewWindow((Display::getScreenHeight()/2)+2, (Display::getScreenWidth()/2)-2, WINDOW_START_Y, (Display::getScreenWidth()/2)+2);
+    scrollok(chatWindow, TRUE);
+    wrefresh(chatWindow);
+}
+
+void Display::addStringToChatWindow(const char* sentence) {
+    wprintw(chatWindow, sentence);
+    wprintw(chatWindow, "\n");
+    box(chatWindow, 0, 0);
+    wrefresh(chatWindow);
+}
+
+void Display::updateChatWindow() {
+    while(!gameFinished) {
+        sleep(1);
+        wclear(chatWindow);
+        box(chatWindow, 0, 0);
+        wrefresh(chatWindow);
+        std::string payload = Controller::getLatestGlobalMessages();
+        std::vector<MessageModel> latestChatMessages = parser::messageVectorDeserialize(payload);
+        for(auto&msg : latestChatMessages) {
+            std::string chatMsg = msg.From+": "+msg.Message;
+            const char* chatMsgConverted = chatMsg.c_str();
+            addStringToChatWindow(chatMsgConverted);
+
+        }
+    }
 }
 
 int Display::createLoginMenu() {
