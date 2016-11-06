@@ -49,7 +49,7 @@ namespace parser{
     char constexpr ITEM_KEYWORDS_KEY[] = "keywords";
     char constexpr ITEM_LONGDESC_KEY[] = "longdesc";
     char constexpr ITEM_SHORTDESC_KEY[] = "shortdesc";
-    
+
     char constexpr PLAYER_NAME_KEY[] = "loginName";
     char constexpr PLAYER_ID_KEY[] = "playerId";
     char constexpr PLAYER_COORDINATE_KEY[] = "roomId";
@@ -89,7 +89,6 @@ namespace parser{
     char constexpr MESSAGE_TO[] = "to";
     char constexpr MESSAGE_FROM[] = "from";
     char constexpr MESSAGE_BODY[] = "message";
-
 };
 
 #endif //ADVENTURE2016_PARSER_H

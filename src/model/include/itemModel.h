@@ -6,7 +6,7 @@
 #define ITEM_MODEL_H
 
 #pragma once
-#include "../../back_end/lib/hiberlite/include/hiberlite.h
+#include "../../back_end/lib/hiberlite/include/hiberlite.h"
 #include <string>
 #include <vector>
 

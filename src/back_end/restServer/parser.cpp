@@ -5,19 +5,18 @@
 
 
 std::string parser::itemSerialize(ItemModel const &item) {
-
     YAML::Emitter out;
     out << YAML::BeginMap;
     out << YAML::Key << ITEM_EXTRA_KEY;
     out << YAML::BeginSeq;
-    for(auto e : item.extra{
+    for(auto e : item.extra) {
         out << e;
     }
     out << YAML::Key << ITEM_ID_KEY;
     out << YAML::Value << item.id;
     out << YAML::Key << ITEM_KEYWORDS_KEY;
     out << YAML::BeginSeq;
-    for(auto keyword : item.keywords){
+    for(auto keyword : item.keywords) {
         out << keyword;
     }
     out << YAML::EndSeq;
@@ -31,7 +30,6 @@ std::string parser::itemSerialize(ItemModel const &item) {
 }
 
 ItemModel parser::itemDeserialize(std::string const &body) {
-
     YAML::Node itemNode = YAML::Load(body);
 
     //TODO if itemNode[""].isDefined() ERROR CHECKING
