@@ -47,6 +47,9 @@ void PlayerEndpoint::registerPlayer(const Rest::Request& request, Net::Http::Res
         if (player.loginName == inputs[2]) {
             response.send(Http::Code::Ok, parser::playerSerialize(player));
         }
+        // else if (player.loginName == ""){
+        //     response.send(Http::Code::Forbidden, "Username already exists.\n");
+        // }
         else {
             response.send(Http::Code::Forbidden);
         }

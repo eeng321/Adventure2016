@@ -7,13 +7,12 @@
 #include <string>
 #include <vector>
 
-#include "npcModel.h"
-
 typedef int id;
 typedef std::string description;
 
 class Npc {
 public:
+
     Npc(description desc,
         id nid,
         std::vector<std::string> key,

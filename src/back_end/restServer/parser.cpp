@@ -4,7 +4,7 @@
 #include <fstream>
 using namespace std;
 
-std::string parser::playerSerialize(PlayerModel const player) {
+std::string parser::playerSerialize(PlayerModel player) {
 
     YAML::Emitter out;
     out << YAML::BeginMap;
@@ -23,16 +23,20 @@ std::string parser::playerSerialize(PlayerModel const player) {
     return out.c_str();
 }
 
-PlayerModel parser::playerDeserialize(std::string const body) {
+PlayerModel parser::playerDeserialize(const std::string body) {
 
-    YAML::Node playerNode = YAML::Load(body);
+    if(body.empty()) {
+        std::cout << "Request is empty. Error." << endl;
+        exit(1);
+    }
+    std::cout << body << std::endl;
+    YAML::Node node = YAML::Load(body);
 
-    //TODO if playerNode[""].isDefined() ERROR CHECKING
     PlayerModel player;
-    player.loginName = playerNode[PLAYER_NAME_KEY].as<string>();
-    player.playerId = playerNode[PLAYER_ID_KEY].as<int>();
-    player.roomId = playerNode[PLAYER_COORDINATE_KEY].as<int>();
-    player.health = playerNode[PLAYER_HEALTH_KEY].as<int>();
+    player.loginName = node[PLAYER_NAME_KEY].as<string>();
+    player.playerId = node[PLAYER_ID_KEY].as<int>();
+    player.roomId = node[PLAYER_COORDINATE_KEY].as<int>();
+    player.health = node[PLAYER_HEALTH_KEY].as<int>();
     return player;
 
 }
@@ -251,4 +255,50 @@ std::vector<RoomModel> parser::extractRoomsFromSequence(YAML::Node const roomNod
     }
     cout << count << " rooms extracted" << endl;
     return rooms;
+}
+
+NpcModel parser::npcDeserialize(std::string const body) {
+
+    YAML::Node npcNode = YAML::Load(body);
+
+    //TODO if npcNode[""].isDefined() ERROR CHECKING
+    NpcModel npc;
+    npc.npcId = npcNode[NPC_ID_KEY].as<int>();
+    npc.mainDesc = npcNode[NPC_MAINDESC_KEY].as<vector<string>>();
+    npc.keywords = npcNode[NPC_KEYWORDS_KEY].as<vector<string>>();
+    npc.longDesc = npcNode[NPC_LONGDESC_KEY].as<vector<string>>();
+    npc.shortDesc = npcNode[NPC_SHORTDESC_KEY].as<vector<string>>();
+    npc.damage = npcNode[NPC_DAMAGE_KEY].as<string>();
+    npc.armor = npcNode[NPC_ARMOR_KEY].as<int>();
+    npc.hit = npcNode[NPC_HIT_KEY].as<string>();
+    npc.exp = npcNode[NPC_EXP_KEY].as<int>();
+    npc.gold = npcNode[NPC_GOLD_KEY].as<int>();
+    npc.level = npcNode[NPC_LEVEL_KEY].as<int>();
+    npc.thac0 = npcNode[NPC_THAC0_KEY].as<int>();
+    return npc;
+}
+
+std::string parser::npcSerialize(NpcModel const npc) {
+
+    YAML::Emitter out;
+    out << YAML::BeginMap;
+    out << YAML::Key << NPC_ID_KEY;
+    out << YAML::Value << npc.npcId;
+    out << YAML::Key << NPC_MAINDESC_KEY;
+    out << YAML::Value << npc.mainDesc;
+    out << YAML::Key << NPC_LONGDESC_KEY;
+    out << YAML::Value << npc.longDesc;
+    out << YAML::Key << NPC_SHORTDESC_KEY;
+    out << YAML::Value << npc.shortDesc;
+    out << YAML::Key << NPC_DAMAGE_KEY;
+    out << YAML::Value << npc.damage;
+    out << YAML::Key << NPC_ARMOR_KEY;
+    out << YAML::Value << npc.armor;
+    out << YAML::Key << NPC_HIT_KEY;
+    out << YAML::Value << npc.hit;
+    out << YAML::EndMap;
+
+    std::cout << "YAML representation of npc:\n " << out.c_str() << endl;
+
+    return out.c_str();
 }

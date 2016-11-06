@@ -1,4 +1,4 @@
-add_library(npc STATIC npc.cpp)
-set_property(TARGET npc PROPERTY CXX_STANDARD 14)
+add_library(npcModel STATIC npc.cpp npcModel.cpp)
+set_property(TARGET npcModel PROPERTY CXX_STANDARD 14)
 
-install(TARGETS npc DESTINATION lib)
+install(TARGETS npcModel DESTINATION bin)

@@ -9,7 +9,6 @@
 #include "roomModel.h"
 #include "room.h"
 
-
 using std::string;
 using std::vector;
 using std::find;
