@@ -13,6 +13,8 @@
 #include "playerEndpoint.h"
 #include "npcDriver.h"
 #include "npcEndpoint.h"
+#include "roomDriver.h"
+#include "roomEndpoint.h"
 
 
 using namespace std;
@@ -64,10 +66,10 @@ private:
         Routes::Post(router, "/npc", Routes::bind(&NpcEndpoint::createNpc));
         Routes::Delete(router, "/npc/:id", Routes::bind(&NpcEndpoint::deleteNpc));
         // Todo: Room Routes
-//        Routes::Get(router, "/room/:id", Routes::bind(&RoomEndpoint::retrieveRoom));
-//        Routes::Put(router, "/room/:id", Routes::bind(&RoomEndpoint::updateRoom));
-//        Routes::Post(router, "/room", Routes::bind(&RoomEndpoint::createRoom));
-//        Routes::Delete(router, "/room/:id", Routes::bind(&RoomEndpoint::deleteRoom));
+        Routes::Get(router, "/room/:id", Routes::bind(&RoomEndpoint::retrieveRoom));
+        Routes::Put(router, "/room/:id", Routes::bind(&RoomEndpoint::updateRoom));
+        Routes::Post(router, "/room", Routes::bind(&RoomEndpoint::createRoom));
+        Routes::Delete(router, "/room/:id", Routes::bind(&RoomEndpoint::deleteRoom));
 
     }
 };
@@ -89,6 +91,9 @@ int main(int argc, char *argv[]) {
     cout << "Using " << numThreads << " threads" << endl;
 
     createDB();
+    //createRoomDB();
+    //printRoomDB();
+
     Endpoints endpoints(addr);
 
     endpoints.init(numThreads);
