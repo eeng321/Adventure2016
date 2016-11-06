@@ -90,10 +90,9 @@ ItemModel modifyItem(int itemId, ItemModel updateFields){
 success removeItem(int itemId){
     hiberlite::Database db;
     db.open("AdventureDatabase.db");
-    hiberlite::bean_ptr<ItemModel> item = db.loadBean<ItemModel>(id);
+    hiberlite::bean_ptr<ItemModel> item = db.loadBean<ItemModel>(itemId);
     vector< hiberlite::bean_ptr<ItemModel> > listItems=db.getAllBeans<ItemModel>();
     int numOfItems = listItems.size();
-    item.destroy();
     item.destroy();
     //printDB();
     //return true if number of items in db changes after deleting
