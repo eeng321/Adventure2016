@@ -11,6 +11,7 @@
 #include "../lib/pistache/include/router.h"
 #include "playerDriver.h"
 #include "playerEndpoint.h"
+#include "chatEndpoint.h"
 #include "npcDriver.h"
 #include "npcEndpoint.h"
 
@@ -44,6 +45,7 @@ public:
 private:
     std::shared_ptr<Net::Http::Endpoint> httpEndpoint;
     Rest::Router router;
+    ChatEndpoint *chatEndpoint;
 
     void setupRoutes() {
         using namespace Net::Rest;
