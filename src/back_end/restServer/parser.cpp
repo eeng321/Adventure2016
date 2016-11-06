@@ -41,7 +41,6 @@ PlayerModel parser::playerDeserialize(const std::string body) {
 
 }
 
-<<<<<<< HEAD
 std::string parser::roomSerialize(RoomModel const room) {
 
     //TODO Error Checking
@@ -303,5 +302,3 @@ std::string parser::npcSerialize(NpcModel const npc) {
 
     return out.c_str();
 }
-=======
->>>>>>> parent of 58fff20... npc-controller finished

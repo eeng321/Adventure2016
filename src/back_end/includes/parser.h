@@ -9,21 +9,12 @@
 #include <yaml-cpp/yaml.h>
 #include <string>
 #include "../../model/include/playerModel.h"
-<<<<<<< HEAD
-#include "../../model/include/roomModel.h"
 #include "../../model/include/npcModel.h"
+#include "../../model/include/roomModel.h"
 #include "../../model/include/door.h"
-=======
->>>>>>> parent of 58fff20... npc-controller finished
-
-std::string const PLAYER_NAME_KEY = "LOGIN";
-std::string const PLAYER_ID_KEY = "ID";
-std::string const PLAYER_COORDINATE_KEY = "COORDINATE";
-std::string const PLAYER_HEALTH_KEY = "HEALTH";
-
 
 namespace parser{
-<<<<<<< HEAD
+
     //Do not change any of these unless required. Must match the yaml files given, NOT CLASS FIELD NAMES
     char constexpr PLAYER_NAME_KEY[] = "loginName";
     char constexpr PLAYER_ID_KEY[] = "playerId";
@@ -80,14 +71,6 @@ namespace parser{
 
     NpcModel npcDeserialize(std::string const body);
     std::string npcSerialize(NpcModel const npc);
-
-
-=======
-
-   std::string playerSerialize(PlayerModel player);
-   PlayerModel playerDeserialize(const std::string body);
-   
->>>>>>> parent of 58fff20... npc-controller finished
 };
 
 #endif //ADVENTURE2016_PARSER_H
