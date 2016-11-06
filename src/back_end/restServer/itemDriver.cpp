@@ -13,7 +13,7 @@ void printItem(ItemModel item){
     cout << "Long Description: " << item.longDesc << endl;
     cout << "Short Description: " << item.shortDesc << endl;
     cout << "Keywords: ";
-    for (auto keyword = item.keywords.begin(); i != item.keywords.end(); ++keyword){
+    for (auto keyword = item.keywords.begin(); keyword != item.keywords.end(); ++keyword){
         cout << *keyword << ' ';
     }
     cout << endl;
@@ -76,7 +76,7 @@ ItemModel addItem(ItemModel item){
 ItemModel modifyItem(int itemId, ItemModel updateFields){
     hiberlite::Database db;
     db.open("AdventureDatabase.db");
-    hiberlite::bean_ptr<ItemModel> editItem = db.loadBean<ItemModel>(id);
+    hiberlite::bean_ptr<ItemModel> editItem = db.loadBean<ItemModel>(itemId);
 
     editItem->extra = updateFields.extra;
     editItem->keywords = updateFields.keywords;
@@ -84,7 +84,7 @@ ItemModel modifyItem(int itemId, ItemModel updateFields){
     editItem->shortDesc = updateFields.shortDesc;
     editItem.save();
 
-    return loadItem(id);
+    return loadItem(itemId);
 }
 
 success removeItem(int itemId){
@@ -94,7 +94,7 @@ success removeItem(int itemId){
     vector< hiberlite::bean_ptr<ItemModel> > listItems=db.getAllBeans<ItemModel>();
     int numOfItems = listItems.size();
     item.destroy();
-    account.destroy();
+    item.destroy();
     //printDB();
     //return true if number of items in db changes after deleting
     return (numOfItems != listItems.size());
