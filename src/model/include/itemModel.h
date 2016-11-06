@@ -33,11 +33,11 @@ public:
 	friend class hiberlite::access;
     template<class Archive>
     void hibernate(Archive & ar) {
-        ar & HIbERLITE_NVP(extra);
-        ar & HIbERLITE_NVP(id);
-        ar & HIbERLITE_NVP(keywords);
-        ar & HIbERLITE_NVP(longDesc);
-        ar & HIbERLITE_NVP(shortDesc);
+        ar & HIBERLITE_NVP(extra);
+        ar & HIBERLITE_NVP(id);
+        ar & HIBERLITE_NVP(keywords);
+        ar & HIBERLITE_NVP(longDesc);
+        ar & HIBERLITE_NVP(shortDesc);
     }
 
 	std::vector<std::string> extra;
