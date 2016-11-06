@@ -61,51 +61,6 @@ StatusCode Controller::registerAccount(const std::string& username, const std::s
     return STATUS_OK;
 }
 
-StatusCode Controller::parseCommand(std::string& command, std::string& result) {
-    if (player.getId().value == 0) {
-        result = "Not logged in.";
-        return STATUS_LOGGED_OUT;
-    }
-
-    std::transform(command.begin(), command.end(), command.begin(), ::tolower);
-    if (command == "help" || command == "h") {
-        return help(result);
-    }
-    else if (command == "whoami" || command == "who") {
-        return who(result);
-    }
-    else if (command == "whereami" || command == "where") {
-        return where(result);
-    }
-    else if (command == "n" || command == "north" || command == "up") {
-        return moveNorth(result);
-    }
-    else if (command == "e" || command == "east" || command == "right") {
-        return moveEast(result);
-    }
-    else if (command == "s" || command == "south" || command == "down") {
-        return moveSouth(result);
-    }
-    else if (command == "w" || command == "west" || command == "left") {
-        return moveWest(result);
-    }
-    else if (command == "l" || command == "look") {
-        return look(result);
-    }
-    else if (command == "t" || command == "take") {
-        // TODO: tokenize input command so second word can be passed to take()
-        return take("", result);
-    }
-    else if (command == "exit" || command == "quit" || command == "q") {
-        client.Shutdown();
-        return STATUS_QUIT;
-    }
-    else {
-        result = "Unrecognized command. Say \"help\" to view available commands.";
-        return STATUS_OK;
-    }
-}
-
 std::string Controller::makeGetRequest(const std::string& url) {
     Net::Http::Response response = client.Get(url);
     if (response.code() != Net::Http::Code::Ok) {
@@ -131,51 +86,4 @@ std::string Controller::makePostRequest(const std::string& url, const std::strin
         return "ERROR: HTTP error.";
     }
     return response.body();
-}
-
-StatusCode Controller::help(std::string& result) {
-    result = "You can say:\n";
-    result += "help whoami whereami north east south west look take quit";
-    return STATUS_OK;
-}
-
-StatusCode Controller::who(std::string& result) {
-    result = "You are player ID " + std::to_string(player.getId().value);
-    return STATUS_OK;
-}
-
-StatusCode Controller::where(std::string& result) {
-    result = "You are in room " + std::to_string(player.getLocation().value);
-    return STATUS_OK;
-}
-
-StatusCode Controller::moveNorth(std::string& result) {
-    // TODO: make put request with player ID, and room ID north of current room
-    result = "The Earth itself blocks your way.";
-    return STATUS_OK;
-}
-
-StatusCode Controller::moveEast(std::string& result) {
-    result = "The Earth itself blocks your way.";
-    return STATUS_OK;
-}
-
-StatusCode Controller::moveSouth(std::string& result) {
-    result = "The Earth itself blocks your way.";
-    return STATUS_OK;
-}
-
-StatusCode Controller::moveWest(std::string& result) {
-    result = "The Earth itself blocks your way.";
-    return STATUS_OK;
-}
-
-StatusCode Controller::look(std::string& result) {
-    result = "You see only darkness.";
-    return STATUS_OK;
-}
-
-StatusCode Controller::take(const std::string& arg, std::string& result) {
-    result = "There is nothing to take.";
-    return STATUS_OK;
 }

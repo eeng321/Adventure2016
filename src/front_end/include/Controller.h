@@ -12,7 +12,8 @@ enum StatusCode {
     STATUS_BAD_PASSWORD = 2,
     STATUS_LOGGED_OUT = 3,
     STATUS_QUIT = 4,
-    STATUS_SERVER_ERROR = 5
+    STATUS_SERVER_ERROR = 5,
+    STATUS_COMMAND_NOT_FOUND = 6
 };
 
 class Controller {
@@ -50,16 +51,6 @@ private:
     static std::string makeGetRequest(const std::string& url);
     static std::string makePutRequest(const std::string& url, const std::string& payload);
     static std::string makePostRequest(const std::string& url, const std::string& payload);
-    static StatusCode help(std::string& result);
-    static StatusCode who(std::string& result);
-    static StatusCode where(std::string& result);
-    static StatusCode moveNorth(std::string& result);
-    static StatusCode moveEast(std::string& result);
-    static StatusCode moveSouth(std::string& result);
-    static StatusCode moveWest(std::string& result);
-    static StatusCode look(std::string& result);
-    static StatusCode take(const std::string& arg, std::string& result);
-
     static Player player;
     //static Room room;
     static Rest::RestClient client;
