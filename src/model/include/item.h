@@ -27,6 +27,8 @@ public:
 		const std::string& shortDescIn,
 		const std::vector<std::string>& extra);
 
+	Item();
+
 	void build(itemId idIn,
 		const std::vector<std::string>& keywordsIn,
 		const std::string& longDescIn,
