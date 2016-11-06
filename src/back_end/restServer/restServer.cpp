@@ -20,7 +20,6 @@
 #include "chatEndpoint.h"
 #include "itemEndpoint.h"
 
-
 using namespace std;
 using namespace Net;
 

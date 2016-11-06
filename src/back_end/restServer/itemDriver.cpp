@@ -21,7 +21,7 @@ void printItem(ItemModel item){
     //cout << "Extras: " << item.id << endl;
 }
 
-void createDB(){
+/*void createDB(){
     hiberlite::Database db("AdventureDatabase.db");
     //register bean classes
     db.registerBeanClass<ItemModel>();
@@ -29,7 +29,7 @@ void createDB(){
     db.dropModel();
     //create those tables again with proper schema
     db.createModel();
-}
+}*/
 
 void printDB(){
 

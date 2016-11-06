@@ -44,12 +44,11 @@ namespace parser{
     void npcDeserializeAndAppendOptionals(NpcModel &npc, YAML::Node const &npcNode);
     std::string npcSerialize(NpcModel const &npc);
 
-    char constexpr ITEM_ID_KEY[] = "itemId";
+    char constexpr ITEM_ID_KEY[] = "id";
     char constexpr ITEM_EXTRA_KEY[] = "extra";
-    char constexpr ITEM_KEYWORDS_KEY[] = "keywords"
-    char constexpr ITEM_LONGDESC_KEY[] = "longDesc";
-    char constexpr ITEM_SHORTDESC_KEY[] = "shortDesc";
-
+    char constexpr ITEM_KEYWORDS_KEY[] = "keywords";
+    char constexpr ITEM_LONGDESC_KEY[] = "longdesc";
+    char constexpr ITEM_SHORTDESC_KEY[] = "shortdesc";
     
     char constexpr PLAYER_NAME_KEY[] = "loginName";
     char constexpr PLAYER_ID_KEY[] = "playerId";

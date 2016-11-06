@@ -5,6 +5,8 @@
 #ifndef ITEM_MODEL_H
 #define ITEM_MODEL_H
 
+#pragma once
+#include "../../back_end/lib/hiberlite/include/hiberlite.h
 #include <string>
 #include <vector>
 
@@ -14,6 +16,7 @@
 
 class ItemModel {
 public:
+<<<<<<< d43d422b6489c421974d78511a8c5c2b68c1d44a
     std::vector<std::string> attributes;
     int cost;
     std::vector<std::string> extra;
@@ -26,6 +29,24 @@ public:
     int weight;
 
     ItemModel();
+=======
+	friend class hiberlite::access;
+    template<class Archive>
+    void hibernate(Archive & ar) {
+        ar & HIbERLITE_NVP(extra);
+        ar & HIbERLITE_NVP(id);
+        ar & HIbERLITE_NVP(keywords);
+        ar & HIbERLITE_NVP(longDesc);
+        ar & HIbERLITE_NVP(shortDesc);
+    }
+
+	std::vector<std::string> extra;
+	int id;
+	std::vector<std::string> keywords;
+	std::string longDesc;
+	std::string shortDesc;
+	ItemModel();
+>>>>>>> fixed general typos and bugs. Updated itemModel to contain hiberlite::access friend class.
 };
 
 
