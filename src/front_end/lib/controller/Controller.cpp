@@ -1,6 +1,3 @@
-//
-// Created by josh on 29/09/16.
-//
 #include "../../../back_end/includes/parser.h"
 #include "../../include/utility.h"
 #include "Controller.h"
@@ -12,9 +9,9 @@ using namespace utility;
 
 // TODO
 const std::string SERVER = "http://localhost:8080/";
-Player Controller::player = Player((id) 0);
 //Room Controller::room = Room();
 Rest::RestClient Controller::client;
+GameState state;
 
 Controller::Controller() {
 
@@ -30,12 +27,9 @@ StatusCode Controller::logIn(const std::string& username, const std::string& pas
         return STATUS_SERVER_ERROR;
     }
 
-    PlayerModel playerModel = parser::playerDeserialize(response.body());
-    player = Player((id) playerModel.playerId);
-    player.setModel(playerModel);
+    PlayerModel model = parser::playerDeserialize(response.body());
+    state.setPlayerModel(model);
 
-    // TODO: set up current room
-    //result = (int) player.getPlayerId();
     result = response.body();
     return STATUS_OK;
 }
@@ -51,12 +45,9 @@ StatusCode Controller::registerAccount(const std::string& username, const std::s
         return STATUS_SERVER_ERROR;
     }
 
-    PlayerModel playerModel = parser::playerDeserialize(response.body());
-    player = Player((id) playerModel.playerId);
-    player.setModel(playerModel);
+    PlayerModel model = parser::playerDeserialize(response.body());
+    state.setPlayerModel(model);
 
-    // TODO: set up current room
-    //result = (int) player.getPlayerId();
     result = response.body();
     return STATUS_OK;
 }
@@ -79,6 +70,21 @@ std::string Controller::getLatestGlobalMessages() {
         return "ERROR: HTTP error.";
     }
     return response.body();
+}
+
+StatusCode Controller::getRoom(roomId id, Room& room) {
+    Net::Http::Response response = client.Get(SERVER + "room/" + id.to_string());
+    if (response.code() == Net::Http::Code::Forbidden) {
+        // TODO: correct error code
+        return STATUS_SERVER_ERROR;
+    }
+    else if (response.code() == Net::Http::Code::Internal_Server_Error) {
+        // TODO
+        return STATUS_SERVER_ERROR;
+    }
+
+    //RoomModel model = parser::roomDeserialize(response.body());
+    //room.setModel(model);
 }
 
 std::string Controller::makeGetRequest(const std::string& url) {

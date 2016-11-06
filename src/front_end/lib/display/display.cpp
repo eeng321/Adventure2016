@@ -8,10 +8,10 @@
 
 int max_x = 0;
 int max_y = 0;
-bool gameFinished = false;
 WINDOW *loginWindow;
 WINDOW *mainWindow;
 WINDOW *chatWindow;
+bool gameFinished = false;
 
 using namespace std;
 

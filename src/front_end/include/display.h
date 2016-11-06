@@ -38,10 +38,4 @@ private:
     static void destroyWindow(WINDOW* localWindow);
 };
 
-
-
-
-
-
-
 #endif //ADVENTURE2016_DISPLAY_H

@@ -5,10 +5,13 @@
 #ifndef ID_H
 #define ID_H
 
-class Id{
+#include <string>
+
+class Id {
 public:
 	int value;
 	Id(int id);
+	std::string to_string() const;
 };
 
 class playerId : public Id {

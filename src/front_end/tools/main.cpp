@@ -31,14 +31,14 @@ int main() {
     dictionary.insertIntoLanguageMap("regarde", "look"); //This is french for Look. Will be the test for now
 
     Display::createChatWindow();
-    std::thread chat(&Display::updateChatWindow, Display());
+    std::thread chat(&Display::updateChatWindow);
 
     while(keepPlaying) {
        if(UserInput::readBasicInput(&dictionary) == STATUS_QUIT){
            keepPlaying = false;
        }
     }
-    Display::setGameFinished();
+
     chat.join();
     Display::destroyMainWindow();
     endwin();
