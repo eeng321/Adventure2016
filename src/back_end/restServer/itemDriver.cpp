@@ -31,7 +31,7 @@ void printItem(ItemModel item){
     db.createModel();
 }*/
 
-void printDB(){
+/*void printDB(){
 
     hiberlite::Database db("AdventureDatabase.db");
 
@@ -44,7 +44,7 @@ void printDB(){
         cout << "[id = " << listItems[j]->id << "     ";
         cout << "[shortDesc = " << listItems[j]->shortDesc << "]\n";
     }
-}
+}*/
 
 ItemModel loadItem(int itemId){
 
