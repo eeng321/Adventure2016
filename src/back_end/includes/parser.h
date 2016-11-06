@@ -43,7 +43,6 @@ namespace parser {
     char constexpr MESSAGE_FROM[] = "from";
     char constexpr MESSAGE_BODY[] = "message";
 
-<<<<<<< HEAD
     char constexpr NPC_ID_KEY[] = "npcId";
     char constexpr NPC_MAINDESC_KEY[] = "mainDesc";
     char constexpr NPC_LONGDESC_KEY[] = "longDesc";
@@ -57,8 +56,6 @@ namespace parser {
     char constexpr NPC_LEVEL_KEY[] = "level";
     char constexpr NPC_THAC0_KEY[] = "thac0";
 
-=======
->>>>>>> master
     std::string playerSerialize(PlayerModel const player);
     PlayerModel playerDeserialize(std::string const body);
 
@@ -81,12 +78,9 @@ namespace parser {
     std::string messageVectorSerialize(std::vector<MessageModel> const &message);
     std::vector<MessageModel> messageVectorDeserialize(std::string const &body);
 
-<<<<<<< HEAD
     NpcModel npcDeserialize(std::string const body);
     std::string npcSerialize(NpcModel const npc);
 
-=======
->>>>>>> master
 };
 
 #endif //ADVENTURE2016_PARSER_H
