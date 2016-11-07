@@ -112,6 +112,7 @@ RoomModel addRoom(RoomModel room){
     db.open("AdventureDatabase.db");
     hiberlite::bean_ptr<RoomModel> r=db.copyBean(room);
     r->id = room.id;
+    r.save();
     printRoomDB();
 
     return room;
