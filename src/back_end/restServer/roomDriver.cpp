@@ -27,19 +27,19 @@ void createRoomDB(){
 
 
     //FOR TESTING PURPOSES
-
-/*    RoomModel demo;
-    demo.area = "White Plains";
-    demo.id = 1;
-    demo.name =  "the field";
-    demo.mainDescription = {"the empty green field filled with flowers "};
-    extendedDescription description;
-    description.description = {"test"};
-    description.keywords = {"sppoky", "dangerous"};
-    demo.extendedDescriptions = {description};
+//
+//    RoomModel demo;
+//    demo.area = "White Plains";
+//    demo.id = 1;
+//    demo.name =  "the field";
+//    demo.mainDescription = {"the empty green field filled with flowers "};
+//    extendedDescription description;
+//    description.description = {"test"};
+//    description.keywords = {"sppoky", "dangerous"};
+//    demo.extendedDescriptions = {description};
 
     try{
-        YAML::Node testNode = YAML::LoadFile("/home/sukh/Documents/CMPT_373/adventure2016/smurf.yaml");//TODO Couldn't use ~/cmpt373/adventure2016.... must have path be absolute? how to fix
+        YAML::Node testNode = YAML::LoadFile("smurf.yaml");//TODO Couldn't use ~/cmpt373/adventure2016.... must have path be absolute? how to fix
         YAML::Node roomsNode = testNode["ROOMS"];
         if(roomsNode){
             cout << "found rooms node" << endl;
@@ -53,7 +53,7 @@ void createRoomDB(){
     }catch(exception ex){
         std::cout << "Could not load yaml file or rooms not available in the file" << endl;
     }
-*/
+
    // demo.navigable = true;
     //hiberlite::bean_ptr<RoomModel> db_room =db.copyBean(demo);
 
