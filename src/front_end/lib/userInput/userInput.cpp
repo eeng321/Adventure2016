@@ -6,6 +6,8 @@
 #include "Dictionary.h"
 #include "Command.h"
 #include <iostream>
+#include <boost/algorithm/string/classification.hpp>
+#include <boost/algorithm/string/split.hpp>
 
 void UserInput::checkExistingPlayerCredentials() {
 
@@ -82,14 +84,19 @@ void UserInput::createNewPlayerCredentials() {
 
 StatusCode UserInput::readBasicInput(Dictionary *dictionary) {
     char commandString[MAX_CHAR_LIMIT];
-    std::string queryStringResult;
     Display::readUserInput(commandString);
     std::string commandConverted(commandString);
+    // boost string tokenization http://stackoverflow.com/a/5607665
+    std::vector<std::string> tokens;
+    boost::split(tokens, commandConverted, boost::is_any_of(" "), boost::token_compress_on);
 
     StatusCode queryReturnCode;
-    Command* con = dictionary->lookup(commandConverted);
+    std::string queryStringResult;
+    Command* con = dictionary->lookup(tokens[0]);
+    // get rid of the command name so only the real arguments are passed
+    tokens.erase(tokens.begin());
     if(con != NULL) {
-        queryReturnCode = con->execute(queryStringResult);
+        queryReturnCode = con->execute(queryStringResult, tokens);
     } else {
         queryStringResult = "We do not recognize that input, please try again!";
         queryReturnCode = STATUS_COMMAND_NOT_FOUND;
