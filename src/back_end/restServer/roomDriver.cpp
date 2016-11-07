@@ -47,9 +47,8 @@ void createRoomDB(){
             cout << "did not find" << endl;
         }
         std::vector<RoomModel> rooms = parser::extractRoomsFromSequence(roomsNode);//TODO Load all these onto the db
-        hiberlite::bean_ptr<RoomModel> db_room;
         for(auto room : rooms){
-            db_room = db.copyBean(room);
+            addRoom(room);
         }
     }catch(exception ex){
         std::cout << "Could not load yaml file or rooms not available in the file" << endl;
