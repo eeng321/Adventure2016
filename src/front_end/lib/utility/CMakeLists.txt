@@ -9,5 +9,7 @@ install(TARGETS dictionary DESTINATION lib)
 
 add_library(command STATIC Command.cpp)
 set_property(TARGET command PROPERTY CXX_STANDARD 14)
+target_link_libraries(command door)
+target_link_libraries(command room)
 target_link_libraries(command gameState)
 install(TARGETS command DESTINATION lib)

@@ -61,8 +61,20 @@ StatusCode Controller::getRoom(roomId id, Room& room) {
         return STATUS_SERVER_ERROR;
     }
 
-    //RoomModel model = parser::roomDeserialize(response.body());
-    //room.setModel(model);
+    RoomModel model = parser::roomDeserialize(response.body());
+    room.setModel(model);
+}
+
+StatusCode Controller::moveToRoom(roomId id) {
+    // TODO: try moving on server before updating the state
+    GameState::setLocation(id);
+    PlayerModel model = GameState::getPlayerModel();
+    Net::Http::Response response = client.Put(SERVER + "player/", parser::playerSerialize(model));
+    if (response.code() != Net::Http::Code::Ok) {
+        // TODO: handle
+        return STATUS_SERVER_ERROR;
+    }
+    return STATUS_OK;
 }
 
 std::string Controller::getPlayerId() {

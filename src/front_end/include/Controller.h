@@ -47,6 +47,8 @@ public:
      */
     static StatusCode getRoom(roomId id, Room& room);
 
+    static StatusCode moveToRoom(roomId id);
+
     static std::string getPlayerId();
 
 private:
