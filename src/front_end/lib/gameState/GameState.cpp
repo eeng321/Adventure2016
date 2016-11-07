@@ -8,6 +8,14 @@ GameState::GameState() {
 
 }
 
+std::string GameState::getPlayerId() {
+    return player.getUsername();
+}
+
+PlayerModel GameState::getPlayerModel() {
+    return player.getModel();
+}
+
 void GameState::setPlayerModel(PlayerModel model) {
     player.setModel(model);
 }
