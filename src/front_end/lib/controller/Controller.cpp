@@ -8,7 +8,6 @@ using namespace utility;
 
 // TODO
 const std::string SERVER = "http://localhost:8080/";
-//Room Controller::room = Room();
 Rest::RestClient Controller::client;
 GameState state;
 
@@ -64,6 +63,10 @@ StatusCode Controller::getRoom(roomId id, Room& room) {
 
     //RoomModel model = parser::roomDeserialize(response.body());
     //room.setModel(model);
+}
+
+std::string Controller::getPlayerId() {
+    return GameState::getPlayerId();
 }
 
 std::string Controller::makeGetRequest(const std::string& url) {
