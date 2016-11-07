@@ -30,7 +30,7 @@ void RoomEndpoint::createRoom(const Net::Rest::Request& request, Net::Http::Resp
 
         auto success = true;
         if (success) {
-            response.send(Http::Code::Created, room.name);
+            response.send(Http::Code::Created, parser::roomSerialize(room));
         }
         else {
             response.send(Http::Code::Bad_Request);
@@ -51,7 +51,7 @@ void RoomEndpoint::retrieveRoom(const Net::Rest::Request& request, Net::Http::Re
         room = loadRoom(roomId);
 
         if (room.name != "") {
-            response.send(Http::Code::Ok, room.name);
+            response.send(Http::Code::Ok, parser::roomSerialize(room));
         }
         else {
             response.send(Http::Code::Bad_Request);
