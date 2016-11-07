@@ -37,7 +37,7 @@ void createRoomDB(){
     description.description = {"test"};
     description.keywords = {"sppoky", "dangerous"};
     demo.extendedDescriptions = {description};
-*/
+
     try{
         YAML::Node testNode = YAML::LoadFile("/home/sukh/Documents/CMPT_373/adventure2016/smurf.yaml");//TODO Couldn't use ~/cmpt373/adventure2016.... must have path be absolute? how to fix
         YAML::Node roomsNode = testNode["ROOMS"];
@@ -53,7 +53,7 @@ void createRoomDB(){
     }catch(exception ex){
         std::cout << "Could not load yaml file or rooms not available in the file" << endl;
     }
-
+*/
    // demo.navigable = true;
     //hiberlite::bean_ptr<RoomModel> db_room =db.copyBean(demo);
 
@@ -89,18 +89,24 @@ RoomModel loadRoom(int roomId){
 
     hiberlite::Database db;
     db.open("AdventureDatabase.db");
-    hiberlite::bean_ptr<RoomModel> demo = db.loadBean<RoomModel>(roomId);
-
+    vector< hiberlite::bean_ptr<RoomModel> > listRooms=db.getAllBeans<RoomModel>();
     RoomModel room;
-    room.area = demo->area;
-    room.id = demo->id;
-    room.name = demo->name;
-    room.mainDescription = demo->mainDescription;
-    room.extendedDescriptions = demo->extendedDescriptions;
-    room.doors = demo->doors;
-    room.npcList = demo->npcList;
-    room.playerList = demo->playerList;
-    room.itemList = demo->itemList;
+
+    for(auto demo : listRooms ){
+        if(demo->id == roomId ){
+            room.area = demo->area;
+            room.id = demo->id;
+            room.name = demo->name;
+            room.mainDescription = demo->mainDescription;
+            room.extendedDescriptions = demo->extendedDescriptions;
+            room.doors = demo->doors;
+            room.npcList = demo->npcList;
+            room.playerList = demo->playerList;
+            room.itemList = demo->itemList;
+
+        }
+    }
+
     //room.navigable = demo->navigable;
 
     return room;
@@ -139,10 +145,16 @@ RoomModel modifyRoom(int roomId, RoomModel updateFields){
 bool removeRoom(int roomId){
     hiberlite::Database db;
     db.open("AdventureDatabase.db");
-    hiberlite::bean_ptr<RoomModel> room = db.loadBean<RoomModel>(roomId);
     vector< hiberlite::bean_ptr<RoomModel> > listRooms=db.getAllBeans<RoomModel>();
+
+    for(auto demo : listRooms ) {
+        if (demo->id == roomId) {
+            demo.destroy();
+            demo.save();
+        }
+    }
     int numOfRooms = listRooms.size();
-    room.destroy();
+
     //printRoomDB();
     //return true if number of players in db changes after deleting
     return (numOfRooms != listRooms.size());
