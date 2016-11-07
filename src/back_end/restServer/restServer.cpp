@@ -11,11 +11,17 @@
 #include "../lib/pistache/include/router.h"
 #include "playerDriver.h"
 #include "playerEndpoint.h"
+#include "roomDriver.h"
+#include "roomEndpoint.h"
+
+#include "npcDriver.h"
+#include "npcEndpoint.h"
+
 #include "chatEndpoint.h"
+
 
 using namespace std;
 using namespace Net;
-
 
 class Endpoints {
 public:
@@ -59,11 +65,16 @@ private:
         Routes::Post(router, "/player", Routes::bind(&PlayerEndpoint::createPlayer));
         Routes::Delete(router, "/player/:id", Routes::bind(&PlayerEndpoint::deletePlayer));
 
+        //NPC CRUDS
+        Routes::Get(router, "/npc/:id", Routes::bind(&PlayerEndpoint::retrievePlayer));
+        Routes::Put(router, "/npc/:id", Routes::bind(&PlayerEndpoint::updatePlayer));
+        Routes::Post(router, "/npc", Routes::bind(&PlayerEndpoint::createPlayer));
+        Routes::Delete(router, "/npc/:id", Routes::bind(&PlayerEndpoint::deletePlayer));
         // Todo: Room Routes
-//        Routes::Get(router, "/room/:id", Routes::bind(&RoomEndpoint::retrieveRoom));
-//        Routes::Put(router, "/room/:id", Routes::bind(&RoomEndpoint::updateRoom));
-//        Routes::Post(router, "/room", Routes::bind(&RoomEndpoint::createRoom));
-//        Routes::Delete(router, "/room/:id", Routes::bind(&RoomEndpoint::deleteRoom));
+        Routes::Get(router, "/room/:id", Routes::bind(&RoomEndpoint::retrieveRoom));
+        Routes::Put(router, "/room/:id", Routes::bind(&RoomEndpoint::updateRoom));
+        Routes::Post(router, "/room", Routes::bind(&RoomEndpoint::createRoom));
+        Routes::Delete(router, "/room/:id", Routes::bind(&RoomEndpoint::deleteRoom));
 
         // Chat Routes
         Routes::Get(router, "/chat", Routes::bind(&ChatEndpoint::getMessage, chatEndpoint));
@@ -88,6 +99,9 @@ int main(int argc, char *argv[]) {
     cout << "Using " << numThreads << " threads" << endl;
 
     createDB();
+    createRoomDB();
+    printRoomDB();
+
     Endpoints endpoints(addr);
 
     endpoints.init(numThreads);

@@ -12,11 +12,11 @@ using namespace std;
 int main(){
 
     DoorModel door;
-//    std::vector<std::string> keywords;
-//    keywords.push_back("test1");
-//    keywords.push_back("test2");
+    std::vector<std::string> keywords;
+    keywords.push_back("test1");
+    keywords.push_back("test2");
     door.direction = Direction ::north;
-//    door.keywords = keywords;
+    door.keywords = keywords;
     door.roomTo = 300;
     door.description.push_back("DOOR 1 DESCRIPTION test1");
     door.description.push_back("DOOR 1 DESCRIPTION test2");
@@ -33,21 +33,26 @@ int main(){
     RoomModel test;
     test.mainDescription.push_back("test main desc1");
     test.mainDescription.push_back("test main desc2");
-//    test.area = "test area";
+    test.area = "test area";
+
     test.id = 3;
     test.name = "test name";
-//    test.navigable = true;
+    test.navigable = true;
     test.doors.push_back(door);
     test.doors.push_back(door2);
-//    test.extendedDescriptions.push_back("ex desc 2");
-//    test.npcList.push_back((id)102);
-//    test.npcList.push_back((id)105);
-//    test.playerList.push_back("bob");
-//    test.playerList.push_back("joe");
-//    test.itemList.push_back((id) 75);
-//    test.itemList.push_back((id) 129);
+    extendedDescription exTest;
+    exTest.keywords.push_back("ex test keywords");
+    exTest.description.push_back("ex test desc 1");
+    exTest.description.push_back("ex test desc 2");
+    test.extendedDescriptions.push_back(exTest);
+    test.npcList.push_back(102);
+    test.npcList.push_back(105);
+    test.playerList.push_back("bob");
+    test.playerList.push_back("joe");
+    test.itemList.push_back( 75);
+    test.itemList.push_back(129);
 
-    YAML::Node testNode = YAML::LoadFile("/home/william/cmpt373/adventure2016/test.yaml");
+    YAML::Node testNode = YAML::LoadFile("/home/william/cmpt373/adventure2016/smurf.yaml");
     YAML::Node roomsNode = testNode["ROOMS"];
     if(roomsNode){
         cout << "found rooms node" << endl;
@@ -91,7 +96,7 @@ int main(){
         }
         cout << "npc count:" << i << endl;
     }
-//    cout << "extracted" << endl;
+    cout << "extracted" << endl;
 //    std::vector<RoomModel> rooms2;
 //    for(auto s : rooms){
 //        std::string test = parser::roomSerialize(s);
@@ -99,12 +104,10 @@ int main(){
 //        rooms2.push_back(parser::roomDeserialize(test));
 //    }
 
-////    std::cout << testNode.as<std::string>();
-//
 
     std::string testss = parser::roomSerialize(test);// << std::cout;
     std::cout << testss << std::endl;
-//    std::cout << "after testss" << endl;
+    std::cout << "after testss" << endl;
     RoomModel model = parser::roomDeserialize(testss);
     std::cout << model.name << endl;
     for(auto s: model.doors){

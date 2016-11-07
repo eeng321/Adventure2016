@@ -13,3 +13,4 @@ PlayerModel modifyPlayer(int playerId, PlayerModel updateFields);
 success removePlayer(int playerId);
 PlayerModel verifyCredentials(std::string username, std::string pw);
 PlayerModel registerAccount(std::string username, std::string pw);
+	
