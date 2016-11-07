@@ -60,7 +60,7 @@ public:
 
 class GlobalChatCommand : public Command {
 public:
-    StatusCode execute(std::string& result);
+    StatusCode execute(std::string& result, const std::vector<std::string>& args);
 };
 
 #endif //ADVENTURE2016_COMMAND_H

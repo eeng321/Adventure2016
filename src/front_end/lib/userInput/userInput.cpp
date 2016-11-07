@@ -92,6 +92,7 @@ StatusCode UserInput::readBasicInput(Dictionary *dictionary) {
 
     StatusCode queryReturnCode;
     std::string queryStringResult;
+    Display::addStringToMainWindow(tokens[0].c_str());
     Command* con = dictionary->lookup(tokens[0]);
     // get rid of the command name so only the real arguments are passed
     tokens.erase(tokens.begin());

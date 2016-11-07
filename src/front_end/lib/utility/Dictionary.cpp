@@ -18,7 +18,7 @@ Dictionary::Dictionary() {
     //dictionaryCmdMap.insert(std::make_pair("where", new WhereCommand));
     dictionaryCmdMap.insert(std::make_pair("look", new LookCommand));
     dictionaryCmdMap.insert(std::make_pair("take", new TakeCommand));
-    dictionaryCmdMap.insert(std::make_pair("global chat", new GlobalChatCommand));
+    dictionaryCmdMap.insert(std::make_pair("/s", new GlobalChatCommand));
 }
 
 Dictionary::~Dictionary() {

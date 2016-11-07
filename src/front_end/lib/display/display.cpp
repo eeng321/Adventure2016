@@ -15,7 +15,7 @@ bool gameFinished = false;
 
 using namespace std;
 
-void setGameFinished() {
+void Display::setGameFinished() {
     gameFinished = true;
 }
 
@@ -76,7 +76,6 @@ void Display::destroyMainWindow() {
 
 void Display::createChatWindow() {
     chatWindow = createNewWindow((Display::getScreenHeight()/2)+2, (Display::getScreenWidth()/2)-2, WINDOW_START_Y, (Display::getScreenWidth()/2)+2);
-    scrollok(chatWindow, TRUE);
     wrefresh(chatWindow);
 }
 
@@ -96,10 +95,9 @@ void Display::updateChatWindow() {
         std::string payload = Controller::getLatestGlobalMessages();
         std::vector<MessageModel> latestChatMessages = parser::messageVectorDeserialize(payload);
         for(auto&msg : latestChatMessages) {
-            std::string chatMsg = msg.From+": "+msg.Message;
+            std::string chatMsg = " " + msg.From+": "+msg.Message;
             const char* chatMsgConverted = chatMsg.c_str();
             addStringToChatWindow(chatMsgConverted);
-
         }
     }
 }

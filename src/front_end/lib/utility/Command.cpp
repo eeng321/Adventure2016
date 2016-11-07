@@ -57,15 +57,16 @@ StatusCode TakeCommand::execute(std::string& result, const std::vector<std::stri
     return STATUS_OK;
 }
 
-StatusCode GlobalChatCommand::execute(std::string &result) {
-    Display::addStringToMainWindow("Please type what you want to say:");
-    char commandString[MAX_CHAR_LIMIT];
-    Display::readUserInput(commandString);
-    std::string commandStringConverted(commandString);
+StatusCode GlobalChatCommand::execute(std::string &result, const std::vector<std::string>& args) {
+    std::string commandMessage = "";
+    for(const std::string s : args) {
+        Display::addStringToMainWindow(s.c_str());
+        commandMessage += s + " ";
+    }
     MessageModel playerMessage;
     playerMessage.To = "global";
     playerMessage.From = "Justin"; //TODO: Faking until can grab username
-    playerMessage.Message = commandStringConverted;
+    playerMessage.Message = commandMessage;
     std::string postPayload = parser::messageSerialize(playerMessage);
 
     return Controller::sendGlobalMessage(postPayload, result);

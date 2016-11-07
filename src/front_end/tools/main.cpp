@@ -29,6 +29,7 @@ int main() {
     dictionary.insertIntoLanguageMap("where", "where");
     dictionary.insertIntoLanguageMap("take", "take");
     dictionary.insertIntoLanguageMap("regarde", "look"); //This is french for Look. Will be the test for now
+    dictionary.insertIntoLanguageMap("/s", "/s");
 
     Display::createChatWindow();
     std::thread chat(&Display::updateChatWindow);
@@ -38,7 +39,7 @@ int main() {
            keepPlaying = false;
        }
     }
-
+    Display::setGameFinished();
     chat.join();
     Display::destroyMainWindow();
     endwin();
