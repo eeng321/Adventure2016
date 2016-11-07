@@ -86,30 +86,50 @@ void Room::build(const std::string& areaIn,
 	navigable = navigabilityIn;
 }
 
-//void Room::setModel(const Room& model){
-//	build(model.area, roomId(model.id), model.name, model.mainDescription, model.extendedDescriptions, model.doors, model.navigable);
-//	playerList = model.playerList;
-//	for(int id : model.itemList){
-//		itemList.push_back(itemId(id));
-//	}
-//	for(int id : model.npcList) {
-//		npcList.push_back(npcId(id));
-//	}
-//}
+void Room::setModel(const RoomModel& model){
+	area = model.area;
+	id = roomId(model.id);
+	name = model.name;
+	mainDescription = model.mainDescription;
+	extendedDescriptions = model.extendedDescriptions;
+	navigable = model.navigable;
 
-Room Room::getModel() const {
-	Room model;
+	playerList = model.playerList;
+
+	doors.clear();
+	for(const DoorModel& door : model.doors){
+		Door newDoor;
+		newDoor.loadModel(door);
+		doors.push_back(std::move(newDoor));
+	}
+	itemList.clear();
+	for(int id : model.itemList){
+		itemList.push_back(itemId(id));
+	}
+	npcList.clear();
+	for(int id : model.npcList) {
+		npcList.push_back(npcId(id));
+	}
+}
+
+RoomModel Room::getModel() const {
+	RoomModel model;
 	model.name = name;
 	model.id = id.value;
 	model.area = area;
 	model.mainDescription = mainDescription;
 	model.extendedDescriptions = extendedDescriptions;
-	model.doors = doors;
 	model.playerList = playerList;
 	model.navigable = navigable;
+
+	for(const Door& door : doors){
+		model.doors.push_back(door.getModel());
+	}
+
 	for(const itemId& itemid : itemList){
 		model.itemList.push_back(itemid.value);
 	}
+
 	for(const npcId& npcid : npcList) {
 		model.npcList.push_back(npcid.value);
 	}
