@@ -9,6 +9,7 @@
 #include <vector>
 
 #include "id.h"
+#include "itemType.h"
 
 
 class ItemModel {
@@ -17,7 +18,7 @@ public:
     int cost;
     std::vector<std::string> extra;
 	int id;
-    std::string type;//What type should this be?
+    item_type type;
 	std::vector<std::string> keywords;
 	std::string longDesc;
 	std::string shortDesc;

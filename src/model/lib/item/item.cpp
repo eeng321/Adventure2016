@@ -12,10 +12,10 @@ using std::string;
 using std::vector;
 
 Item::Item(itemId idIn,
-	std::vector<std::string> keywordsIn,
-	std::string longDescIn,
-	std::string shortDescIn,
-	std::vector<std::string> extraIn)
+	vector<string> keywordsIn,
+	string longDescIn,
+	string shortDescIn,
+	vector<string> extraIn)
 	:id(std::move(idIn)),
 	keywords(std::move(keywordsIn)),
 	longDesc(std::move(longDescIn)),
@@ -23,14 +23,14 @@ Item::Item(itemId idIn,
 	extra(std::move(extraIn)){}
 
 Item::Item(itemId idIn,
-    std::vector<std::string> keywordsIn,
-    std::string longDescIn,
-    std::string shortDescIn,
-    std::vector<std::string> extraIn,
-    std::vector<std::string> attributesIn,
+   vector<string> keywordsIn,
+   string longDescIn,
+   string shortDescIn,
+   vector<string> extraIn,
+   vector<string> attributesIn,
     int costIn,
-    std::string typeIn,
-    std::vector<std::string> flagsIn,
+    item_type typeIn,
+    vector<string> flagsIn,
     int weightIn)
     :id(std::move(idIn)),
      keywords(std::move(keywordsIn)),
@@ -75,23 +75,23 @@ itemId Item::getId() const {
 	return id;
 }
 
-std::vector<std::string> Item::getKeywords() const {
+vector<string> Item::getKeywords() const {
 	return keywords;
 }
 
-std::string Item::getlongDesc() const {
+string Item::getlongDesc() const {
 	return longDesc;
 }
 
-std::string Item::getShortDesc() const {
+string Item::getShortDesc() const {
 	return shortDesc;
 }
 
-std::vector<std::string> Item::getExtra() const {
+vector<string> Item::getExtra() const {
 	return extra;
 }
 
-std::vector<std::string> Item::getAttributes() const {
+vector<string> Item::getAttributes() const {
     return attributes;
 }
 
@@ -99,7 +99,7 @@ int Item::getCost() const {
     return cost;
 }
 
-std::string Item::getType() const {
+item_type Item::getType() const {
     return type;
 }
 
@@ -139,7 +139,7 @@ void Item::setCost(int costIn) {
     cost = std::move(costIn);
 }
 
-void Item::setType(std::string typeIn) {
+void Item::setType(item_type typeIn) {
     type = std::move(typeIn);
 }
 

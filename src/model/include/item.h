@@ -9,6 +9,7 @@
 #include <string>
 
 #include "id.h"
+#include "itemType.h"
 
 class ItemModel;
 
@@ -18,7 +19,7 @@ private:
     int cost;
     std::vector<std::string> extra;
     itemId id;
-    std::string type;
+    item_type type;
     std::vector<std::string> keywords;
     std::string longDesc;
     std::string shortDesc;
@@ -39,7 +40,7 @@ public:
          std::vector<std::string> extraIn,
          std::vector<std::string> attributesIn,
          int costIn,
-         std::string typeIn,
+         item_type typeIn,
          std::vector<std::string> wear_flagsIn,
          int weightIn);
 
@@ -56,7 +57,7 @@ public:
     std::vector<std::string> getExtra() const;
     std::vector<std::string> getAttributes() const;
     int getCost() const;
-    std::string getType() const;
+    item_type getType() const;
     std::vector<std::string> getWearFlags() const;
     int getWeight() const;
 
@@ -69,7 +70,7 @@ public:
     void setExtra(std::vector<std::string> extraIn);
     void setAttributes(std::vector<std::string> attributesIn);
     void setCost(int costIn);
-    void setType(std::string typeIn);
+    void setType(item_type typeIn);
     void setWearFlags(std::vector<std::string> flagsIn);
     void setWeight(int weightIn);
 
