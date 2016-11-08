@@ -10,15 +10,20 @@
 
 #include "id.h"
 
-using id = int;
 
 class ItemModel {
 public:
-	std::vector<std::string> extra;
+    std::vector<std::string> attributes;
+    int cost;
+    std::vector<std::string> extra;
 	int id;
+    std::string type;//What type should this be?
 	std::vector<std::string> keywords;
 	std::string longDesc;
 	std::string shortDesc;
+	std::vector<std::string> wear_flags;
+    int weight;
+
 	ItemModel();
 };
 
