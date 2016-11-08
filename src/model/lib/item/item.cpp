@@ -43,20 +43,6 @@ Item::Item(itemId idIn,
      wear_flags(std::move(flagsIn)),
      weight(weightIn){}
 
-//void Item::build(itemId idIn,
-//	const std::vector<std::string>& keywordsIn,
-//	const std::string& longDescIn,
-//	const std::string& shortDescIn,
-//	const std::vector<std::string>& extraIn){
-//
-//	id = idIn;
-//	keywords = keywordsIn;
-//	longDesc = longDescIn;
-//	shortDesc = shortDescIn;
-//	extra = extraIn;
-//
-//}
-
 ItemModel Item::getModel() const {
 	ItemModel model;
 	model.id = id.value;

@@ -45,12 +45,6 @@ public:
 
     Item();
 
-//    void build(itemId idIn,
-//               const std::vector<std::string>& keywordsIn,
-//               const std::string& longDescIn,
-//               const std::string& shortDescIn,
-//               const std::vector<std::string>& extra);
-
     ItemModel getModel() const;
     void setModel(const ItemModel& model);
 
