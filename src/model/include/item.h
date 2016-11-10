@@ -47,31 +47,50 @@ public:
     Item();
 
     ItemModel getModel() const;
-    void setModel(const ItemModel& model);
+
+    void setModel(const ItemModel &model);
 
     /* Getters */
     itemId getId() const;
+
     std::vector<std::string> getKeywords() const;
+
     std::string getlongDesc() const;
+
     std::string getShortDesc() const;
+
     std::vector<std::string> getExtra() const;
+
     std::vector<std::string> getAttributes() const;
+
     int getCost() const;
+
     item_type getType() const;
+
     std::vector<std::string> getWearFlags() const;
+
     int getWeight() const;
 
 
     /* Setters */
     void setId(itemId idIn);
+
     void setKeywords(std::vector<std::string> keywordsIn);
+
     void setlongDesc(std::string longDescIn);
+
     void setShortDesc(std::string shortDescIn);
+
     void setExtra(std::vector<std::string> extraIn);
+
     void setAttributes(std::vector<std::string> attributesIn);
+
     void setCost(int costIn);
+
     void setType(item_type typeIn);
+
     void setWearFlags(std::vector<std::string> flagsIn);
+
     void setWeight(int weightIn);
 
 };
