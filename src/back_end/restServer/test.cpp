@@ -3,6 +3,7 @@
 // TEST FILE FOR BACKEND, JUST MODIFY THE CMAKELIST.TXT
 //
 #include <iostream>
+#include "../../model/include/npcModel.h"
 #include "parser.h"
 #include "../../model/include/room.h"
 #include <typeinfo>
@@ -10,6 +11,29 @@
 
 using namespace std;
 int main(){
+
+    NpcModel npcmodel;
+    npcmodel.keywords.push_back("keyword 1");
+    npcmodel.keywords.push_back("keyword 2");
+    npcmodel.shortDesc = "short desc";
+    npcmodel.npcId = 123;
+    npcmodel.mainDesc.push_back("this is a");
+    npcmodel.mainDesc.push_back("main desc");
+    npcmodel.longDesc.push_back("this is a long");
+    npcmodel.longDesc.push_back("desc");
+
+    //cout << parser::npcSerialize(npcmodel) << endl;
+    NpcModel newModel = parser::npcDeserialize(parser::npcSerialize(npcmodel));
+    for(auto &s : newModel.mainDesc){
+        cout << s << endl;
+    }
+    for(auto &s : newModel.keywords){
+        cout << s << endl;
+    }
+    for(auto &s : newModel.longDesc){
+        cout <<  s << endl;
+    }
+
 
     DoorModel door;
     std::vector<std::string> keywords;
@@ -52,57 +76,7 @@ int main(){
     test.itemList.push_back( 75);
     test.itemList.push_back(129);
 
-    YAML::Node testNode = YAML::LoadFile("/home/william/cmpt373/adventure2016/smurf.yaml");
-    YAML::Node roomsNode = testNode["ROOMS"];
-    if(roomsNode){
-        cout << "found rooms node" << endl;
-    }else{
-        cout << "did not find" << endl;
-    }
-    std::vector<RoomModel> rooms = parser::extractRoomsFromSequence(roomsNode);
-    for(auto s : rooms){
-        cout << "desc:";
-        for(auto i: s.mainDescription){
-            std:cout << i << endl;
-        }
-        std::cout << "id: " << s.id << endl;
-        std::cout << "area: " << s.area << endl;
-        std::cout << "navigable: " << s.navigable << endl;
-        std::cout << "name: " << s.name << endl;
-        for(auto i : s.doors){
-            for(auto q : i.description){
-                std::cout << "desc: " << q << endl;
-            }
-            cout << "keywords:";
-            for(auto q : i.keywords){
-                cout << q << endl;
-            }
-            cout << "roomto:" << i.roomTo << endl;
-            cout << "dir:" << parser::serializeDirection(i.direction) << endl;
-        }
-        cout << "Extended descriptions:" << endl;
-        for(auto i : s.extendedDescriptions){
-            cout << "desc:" << endl;
-            for(auto q : i.keywords){
-                cout << "keywords:" << q << endl;
-            }
-            for(auto q : i.description){
-                cout << "desc:" << q << endl;
-            }
-        }
-        int i = 0;
-        for(auto q : s.npcList){
-            i++;
-        }
-        cout << "npc count:" << i << endl;
-    }
-    cout << "extracted" << endl;
-//    std::vector<RoomModel> rooms2;
-//    for(auto s : rooms){
-//        std::string test = parser::roomSerialize(s);
-//        std::cout << test << endl;
-//        rooms2.push_back(parser::roomDeserialize(test));
-//    }
+
 
 
     std::string testss = parser::roomSerialize(test);// << std::cout;

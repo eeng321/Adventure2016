@@ -44,7 +44,7 @@ install(TARGETS etljob DESTINATION lib)
 
 file(COPY smurf.yaml DESTINATION ${PROJECT_BINARY_DIR}/bin)
 add_executable(testex test.cpp)
-target_link_libraries(testex parser yaml-cpp playerModel roomModel door)
+target_link_libraries(testex parser yaml-cpp playerModel roomModel door npcModel)
 set_target_properties(testex PROPERTIES COMPILE_FLAGS "-std=c++14")
 
 add_executable(rest_server restServer.cpp playerEndpoint.cpp playerDriver.cpp chatEndpoint.cpp roomEndpoint.cpp roomDriver.cpp)

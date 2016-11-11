@@ -68,18 +68,10 @@ std::string parser::roomSerialize(RoomModel const &room) {
     for(auto &s : room.extendedDescriptions){
         out << YAML::BeginMap;
         out << YAML::Key << ROOM_EX_DESCRIPTION_KEYWORDS_KEY;
-        out << YAML::BeginSeq;
-        for(auto &i : s.description){
-            out << i;
-        }
-        out << YAML::EndSeq;
+        out << YAML::Value << s.description;
 
         out << YAML::Key << ROOM_EX_DESCRIPTION_KEYWORDS_KEY;
-        out << YAML::BeginSeq;
-        for(auto &i : s.keywords){
-            out << i;
-        }
-        out << YAML::EndSeq;
+        out << YAML::Value << s.keywords;
         out << YAML::EndMap;
     }
     out << YAML::EndSeq;
@@ -107,20 +99,13 @@ std::string parser::roomSerialize(RoomModel const &room) {
 std::string parser::doorSerialize(YAML::Emitter &out, DoorModel const &door) {
     out << YAML::BeginMap;
     out << YAML::Key << DOOR_DESCRIPTION_KEY;
-    out << YAML::BeginSeq;
-    for(auto desc : door.description){
-        out << desc;
-    }
-    out << YAML::EndSeq;
+    out << YAML::Value << door.description;
 
     out << YAML::Key << DOOR_DIRECTION_KEY;
     out << YAML::Value << parser::serializeDirection(door.direction);
     out << YAML::Key << DOOR_KEYWORDS_KEY;
-    out << YAML::BeginSeq;
-    for(auto keyWords : door.keywords){
-        out << YAML::Value << keyWords;
-    }
-    out << YAML::EndSeq;
+    out << YAML::Value << door.keywords;
+
     out << YAML::Key << DOOR_ROOMTO_KEY;
     out << YAML::Value << door.roomTo;
     out << YAML::EndMap;
@@ -134,9 +119,8 @@ RoomModel parser::roomDeserializeFromNode(YAML::Node const &roomNode) {
     //TODO error checking
     RoomModel model;
 
-    for(auto innerString : roomNode[ROOM_DESCRIPTION_KEY]){
-        model.mainDescription.push_back(innerString.as<std::string>());
-    }
+    model.mainDescription = roomNode[ROOM_DESCRIPTION_KEY].as<std::vector<std::string>>();
+
 
     for(auto currentNode: roomNode[ROOM_DOOR_KEY]){
 
@@ -261,28 +245,38 @@ NpcModel parser::npcDeserialize(std::string const &body) {
     npc.keywords = npcNode[NPC_KEYWORDS_KEY].as<std::vector<std::string>>();
     npc.longDesc = npcNode[NPC_LONGDESC_KEY].as<std::vector<std::string>>();
     npc.shortDesc = npcNode[NPC_SHORTDESC_KEY].as<std::string>();
-    npc.damage = npcNode[NPC_DAMAGE_KEY].as<std::string>();
-    npc.armor = npcNode[NPC_ARMOR_KEY].as<int>();
-    npc.hit = npcNode[NPC_HIT_KEY].as<std::string>();
-    npc.exp = npcNode[NPC_EXP_KEY].as<int>();
-    npc.gold = npcNode[NPC_GOLD_KEY].as<int>();
-    npc.level = npcNode[NPC_LEVEL_KEY].as<int>();
-    npc.thac0 = npcNode[NPC_THAC0_KEY].as<int>();
+
+//    npc.damage = npcNode[NPC_DAMAGE_KEY].as<std::string>();
+//    npc.armor = npcNode[NPC_ARMOR_KEY].as<int>();
+//    npc.hit = npcNode[NPC_HIT_KEY].as<std::string>();
+//    npc.exp = npcNode[NPC_EXP_KEY].as<int>();
+//    npc.gold = npcNode[NPC_GOLD_KEY].as<int>();
+//    npc.level = npcNode[NPC_LEVEL_KEY].as<int>();
+//    npc.thac0 = npcNode[NPC_THAC0_KEY].as<int>();
     return npc;
 }
+
 
 std::string parser::npcSerialize(NpcModel const &npc) {
 
     YAML::Emitter out;
     out << YAML::BeginMap;
-    out << YAML::Key << NPC_ID_KEY;
-    out << YAML::Value << npc.npcId;
     out << YAML::Key << NPC_MAINDESC_KEY;
     out << YAML::Value << npc.mainDesc;
+
+    out << YAML::Key << NPC_ID_KEY;
+    out << YAML::Value << npc.npcId;
+
+    out << YAML::Key << NPC_KEYWORDS_KEY;
+    out << YAML::Value << npc.keywords;
+
     out << YAML::Key << NPC_LONGDESC_KEY;
     out << YAML::Value << npc.longDesc;
+
     out << YAML::Key << NPC_SHORTDESC_KEY;
     out << YAML::Value << npc.shortDesc;
+
+
     out << YAML::Key << NPC_DAMAGE_KEY;
     out << YAML::Value << npc.damage;
     out << YAML::Key << NPC_ARMOR_KEY;
