@@ -10,8 +10,8 @@
 #include "roomDriver.h"
 
 namespace etl{
-    void LoadRooms();
-    void LoadNPCs();
+    void LoadRoomsToDB();
+    void LoadNPCsToDB();
 };
 
 

@@ -36,12 +36,13 @@ find_library(YAMLCPP_LIBRARY
 
 add_library(parser STATIC parser.cpp)
 set_property(TARGET parser PROPERTY CXX_STANDARD 14)
-add_library(etljob etljob.cpp)
-
-
 install(TARGETS parser DESTINATION lib)
-install()
-target_link_libraries(parser room)
+
+add_library(etljob STATIC etlJob.cpp)
+set_property(TARGET etljob PROPERTY CXX_STANDARD 14)
+install(TARGETS etljob DESTINATION lib)
+
+file(COPY smurf.yaml DESTINATION ${PROJECT_BINARY_DIR}/bin)
 add_executable(testex test.cpp)
 target_link_libraries(testex parser yaml-cpp playerModel roomModel door)
 set_target_properties(testex PROPERTIES COMPILE_FLAGS "-std=c++14")

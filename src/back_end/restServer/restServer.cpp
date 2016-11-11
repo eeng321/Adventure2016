@@ -13,7 +13,7 @@
 #include "playerEndpoint.h"
 #include "roomDriver.h"
 #include "roomEndpoint.h"
-
+#include "etlJob.h"
 #include "npcDriver.h"
 #include "npcEndpoint.h"
 
@@ -100,6 +100,7 @@ int main(int argc, char *argv[]) {
 
     createDB();
     createRoomDB();
+    etl::LoadRoomsToDB();
     printRoomDB();
 
     Endpoints endpoints(addr);

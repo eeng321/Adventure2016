@@ -38,22 +38,6 @@ void createRoomDB(){
 //    description.keywords = {"sppoky", "dangerous"};
 //    demo.extendedDescriptions = {description};
 
-    try{
-        YAML::Node testNode = YAML::LoadFile("smurf.yaml");//TODO Couldn't use ~/cmpt373/adventure2016.... must have path be absolute? how to fix
-        YAML::Node roomsNode = testNode["ROOMS"];
-        if(roomsNode){
-            cout << "found rooms node" << endl;
-        }else{
-            cout << "did not find" << endl;
-        }
-        std::vector<RoomModel> rooms = parser::extractRoomsFromSequence(roomsNode);//TODO Load all these onto the db
-        for(auto room : rooms){
-            addRoom(room);
-        }
-    }catch(exception ex){
-        std::cout << "Could not load yaml file or rooms not available in the file" << endl;
-    }
-
    // demo.navigable = true;
     //hiberlite::bean_ptr<RoomModel> db_room =db.copyBean(demo);
 

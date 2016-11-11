@@ -36,7 +36,7 @@ void RoomEndpoint::createRoom(const Net::Rest::Request& request, Net::Http::Resp
             response.send(Http::Code::Bad_Request);
         }
     }
-    catch (...) it br
+    catch (...) {
         response.send(Http::Code::Internal_Server_Error);
     }
 }
