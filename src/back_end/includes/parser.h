@@ -42,10 +42,10 @@ namespace parser{
     char constexpr DOOR_KEYWORDS_KEY[] = "keywords";
     char constexpr DOOR_ROOMTO_KEY[] = "to";
 
-    char constexpr NPC_ID_KEY[] = "npcId";
-    char constexpr NPC_MAINDESC_KEY[] = "mainDesc";
-    char constexpr NPC_LONGDESC_KEY[] = "longDesc";
-    char constexpr NPC_SHORTDESC_KEY[] = "shortDesc";
+    char constexpr NPC_ID_KEY[] = "id";
+    char constexpr NPC_MAINDESC_KEY[] = "description";
+    char constexpr NPC_LONGDESC_KEY[] = "longdesc";
+    char constexpr NPC_SHORTDESC_KEY[] = "shortdesc";
     char constexpr NPC_KEYWORDS_KEY[] = "keywords";
     char constexpr NPC_DAMAGE_KEY[] = "damage";
     char constexpr NPC_ARMOR_KEY[] = "armor";
@@ -59,24 +59,29 @@ namespace parser{
     char constexpr MESSAGE_FROM[] = "from";
     char constexpr MESSAGE_BODY[] = "message";
 
-    std::string playerSerialize(PlayerModel const player);
-    PlayerModel playerDeserialize(std::string const body);
+    char constexpr NORTH[] = "north";
+    char constexpr EAST[] = "east";
+    char constexpr SOUTH[] = "south";
+    char constexpr WEST[] = "west";
 
-    std::string roomSerialize(RoomModel const room);
-    RoomModel roomDeserialize(std::string const body);
-    RoomModel roomDeserializeFromNode(YAML::Node roomNode);
-    void roomDeserializeAndAppendExtras(RoomModel &model, YAML::Node const roomNode);
+    std::string playerSerialize(PlayerModel const &player);
+    PlayerModel playerDeserialize(std::string const &body);
 
-    std::string doorSerialize(YAML::Emitter &out, DoorModel const door);
-    DoorModel doorDeserialize(YAML::Node const doorNode);
+    std::string roomSerialize(RoomModel const &room);
+    RoomModel roomDeserialize(std::string const &body);
+    RoomModel roomDeserializeFromNode(YAML::Node const &roomNode);
+    void roomDeserializeAndAppendExtras(RoomModel &model, YAML::Node const &roomNode);
 
-    std::string serializeDirection(Direction const directionEnum);
-    Direction deserializeDirection(std::string const directionString);
+    std::string doorSerialize(YAML::Emitter &out, DoorModel const &door);
+    DoorModel doorDeserialize(YAML::Node const &doorNode);
 
-    std::vector<RoomModel> extractRoomsFromSequence(YAML::Node const roomNode);
+    std::string serializeDirection(Direction const &directionEnum);
+    Direction deserializeDirection(std::string const &directionString);
 
-    NpcModel npcDeserialize(std::string const body);
-    std::string npcSerialize(NpcModel const npc);
+    std::vector<RoomModel> extractRoomsFromSequence(YAML::Node const &roomNode);
+
+    NpcModel npcDeserialize(std::string const &body);
+    std::string npcSerialize(NpcModel const &npc);
 
     std::string messageSerialize(MessageModel const &message);
     MessageModel messageDeserialize(std::string const &body);
