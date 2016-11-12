@@ -7,6 +7,13 @@
 std::string parser::itemSerialize(ItemModel const &item) {
     YAML::Emitter out;
     out << YAML::BeginMap;
+    out << YAML::Key << ITEM_ATTRIBUTES_KEY;
+    out << YAML::BeginSeq;
+    for(auto e : item.attributes) {
+        out << e;
+    }
+    out << YAML::Key << ITEM_COST_KEY;
+    out << YAML::Value << item.cost;
     out << YAML::Key << ITEM_EXTRA_KEY;
     out << YAML::BeginSeq;
     for(auto e : item.extra) {
@@ -24,6 +31,10 @@ std::string parser::itemSerialize(ItemModel const &item) {
     out << YAML::Value << item.longDesc;
     out << YAML::Key << ITEM_SHORTDESC_KEY;
     out << YAML::Value << item.shortDesc;
+    out << YAML::Key << ITEM_WEARFLAGS_KEY;
+    out << YAML::Value << item.wearFlags;
+    out << YAML::Key << ITEM_WEIGHT_KEY;
+    out << YAML::Value << item.weight;
     out << YAML::EndMap;
 
     return out.c_str();
@@ -34,6 +45,10 @@ ItemModel parser::itemDeserialize(std::string const &body) {
 
     //TODO if itemNode[""].isDefined() ERROR CHECKING
     ItemModel item;
+    for(auto e: itemNode[ITEM_ATTRIBUTES_KEY]){
+        item.attributes.push_back(e.as<std::string>());
+    }
+    item.cost = itemNode[ITEM_COST_KEY].as<int>();
     for(auto e: itemNode[ITEM_EXTRA_KEY]){
         item.extra.push_back(e.as<std::string>());
     }
@@ -43,6 +58,10 @@ ItemModel parser::itemDeserialize(std::string const &body) {
     }
     item.longDesc = itemNode[ITEM_LONGDESC_KEY].as<std::string>();
     item.shortDesc = itemNode[ITEM_SHORTDESC_KEY].as<std::string>();
+    for(auto e: itemNode[ITEM_WEARFLAGS_KEY]){
+        item.wearFlags.push_back(e.as<std::string>());
+    }
+    item.weight = itemNode[ITEM_WEIGHT_KEY].as<int>();
     return item;
 
 }

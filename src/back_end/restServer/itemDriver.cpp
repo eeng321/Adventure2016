@@ -53,11 +53,16 @@ ItemModel loadItem(int itemId){
     hiberlite::bean_ptr<ItemModel> demo = db.loadBean<ItemModel>(itemId);
 
     ItemModel item;
-    item.id = demo->id;
+    item.attributes = demo->attributes;
+    item.cost = demo->cost;
     item.extra = demo->extra;
+    item.id = demo->id;
+    item.type = demo->type;
     item.keywords = demo->keywords;
     item.longDesc = demo->longDesc;
     item.shortDesc = demo->shortDesc;
+    item.wearFlags = demo->wearFlags;
+    item.weight = demo->weight;
     return item;
 }
 
@@ -77,10 +82,15 @@ ItemModel modifyItem(int itemId, ItemModel updateFields){
     db.open("AdventureDatabase.db");
     hiberlite::bean_ptr<ItemModel> editItem = db.loadBean<ItemModel>(itemId);
 
+    editItem->attributes = updateFields.attributes;
+    editItem->cost = updateFields.cost;
     editItem->extra = updateFields.extra;
+    editItem->type = updateFields.type;
     editItem->keywords = updateFields.keywords;
     editItem->longDesc = updateFields.longDesc;
     editItem->shortDesc = updateFields.shortDesc;
+    editItem->wearFlags = updateFields.wearFlags;
+    editItem->weight = updateFields.weight;
     editItem.save();
 
     return loadItem(itemId);
