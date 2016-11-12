@@ -234,26 +234,77 @@ std::vector<RoomModel> parser::extractRoomsFromSequence(YAML::Node const &roomNo
     return rooms;
 }
 
+std::vector<NpcModel> parser::extractNPCFromSequence(YAML::Node const &npcNode) {
+    std::vector<NpcModel> npcs;
+    int count = 0;
+
+    for(auto s : npcNode){
+        npcs.push_back(parser::npcDeserializeFromNode(s));
+        count++;
+    }
+    std::cout << count << std::endl;
+    return npcs;
+}
+
 NpcModel parser::npcDeserialize(std::string const &body) {
 
     YAML::Node npcNode = YAML::Load(body);
 
-    //TODO if npcNode[""].isDefined() ERROR CHECKING
+    return parser::npcDeserializeFromNode(npcNode);
+}
+
+NpcModel parser::npcDeserializeFromNode(YAML::Node const &npcNode) {
+
     NpcModel npc;
+    //TODO if npcNode[""].isDefined() ERROR CHECKING
     npc.npcId = npcNode[NPC_ID_KEY].as<int>();
     npc.mainDesc = npcNode[NPC_MAINDESC_KEY].as<std::vector<std::string>>();
     npc.keywords = npcNode[NPC_KEYWORDS_KEY].as<std::vector<std::string>>();
     npc.longDesc = npcNode[NPC_LONGDESC_KEY].as<std::vector<std::string>>();
     npc.shortDesc = npcNode[NPC_SHORTDESC_KEY].as<std::string>();
 
-//    npc.damage = npcNode[NPC_DAMAGE_KEY].as<std::string>();
-//    npc.armor = npcNode[NPC_ARMOR_KEY].as<int>();
-//    npc.hit = npcNode[NPC_HIT_KEY].as<std::string>();
-//    npc.exp = npcNode[NPC_EXP_KEY].as<int>();
-//    npc.gold = npcNode[NPC_GOLD_KEY].as<int>();
-//    npc.level = npcNode[NPC_LEVEL_KEY].as<int>();
-//    npc.thac0 = npcNode[NPC_THAC0_KEY].as<int>();
+    npcDeserializeAndAppendOptionals(npc, npcNode);
     return npc;
+}
+
+
+void parser::npcDeserializeAndAppendOptionals(NpcModel &npc, YAML::Node const &npcNode){
+
+    if(npcNode[NPC_DAMAGE_KEY]){
+        npc.damage = npcNode[NPC_DAMAGE_KEY].as<std::string>();
+    }else{
+        npc.damage = "";
+    }
+    if(npcNode[NPC_ARMOR_KEY]){
+        npc.armor = npcNode[NPC_ARMOR_KEY].as<int>();
+    }else{
+        npc.armor = 0;
+    }
+    if(npcNode[NPC_HIT_KEY]){
+        npc.hit = npcNode[NPC_HIT_KEY].as<std::string>();
+    }else{
+        npc.hit = "";
+    }
+    if(npcNode[NPC_EXP_KEY]){
+        npc.exp = npcNode[NPC_EXP_KEY].as<int>();
+    }else{
+        npc.exp = 0;
+    }
+    if(npcNode[NPC_GOLD_KEY]){
+        npc.gold = npcNode[NPC_GOLD_KEY].as<int>();
+    }else{
+        npc.gold = 0;
+    }
+    if(npcNode[NPC_LEVEL_KEY]){
+        npc.level = npcNode[NPC_LEVEL_KEY].as<int>();
+    }else{
+        npc.level = 0;
+    }
+    if(npcNode[NPC_THAC0_KEY]){
+        npc.thac0 = npcNode[NPC_THAC0_KEY].as<int>();
+    }else{
+        npc.thac0 = 0;
+    }
 }
 
 
@@ -279,14 +330,25 @@ std::string parser::npcSerialize(NpcModel const &npc) {
 
     out << YAML::Key << NPC_DAMAGE_KEY;
     out << YAML::Value << npc.damage;
+    out << YAML::Key << NPC_EXP_KEY;
+    out << YAML::Value << npc.exp;
     out << YAML::Key << NPC_ARMOR_KEY;
     out << YAML::Value << npc.armor;
     out << YAML::Key << NPC_HIT_KEY;
     out << YAML::Value << npc.hit;
+    out << YAML::Key << NPC_THAC0_KEY;
+    out << YAML::Value << npc.thac0;
+    out << YAML::Value << NPC_GOLD_KEY;
+    out << YAML::Value << npc.gold;
+    out << YAML::Key << NPC_LEVEL_KEY;
+    out << YAML::Value << npc.level;
+
     out << YAML::EndMap;
 
     return out.c_str();
 }
+
+
 std::string parser::messageSerialize(MessageModel const &message) {
     YAML::Emitter out;
     out << YAML::BeginMap;

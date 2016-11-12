@@ -12,15 +12,10 @@ void etl::LoadRoomsToDB() {
     try{
 //        FILE
 //        if()
-        YAML::Node testNode = YAML::LoadFile("smurf.yaml");//TODO Couldn't use ~/cmpt373/adventure2016.... must have path be absolute? how to fix
-        YAML::Node roomsNode = testNode["ROOMS"];
-        if(roomsNode){
-            std::cout << "found rooms node" << std::endl;
-        }else{
-            std::cout << "did not find" << std::endl;
-        }
+        YAML::Node smurf = YAML::LoadFile("smurf.yaml");//TODO Couldn't use ~/cmpt373/adventure2016.... must have path be absolute? how to fix
+        YAML::Node roomsNode = smurf["ROOMS"];
         std::vector<RoomModel> rooms = parser::extractRoomsFromSequence(roomsNode);//TODO Load all these onto the db
-        for(auto room : rooms){
+        for(auto &room : rooms){
             addRoom(room);
         }
     }catch(...){
@@ -29,5 +24,14 @@ void etl::LoadRoomsToDB() {
 }
 
 void etl::LoadNPCsToDB() {
-
+    try{
+        YAML::Node smurf = YAML::LoadFile("smurf.yaml");
+        YAML::Node npcNode = smurf["NPCS"];
+        std::vector<NpcModel> vectorNPC = parser::extractNPCFromSequence(npcNode);
+        for(auto &npc : vectorNPC){
+            addNpc(npc);
+        }
+    }catch(...){
+        std::cout << "Could not load yaml file or npcs not available in the file" << std::endl;
+    }
 }
