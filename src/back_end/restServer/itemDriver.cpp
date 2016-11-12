@@ -68,7 +68,6 @@ ItemModel addItem(ItemModel item){
     i->id = i.get_id();
     item.id = i.get_id();
     i.save();
-    printDB();
 
     return item;
 }

@@ -37,8 +37,6 @@ public:
     std::vector<std::string> wear_flags;
     int weight;
 
-	ItemModel();
-
 };
 
 
