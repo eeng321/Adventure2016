@@ -51,3 +51,5 @@ namespace parser{
     std::vector<RoomModel> extractRoomsFromSequence(YAML::Node const &roomNode);
     std::vector<NpcModel> extractNPCFromSequence(YAML::Node const &npcNode);
 };
+
+#endif //ADVENTURE2016_PARSER_H
