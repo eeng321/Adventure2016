@@ -43,8 +43,11 @@ namespace parser{
     std::string npcSerialize(NpcModel const &npc);
 
     std::string messageSerialize(MessageModel const &message);
+    MessageModel messageDeserialize(std::string const &body);
+
+    std::string messageVectorSerialize(std::vector<MessageModel> const &message);
     std::vector<MessageModel> messageVectorDeserialize(std::string const &body);
 
-    std::vector<RoomMOdel> extractRoomsFromSequence(YAML::Node const &roomNode);
+    std::vector<RoomModel> extractRoomsFromSequence(YAML::Node const &roomNode);
     std::vector<NpcModel> extractNPCFromSequence(YAML::Node const &npcNode);
 };
