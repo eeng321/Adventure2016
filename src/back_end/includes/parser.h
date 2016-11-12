@@ -10,10 +10,8 @@
 #include <string>
 #include "../../model/include/playerModel.h"
 #include "../../model/include/roomModel.h"
-
 #include "../../model/include/messageModel.h"
 #include "../../model/include/itemModel.h"
-
 #include "../../model/include/npcModel.h"
 #include "../../model/include/door.h"
 #include "yamlKeys.h"
@@ -23,7 +21,7 @@ namespace parser{
     //Do not change any of these unless required. Must match the yaml files given, NOT CLASS FIELD NAMES
 
     std::string itemSerialize(ItemModel const &item);
-    Item itemDeserialize(std::string const &body);
+    ItemModel itemDeserialize(std::string const &body);
 
     std::string playerSerialize(PlayerModel const &player);
     PlayerModel playerDeserialize(std::string const &body);
