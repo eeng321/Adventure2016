@@ -13,7 +13,7 @@ Npc::Npc(description desc,
          npcId nid,
          std::vector<keyword> key,
          description ldesc,
-         description sdesc,
+         std::string sdesc,
          std::string damageIn,
          int armorIn,
          std::string hitIn,
@@ -95,7 +95,7 @@ description Npc::getLongDesc() const {
     return longDesc;
 }
 
-description Npc::getShortDesc() const {
+std::string Npc::getShortDesc() const {
     return shortDesc;
 }
 

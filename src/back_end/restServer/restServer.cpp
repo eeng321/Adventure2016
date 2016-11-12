@@ -13,7 +13,7 @@
 #include "playerEndpoint.h"
 #include "roomDriver.h"
 #include "roomEndpoint.h"
-
+#include "etlJob.h"
 #include "npcDriver.h"
 #include "npcEndpoint.h"
 
@@ -99,10 +99,9 @@ int main(int argc, char *argv[]) {
     cout << "CPU Cores = " << hardware_concurrency() << endl;
     cout << "Using " << numThreads << " threads" << endl;
 
-    createDB();
-    createRoomDB();
+    etl::createDB();
+    printNpc();
     printRoomDB();
-
     Endpoints endpoints(addr);
 
     endpoints.init(numThreads);

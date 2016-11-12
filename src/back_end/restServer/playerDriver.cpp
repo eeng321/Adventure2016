@@ -13,7 +13,7 @@ void printPlayer(PlayerModel player){
     cout << "HEALTH: " << player.health << endl;
 }
 
-void createDB(){
+void createPlayerDB(){
     hiberlite::Database db("AdventureDatabase.db");
     //register bean classes
     db.registerBeanClass<PlayerModel>();
@@ -25,7 +25,7 @@ void createDB(){
     db.createModel();
 }
 
-void printDB(){
+void printPlayerDB(){
 
     hiberlite::Database db("AdventureDatabase.db");
 
@@ -63,7 +63,6 @@ PlayerModel addPlayer(PlayerModel player){
     p->playerId = p.get_id();
     player.playerId = p.get_id();
     p.save();
-    printDB();
 
     return player;
 }
@@ -89,7 +88,7 @@ success removePlayer(int playerId){
     int numOfPlayers = listPlayers.size();
     player.destroy();
     account.destroy();
-    //printDB();
+    //printPlayerDB();
     //return true if number of players in db changes after deleting
     return (numOfPlayers != listPlayers.size());
     

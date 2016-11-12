@@ -61,7 +61,6 @@ NpcModel addNpc(NpcModel npc){
     p->npcId = p.get_id();
     npc.npcId = p.get_id();
     p.save();
-    printNpc();
 
     return npc;
 }

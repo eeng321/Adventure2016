@@ -34,7 +34,7 @@ public:
 	int npcId;
 	std::vector<std::string> keywords;
 	std::vector<std::string> longDesc;
-	std::vector<std::string> shortDesc;
+	std::string shortDesc;
 	std::string damage;
 	int armor;
 	std::string hit;
