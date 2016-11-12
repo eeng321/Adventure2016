@@ -10,7 +10,7 @@
 #include <string>
 #include "../../model/include/playerModel.h"
 #include "../../model/include/roomModel.h"
-#include "../../model/include/door.h"
+
 #include "../../model/include/messageModel.h"
 
 #include "../../model/include/npcModel.h"

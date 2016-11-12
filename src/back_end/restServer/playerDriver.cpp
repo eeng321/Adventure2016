@@ -63,7 +63,6 @@ PlayerModel addPlayer(PlayerModel player){
     p->playerId = p.get_id();
     player.playerId = p.get_id();
     p.save();
-    printNpcDB();
 
     return player;
 }

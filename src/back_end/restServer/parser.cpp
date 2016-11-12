@@ -409,5 +409,4 @@ std::vector<MessageModel> parser::messageVectorDeserialize(std::string const &bo
     }
 
     return messageModels;
-
 }

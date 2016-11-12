@@ -1,3 +1,4 @@
+
 //room.cpp
 //resources: cplusplus.com, cppreference.com
 
@@ -272,4 +273,6 @@ void Room::removeItem(itemId item) {
         throw std::domain_error("Item not in room");
     }
     itemList.erase(element);
+
 }
+

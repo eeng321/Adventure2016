@@ -6,7 +6,6 @@
 
 #include <string>
 #include <vector>
-
 #include "id.h"
 
 class NpcModel;
@@ -17,7 +16,7 @@ public:
         npcId nid,
         std::vector<std::string> key,
         std::vector<std::string> ldesc,
-        std::vector<std::string> sdesc,
+        std::string sdesc,
         std::string damageIn,
         int armorIn,
         std::string hitIn,
@@ -37,7 +36,7 @@ public:
     npcId getNpcId() const;
     std::vector<std::string> getKeywords() const;
     std::vector<std::string> getLongDesc() const;
-    std::vector<std::string> getShortDesc() const;
+    std::string getShortDesc() const;
     std::string getDamage() const;
     int getArmor() const;
     std::string getHit() const;
@@ -62,7 +61,7 @@ private:
     npcId id;
     std::vector<std::string> keywords;
     std::vector<std::string> longDesc;
-    std::vector<std::string> shortDesc;
+    std::string shortDesc;
     std::string damage;
     int armor;
     std::string hit;
