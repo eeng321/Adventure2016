@@ -10,7 +10,7 @@
 #include <string>
 #include "../../model/include/playerModel.h"
 #include "../../model/include/roomModel.h"
-#include "../../model/include/door.h"
+
 #include "../../model/include/messageModel.h"
 
 #include "../../model/include/npcModel.h"
@@ -83,7 +83,6 @@ namespace parser{
 
     std::string messageVectorSerialize(std::vector<MessageModel> const &message);
     std::vector<MessageModel> messageVectorDeserialize(std::string const &body);
-
 };
 
 #endif //ADVENTURE2016_PARSER_H

@@ -4,7 +4,7 @@
 typedef bool success;
 
 //void createDB();
-void printDB();
+void printNpc();
 
 NpcModel loadNpc(int npcId);
 NpcModel addNpc(NpcModel npc);

@@ -14,7 +14,7 @@ using namespace std;
 
 // }
 
-void printDB(){
+void printNpc(){
 
     hiberlite::Database db("AdventureDatabase.db");
 
@@ -24,7 +24,9 @@ void printDB(){
     cout << "found " << listNpcs.size() << " Npcs in the database:\n";
 
     for(size_t j=0;j<listNpcs.size();j++){
-        cout << "[mainDesc = " << listNpcs[j]->mainDesc << "     ";
+        cout << "[level = " << listNpcs[j]->level << "     ";
+        cout << "hit = " << listNpcs[j]->hit << "     ";
+        cout << "damage = " << listNpcs[j]->damage << "     ";
         cout << "id = " << listNpcs[j]->npcId << "]\n";
     }
 }
@@ -33,21 +35,21 @@ NpcModel loadNpc(int npcId){
 
     hiberlite::Database db;
     db.open("AdventureDatabase.db");
-    hiberlite::bean_ptr<NpcModel> demo = db.loadBean<NpcModel>(npcId);
+    hiberlite::bean_ptr<NpcModel> loadNpc = db.loadBean<NpcModel>(npcId);
 
     NpcModel npc;
-    npc.npcId = demo->npcId;
-    npc.mainDesc = demo->mainDesc;
-    npc.keywords = demo->keywords;
-    npc.longDesc = demo->longDesc;
-    npc.shortDesc = demo->shortDesc;
-    npc.damage = demo->damage;
-    npc.armor = demo->armor;
-    npc.hit = demo->hit;
-    npc.exp = demo->exp;
-    npc.gold = demo->gold;
-    npc.level = demo->level;
-    npc.thac0 = demo->thac0;
+    npc.npcId = loadNpc->npcId;
+    npc.mainDesc = loadNpc->mainDesc;
+    npc.keywords = loadNpc->keywords;
+    npc.longDesc = loadNpc->longDesc;
+    npc.shortDesc = loadNpc->shortDesc;
+    npc.damage = loadNpc->damage;
+    npc.armor = loadNpc->armor;
+    npc.hit = loadNpc->hit;
+    npc.exp = loadNpc->exp;
+    npc.gold = loadNpc->gold;
+    npc.level = loadNpc->level;
+    npc.thac0 = loadNpc->thac0;
 
     return npc;
 }
@@ -59,7 +61,7 @@ NpcModel addNpc(NpcModel npc){
     p->npcId = p.get_id();
     npc.npcId = p.get_id();
     p.save();
-    printDB();
+    printNpc();
 
     return npc;
 }
@@ -84,7 +86,7 @@ success removeNpc(int npcId){
     vector< hiberlite::bean_ptr<NpcModel> > listNpcs=db.getAllBeans<NpcModel>();
     int numOfNpcs = listNpcs.size();
     npc.destroy();
-    //printDB();
+    //printNpc();
     //return true if number of npcs in db changes after deleting
     return (numOfNpcs != listNpcs.size());
     

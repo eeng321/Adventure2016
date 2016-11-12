@@ -65,12 +65,7 @@ private:
         Routes::Post(router, "/player", Routes::bind(&PlayerEndpoint::createPlayer));
         Routes::Delete(router, "/player/:id", Routes::bind(&PlayerEndpoint::deletePlayer));
 
-        //NPC CRUDS
-        Routes::Get(router, "/npc/:id", Routes::bind(&PlayerEndpoint::retrievePlayer));
-        Routes::Put(router, "/npc/:id", Routes::bind(&PlayerEndpoint::updatePlayer));
-        Routes::Post(router, "/npc", Routes::bind(&PlayerEndpoint::createPlayer));
-        Routes::Delete(router, "/npc/:id", Routes::bind(&PlayerEndpoint::deletePlayer));
-        // Todo: Room Routes
+        //Room CRUDS
         Routes::Get(router, "/room/:id", Routes::bind(&RoomEndpoint::retrieveRoom));
         Routes::Put(router, "/room/:id", Routes::bind(&RoomEndpoint::updateRoom));
         Routes::Post(router, "/room", Routes::bind(&RoomEndpoint::createRoom));
@@ -79,6 +74,12 @@ private:
         // Chat Routes
         Routes::Get(router, "/chat", Routes::bind(&ChatEndpoint::getMessage, chatEndpoint));
         Routes::Post(router, "/chat", Routes::bind(&ChatEndpoint::sendMessage, chatEndpoint));
+
+        //NPC CRUDS
+        Routes::Get(router, "/npc/:id", Routes::bind(&NpcEndpoint::retrieveNpc));
+        Routes::Put(router, "/npc/:id", Routes::bind(&NpcEndpoint::updateNpc));
+        Routes::Post(router, "/npc", Routes::bind(&NpcEndpoint::createNpc));
+        Routes::Delete(router, "/npc/:id", Routes::bind(&NpcEndpoint::deleteNpc));
     }
 };
 

@@ -6,7 +6,7 @@
 #include <iostream>
 #include "npcEndpoint.h"
 #include "parser.h"
-//#include "npcDriver.h"
+#include "npcDriver.h"
 #include <boost/algorithm/string.hpp>
 
 using namespace std;
