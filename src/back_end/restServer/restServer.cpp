@@ -13,8 +13,10 @@
 #include "playerEndpoint.h"
 #include "roomDriver.h"
 #include "roomEndpoint.h"
+
 #include "npcDriver.h"
 #include "npcEndpoint.h"
+
 #include "chatEndpoint.h"
 
 
