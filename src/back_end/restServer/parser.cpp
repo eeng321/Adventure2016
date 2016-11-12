@@ -225,24 +225,19 @@ Direction parser::deserializeDirection(std::string const &directionString) {
 
 std::vector<RoomModel> parser::extractRoomsFromSequence(YAML::Node const &roomNode) {
     std::vector<RoomModel> rooms;
-    int count = 0;
     //Has to be a copy for some reason (gives me an error otherwise)
     for(auto s : roomNode){
         rooms.push_back(parser::roomDeserializeFromNode(s));
-        count++;
     }
     return rooms;
 }
 
 std::vector<NpcModel> parser::extractNPCFromSequence(YAML::Node const &npcNode) {
     std::vector<NpcModel> npcs;
-    int count = 0;
 
     for(auto s : npcNode){
         npcs.push_back(parser::npcDeserializeFromNode(s));
-        count++;
     }
-    std::cout << count << std::endl;
     return npcs;
 }
 

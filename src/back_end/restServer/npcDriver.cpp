@@ -14,7 +14,7 @@ using namespace std;
 
 // }
 
-void printDB(){
+void printNpcDB(){
 
     hiberlite::Database db("AdventureDatabase.db");
 
@@ -24,7 +24,7 @@ void printDB(){
     cout << "found " << listNpcs.size() << " Npcs in the database:\n";
 
     for(size_t j=0;j<listNpcs.size();j++){
-        cout << "[mainDesc = " << listNpcs[j]->mainDesc << "     ";
+        cout << "[shortDesc = " << listNpcs[j]-> shortDesc << "     ";
         cout << "id = " << listNpcs[j]->npcId << "]\n";
     }
 }
@@ -59,7 +59,6 @@ NpcModel addNpc(NpcModel npc){
     p->npcId = p.get_id();
     npc.npcId = p.get_id();
     p.save();
-    printDB();
 
     return npc;
 }

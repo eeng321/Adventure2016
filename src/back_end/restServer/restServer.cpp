@@ -98,11 +98,9 @@ int main(int argc, char *argv[]) {
     cout << "CPU Cores = " << hardware_concurrency() << endl;
     cout << "Using " << numThreads << " threads" << endl;
 
-    createDB();
-    createRoomDB();
-    etl::LoadRoomsToDB();
+    etl::createDB();
+    printNpcDB();
     printRoomDB();
-
     Endpoints endpoints(addr);
 
     endpoints.init(numThreads);

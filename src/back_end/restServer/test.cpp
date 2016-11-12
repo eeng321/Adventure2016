@@ -7,11 +7,19 @@
 #include "parser.h"
 #include "../../model/include/room.h"
 #include <typeinfo>
+#include <fstream>
 
 
 using namespace std;
 int main(){
-
+    const char* fileName = "AdventureDatabase.db";
+    std::ifstream ifile(fileName);
+    if( ifile){
+        std::cout << "exists" << endl;
+    }else{
+        std::cout << "doesn't exist" << endl;
+    }
+//
     NpcModel npcmodel;
     npcmodel.keywords.push_back("keyword 1");
     npcmodel.keywords.push_back("keyword 2");
@@ -28,11 +36,11 @@ int main(){
     //try{
         YAML::Node smurf = YAML::LoadFile("smurf.yaml");
         YAML::Node npcNode = smurf["NPCS"];
-        std::vector<NpcModel> vectorNPC = parser::extractNPCFromSequence(npcNode);
-
-    for(auto &s : vectorNPC){
-        cout << parser::npcSerialize(s) << endl;
-    }
+//        std::vector<NpcModel> vectorNPC = parser::extractNPCFromSequence(npcNode);
+//
+//    for(auto &s : vectorNPC){
+//        cout << parser::npcSerialize(s) << endl;
+//    }
     //}catch(...){
       //  cout << "can't find file" << endl;
     //}

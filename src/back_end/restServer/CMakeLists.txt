@@ -1,5 +1,4 @@
 
-
 # attempt to find static library first if this is set; snippet from supercollider
 set(YAMLCPP_STATIC_LIBRARY TRUE)
 if(YAMLCPP_STATIC_LIBRARY)
@@ -44,11 +43,11 @@ install(TARGETS etljob DESTINATION lib)
 
 file(COPY smurf.yaml DESTINATION ${PROJECT_BINARY_DIR}/bin)
 target_link_libraries(parser room)
-add_executable(testex test.cpp)
+add_executable(testex test.cpp ${Boost_LIBRARIES})
 target_link_libraries(testex parser yaml-cpp playerModel roomModel door)
 set_target_properties(testex PROPERTIES COMPILE_FLAGS "-std=c++14")
 
-add_executable(rest_server restServer.cpp playerEndpoint.cpp playerDriver.cpp chatEndpoint.cpp roomEndpoint.cpp roomDriver.cpp)
+add_executable(rest_server restServer.cpp playerEndpoint.cpp playerDriver.cpp chatEndpoint.cpp roomEndpoint.cpp roomDriver.cpp npcDriver.cpp)
 target_link_libraries(rest_server net_static hiber ${CMAKE_DL_LIBS} playerModel npcModel roomModel door parser yaml-cpp etljob)
 
 set_target_properties(rest_server PROPERTIES COMPILE_FLAGS "-std=c++14")

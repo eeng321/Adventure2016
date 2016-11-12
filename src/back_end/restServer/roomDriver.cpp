@@ -1,7 +1,6 @@
 #include "roomDriver.h"
 
 #include "../../model/include/doorModel.h"
-
 #include <iostream>
 
 using namespace std;
@@ -102,7 +101,6 @@ RoomModel addRoom(RoomModel room){
     hiberlite::bean_ptr<RoomModel> r=db.copyBean(room);
     r->id = room.id;
     r.save();
-    printRoomDB();
 
     return room;
 }

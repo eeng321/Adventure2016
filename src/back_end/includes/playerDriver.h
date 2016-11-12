@@ -4,8 +4,8 @@
 typedef bool success;
 
 void printPlayer(PlayerModel player);
-void createDB();
-void printDB();
+void createPlayerDB();
+void printNpcDB();
 
 PlayerModel loadPlayer(int playerId);
 PlayerModel addPlayer(PlayerModel player);
