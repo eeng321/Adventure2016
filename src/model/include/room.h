@@ -66,8 +66,8 @@ public:
 			   const std::vector<Door>& doorsIn,
 			   bool navigabilityIn);
 
-	void setModel(const Room& model);
-	Room getModel() const;
+	void setModel(const RoomModel& model);
+	RoomModel getModel() const;
 
 	std::string getArea() const;
 	std::vector<std::string> getDescription() const;

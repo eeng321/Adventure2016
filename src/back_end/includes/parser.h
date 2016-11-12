@@ -15,8 +15,8 @@
 
 #include "../../model/include/npcModel.h"
 
+namespace parser{
 
-namespace parser {
     //Do not change any of these unless required. Must match the yaml files given, NOT CLASS FIELD NAMES
     char constexpr PLAYER_NAME_KEY[] = "loginName";
     char constexpr PLAYER_ID_KEY[] = "playerId";
@@ -33,15 +33,13 @@ namespace parser {
     char constexpr ROOM_ITEMLIST_KEY[] = "itemList";
     char constexpr ROOM_NAVIGABLE_KEY[] = "navigable";
     char constexpr ROOM_NAME_KEY[] = "name";
+    char constexpr ROOM_EX_DESCRIPTION_DESC_KEY[] = "desc";
+    char constexpr ROOM_EX_DESCRIPTION_KEYWORDS_KEY[] = "keywords";
 
     char constexpr DOOR_DESCRIPTION_KEY[] = "desc";
     char constexpr DOOR_DIRECTION_KEY[] = "dir";
     char constexpr DOOR_KEYWORDS_KEY[] = "keywords";
     char constexpr DOOR_ROOMTO_KEY[] = "to";
-
-    char constexpr MESSAGE_TO[] = "to";
-    char constexpr MESSAGE_FROM[] = "from";
-    char constexpr MESSAGE_BODY[] = "message";
 
     char constexpr NPC_ID_KEY[] = "npcId";
     char constexpr NPC_MAINDESC_KEY[] = "mainDesc";
@@ -56,6 +54,10 @@ namespace parser {
     char constexpr NPC_LEVEL_KEY[] = "level";
     char constexpr NPC_THAC0_KEY[] = "thac0";
 
+    char constexpr MESSAGE_TO[] = "to";
+    char constexpr MESSAGE_FROM[] = "from";
+    char constexpr MESSAGE_BODY[] = "message";
+
     std::string playerSerialize(PlayerModel const player);
     PlayerModel playerDeserialize(std::string const body);
 
@@ -64,7 +66,7 @@ namespace parser {
     RoomModel roomDeserializeFromNode(YAML::Node roomNode);
     void roomDeserializeAndAppendExtras(RoomModel &model, YAML::Node const roomNode);
 
-    std::string doorSerialize(YAML::Emitter &out, DoorModel door);
+    std::string doorSerialize(YAML::Emitter &out, DoorModel const door);
     DoorModel doorDeserialize(YAML::Node const doorNode);
 
     std::string serializeDirection(Direction const directionEnum);
@@ -72,15 +74,14 @@ namespace parser {
 
     std::vector<RoomModel> extractRoomsFromSequence(YAML::Node const roomNode);
 
+    NpcModel npcDeserialize(std::string const body);
+    std::string npcSerialize(NpcModel const npc);
+
     std::string messageSerialize(MessageModel const &message);
     MessageModel messageDeserialize(std::string const &body);
 
     std::string messageVectorSerialize(std::vector<MessageModel> const &message);
     std::vector<MessageModel> messageVectorDeserialize(std::string const &body);
-
-    NpcModel npcDeserialize(std::string const body);
-    std::string npcSerialize(NpcModel const npc);
-
 };
 
 #endif //ADVENTURE2016_PARSER_H

@@ -1,5 +1,6 @@
 add_subdirectory(userInput)
 add_subdirectory(display)
+add_subdirectory(gameState)
 add_subdirectory(restClient)
 add_subdirectory(controller)
 add_subdirectory(utility)

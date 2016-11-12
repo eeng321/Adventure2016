@@ -4,6 +4,7 @@
 #include <string>
 #include "RestClient.h"
 #include "Player.h"
+#include "GameState.h"
 #include "../../model/include/room.h"
 
 enum StatusCode {
@@ -39,21 +40,23 @@ public:
     static StatusCode registerAccount(const std::string& username, const std::string& password, std::string& result);
 
     /**
-     * Accept and process a user command. Legal values include the cardinal
-     * directions and the shorthands n, e, s, or w; whoami; look; and take
-     * @param command       User input at the terminal.
-     * @param result        A string reference to write the results of the player action to.
-     * @return              A status code that reflects whether the operation was successful.
+     * Get a Room object by querying the server.
+     * @param id        The room ID.
+     * @param room      A Room object reference to write the retrieved room information to.
+     * @return          A status code that reflects whether the operation was successful.
      */
-    static StatusCode parseCommand(std::string& command, std::string& result);
+    static StatusCode getRoom(roomId id, Room& room);
+
+    static StatusCode moveToRoom(roomId id);
+
+    static std::string getPlayerId();
 
 private:
     static std::string makeGetRequest(const std::string& url);
     static std::string makePutRequest(const std::string& url, const std::string& payload);
     static std::string makePostRequest(const std::string& url, const std::string& payload);
-    static Player player;
-    //static Room room;
     static Rest::RestClient client;
+    static GameState state;
 };
 
 #endif //ADVENTURE2016_PARSER_H

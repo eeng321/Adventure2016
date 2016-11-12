@@ -3,6 +3,10 @@
 Id::Id(int id)
 :value(id) {}
 
+std::string Id::to_string() const {
+    return std::to_string(value);
+}
+
 playerId::playerId(int id)
 :Id(id) {}
 
@@ -15,18 +19,18 @@ roomId::roomId(int id)
 npcId::npcId(int id)
 :Id(id) {}
 
-bool playerId::operator==(const playerId& arg){
-	return this->value == arg.value;
+bool playerId::operator==(const playerId& arg) {
+    return this->value == arg.value;
 }
 
-bool itemId::operator==(const itemId& arg){
-	return this->value == arg.value;
+bool itemId::operator==(const itemId& arg) {
+    return this->value == arg.value;
 }
 
-bool roomId::operator==(const roomId& arg){
-	return this->value == arg.value;
+bool roomId::operator==(const roomId& arg) {
+    return this->value == arg.value;
 }
 
-bool npcId::operator==(const npcId& arg){
-	return this->value == arg.value;
+bool npcId::operator==(const npcId& arg) {
+    return this->value == arg.value;
 }
