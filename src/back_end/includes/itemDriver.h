@@ -9,7 +9,7 @@
 
 typedef bool success;
 
-void printPlayer(ItemModel item);
+void printItem(ItemModel item);
 void createDB();
 void printDB();
 

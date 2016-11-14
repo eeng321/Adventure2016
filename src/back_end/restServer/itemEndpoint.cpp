@@ -43,7 +43,7 @@ void ItemEndpoint::retrieveItem(const Rest::Request& request, Net::Http::Respons
         ItemModel item;
         item = loadItem(itemId);
 
-        if (item.id != -1) {
+        if (item.longDesc != "") {
             response.send(Http::Code::Ok, parser::itemSerialize(item));
         }
         else {
