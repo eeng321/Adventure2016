@@ -58,8 +58,6 @@ NpcModel addNpc(NpcModel npc){
     hiberlite::Database db;
     db.open("AdventureDatabase.db");
     hiberlite::bean_ptr<NpcModel> p=db.copyBean(npc);
-    p->npcId = p.get_id();
-    npc.npcId = p.get_id();
     p.save();
 
     return npc;
