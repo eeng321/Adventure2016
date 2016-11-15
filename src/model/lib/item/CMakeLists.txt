@@ -1,4 +1,4 @@
-add_library(item STATIC item.cpp)
-set_property(TARGET item PROPERTY CXX_STANDARD 14)
+add_library(itemModel STATIC item.cpp itemModel.cpp)
+set_property(TARGET itemModel PROPERTY CXX_STANDARD 14)
 
-install(TARGETS item DESTINATION lib)
+install(TARGETS itemModel DESTINATION bin)

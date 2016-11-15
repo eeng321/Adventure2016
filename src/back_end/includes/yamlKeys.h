@@ -8,6 +8,16 @@
 namespace parser{
 
     //When adding new keys, make sure they match the yaml files given to us.
+    char constexpr ITEM_ATTRIBUTES_KEY[] = "attributes";
+    char constexpr ITEM_COST_KEY[] = "cost";
+    char constexpr ITEM_EXTRA_KEY[] = "extra";
+    char constexpr ITEM_ID_KEY[] = "id";
+    char constexpr ITEM_ITEMTYPE_KEY[] = "item_type";
+    char constexpr ITEM_KEYWORDS_KEY[] = "keywords";
+    char constexpr ITEM_LONGDESC_KEY[] = "longdesc";
+    char constexpr ITEM_SHORTDESC_KEY[] = "shortdesc";
+    char constexpr ITEM_WEARFLAGS_KEY[] = "wear_Flags";
+    char constexpr ITEM_WEIGHT_KEY[] = "weight";
 
     char constexpr PLAYER_NAME_KEY[] = "loginName";
     char constexpr PLAYER_ID_KEY[] = "playerId";
