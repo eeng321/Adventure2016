@@ -23,7 +23,7 @@ private:
     std::vector<std::string> keywords;
     std::string longDesc;
     std::string shortDesc;
-    std::vector<std::string> wear_flags;
+    std::vector<std::string> wearFlags;
     int weight;
 
 public:
@@ -41,7 +41,7 @@ public:
          std::vector<std::string> attributesIn,
          int costIn,
          item_type typeIn,
-         std::vector<std::string> wear_flagsIn,
+         std::vector<std::string> wearFlagsIn,
          int weightIn);
 
     Item();

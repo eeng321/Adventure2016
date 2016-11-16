@@ -40,7 +40,7 @@ Item::Item(itemId idIn,
           attributes(std::move(attributesIn)),
           cost(costIn),
           type(std::move(typeIn)),
-          wear_flags(std::move(flagsIn)),
+          wearFlags(std::move(flagsIn)),
           weight(weightIn) {}
 
 ItemModel Item::getModel() const {
@@ -53,7 +53,7 @@ ItemModel Item::getModel() const {
     model.attributes = attributes;
     model.cost = cost;
     model.type = type;
-    model.wear_flags = wear_flags;
+    model.wearFlags = wearFlags;
     model.weight = weight;
     return model;
 }
@@ -67,7 +67,7 @@ void Item::setModel(const ItemModel &model) {
     attributes = model.attributes;
     cost = model.cost;
     type = model.type;
-    wear_flags = model.wear_flags;
+    wearFlags = model.wearFlags;
     weight = model.weight;
 }
 
@@ -104,7 +104,7 @@ item_type Item::getType() const {
 }
 
 std::vector<std::string> Item::getWearFlags() const {
-    return wear_flags;
+    return wearFlags;
 }
 
 int Item::getWeight() const {
@@ -145,7 +145,7 @@ void Item::setType(item_type typeIn) {
 }
 
 void Item::setWearFlags(std::vector<std::string> flagsIn) {
-    wear_flags = std::move(flagsIn);
+    wearFlags = std::move(flagsIn);
 }
 
 void Item::setWeight(int weightIn) {
