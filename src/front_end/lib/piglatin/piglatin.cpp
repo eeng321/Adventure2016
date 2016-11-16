@@ -19,9 +19,10 @@ using std::vector;
  *
  * For words that begin with vowel sounds, one just adds "way" to the end. */
 
+
 const string VOWELS = "aeiou";
-const string VOWEL_START_ENDING = "way";
-const string CONSONANT_START_ENDING = "ay";
+const string VOWEL_START_ENDING = "way";//the ending for a word that starts with a vowel
+const string CONSONANT_START_ENDING = "ay";//the ending for a word that starts with a consonant 
 
 string translateToPiglatin(const string& s){
     vector<string> words;
