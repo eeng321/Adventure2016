@@ -4,6 +4,7 @@
 */
 
 #include <algorithm>
+#include <string.h>
 #include "../lib/pistache/include/net.h"
 #include "../lib/pistache/include/http.h"
 #include "../lib/pistache/include/client.h"
@@ -16,9 +17,9 @@
 #include "etlJob.h"
 #include "npcDriver.h"
 #include "npcEndpoint.h"
-
 #include "chatEndpoint.h"
 #include "itemEndpoint.h"
+#include "Constants.h"
 
 using namespace std;
 using namespace Net;
@@ -89,16 +90,34 @@ private:
     }
 };
 
+
+
 int main(int argc, char *argv[]) {
+
     // todo: Grab these from config file or command line?
-    Net::Port port(8080);
-    int numThreads = 2;
+    if (argc >= 3) {
+        try {
+            Net::Port port(std::stol(argv[2]));
 
-    if (argc >= 2) {
-        port = std::stol(argv[1]);
+            int bytes[kNumBytesInIpv4];
+            char *inputAddr = argv[1];
+            char *parseAddr = strtok(argv[1], kAddresDelim);
+
+            for (int i = 0; i < kNumBytesInIpv4; i++) {
+                bytes[i] = std::stol(parseAddr);
+                parseAddr = strtok(NULL, kAddresDelim);
+            }
+            Ipv4 ipv4Addr(bytes[0], bytes[1], bytes[2], bytes[3]);
+            Net::Address addr(ipv4Addr, port);
+        }
+        catch (int e) {
+            throw e;
+        }
     }
-
+    Net::Port port(kDefaultPort);
     Net::Address addr(Net::Ipv4::any(), port);
+
+    int numThreads = kDefaultThreads;
 
     cout << "Welcome to Adventure 2016 by Team Ashure!" << endl;
     cout << "Adventure Server Configured for: http://" << addr.host() << ":" << addr.port() << endl;
