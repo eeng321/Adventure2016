@@ -94,6 +94,9 @@ private:
 
 int main(int argc, char *argv[]) {
 
+    Net::Port port(kDefaultPort);
+    Net::Address addr(Net::Ipv4::any(), port);
+
     // todo: Grab these from config file or command line?
     if (argc >= 3) {
         try {
@@ -114,8 +117,7 @@ int main(int argc, char *argv[]) {
             throw e;
         }
     }
-    Net::Port port(kDefaultPort);
-    Net::Address addr(Net::Ipv4::any(), port);
+
 
     int numThreads = kDefaultThreads;
 
