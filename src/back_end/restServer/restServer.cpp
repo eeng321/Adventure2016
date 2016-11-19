@@ -100,7 +100,7 @@ int main(int argc, char *argv[]) {
     // todo: Grab these from config file or command line?
     if (argc >= 3) {
         try {
-            Net::Port port(std::stol(argv[2]));
+            Net::Port userPort(std::stol(argv[2]));
 
             int bytes[kNumBytesInIpv4];
             char *inputAddr = argv[1];
@@ -111,13 +111,14 @@ int main(int argc, char *argv[]) {
                 parseAddr = strtok(NULL, kAddresDelim);
             }
             Ipv4 ipv4Addr(bytes[0], bytes[1], bytes[2], bytes[3]);
-            Net::Address addr(ipv4Addr, port);
+            Net::Address userAddr(ipv4Addr, port);
+            addr = userAddr;
+            port = userPort;
         }
         catch (int e) {
             throw e;
         }
     }
-
 
     int numThreads = kDefaultThreads;
 
