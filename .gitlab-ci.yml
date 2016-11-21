@@ -4,7 +4,7 @@ stages:
 
 make:
   stage: build
-  cache:
+  artifacts:
     paths:
       - build/
   script:
