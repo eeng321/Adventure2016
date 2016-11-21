@@ -1,6 +1,15 @@
-adventure2016:
+stages:
+  - build
+
+make:
+  stage: build
   script:
     - mkdir build
     - cd build
     - cmake ..
     - make
+
+deploy:
+  stage: deploy
+  script:
+    - ./adventure2016
