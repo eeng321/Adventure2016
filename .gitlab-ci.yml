@@ -12,6 +12,8 @@ make:
 
 deploy:
   stage: deploy
+  only:
+    - master
   script:
     - kill $(lsof -t -i:8080) &
     - mkdir build
