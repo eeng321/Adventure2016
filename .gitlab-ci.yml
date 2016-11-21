@@ -9,5 +9,14 @@ make:
     - cd build
     - cmake ..
     - make
+
+deploy:
+  stage: deploy
+  script:
+    - kill $(lsof -t -i:8080)
+    - mkdir build
+    - cd build
+    - cmake ..
+    - make
     - cd bin
-    - ./rest_server &
+    - ./adventure2016 &
