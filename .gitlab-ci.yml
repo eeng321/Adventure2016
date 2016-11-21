@@ -5,8 +5,7 @@ stages:
 make:
   stage: build
   artifacts:
-    paths:
-      - build/
+    untracked: true
   script:
     - mkdir build
     - cd build
