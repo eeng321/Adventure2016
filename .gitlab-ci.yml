@@ -13,4 +13,7 @@ make:
 deploy:
   stage: deploy
   script:
+    - pwd
+    - cd build
+    - cd bin
     - ./adventure2016
