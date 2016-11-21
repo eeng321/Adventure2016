@@ -27,6 +27,7 @@ void Display::readUserInput(char *command) {
 void Display::addStringToMainWindow(const char* sentence) {
     wprintw(mainWindow, sentence);
     wprintw(mainWindow, "\n");
+    wprintw(mainWindow, "> ");
     wrefresh(mainWindow);
 }
 
@@ -51,6 +52,7 @@ void Display::initDisplay() {
     getmaxyx(stdscr, max_y, max_x);
     mainWindow = createNewWindow(Display::getScreenHeight()/2, Display::getScreenWidth()/2, WINDOW_START_Y, WINDOW_START_X);
     scrollok(mainWindow, TRUE);
+    wprintw(mainWindow, "> ");
     wrefresh(mainWindow);
 }
 
