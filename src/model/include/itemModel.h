@@ -38,7 +38,7 @@ public:
     int id;
     item_type type;
     std::vector<std::string> keywords;
-    std::string longDesc;
+    std::vector<std::string> longDesc;
     std::string shortDesc;
     std::vector<std::string> wearFlags;
     int weight;

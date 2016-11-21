@@ -12,30 +12,30 @@
 
 using namespace std;
 int main(){
-    const char* fileName = "AdventureDatabase.db";
-    std::ifstream ifile(fileName);
-    if( ifile){
-        std::cout << "exists" << endl;
-    }else{
-        std::cout << "doesn't exist" << endl;
-    }
+//    const char* fileName = "AdventureDatabase.db";
+//    std::ifstream ifile(fileName);
+//    if( ifile){
+//        std::cout << "exists" << endl;
+//    }else{
+//        std::cout << "doesn't exist" << endl;
+//    }
+////
+//    NpcModel npcmodel;
+//    npcmodel.keywords.push_back("keyword 1");
+//    npcmodel.keywords.push_back("keyword 2");
+//    npcmodel.shortDesc = "short desc";
+//    npcmodel.npcId = 123;
+//    npcmodel.mainDesc.push_back("this is a");
+//    npcmodel.mainDesc.push_back("main desc");
+//    npcmodel.longDesc.push_back("this is a long");
+//    npcmodel.longDesc.push_back("desc");
 //
-    NpcModel npcmodel;
-    npcmodel.keywords.push_back("keyword 1");
-    npcmodel.keywords.push_back("keyword 2");
-    npcmodel.shortDesc = "short desc";
-    npcmodel.npcId = 123;
-    npcmodel.mainDesc.push_back("this is a");
-    npcmodel.mainDesc.push_back("main desc");
-    npcmodel.longDesc.push_back("this is a long");
-    npcmodel.longDesc.push_back("desc");
-
-    //cout << parser::npcSerialize(npcmodel) << endl;
-    //NpcModel newModel = parser::npcDeserialize(parser::npcSerialize(npcmodel));
-    //cout << parser::npcSerialize(newModel) << endl;
-    //try{
-        YAML::Node smurf = YAML::LoadFile("smurf.yaml");
-        YAML::Node npcNode = smurf["NPCS"];
+//    //cout << parser::npcSerialize(npcmodel) << endl;
+//    //NpcModel newModel = parser::npcDeserialize(parser::npcSerialize(npcmodel));
+//    //cout << parser::npcSerialize(newModel) << endl;
+//    //try{
+//        YAML::Node smurf = YAML::LoadFile("smurf.yaml");
+//        YAML::Node npcNode = smurf["NPCS"];
 //        std::vector<NpcModel> vectorNPC = parser::extractNPCFromSequence(npcNode);
 //
 //    for(auto &s : vectorNPC){
@@ -104,6 +104,21 @@ int main(){
 //            std::cout << i << std::endl;
 //        }
 //    }
+
+
+    YAML::Node items = YAML::LoadFile("smurf.yaml");
+
+    YAML::Node itemNode = items["OBJECTS"];
+    if(itemNode){
+        std::cout << "found objects" << endl;
+        std::vector<ItemModel> vectorItemModel = parser::extractItemsFromSequence(itemNode);
+        for(auto &item : vectorItemModel){
+            std::cout << "adding item..." << std::endl;
+        }
+    }else{
+        std::cout << "rip" << endl;
+    }
+
     return 0;
 }
 

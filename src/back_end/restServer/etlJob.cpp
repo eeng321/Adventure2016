@@ -19,6 +19,7 @@ void etl::createDB() {
         createPlayerDB();
         LoadRoomsToDB();
         LoadNPCsToDB();
+        LoadItemsToDB();
     }
 }
 
@@ -47,5 +48,19 @@ void etl::LoadNPCsToDB() {
         }
     }catch(...){
         std::cout << "Could not load yaml file or npcs not available in the file" << std::endl;
+    }
+}
+
+void etl::LoadItemsToDB() {
+    try{
+        YAML::Node items = YAML::LoadFile("smurf.yaml");
+        YAML::Node itemNode = items["OBJECTS"];
+        std::vector<ItemModel> vectorItemModel = parser::extractItemsFromSequence(itemNode);
+        for(auto &item : vectorItemModel){
+            std::cout << "adding item..." << std::endl;
+            addItem(item);
+        }
+    }catch(...){
+        std::cout << "could not load yaml file or items not available in the file" << std::endl;
     }
 }

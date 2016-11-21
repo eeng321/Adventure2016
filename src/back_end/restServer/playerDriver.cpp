@@ -1,6 +1,7 @@
 #include "playerDriver.h"
 #include "credential.h"
 #include "../../model/include/npcModel.h"
+#include "../../model/include/itemModel.h"
 #include <iostream>
 
 using namespace std;
@@ -19,6 +20,7 @@ void createPlayerDB(){
     db.registerBeanClass<PlayerModel>();
     db.registerBeanClass<Credential>();
     db.registerBeanClass<NpcModel>();
+    db.registerBeanClass<ItemModel>();
     //drop all tables beans will use
     db.dropModel();
     //create those tables again with proper schema

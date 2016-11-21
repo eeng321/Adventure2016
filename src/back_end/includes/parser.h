@@ -22,6 +22,7 @@ namespace parser{
 
     std::string itemSerialize(ItemModel const &item);
     ItemModel itemDeserialize(std::string const &body);
+    ItemModel itemDeserializeFromNode(YAML::Node const &itemNode);
 
     std::string playerSerialize(PlayerModel const &player);
     PlayerModel playerDeserialize(std::string const &body);
@@ -50,6 +51,10 @@ namespace parser{
 
     std::vector<RoomModel> extractRoomsFromSequence(YAML::Node const &roomNode);
     std::vector<NpcModel> extractNPCFromSequence(YAML::Node const &npcNode);
+    std::vector<ItemModel> extractItemsFromSequence(YAML::Node const &itemNode);
+
+
+
 };
 
 #endif //ADVENTURE2016_PARSER_H

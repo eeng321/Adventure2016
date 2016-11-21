@@ -106,8 +106,9 @@ int main(int argc, char *argv[]) {
     cout << "Using " << numThreads << " threads" << endl;
 
     etl::createDB();
-    printNpc();
-    printRoomDB();
+//    printNpc();
+//    printItemDB();
+//    printRoomDB();
     Endpoints endpoints(addr);
 
     endpoints.init(numThreads);

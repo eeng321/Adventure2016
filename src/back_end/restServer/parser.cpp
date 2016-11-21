@@ -43,27 +43,47 @@ std::string parser::itemSerialize(ItemModel const &item) {
 ItemModel parser::itemDeserialize(std::string const &body) {
     YAML::Node itemNode = YAML::Load(body);
 
+    return itemDeserializeFromNode(itemNode);
+}
+
+ItemModel parser::itemDeserializeFromNode(YAML::Node const &itemNode) {
+
     //TODO if itemNode[""].isDefined() ERROR CHECKING
     ItemModel item;
-    for(auto e: itemNode[ITEM_ATTRIBUTES_KEY]){
-        item.attributes.push_back(e.as<std::string>());
+    if(itemNode[ITEM_ATTRIBUTES_KEY]){
+        item.attributes = itemNode[ITEM_ATTRIBUTES_KEY].as<std::vector<std::string>>();
     }
-    item.cost = itemNode[ITEM_COST_KEY].as<int>();
-    for(auto e: itemNode[ITEM_EXTRA_KEY]){
-        item.extra.push_back(e.as<std::string>());
+    if(itemNode[ITEM_COST_KEY]){
+        item.cost = itemNode[ITEM_COST_KEY].as<int>();
+    }else{
+        item.cost = 0;
     }
-    item.id = itemNode[ITEM_ID_KEY].as<int>();
-    for(auto keyword: itemNode[ITEM_KEYWORDS_KEY]){
-        item.keywords.push_back(keyword.as<std::string>());
+    if(itemNode[ITEM_EXTRA_KEY]){
+        item.extra = itemNode[ITEM_EXTRA_KEY].as<std::vector<std::string>>();
     }
-    item.longDesc = itemNode[ITEM_LONGDESC_KEY].as<std::string>();
-    item.shortDesc = itemNode[ITEM_SHORTDESC_KEY].as<std::string>();
-    for(auto e: itemNode[ITEM_WEARFLAGS_KEY]){
-        item.wearFlags.push_back(e.as<std::string>());
+    if(itemNode[ITEM_ID_KEY]){
+        item.id = itemNode[ITEM_ID_KEY].as<int>();
+    }else{
+        item.id = -1; //invalid item id TODO fix
     }
-    item.weight = itemNode[ITEM_WEIGHT_KEY].as<int>();
+    if(itemNode[ITEM_KEYWORDS_KEY]){
+        item.keywords = itemNode[ITEM_KEYWORDS_KEY].as<std::vector<std::string>>();
+    }
+    if(itemNode[ITEM_LONGDESC_KEY]){
+        item.longDesc = itemNode[ITEM_LONGDESC_KEY].as<std::vector<std::string>>();
+    }
+    if(itemNode[ITEM_SHORTDESC_KEY]){
+        item.shortDesc = itemNode[ITEM_SHORTDESC_KEY].as<std::string>();
+    }
+    if(itemNode[ITEM_WEARFLAGS_KEY]){
+        item.wearFlags = itemNode[ITEM_WEARFLAGS_KEY].as<std::vector<std::string>>();
+    }
+    if(itemNode[ITEM_WEIGHT_KEY]){
+        item.weight = itemNode[ITEM_WEIGHT_KEY].as<int>();
+    }else{
+        item.weight = 0;
+    }
     return item;
-
 }
 
 std::string parser::playerSerialize(PlayerModel const &player) {
@@ -174,8 +194,6 @@ std::string parser::doorSerialize(YAML::Emitter &out, DoorModel const &door) {
     return out.c_str();
 }
 
-
-
 RoomModel parser::roomDeserializeFromNode(YAML::Node const &roomNode) {
     //TODO error checking
     RoomModel model;
@@ -257,7 +275,6 @@ DoorModel parser::doorDeserialize(YAML::Node const &doorNode) {
     return door;
 }
 
-
 std::string parser::serializeDirection(Direction const &directionEnum){
     switch (directionEnum) {
         case Direction::north:
@@ -302,6 +319,16 @@ std::vector<NpcModel> parser::extractNPCFromSequence(YAML::Node const &npcNode) 
     return npcs;
 }
 
+std::vector<ItemModel> parser::extractItemsFromSequence(YAML::Node const &itemNode) {
+    std::vector<ItemModel> items;
+
+    for(auto s : itemNode){
+        items.push_back(parser::itemDeserializeFromNode(s));
+    }
+
+    return items;
+}
+
 NpcModel parser::npcDeserialize(std::string const &body) {
 
     YAML::Node npcNode = YAML::Load(body);
@@ -322,7 +349,6 @@ NpcModel parser::npcDeserializeFromNode(YAML::Node const &npcNode) {
     npcDeserializeAndAppendOptionals(npc, npcNode);
     return npc;
 }
-
 
 void parser::npcDeserializeAndAppendOptionals(NpcModel &npc, YAML::Node const &npcNode){
 
@@ -363,7 +389,6 @@ void parser::npcDeserializeAndAppendOptionals(NpcModel &npc, YAML::Node const &n
     }
 }
 
-
 std::string parser::npcSerialize(NpcModel const &npc) {
 
     YAML::Emitter out;
@@ -403,7 +428,6 @@ std::string parser::npcSerialize(NpcModel const &npc) {
 
     return out.c_str();
 }
-
 
 std::string parser::messageSerialize(MessageModel const &message) {
     YAML::Emitter out;
