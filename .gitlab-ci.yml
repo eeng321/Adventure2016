@@ -20,3 +20,4 @@ deploy:
     - make
     - cd bin
     - ./rest_server 8080 &
+    - disown

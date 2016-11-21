@@ -1,46 +1,7 @@
 #include "roomDriver.h"
-
-#include "../../model/include/doorModel.h"
 #include <iostream>
 
 using namespace std;
-
-// void printRoom(RoomModel room){
-//     cout << "AREA NAME: " << room.area << endl;
-//     cout << "ID: " << room.id << endl;
-
-// }
-
-// void createRoomDB(){
-//     //hiberlite::Database db("AdventureDatabase2.db");
-//     hiberlite::Database db;
-//     db.open("AdventureDatabase.db");
-//     //register bean classes
-//     db.registerBeanClass<RoomModel>();
-//     db.registerBeanClass<DoorModel>();
-
-//     db.dropModel();
-//     //create room and door tables again with proper schema
-//     db.createModel();
-
-
-
-//     //FOR TESTING PURPOSES
-// //
-// //    RoomModel demo;
-// //    demo.area = "White Plains";
-// //    demo.id = 1;
-// //    demo.name =  "the field";
-// //    demo.mainDescription = {"the empty green field filled with flowers "};
-// //    extendedDescription description;
-// //    description.description = {"test"};
-// //    description.keywords = {"sppoky", "dangerous"};
-// //    demo.extendedDescriptions = {description};
-
-//    // demo.navigable = true;
-//     //hiberlite::bean_ptr<RoomModel> db_room =db.copyBean(demo);
-
-// }
 
 void printRoomDB(){
 
@@ -86,11 +47,9 @@ RoomModel loadRoom(int roomId){
             room.npcList = demo->npcList;
             room.playerList = demo->playerList;
             room.itemList = demo->itemList;
-
+            break;
         }
     }
-
-    //room.navigable = demo->navigable;
 
     return room;
 }
@@ -118,7 +77,6 @@ RoomModel modifyRoom(int roomId, RoomModel updateFields){
     editRoom->npcList = updateFields.npcList;
     editRoom->playerList = updateFields.playerList;
     editRoom->itemList = updateFields.itemList;
-    //editRoom->navigable = updateFields.navigable;
     editRoom.save();
 
     return loadRoom(roomId);
