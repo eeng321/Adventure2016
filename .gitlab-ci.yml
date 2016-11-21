@@ -4,12 +4,10 @@ stages:
 
 make:
   stage: build
-  artifacts:
-    untracked: true
   script:
     - mkdir build
     - cd build
     - cmake ..
     - make
     - cd bin
-    - ./rest_server
+    - ./rest_server &
