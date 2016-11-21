@@ -17,8 +17,10 @@
 #include "npcDriver.h"
 #include "npcEndpoint.h"
 
+
 #include "chatEndpoint.h"
 #include "itemEndpoint.h"
+#include "initializeDB.h"
 
 using namespace std;
 using namespace Net;
@@ -106,8 +108,7 @@ int main(int argc, char *argv[]) {
     cout << "Using " << numThreads << " threads" << endl;
 
     etl::createDB();
-    printNpc();
-    printRoomDB();
+
     Endpoints endpoints(addr);
 
     endpoints.init(numThreads);
