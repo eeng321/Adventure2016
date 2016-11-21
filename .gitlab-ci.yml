@@ -4,6 +4,9 @@ stages:
 
 make:
   stage: build
+  cache:
+    paths:
+      - build/
   script:
     - mkdir build
     - cd build
