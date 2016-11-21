@@ -9,48 +9,89 @@
 #include <string>
 
 #include "id.h"
+#include "itemType.h"
 
 class ItemModel;
 
 class Item {
 private:
-	std::vector<std::string> extra;
-	itemId id;
-	std::vector<std::string> keywords;
-	std::string longDesc;
-	std::string shortDesc;
+    std::vector<std::string> attributes;
+    int cost;
+    std::vector<std::string> extra;
+    itemId id;
+    item_type type;
+    std::vector<std::string> keywords;
+    std::string longDesc;
+    std::string shortDesc;
+    std::vector<std::string> wearFlags;
+    int weight;
 
 public:
-	Item(itemId idIn,
-		const std::vector<std::string>& keywordsIn,
-		const std::string& longDescIn,
-		const std::string& shortDescIn,
-		const std::vector<std::string>& extra);
+    Item(itemId idIn,
+         std::vector<std::string> keywordsIn,
+         std::string longDescIn,
+         std::string shortDescIn,
+         std::vector<std::string> extraIn);
 
-	Item();
+    Item(itemId idIn,
+         std::vector<std::string> keywordsIn,
+         std::string longDescIn,
+         std::string shortDescIn,
+         std::vector<std::string> extraIn,
+         std::vector<std::string> attributesIn,
+         int costIn,
+         item_type typeIn,
+         std::vector<std::string> wearFlagsIn,
+         int weightIn);
 
-	void build(itemId idIn,
-		const std::vector<std::string>& keywordsIn,
-		const std::string& longDescIn,
-		const std::string& shortDescIn,
-		const std::vector<std::string>& extra);
+    Item();
 
-	ItemModel getModel() const;
-	void setModel(const ItemModel& model);
+    ItemModel getModel() const;
 
-	/* Getters */
-	itemId getId() const;
-	std::vector<std::string> getKeywords() const;
-	std::string getlongDesc() const;
-	std::string getShortDesc() const;
-	std::vector<std::string> getExtra() const;
+    void setModel(const ItemModel &model);
 
-	/* Setters */
-	void setId(itemId idIn);
-	void setKeywords(const std::vector<std::string>& keywordsIn);
-	void setlongDesc(const std::string& longDescIn);
-	void setShortDesc(const std::string& shortDescIn);
-	void setExtra(const std::vector<std::string>& extraIn);
+    /* Getters */
+    itemId getId() const;
+
+    std::vector<std::string> getKeywords() const;
+
+    std::string getlongDesc() const;
+
+    std::string getShortDesc() const;
+
+    std::vector<std::string> getExtra() const;
+
+    std::vector<std::string> getAttributes() const;
+
+    int getCost() const;
+
+    item_type getType() const;
+
+    std::vector<std::string> getWearFlags() const;
+
+    int getWeight() const;
+
+
+    /* Setters */
+    void setId(itemId idIn);
+
+    void setKeywords(std::vector<std::string> keywordsIn);
+
+    void setlongDesc(std::string longDescIn);
+
+    void setShortDesc(std::string shortDescIn);
+
+    void setExtra(std::vector<std::string> extraIn);
+
+    void setAttributes(std::vector<std::string> attributesIn);
+
+    void setCost(int costIn);
+
+    void setType(item_type typeIn);
+
+    void setWearFlags(std::vector<std::string> flagsIn);
+
+    void setWeight(int weightIn);
 
 };
 

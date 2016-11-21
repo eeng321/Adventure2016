@@ -8,6 +8,8 @@
 class GameState {
 public:
     GameState();
+    static std::string getPlayerId();
+    static PlayerModel getPlayerModel();
     static void setPlayerModel(PlayerModel model);
     static roomId getLocation();
     static void setLocation(roomId id);

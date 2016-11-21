@@ -1,5 +1,6 @@
 #include "playerDriver.h"
 #include "credential.h"
+#include "../../model/include/npcModel.h"
 #include <iostream>
 
 using namespace std;
@@ -12,30 +13,19 @@ void printPlayer(PlayerModel player){
     cout << "HEALTH: " << player.health << endl;
 }
 
-void createDB(){
+void createPlayerDB(){
     hiberlite::Database db("AdventureDatabase.db");
     //register bean classes
     db.registerBeanClass<PlayerModel>();
     db.registerBeanClass<Credential>();
+    db.registerBeanClass<NpcModel>();
     //drop all tables beans will use
     db.dropModel();
     //create those tables again with proper schema
     db.createModel();
-
-    // const char* names[5]={"Stanley", "Kyle", "Eric", "Kenny", "Michael"};
-
-    // for(unsigned int i=0;i<5;i++) {
-    //     PlayerModel demo;
-    //     demo.loginName=names[i%5];
-    //     demo.playerId = i+1;
-    //     demo.coordinate = 0;
-    //     demo.health = 100;
-
-    //     hiberlite::bean_ptr<PlayerModel> p=db.copyBean(demo);   //create a managed copy of the object
-    // }
 }
 
-void printDB(){
+void printPlayerDB(){
 
     hiberlite::Database db("AdventureDatabase.db");
 
@@ -73,7 +63,6 @@ PlayerModel addPlayer(PlayerModel player){
     p->playerId = p.get_id();
     player.playerId = p.get_id();
     p.save();
-    printDB();
 
     return player;
 }
@@ -99,7 +88,7 @@ success removePlayer(int playerId){
     int numOfPlayers = listPlayers.size();
     player.destroy();
     account.destroy();
-    //printDB();
+    //printPlayerDB();
     //return true if number of players in db changes after deleting
     return (numOfPlayers != listPlayers.size());
     
@@ -129,12 +118,22 @@ PlayerModel registerAccount(string username, string pw){
     hiberlite::Database db;
     db.open("AdventureDatabase.db");
     //db.registerBeanClass<Credential>();
-
+    //create player model to be added into database
     Credential account;
     PlayerModel newPlayer;
+    //newPlayer.loginName = "";
+    //check if username already exists
+    // vector< hiberlite::bean_ptr<Credential> > listAccounts = db.getAllBeans<Credential>();
+    // for(size_t j=0;j<listAccounts.size();j++){
+    //     if(listAccounts[j]->player.loginName == username){
+    //         //found existing user with same name
+    //         return newPlayer; //return empty player object will return http error
+    //     }
+    // }
     newPlayer.roomId = 0;
     newPlayer.loginName = username;
     newPlayer.health = 100;
+    //username unused, create player
     account.player = addPlayer(newPlayer);
     account.password = pw;
     //add account to Credential table

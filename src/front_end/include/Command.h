@@ -2,6 +2,7 @@
 #define ADVENTURE2016_COMMAND_H
 
 #include "Controller.h"
+#include "../../model/include/door.h"
 
 class Command {
 public:
@@ -62,5 +63,14 @@ class GlobalChatCommand : public Command {
 public:
     StatusCode execute(std::string& result, const std::vector<std::string>& args);
 };
+
+///////////////// DEBUG
+class MoveCommand : public Command {
+    StatusCode execute(std::string& result, const std::vector<std::string>& args);
+};
+/////////////////
+
+
+StatusCode moveInDirection(std::string &result, Direction d);
 
 #endif //ADVENTURE2016_COMMAND_H

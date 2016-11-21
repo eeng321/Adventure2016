@@ -33,5 +33,3 @@ void Door::loadModel(DoorModel model){
 	description = model.description;
 	roomTo = roomId(model.roomTo);
 }
-
-

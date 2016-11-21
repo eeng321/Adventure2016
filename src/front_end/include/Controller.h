@@ -50,6 +50,10 @@ public:
     static std::string getLatestGlobalMessages();
     static StatusCode getRoom(roomId id, Room& room);
 
+    static StatusCode moveToRoom(roomId id);
+
+    static std::string getPlayerId();
+
 private:
     static std::string makeGetRequest(const std::string& url);
     static std::string makePutRequest(const std::string& url, const std::string& payload);

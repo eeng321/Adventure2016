@@ -30,9 +30,9 @@ int main() {
     dictionary.insertIntoLanguageMap("take", "take");
     dictionary.insertIntoLanguageMap("regarde", "look"); //This is french for Look. Will be the test for now
     dictionary.insertIntoLanguageMap("/s", "/s");
-
     Display::createChatWindow();
     std::thread chat(&Display::updateChatWindow);
+    dictionary.insertIntoLanguageMap("move", "move");
 
     while(keepPlaying) {
        if(UserInput::readBasicInput(&dictionary) == STATUS_QUIT){

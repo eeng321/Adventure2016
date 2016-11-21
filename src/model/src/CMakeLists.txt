@@ -1,4 +1,6 @@
-add_library(playerModel playerModel.cpp ../include/id.h)
-set_property(TARGET playerModel PROPERTY CXX_STANDARD 14)
+add_library(playerModel playerModel.cpp ../include/itemType.h)
+add_library(roomModel roomModel.cpp)
+set_property(TARGET roomModel playerModel PROPERTY CXX_STANDARD 14)
 
 install(TARGETS playerModel DESTINATION bin)
+install(TARGETS roomModel DESTINATION bin)
