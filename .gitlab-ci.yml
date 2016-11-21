@@ -19,4 +19,4 @@ deploy:
     - cmake ..
     - make
     - cd bin
-    - ./adventure2016 &
+    - ./rest_server 8080 &
