@@ -19,5 +19,4 @@ deploy:
     - cmake ..
     - make
     - cd bin
-    - ./rest_server 8080 &
-    - disown
+    - ./rest_server 8080 $* <&- >&- 2>&- & disown
