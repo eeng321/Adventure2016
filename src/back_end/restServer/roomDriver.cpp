@@ -1,8 +1,4 @@
 #include "roomDriver.h"
-<<<<<<< HEAD
-
-=======
->>>>>>> autoDeploy
 #include <iostream>
 
 using namespace std;
