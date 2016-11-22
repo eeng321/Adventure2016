@@ -1,4 +1,5 @@
 #include "npcDriver.h"
+#include "roomDriver.h"
 #include <iostream>
 
 using namespace std;
@@ -60,7 +61,12 @@ NpcModel addNpc(NpcModel npc){
     hiberlite::bean_ptr<NpcModel> p=db.copyBean(npc);
     p->npcId = p.get_id();
     npc.npcId = p.get_id();
+
     p.save();
+
+    RoomModel room = loadRoom(npc.roomId);
+    room.npcList.push_back(npc.npcId);
+    modifyRoom(room.id, room);
 
     return npc;
 }
@@ -84,6 +90,15 @@ success removeNpc(int npcId){
     hiberlite::bean_ptr<NpcModel> npc = db.loadBean<NpcModel>(npcId);
     vector< hiberlite::bean_ptr<NpcModel> > listNpcs=db.getAllBeans<NpcModel>();
     int numOfNpcs = listNpcs.size();
+    RoomModel room = loadRoom(npc->roomId);
+    for (int i = 0; i < room.npcList.size(); i++ ){
+        if(npc->npcId == room.npcList[i]){
+            room.npcList.erase(room.npcList.begin()+ i);
+        }
+    }
+
+    modifyRoom(room.id, room);
+
     npc.destroy();
     //printNpc();
     //return true if number of npcs in db changes after deleting
