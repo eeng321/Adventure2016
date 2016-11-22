@@ -1,6 +1,24 @@
-adventure2016:
+stages:
+  - build
+  - deploy
+
+make:
+  stage: build
   script:
     - mkdir build
     - cd build
     - cmake ..
     - make
+
+deploy:
+  stage: deploy
+  only:
+    - master
+  script:
+    - kill $(lsof -t -i:8080) &
+    - mkdir build
+    - cd build
+    - cmake ..
+    - make
+    - cd bin
+    - ./rest_server 8080 $* <&- >&- 2>&- & disown
