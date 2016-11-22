@@ -496,7 +496,7 @@ std::vector<MessageModel> parser::messageVectorDeserialize(std::string const &bo
     return messageModels;
 }
 
-reset parser::deserializeReset(YAML::Node const &resetNode){
+reset parser::resetDeserializeFromNode(YAML::Node const &resetNode){
     reset resetAction;
     resetAction.action = resetNode[RESET_ACTION].as<std::string>();
     resetAction.id = resetNode[RESET_ID].as<int>();
@@ -505,5 +505,20 @@ reset parser::deserializeReset(YAML::Node const &resetNode){
     }else{
         resetAction.limit = 100; //TODO what's the limit otherwise?
     }
-    resetAction.room = resetNode[RESET_ROOM].as<int>();
+    if(resetNode[RESET_ROOM]){
+        resetAction.room = resetNode[RESET_ROOM].as<int>();
+    }else{//some resets don't have room or limits
+        //TODO behaviour uncertain,
+    }
+    return resetAction;
+}
+
+std::vector<reset> parser::extractResetsFromSequence(YAML::Node const &resetNode) {
+    std::vector<reset> resets;
+
+    for(auto s : resetNode){
+        resets.push_back(parser::resetDeserializeFromNode(s));
+    }
+
+    return resets;
 }

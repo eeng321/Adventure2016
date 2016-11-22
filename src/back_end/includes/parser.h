@@ -53,8 +53,9 @@ namespace parser{
     std::vector<RoomModel> extractRoomsFromSequence(YAML::Node const &roomNode);
     std::vector<NpcModel> extractNPCFromSequence(YAML::Node const &npcNode);
     std::vector<ItemModel> extractItemsFromSequence(YAML::Node const &itemNode);
+    std::vector<reset> extractResetsFromSequence(YAML::Node const &resetNode);
 
-    reset deserializeReset(YAML::Node const &resetNode);//Only supporting objects and npcs
+    reset resetDeserializeFromNode(YAML::Node const &resetNode);//Only supporting objects and npcs
 
 };
 
