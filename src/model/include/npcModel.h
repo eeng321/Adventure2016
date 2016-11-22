@@ -28,6 +28,7 @@ public:
         ar & HIBERLITE_NVP(gold);
         ar & HIBERLITE_NVP(level);
         ar & HIBERLITE_NVP(thac0);
+        ar & HIBERLITE_NVP(roomId);
     }
 
 	std::vector<std::string> mainDesc;
@@ -44,6 +45,7 @@ public:
 	int thac0;
 	std::vector<int> inventory;
 	int health;
+    int roomId;
 };
 
 #endif //ADVENTURE2016_NPCMODEL_H

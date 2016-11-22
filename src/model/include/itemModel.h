@@ -30,6 +30,7 @@ public:
         ar & HIBERLITE_NVP(shortDesc);
         ar & HIBERLITE_NVP(wearFlags);
         ar & HIBERLITE_NVP(weight);
+        ar & HIBERLITE_NVP(roomId);
     }
 
     std::vector<std::string> attributes;
@@ -42,6 +43,7 @@ public:
     std::string shortDesc;
     std::vector<std::string> wearFlags;
     int weight;
+    int roomId;
 
 };
 

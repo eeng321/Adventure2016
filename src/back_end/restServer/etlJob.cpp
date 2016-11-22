@@ -9,6 +9,7 @@
 #include "../../model/include/roomModel.h"
 #include "../../model/include/doorModel.h"
 #include "../../model/include/npcModel.h"
+#include "initializeDB.h"
 
 void etl::createDB() {
     std::ifstream ifile("AdventureDatabase.db");
@@ -16,7 +17,7 @@ void etl::createDB() {
         std::cout << "DB exists" << std::endl;
         return;
     }else{
-        createPlayerDB();
+        initializeDB();
         LoadRoomsToDB();
         LoadNPCsToDB();
         LoadItemsToDB();
@@ -25,7 +26,7 @@ void etl::createDB() {
 
 void etl::LoadRoomsToDB() {
     try{
-        createRoomDB();
+        //createRoomDB();
         YAML::Node smurf = YAML::LoadFile("smurf.yaml");//TODO Couldn't use ~/cmpt373/adventure2016.... must have path be absolute? how to fix
         YAML::Node roomsNode = smurf["ROOMS"];
         std::vector<RoomModel> rooms = parser::extractRoomsFromSequence(roomsNode);//TODO Load all these onto the db
