@@ -14,6 +14,7 @@
 #include "../../model/include/itemModel.h"
 #include "../../model/include/npcModel.h"
 #include "../../model/include/door.h"
+#include "resetStruct.h"
 #include "yamlKeys.h"
 
 namespace parser{
@@ -53,7 +54,7 @@ namespace parser{
     std::vector<NpcModel> extractNPCFromSequence(YAML::Node const &npcNode);
     std::vector<ItemModel> extractItemsFromSequence(YAML::Node const &itemNode);
 
-
+    reset deserializeReset(YAML::Node const &resetNode);//Only supporting objects and npcs
 
 };
 

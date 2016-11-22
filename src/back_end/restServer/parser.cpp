@@ -495,3 +495,15 @@ std::vector<MessageModel> parser::messageVectorDeserialize(std::string const &bo
 
     return messageModels;
 }
+
+reset parser::deserializeReset(YAML::Node const &resetNode){
+    reset resetAction;
+    resetAction.action = resetNode[RESET_ACTION].as<std::string>();
+    resetAction.id = resetNode[RESET_ID].as<int>();
+    if(resetNode[RESET_LIMIT]){
+        resetAction.limit = resetNode[RESET_LIMIT].as<int>();
+    }else{
+        resetAction.limit = 100; //TODO what's the limit otherwise?
+    }
+    resetAction.room = resetNode[RESET_ROOM].as<int>();
+}
