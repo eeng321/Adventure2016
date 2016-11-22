@@ -1,6 +1,5 @@
 #include "roomDriver.h"
 
-#include "../../model/include/doorModel.h"
 #include <iostream>
 
 using namespace std;
@@ -108,18 +107,25 @@ RoomModel addRoom(RoomModel room){
 RoomModel modifyRoom(int roomId, RoomModel updateFields){
     hiberlite::Database db;
     db.open("AdventureDatabase.db");
-    hiberlite::bean_ptr<RoomModel> editRoom = db.loadBean<RoomModel>(roomId);
+    vector< hiberlite::bean_ptr<RoomModel> > listRooms=db.getAllBeans<RoomModel>();
+    for(int i = 0; i < listRooms.size(); i++ ) {
+        if (listRooms[i]->id == roomId) {
+            listRooms[i]->id = updateFields.id;
+            listRooms[i]->name = updateFields.name;
+            listRooms[i]->mainDescription = updateFields.mainDescription;
+            listRooms[i]->extendedDescriptions = updateFields.extendedDescriptions;
+            listRooms[i]->doors = updateFields.doors;
+            listRooms[i]->npcList = updateFields.npcList;
+            listRooms[i]->playerList = updateFields.playerList;
+            listRooms[i]->itemList = updateFields.itemList;
+            //listRooms[i]->navigable = updateFields.navigable;
+            listRooms[i].save();
 
-    editRoom->id = updateFields.id;
-    editRoom->name = updateFields.name;
-    editRoom->mainDescription = updateFields.mainDescription;
-    editRoom->extendedDescriptions = updateFields.extendedDescriptions;
-    editRoom->doors = updateFields.doors;
-    editRoom->npcList = updateFields.npcList;
-    editRoom->playerList = updateFields.playerList;
-    editRoom->itemList = updateFields.itemList;
-    //editRoom->navigable = updateFields.navigable;
-    editRoom.save();
+
+        }
+    }
+
+
 
     return loadRoom(roomId);
 }
@@ -129,10 +135,12 @@ bool removeRoom(int roomId){
     db.open("AdventureDatabase.db");
     vector< hiberlite::bean_ptr<RoomModel> > listRooms=db.getAllBeans<RoomModel>();
 
-    for(auto demo : listRooms ) {
-        if (demo->id == roomId) {
-            demo.destroy();
-            demo.save();
+    for(int i = 0; i < listRooms.size(); i++ ) {
+
+        if (listRooms[i]->id == roomId) {
+
+            listRooms[i].destroy();
+
         }
     }
     int numOfRooms = listRooms.size();

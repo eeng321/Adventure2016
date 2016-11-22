@@ -3,6 +3,7 @@
 //
 
 #include "itemDriver.h"
+#include "roomDriver.h"
 #include <iostream>
 
 using namespace std;
@@ -74,6 +75,12 @@ ItemModel addItem(ItemModel item){
     item.id = i.get_id();
     i.save();
 
+    RoomModel room = loadRoom(item.roomId);
+    room.itemList.push_back(item.id);
+    modifyRoom(room.id, room);
+
+
+
     return item;
 }
 
@@ -102,6 +109,16 @@ success removeItem(int itemId){
     hiberlite::bean_ptr<ItemModel> item = db.loadBean<ItemModel>(itemId);
     vector< hiberlite::bean_ptr<ItemModel> > listItems=db.getAllBeans<ItemModel>();
     int numOfItems = listItems.size();
+
+    RoomModel room = loadRoom(item->roomId);
+    for (int i = 0; i < room.itemList.size(); i++ ){
+        if(item->id == room.itemList[i]){
+            room.npcList.erase(room.itemList.begin()+ i);
+        }
+    }
+
+    modifyRoom(room.id, room);
+
     item.destroy();
     //printDB();
     //return true if number of items in db changes after deleting
