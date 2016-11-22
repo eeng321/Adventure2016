@@ -35,6 +35,9 @@ std::string parser::itemSerialize(ItemModel const &item) {
     out << YAML::Value << item.wearFlags;
     out << YAML::Key << ITEM_WEIGHT_KEY;
     out << YAML::Value << item.weight;
+    out << YAML::Key << ITEM_ROOM_ID_KEY;
+    out << YAML::Value << item.roomId;
+
     out << YAML::EndMap;
 
     return out.c_str();
@@ -62,6 +65,7 @@ ItemModel parser::itemDeserialize(std::string const &body) {
         item.wearFlags.push_back(e.as<std::string>());
     }
     item.weight = itemNode[ITEM_WEIGHT_KEY].as<int>();
+    item.roomId = itemNode[ITEM_ROOM_ID_KEY].as<int>();
     return item;
 
 }
@@ -314,6 +318,7 @@ NpcModel parser::npcDeserializeFromNode(YAML::Node const &npcNode) {
     NpcModel npc;
     //TODO if npcNode[""].isDefined() ERROR CHECKING
     npc.npcId = npcNode[NPC_ID_KEY].as<int>();
+    npc.roomId = npcNode[NPC_ROOM_ID_KEY].as<int>();
     npc.mainDesc = npcNode[NPC_MAINDESC_KEY].as<std::vector<std::string>>();
     npc.keywords = npcNode[NPC_KEYWORDS_KEY].as<std::vector<std::string>>();
     npc.longDesc = npcNode[NPC_LONGDESC_KEY].as<std::vector<std::string>>();
@@ -398,6 +403,10 @@ std::string parser::npcSerialize(NpcModel const &npc) {
     out << YAML::Value << npc.gold;
     out << YAML::Key << NPC_LEVEL_KEY;
     out << YAML::Value << npc.level;
+
+    out << YAML::Key << NPC_ROOM_ID_KEY;
+    out << YAML::Value << npc.roomId;
+
 
     out << YAML::EndMap;
 
