@@ -3,7 +3,7 @@
 
 #include <ncurses.h>
 
-#define MAX_CHAR_LIMIT 500
+#define MAX_CHAR_LIMIT 4096
 #define WINDOW_START_X 0
 #define WINDOW_START_Y 0
 #define NUM_LOGIN_MODES 2
