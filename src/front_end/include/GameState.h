@@ -13,7 +13,8 @@ public:
     static void setPlayerModel(PlayerModel model);
     static roomId getLocation();
     static void setLocation(roomId id);
-
+    static void setAttackFlag(bool state);
+    static void bool inCombat();
 private:
     static Player player;
 };

@@ -28,9 +28,11 @@ int main() {
     dictionary.insertIntoLanguageMap("who", "who");
     dictionary.insertIntoLanguageMap("where", "where");
     dictionary.insertIntoLanguageMap("take", "take");
+    dictionary.insertIntoLanguageMap("look", "look");
     dictionary.insertIntoLanguageMap("regarde", "look"); //This is french for Look. Will be the test for now
     dictionary.insertIntoLanguageMap("/s", "/s");
     dictionary.insertIntoLanguageMap("move", "move");
+    dictionary.insertIntoLanguageMap("engage", "engage");
 
     Display::createChatWindow();
     Display::createCombatWindow();

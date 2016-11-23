@@ -141,3 +141,34 @@ StatusCode MoveCommand::execute(std::string& result, const std::vector<std::stri
     roomId nextRoom{atoi(args[0].c_str())};
     return Controller::moveToRoom(nextRoom);
 }
+
+StatusCode EngageCommand::execute(std::string& result, const std::vector<std::string>& args) {
+    char commandString[MAX_CHAR_LIMIT];
+    std::string commandArg = "";
+    for(const std::string s : args) {
+        commandArg += s;
+    }
+    roomId currentRoomId = GameState::getLocation();
+    Room room;
+    Controller::getRoom(currentRoomId, room);
+    std::vector<npcId> npcs = room.getNpcList();
+    bool npcFound = false;
+    std::string engagedNPC = "";
+    for(auto & npc : npcs) {
+        if(commandArg.compare(npc.to_string()) == 0){
+            npcFound = true;
+            engagedNPC = npc.to_string();
+        }
+    }
+    if(npcFound) {
+        GameState::setAttackFlag(true);
+        std::string engagedMsg = "You are now engaged in combat with " + engagedNPC;
+        strcpy(commandString, engagedMsg.c_str());
+        Display::addStringToCombatWindow(commandString);
+    } else {
+        std::string noNPCFound = "There is no one with that name to engage in combat with!";
+        strcpy(commandString, noNPCFound.c_str());
+        Display::addStringToCombatWindow(commandString);
+    }
+
+}
