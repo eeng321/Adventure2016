@@ -20,7 +20,7 @@ enum StatusCode {
 class Controller {
 public:
     Controller();
-    Controller(std::string serverInput);
+    
     /**
      * Attempt to log into the server with the specified credentials.
      * @param username      The username.
