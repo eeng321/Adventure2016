@@ -9,6 +9,8 @@
 #include "GameState.h"
 #include "../../../model/include/room.h"
 #include <boost/algorithm/string/join.hpp>
+#include <string>
+#include <vector>
 
 
 StatusCode NorthCommand::execute(std::string &result, const std::vector<std::string>& args) {
@@ -95,7 +97,17 @@ StatusCode WhereCommand::execute(std::string& result, const std::vector<std::str
 }
 
 StatusCode LookCommand::execute(std::string& result, const std::vector<std::string>& args) {
-    result = "You see only darkness.";
+    roomId currentRoomId = GameState::getLocation();
+    Room room;
+    Controller::getRoom(currentRoomId, room);
+    std::vector<npcId> npcs = room.getNpcList();
+    result = "You see NPCs ";
+    for(auto & npc : npcs) {
+        result += npc.to_string() + " ";
+    }
+    if(npcs.size() == 0) {
+        result = "You see no NPCs";
+    }
     return STATUS_OK;
 }
 StatusCode TakeCommand::execute(std::string& result, const std::vector<std::string>& args) {
@@ -115,7 +127,7 @@ StatusCode GlobalChatCommand::execute(std::string &result, const std::vector<std
     }
     MessageModel playerMessage;
     playerMessage.To = "global";
-    playerMessage.From = "Justin"; //TODO: Faking until can grab username
+    playerMessage.From = GameState::getPlayerId();
     playerMessage.Message = commandMessage;
     std::string postPayload = parser::messageSerialize(playerMessage);
 

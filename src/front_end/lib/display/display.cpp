@@ -11,6 +11,7 @@ int max_y = 0;
 WINDOW *loginWindow;
 WINDOW *mainWindow;
 WINDOW *chatWindow;
+WINDOW *combatWindow;
 bool gameFinished = false;
 
 using namespace std;
@@ -34,7 +35,6 @@ void Display::addStringToMainWindow(const char* sentence) {
 WINDOW* Display::createNewWindow (int height, int width, int startY, int startX) {
     WINDOW *localWindow;
     localWindow = newwin(height, width, startY, startX);
-    box(localWindow, 0 , 0);
     wrefresh(localWindow);
     return localWindow;
 }
@@ -84,7 +84,6 @@ void Display::createChatWindow() {
 void Display::addStringToChatWindow(const char* sentence) {
     wprintw(chatWindow, sentence);
     wprintw(chatWindow, "\n");
-    box(chatWindow, 0, 0);
     wrefresh(chatWindow);
 }
 
@@ -92,7 +91,6 @@ void Display::updateChatWindow() {
     while(!gameFinished) {
         sleep(1);
         wclear(chatWindow);
-        box(chatWindow, 0, 0);
         wrefresh(chatWindow);
         std::string payload = Controller::getLatestGlobalMessages();
         std::vector<MessageModel> latestChatMessages = parser::messageVectorDeserialize(payload);
@@ -104,6 +102,17 @@ void Display::updateChatWindow() {
     }
 }
 
+void Display::createCombatWindow() {
+    combatWindow = createNewWindow((Display::getScreenHeight()/2)+2, (Display::getScreenWidth()/2)-2, (Display::getScreenHeight()/2)+3, (Display::getScreenWidth()/2)+2);
+    wrefresh(combatWindow);
+}
+
+void Display::addStringToCombatWindow(const char* sentence) {
+    wprintw(combatWindow, sentence);
+    wprintw(combatWindow, "\n");
+    wrefresh(combatWindow);
+}
+
 int Display::createLoginMenu() {
     Display::initDisplay();
 
@@ -111,7 +120,7 @@ int Display::createLoginMenu() {
     char item[40];
     int ch, selectedItem = 0;
     loginWindow = createNewWindow(LOGIN_MENU_WINDOW_HEIGHT, LOGIN_MENU_WINDOW_WIDTH, WINDOW_START_Y+1, WINDOW_START_X+1);
-
+    box(loginWindow, 0, 0);
     mvwprintw(loginWindow, selectedItem+1, MENU_PADDING_LEFT, "Please choose from the following:");
     for(selectedItem = 0; selectedItem < NUM_LOGIN_MODES; selectedItem++) {
         if(selectedItem == 0)
