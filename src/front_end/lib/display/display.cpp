@@ -50,7 +50,7 @@ void Display::initDisplay() {
     wclear(mainWindow);
     curs_set(TRUE);
     getmaxyx(stdscr, max_y, max_x);
-    mainWindow = createNewWindow(Display::getScreenHeight()/2, Display::getScreenWidth()/2, WINDOW_START_Y, WINDOW_START_X);
+    mainWindow = createNewWindow(Display::getScreenHeight()/2, (Display::getScreenWidth()/2)-2, WINDOW_START_Y, WINDOW_START_X);
     scrollok(mainWindow, TRUE);
     wprintw(mainWindow, "> ");
     wrefresh(mainWindow);
@@ -77,7 +77,8 @@ void Display::destroyMainWindow() {
 }
 
 void Display::createChatWindow() {
-    chatWindow = createNewWindow((Display::getScreenHeight()/2)+2, (Display::getScreenWidth()/2)-2, WINDOW_START_Y, (Display::getScreenWidth()/2)+2);
+    chatWindow = createNewWindow((Display::getScreenHeight()/2), (Display::getScreenWidth()/2)-2, WINDOW_START_Y, (Display::getScreenWidth()/2)+2);
+    scrollok(chatWindow, TRUE);
     wrefresh(chatWindow);
 }
 
@@ -104,6 +105,7 @@ void Display::updateChatWindow() {
 
 void Display::createCombatWindow() {
     combatWindow = createNewWindow((Display::getScreenHeight()/2)+2, (Display::getScreenWidth()/2)-2, (Display::getScreenHeight()/2)+3, (Display::getScreenWidth()/2)+2);
+    scrollok(combatWindow, TRUE);
     wrefresh(combatWindow);
 }
 

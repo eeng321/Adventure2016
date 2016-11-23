@@ -3,7 +3,7 @@
 
 #include <ncurses.h>
 
-#define MAX_CHAR_LIMIT 500
+#define MAX_CHAR_LIMIT 1000
 #define WINDOW_START_X 0
 #define WINDOW_START_Y 0
 #define NUM_LOGIN_MODES 2
@@ -30,7 +30,8 @@ public:
     static void addStringToChatWindow(const char* sentence);
     static void updateChatWindow();
     static void setGameFinished();
-
+    static void createCombatWindow();
+    static void addStringToCombatWindow(const char* sentence);
 
 private:
     static WINDOW* createNewWindow(int height, int width, int startY, int startX);

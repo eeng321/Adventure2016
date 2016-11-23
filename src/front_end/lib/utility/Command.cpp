@@ -122,7 +122,6 @@ StatusCode TakeCommand::execute(std::string& result, const std::vector<std::stri
 StatusCode GlobalChatCommand::execute(std::string &result, const std::vector<std::string>& args) {
     std::string commandMessage = "";
     for(const std::string s : args) {
-        Display::addStringToMainWindow(s.c_str());
         commandMessage += s + " ";
     }
     MessageModel playerMessage;
