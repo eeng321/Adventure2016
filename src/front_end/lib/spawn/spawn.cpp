@@ -3,8 +3,10 @@
 //
 
 #include "spawn.h"
-#include "Controller.h"
+#include "../../include/Controller.h"
 #include "display.h"
+
+#include <iostream>
 
 using std::vector;
 using std::string;
@@ -48,11 +50,14 @@ void Spawn::initialSpawn() {
 
 void Spawn::spawnPlayer(const roomId& id, const string& message){
     StatusCode returnCode = Controller::moveToRoom(id);
-    if (returnCode != STATUS_OK) {
-        Display::addStringToMainWindow(failedToSpawnMessage.c_str());
-    } else {
-        Display::addStringToMainWindow(message.c_str());
-    }
+//    if (returnCode != STATUS_OK) {
+//        Display::addStringToMainWindow(failedToSpawnMessage.c_str());
+//    } else {
+//        Display::addStringToMainWindow(message.c_str());
+//    }
+    Display::addStringToMainWindow(message.c_str());
+
+
 }
 
 Region Spawn::getAnswer(){
