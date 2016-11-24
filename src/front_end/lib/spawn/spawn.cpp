@@ -17,6 +17,7 @@ const question question3 = "Are you interested in guilds? a) Yes, b) No (please 
 const string invalidResponse = "Invalid answer, please respond with a or b";
 const string midgaardMessage = "You have spawned into midgaard, a realm of magic and fantasy.";
 const string smurfMessage = "You have spawned into smurf village, the home of the happy, peaceful smurfs.";
+const string failedToSpawnMessage = "Sorry, you were unable to spawn. Please try again.";
 
 void Spawn::initialSpawn() {
     vector<question> questions;
@@ -46,8 +47,12 @@ void Spawn::initialSpawn() {
 }
 
 void Spawn::spawnPlayer(const roomId& id, const string& message){
-    StatusCode ReturnCode = Controller::moveToRoom(id);
-    Display::addStringToMainWindow(message.c_str());
+    StatusCode returnCode = Controller::moveToRoom(id);
+    if (returnCode != STATUS_OK) {
+        Display::addStringToMainWindow(failedToSpawnMessage.c_str());
+    } else {
+        Display::addStringToMainWindow(message.c_str());
+    }
 }
 
 Region Spawn::getAnswer(){
