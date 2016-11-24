@@ -6,13 +6,13 @@
 #include <unistd.h>
 #include "display.h"
 
-int max_x = 0;
-int max_y = 0;
-WINDOW *loginWindow;
-WINDOW *mainWindow;
-WINDOW *chatWindow;
-WINDOW *combatWindow;
-bool gameFinished = false;
+static int max_x = 0;
+static int max_y = 0;
+static WINDOW *loginWindow;
+static WINDOW *mainWindow;
+static WINDOW *chatWindow;
+static WINDOW *combatWindow;
+static bool gameFinished = false;
 
 using namespace std;
 
