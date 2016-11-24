@@ -1,14 +1,24 @@
 //Menu logic is based off of this website: http://techlister.com/linux/creating-menu-with-ncurses-in-c/1293/
-#include "display.h"
+#include "../../../back_end/includes/parser.h"
+#include "../../../model/include/messageModel.h"
+#include "Controller.h"
 #include <iostream>
 #include <unistd.h>
+#include "display.h"
 
 int max_x = 0;
 int max_y = 0;
-WINDOW *loginWindow;
-WINDOW *mainWindow;
+static WINDOW *loginWindow;
+static WINDOW *mainWindow;
+static WINDOW *chatWindow;
+static WINDOW *combatWindow;
+static bool gameFinished = false;
 
 using namespace std;
+
+void Display::setGameFinished() {
+    gameFinished = true;
+}
 
 void Display::readUserInput(char *command) {
     echo();
@@ -18,13 +28,13 @@ void Display::readUserInput(char *command) {
 void Display::addStringToMainWindow(const char* sentence) {
     wprintw(mainWindow, sentence);
     wprintw(mainWindow, "\n");
+    wprintw(mainWindow, "> ");
     wrefresh(mainWindow);
 }
 
 WINDOW* Display::createNewWindow (int height, int width, int startY, int startX) {
     WINDOW *localWindow;
     localWindow = newwin(height, width, startY, startX);
-    box(localWindow, 0 , 0);
     wrefresh(localWindow);
     return localWindow;
 }
@@ -40,8 +50,9 @@ void Display::initDisplay() {
     wclear(mainWindow);
     curs_set(TRUE);
     getmaxyx(stdscr, max_y, max_x);
-    mainWindow = createNewWindow(Display::getScreenHeight()-1, Display::getScreenWidth()-1, WINDOW_START_Y, WINDOW_START_X);
+    mainWindow = createNewWindow(Display::getScreenHeight()/2, (Display::getScreenWidth()/2)-2, WINDOW_START_Y, WINDOW_START_X);
     scrollok(mainWindow, TRUE);
+    wprintw(mainWindow, "> ");
     wrefresh(mainWindow);
 }
 
@@ -65,6 +76,45 @@ void Display::destroyMainWindow() {
     Display::destroyWindow(stdscr);
 }
 
+void Display::createChatWindow() {
+    chatWindow = createNewWindow((Display::getScreenHeight()/2), (Display::getScreenWidth()/2)-2, WINDOW_START_Y, (Display::getScreenWidth()/2)+2);
+    scrollok(chatWindow, TRUE);
+    wrefresh(chatWindow);
+}
+
+void Display::addStringToChatWindow(const char* sentence) {
+    wprintw(chatWindow, sentence);
+    wprintw(chatWindow, "\n");
+    wrefresh(chatWindow);
+}
+
+void Display::updateChatWindow() {
+    while(!gameFinished) {
+        sleep(1);
+        wclear(chatWindow);
+        wrefresh(chatWindow);
+        std::string payload = Controller::getLatestGlobalMessages();
+        std::vector<MessageModel> latestChatMessages = parser::messageVectorDeserialize(payload);
+        for(auto&msg : latestChatMessages) {
+            std::string chatMsg = " " + msg.From+": "+msg.Message;
+            const char* chatMsgConverted = chatMsg.c_str();
+            addStringToChatWindow(chatMsgConverted);
+        }
+    }
+}
+
+void Display::createCombatWindow() {
+    combatWindow = createNewWindow((Display::getScreenHeight()/2)+2, (Display::getScreenWidth()/2)-2, (Display::getScreenHeight()/2)+3, (Display::getScreenWidth()/2)+2);
+    scrollok(combatWindow, TRUE);
+    wrefresh(combatWindow);
+}
+
+void Display::addStringToCombatWindow(const char* sentence) {
+    wprintw(combatWindow, sentence);
+    wprintw(combatWindow, "\n");
+    wrefresh(combatWindow);
+}
+
 int Display::createLoginMenu() {
     Display::initDisplay();
 
@@ -72,7 +122,7 @@ int Display::createLoginMenu() {
     char item[40];
     int ch, selectedItem = 0;
     loginWindow = createNewWindow(LOGIN_MENU_WINDOW_HEIGHT, LOGIN_MENU_WINDOW_WIDTH, WINDOW_START_Y+1, WINDOW_START_X+1);
-
+    box(loginWindow, 0, 0);
     mvwprintw(loginWindow, selectedItem+1, MENU_PADDING_LEFT, "Please choose from the following:");
     for(selectedItem = 0; selectedItem < NUM_LOGIN_MODES; selectedItem++) {
         if(selectedItem == 0)

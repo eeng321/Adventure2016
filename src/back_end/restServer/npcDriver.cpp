@@ -87,7 +87,7 @@ NpcModel modifyNpc(int npcId, NpcModel updateFields){
 
         RoomModel oldRoom = loadRoom(prevRoomId);
         for (int i = 0; i < oldRoom.npcList.size(); i++ ){
-            if(oldRoom.npcList[i] == editNpc.get_id()){
+            if(oldRoom.npcList[i] == editNpc->npcId){
                 oldRoom.npcList.erase(oldRoom.npcList.begin()+ i);
             }
         }

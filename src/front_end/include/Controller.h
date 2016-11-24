@@ -45,11 +45,17 @@ public:
      * @param room      A Room object reference to write the retrieved room information to.
      * @return          A status code that reflects whether the operation was successful.
      */
+    static StatusCode parseCommand(std::string& command, std::string& result);
+    static StatusCode sendGlobalMessage(const std::string& payload, std::string& result);
+    static std::string getLatestGlobalMessages();
     static StatusCode getRoom(roomId id, Room& room);
 
     static StatusCode moveToRoom(roomId id);
 
     static std::string getPlayerId();
+
+    static std::string getNPC(npcId npc);
+    static StatusCode putNPC(npcId npc, const std::string &payload, std::string &result);
 
 private:
     static std::string makeGetRequest(const std::string& url);

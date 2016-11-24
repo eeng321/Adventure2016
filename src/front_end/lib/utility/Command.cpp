@@ -1,12 +1,18 @@
 //
 // Created by jmedwid on 11/4/16.
 //
-
+#include "../../../back_end/includes/parser.h"
+#include "../../../model/include/messageModel.h"
 #include "Command.h"
+#include "Combat.h"
 #include "Controller.h"
+#include "display.h"
 #include "GameState.h"
 #include "../../../model/include/room.h"
 #include <boost/algorithm/string/join.hpp>
+#include <string>
+#include <vector>
+
 
 StatusCode NorthCommand::execute(std::string &result, const std::vector<std::string>& args) {
     return moveInDirection(result, Direction::north);
@@ -25,20 +31,26 @@ StatusCode WestCommand::execute(std::string& result, const std::vector<std::stri
 }
 
 StatusCode moveInDirection(std::string &result, Direction d) {
-    roomId currentRoom = GameState::getLocation();
-    Room room;
-    Controller::getRoom(currentRoom, room);
-    try {
-        roomId nextRoom = room.getRoomInDirection(d);
-        Controller::moveToRoom(nextRoom);
-        Controller::getRoom(nextRoom, room);
-        result += boost::algorithm::join(room.getDescription(), " ") + "\n";
+    if(!GameState::inCombat()) {
+        roomId currentRoom = GameState::getLocation();
+        Room room;
+        Controller::getRoom(currentRoom, room);
+        try {
+            roomId nextRoom = room.getRoomInDirection(d);
+            Controller::moveToRoom(nextRoom);
+            Controller::getRoom(nextRoom, room);
+            result += boost::algorithm::join(room.getDescription(), " ") + "\n";
+            return STATUS_OK;
+        }
+        catch (const std::domain_error& e) {
+            result = "You cannot move in this direction.";
+            return STATUS_OK;
+        }
+    } else {
+        Display::addStringToCombatWindow("You cannot move while in combat! Stand and fight!");
         return STATUS_OK;
     }
-    catch (const std::domain_error& e) {
-        result = "You cannot move in this direction.";
-        return STATUS_OK;
-    }
+
 }
 
 StatusCode HelpCommand::execute(std::string& result, const std::vector<std::string>& args) {
@@ -92,7 +104,17 @@ StatusCode WhereCommand::execute(std::string& result, const std::vector<std::str
 }
 
 StatusCode LookCommand::execute(std::string& result, const std::vector<std::string>& args) {
-    result = "You see only darkness.";
+    roomId currentRoomId = GameState::getLocation();
+    Room room;
+    Controller::getRoom(currentRoomId, room);
+    std::vector<npcId> npcs = room.getNpcList();
+    result = "You see NPCs ";
+    for(auto & npc : npcs) {
+        result += npc.to_string() + " ";
+    }
+    if(npcs.size() == 0) {
+        result = "You see no NPCs";
+    }
     return STATUS_OK;
 }
 StatusCode TakeCommand::execute(std::string& result, const std::vector<std::string>& args) {
@@ -104,6 +126,20 @@ StatusCode TakeCommand::execute(std::string& result, const std::vector<std::stri
     return STATUS_OK;
 }
 
+StatusCode GlobalChatCommand::execute(std::string &result, const std::vector<std::string>& args) {
+    std::string commandMessage = "";
+    for(const std::string s : args) {
+        commandMessage += s + " ";
+    }
+    MessageModel playerMessage;
+    playerMessage.To = "global";
+    playerMessage.From = GameState::getPlayerId();
+    playerMessage.Message = commandMessage;
+    std::string postPayload = parser::messageSerialize(playerMessage);
+
+    return Controller::sendGlobalMessage(postPayload, result);
+}
+
 StatusCode SwapCommand::execute(std::string& result, const std::vector<std::string>& args) {
 
 }
@@ -111,4 +147,54 @@ StatusCode SwapCommand::execute(std::string& result, const std::vector<std::stri
 StatusCode MoveCommand::execute(std::string& result, const std::vector<std::string>& args) {
     roomId nextRoom{atoi(args[0].c_str())};
     return Controller::moveToRoom(nextRoom);
+}
+
+StatusCode EngageCommand::execute(std::string& result, const std::vector<std::string>& args) {
+    char commandString[MAX_CHAR_LIMIT];
+    std::string commandArg = "";
+    for(const std::string s : args) {
+        commandArg += s;
+    }
+    roomId currentRoomId = GameState::getLocation();
+    Room room;
+    Controller::getRoom(currentRoomId, room);
+    std::vector<npcId> npcs = room.getNpcList();
+    bool npcFound = false;
+    std::string engagedNPC = "";
+    for(auto & npc : npcs) {
+        if(commandArg.compare(npc.to_string()) == 0){
+            npcFound = true;
+            GameState::setEngagedInCombatWith(npc);
+            engagedNPC = npc.to_string();
+            break;
+        }
+    }
+    if(npcFound) {
+        GameState::setAttackFlag(true);
+        std::string engagedMsg = "You are now engaged in combat with " + engagedNPC;
+        strcpy(commandString, engagedMsg.c_str());
+        Display::addStringToCombatWindow(commandString);
+        //TODO: Create a thread man...somewhere
+    } else {
+        std::string noNPCFound = "There is no one with that name to engage in combat with!";
+        strcpy(commandString, noNPCFound.c_str());
+        Display::addStringToCombatWindow(commandString);
+    }
+    return STATUS_OK;
+}
+
+StatusCode AttackCommand::execute(std::string& result, const std::vector<std::string>& args) {
+    char commandString[MAX_CHAR_LIMIT];
+    StatusCode code;
+    npcId notAllowed = 0;
+    if(!GameState::inCombat()) {
+        std::string noNPCFound = "You are not engaged in combat with anyone.";
+        strcpy(commandString, noNPCFound.c_str());
+        Display::addStringToCombatWindow(commandString);
+        code = STATUS_OK;
+    }
+    else {
+        code = Combat::playerAttacksNPC(result);
+    }
+    return code;
 }

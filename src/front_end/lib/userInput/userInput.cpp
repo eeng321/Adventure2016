@@ -1,11 +1,11 @@
 //Menu Code based off of example http://techlister.com/linux/creating-menu-with-ncurses-in-c/1293/
 
 #include "../../include/Controller.h"
-#include <display.h>
 #include "userInput.h"
 #include "Dictionary.h"
 #include "Command.h"
 #include <iostream>
+#include "display.h"
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/split.hpp>
 

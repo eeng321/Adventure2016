@@ -20,6 +20,6 @@ public:
     PlayerModel player;
     std::string password;
 };
-HIBERLITE_EXPORT_CLASS(Credential)
+
 
 #endif //ADVENTURE2016_CREDENTIAL_H

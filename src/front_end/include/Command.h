@@ -59,6 +59,21 @@ public:
     StatusCode execute(std::string& result, const std::vector<std::string>& args);
 };
 
+class GlobalChatCommand : public Command {
+public:
+    StatusCode execute(std::string& result, const std::vector<std::string>& args);
+};
+
+class EngageCommand : public Command {
+public:
+    StatusCode execute(std::string& result, const std::vector<std::string>& args);
+};
+
+class AttackCommand : public Command {
+public:
+    StatusCode execute(std::string& result, const std::vector<std::string>& args);
+};
+
 ///////////////// DEBUG
 class MoveCommand : public Command {
     StatusCode execute(std::string& result, const std::vector<std::string>& args);
