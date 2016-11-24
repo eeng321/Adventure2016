@@ -56,7 +56,7 @@ void Combat::npcAttacksPlayer() {
         auto playerHealth = currentPlayer.health;
         auto newPlayerHealth = playerHealth - damageDone;
         std::stringstream combatDamageString;
-        combatDamageString << "The NPC did" << damageDone << " damage to you " << currentPlayer.getPlayerID();
+        combatDamageString << "The NPC did" << damageDone << " damage to you";
         std::string finalCombatString = combatDamageString.str();
         strcpy(combatString, finalCombatString.c_str());
         if(newPlayerHealth <= 0) {
