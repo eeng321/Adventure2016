@@ -1,9 +1,9 @@
-#include <iostream>
-#include <algorithm>
-#include <map>
 #include "Controller.h"
 #include "Dictionary.h"
 #include "Command.h"
+#include <iostream>
+#include <algorithm>
+#include <map>
 
 //TODO: Actually have movement and connect with the player class properly
 //TODO: Hook this up with UserInput and test
@@ -18,7 +18,9 @@ Dictionary::Dictionary() {
     dictionaryCmdMap.insert(std::make_pair("where", new WhereCommand));
     dictionaryCmdMap.insert(std::make_pair("look", new LookCommand));
     dictionaryCmdMap.insert(std::make_pair("take", new TakeCommand));
+    dictionaryCmdMap.insert(std::make_pair("/s", new GlobalChatCommand));
     dictionaryCmdMap.insert(std::make_pair("move", new MoveCommand));
+    dictionaryCmdMap.insert(std::make_pair("engage", new EngageCommand));
 }
 
 Dictionary::~Dictionary() {

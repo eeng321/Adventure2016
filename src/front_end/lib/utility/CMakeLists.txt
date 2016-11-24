@@ -7,6 +7,10 @@ add_library(dictionary STATIC Dictionary.cpp)
 set_property(TARGET dictionary PROPERTY CXX_STANDARD 14)
 install(TARGETS dictionary DESTINATION lib)
 
+add_library(combat STATIC Combat.cpp)
+set_property(TARGET combat PROPERTY CXX_STANDARD 14)
+install(TARGETS combat DESTINATION lib)
+
 add_library(command STATIC Command.cpp)
 set_property(TARGET command PROPERTY CXX_STANDARD 14)
 target_link_libraries(command door)
