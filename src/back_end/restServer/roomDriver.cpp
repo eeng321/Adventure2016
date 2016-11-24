@@ -98,6 +98,7 @@ bool removeRoom(int roomId){
     }
     int numOfRooms = listRooms.size();
     db.close();
+
     //printRoomDB();
     //return true if number of players in db changes after deleting
     return (numOfRooms != listRooms.size());
