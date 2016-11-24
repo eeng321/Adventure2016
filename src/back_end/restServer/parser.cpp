@@ -513,11 +513,15 @@ reset parser::resetDeserializeFromNode(YAML::Node const &resetNode){
     return resetAction;
 }
 
-std::vector<reset> parser::extractResetsFromSequence(YAML::Node const &resetNode) {
+std::vector<reset> parser::extractResetsFromSequence(YAML::Node const &resetNode, std::string const &resetType) {
     std::vector<reset> resets;
 
     for(auto s : resetNode){
-        resets.push_back(parser::resetDeserializeFromNode(s));
+
+        reset currentReset = parser::resetDeserializeFromNode(s);
+        if(currentReset.action.compare(resetType) == 0){
+            resets.push_back(currentReset);
+        }
     }
 
     return resets;

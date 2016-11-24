@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../lib/libroomModel.a  CMakeFiles/roomModel.dir/roomModel.cpp.o
+/usr/bin/ranlib ../../../lib/libroomModel.a
