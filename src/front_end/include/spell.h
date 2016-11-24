@@ -15,6 +15,8 @@ public:
           int victimEffectIn,
           std::string message);
 
+
+    std::string getSpellName() const;
     int getCasterEffect() const;
     int getVictimEffect() const;
 

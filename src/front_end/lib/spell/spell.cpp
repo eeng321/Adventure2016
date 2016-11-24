@@ -15,6 +15,10 @@ Spell::Spell(std::string nameIn,
           victimEffect(victimEffectIn),
           message(std::move(messageIn)) {}
 
+std::string Spell::getSpellName() const {
+    return name;
+};
+
 int Spell::getCasterEffect() const {
     return casterEffect;
 }
@@ -27,6 +31,8 @@ std::string Spell::getMessage() const {
     return message;
 }
 
+
+// Reference to stackoverflow.com/questions/3418231/replace-part-of-a-string-with-another-string
 std::string Spell::getMessage(std::string casterName, std::string victimName) const {
     std::string newMessage = message;
     std::string casterKey = "<caster>";
