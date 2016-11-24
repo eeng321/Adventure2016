@@ -98,6 +98,26 @@ StatusCode Controller::moveToRoom(roomId id) {
     return STATUS_OK;
 }
 
+std::string Controller::getNPC(npcId npc) {
+    Net::Http::Response response = client.Get(SERVER + "npc/" + npc.to_string());
+    if (response.code() != Net::Http::Code::Ok) {
+        // TODO: handle
+        return "ERROR: HTTP error.";
+    }
+    return response.body();
+}
+
+StatusCode Controller::putNPC(npcId npc, const std::string &payload, std::string &result) {
+    result = "";
+    Net::Http::Response response = client.Post(SERVER + "NPC/" + npc.to_string(), payload);
+    if (response.code() == Net::Http::Code::Internal_Server_Error) {
+        // TODO: handle
+        return STATUS_SERVER_ERROR;
+    }
+    result = response.body();
+    return STATUS_OK;
+}
+
 std::string Controller::getPlayerId() {
     return GameState::getPlayerId();
 }

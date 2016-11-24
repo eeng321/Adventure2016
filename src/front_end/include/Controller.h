@@ -54,6 +54,9 @@ public:
 
     static std::string getPlayerId();
 
+    static std::string getNPC(npcId npc);
+    static StatusCode putNPC(npcId npc, const std::string &payload, std::string &result);
+
 private:
     static std::string makeGetRequest(const std::string& url);
     static std::string makePutRequest(const std::string& url, const std::string& payload);

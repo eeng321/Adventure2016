@@ -4,6 +4,7 @@
 #include "../../../back_end/includes/parser.h"
 #include "../../../model/include/messageModel.h"
 #include "Command.h"
+#include "Combat.h"
 #include "Controller.h"
 #include "display.h"
 #include "GameState.h"
@@ -30,20 +31,26 @@ StatusCode WestCommand::execute(std::string& result, const std::vector<std::stri
 }
 
 StatusCode moveInDirection(std::string &result, Direction d) {
-    roomId currentRoom = GameState::getLocation();
-    Room room;
-    Controller::getRoom(currentRoom, room);
-    try {
-        roomId nextRoom = room.getRoomInDirection(d);
-        Controller::moveToRoom(nextRoom);
-        Controller::getRoom(nextRoom, room);
-        result += boost::algorithm::join(room.getDescription(), " ") + "\n";
+    if(!GameState::inCombat()) {
+        roomId currentRoom = GameState::getLocation();
+        Room room;
+        Controller::getRoom(currentRoom, room);
+        try {
+            roomId nextRoom = room.getRoomInDirection(d);
+            Controller::moveToRoom(nextRoom);
+            Controller::getRoom(nextRoom, room);
+            result += boost::algorithm::join(room.getDescription(), " ") + "\n";
+            return STATUS_OK;
+        }
+        catch (const std::domain_error& e) {
+            result = "You cannot move in this direction.";
+            return STATUS_OK;
+        }
+    } else {
+        Display::addStringToCombatWindow("You cannot move while in combat! Stand and fight!");
         return STATUS_OK;
     }
-    catch (const std::domain_error& e) {
-        result = "You cannot move in this direction.";
-        return STATUS_OK;
-    }
+
 }
 
 StatusCode HelpCommand::execute(std::string& result, const std::vector<std::string>& args) {
@@ -157,7 +164,9 @@ StatusCode EngageCommand::execute(std::string& result, const std::vector<std::st
     for(auto & npc : npcs) {
         if(commandArg.compare(npc.to_string()) == 0){
             npcFound = true;
+            GameState::setEngagedInCombatWith(npc);
             engagedNPC = npc.to_string();
+            break;
         }
     }
     if(npcFound) {
@@ -165,10 +174,27 @@ StatusCode EngageCommand::execute(std::string& result, const std::vector<std::st
         std::string engagedMsg = "You are now engaged in combat with " + engagedNPC;
         strcpy(commandString, engagedMsg.c_str());
         Display::addStringToCombatWindow(commandString);
+        //TODO: Create a thread man...somewhere
     } else {
         std::string noNPCFound = "There is no one with that name to engage in combat with!";
         strcpy(commandString, noNPCFound.c_str());
         Display::addStringToCombatWindow(commandString);
     }
+    return STATUS_OK;
+}
 
+StatusCode AttackCommand::execute(std::string& result, const std::vector<std::string>& args) {
+    char commandString[MAX_CHAR_LIMIT];
+    StatusCode code;
+    npcId notAllowed = 0;
+    if(!GameState::inCombat()) {
+        std::string noNPCFound = "You are not engaged in combat with anyone.";
+        strcpy(commandString, noNPCFound.c_str());
+        Display::addStringToCombatWindow(commandString);
+        code = STATUS_OK;
+    }
+    else {
+        code = Combat::playerAttacksNPC(result);
+    }
+    return code;
 }

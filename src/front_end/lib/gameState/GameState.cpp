@@ -1,7 +1,8 @@
 #include "GameState.h"
 
 const int PLAYER_ID_NONE = 0;
-bool combatFlag = false;
+static bool combatFlag = false;
+static npcId engagedInCombatWith = 0;
 
 Player GameState::player = Player(playerId(PLAYER_ID_NONE));
 
@@ -35,4 +36,12 @@ void GameState::setAttackFlag(bool state) {
 
 bool GameState::inCombat() {
     return combatFlag;
+}
+
+void GameState::setEngagedInCombatWith(npcId npc) {
+    engagedInCombatWith = npc;
+}
+
+npcId GameState::getEngagedInCombatWith() {
+    return engagedInCombatWith;
 }
