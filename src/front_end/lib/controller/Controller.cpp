@@ -8,7 +8,7 @@
 using namespace utility;
 
 // TODO
-const std::string SERVER = "http://localhost:8080/";
+const std::string SERVER = "http://23.99.56.108:8080/";
 Rest::RestClient Controller::client;
 GameState state;
 

@@ -8,11 +8,11 @@
 
 int max_x = 0;
 int max_y = 0;
-static WINDOW *loginWindow;
-static WINDOW *mainWindow;
-static WINDOW *chatWindow;
-static WINDOW *combatWindow;
-static bool gameFinished = false;
+WINDOW *loginWindow;
+WINDOW *mainWindow;
+WINDOW *chatWindow;
+WINDOW *combatWindow;
+bool gameFinished = false;
 
 using namespace std;
 
@@ -92,7 +92,6 @@ void Display::updateChatWindow() {
     while(!gameFinished) {
         sleep(1);
         wclear(chatWindow);
-        wrefresh(chatWindow);
         std::string payload = Controller::getLatestGlobalMessages();
         std::vector<MessageModel> latestChatMessages = parser::messageVectorDeserialize(payload);
         for(auto&msg : latestChatMessages) {
@@ -100,6 +99,8 @@ void Display::updateChatWindow() {
             const char* chatMsgConverted = chatMsg.c_str();
             addStringToChatWindow(chatMsgConverted);
         }
+        wrefresh(chatWindow);
+
     }
 }
 
