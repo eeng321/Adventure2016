@@ -5,8 +5,6 @@
 #include "spawn.h"
 #include "Controller.h"
 #include "display.h"
-//#include "../../model/include/id.h"
-
 
 using std::vector;
 using std::string;
@@ -20,7 +18,7 @@ const string invalidResponse = "Invalid answer, please respond with a or b";
 const string midgaardMessage = "You have spawned into midgaard, a realm of magic and fantasy.";
 const string smurfMessage = "You have spawned into smurf village, the home of the happy, peaceful smurfs.";
 
-void determineSpawnLocation() {
+void Spawn::initialSpawn() {
     vector<question> questions;
     questions.push_back(question1);
     questions.push_back(question2);
@@ -47,12 +45,12 @@ void determineSpawnLocation() {
     }
 }
 
-void spawnPlayer(const roomId& id, const string& message){
+void Spawn::spawnPlayer(const roomId& id, const string& message){
     StatusCode ReturnCode = Controller::moveToRoom(id);
     Display::addStringToMainWindow(message.c_str());
 }
 
-Region getAnswer(){
+Region Spawn::getAnswer(){
     char response[MAX_CHAR_LIMIT];
     while(true){
         Display::readUserInput(response);
