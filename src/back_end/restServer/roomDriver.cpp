@@ -89,12 +89,10 @@ bool removeRoom(int roomId){
     
     int numOfRooms = listRooms.size();
 
-    for(int i = 0; i < listRooms.size(); i++ ) {
-
-        if (listRooms[i]->id == roomId) {
-
-            listRooms[i].destroy();
-
+    for(auto demo : listRooms ) {
+        if (demo->id == roomId) {
+            demo.destroy();
+            demo.save();
         }
     }
 
