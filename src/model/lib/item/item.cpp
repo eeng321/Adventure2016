@@ -13,7 +13,7 @@ using std::vector;
 
 Item::Item(itemId idIn,
            vector<string> keywordsIn,
-           string longDescIn,
+           vector<string> longDescIn,
            string shortDescIn,
            vector<string> extraIn)
         : id(std::move(idIn)),
@@ -24,7 +24,7 @@ Item::Item(itemId idIn,
 
 Item::Item(itemId idIn,
            vector<string> keywordsIn,
-           string longDescIn,
+           vector<string> longDescIn,
            string shortDescIn,
            vector<string> extraIn,
            vector<string> attributesIn,
@@ -79,7 +79,7 @@ vector<string> Item::getKeywords() const {
     return keywords;
 }
 
-string Item::getlongDesc() const {
+vector<string> Item::getlongDesc() const {
     return longDesc;
 }
 
@@ -120,7 +120,7 @@ void Item::setKeywords(std::vector<std::string> keywordsIn) {
     keywords = std::move(keywordsIn);
 }
 
-void Item::setlongDesc(std::string longDescIn) {
+void Item::setlongDesc(std::vector<std::string> longDescIn) {
     longDesc = std::move(longDescIn);
 }
 

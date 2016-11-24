@@ -1,10 +1,49 @@
 #include "playerDriver.h"
 #include "credential.h"
+#include "../../model/include/npcModel.h"
+#include "../../model/include/itemModel.h"
 //#include "../../model/include/npcModel.h"
 #include <iostream>
 
 using namespace std;
 //hiberlite::Database db("AdventureDatabase.db");
+
+
+void printPlayer(PlayerModel player){
+    cout << "NAME: " << player.loginName << endl;
+    cout << "ID: " << player.playerId << endl;
+    cout << "COORDINATE: " << player.roomId << endl;
+    cout << "HEALTH: " << player.health << endl;
+}
+
+void createPlayerDB(){
+    hiberlite::Database db("AdventureDatabase.db");
+    //register bean classes
+    db.registerBeanClass<PlayerModel>();
+    db.registerBeanClass<Credential>();
+    db.registerBeanClass<NpcModel>();
+    db.registerBeanClass<ItemModel>();
+    //drop all tables beans will use
+    db.dropModel();
+    //create those tables again with proper schema
+    db.createModel();
+}
+
+void printPlayerDB(){
+
+    hiberlite::Database db("AdventureDatabase.db");
+
+    cout << string(15,'=')+"\nreading the DB\n";
+
+    vector< hiberlite::bean_ptr<PlayerModel> > listPlayers=db.getAllBeans<PlayerModel>();
+    cout << "found " << listPlayers.size() << " players in the database:\n";
+
+    for(size_t j=0;j<listPlayers.size();j++){
+        cout << "[username = " << listPlayers[j]->loginName << "     ";
+        cout << "[coordinate = " << listPlayers[j]->roomId << "     ";
+        cout << "id = " << listPlayers[j]->playerId << "]\n";
+    }
+}
 
 // void printPlayer(PlayerModel player){
 //     cout << "NAME: " << player.loginName << endl;
@@ -40,6 +79,7 @@ using namespace std;
 //         cout << "id = " << listPlayers[j]->playerId << "]\n";
 //     }
 // }
+
 
 PlayerModel loadPlayer(int playerId){
 

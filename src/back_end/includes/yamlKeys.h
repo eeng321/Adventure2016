@@ -65,6 +65,11 @@ namespace parser{
     char constexpr EAST[] = "east";
     char constexpr SOUTH[] = "south";
     char constexpr WEST[] = "west";
+
+    char constexpr RESET_ACTION[] = "action";
+    char constexpr RESET_ID[] = "id";
+    char constexpr RESET_LIMIT[] = "limit";
+    char constexpr RESET_ROOM[] = "room";
 }
 
 #endif //ADVENTURE2016_YAMLKEYS_H
