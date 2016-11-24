@@ -24,12 +24,12 @@ void etl::createDB() {
 void etl::LoadRoomsToDB() {
     try{
         //createRoomDB();
-        YAML::Node smurf = YAML::LoadFile("smurf.yaml");//TODO Couldn't use ~/cmpt373/adventure2016.... must have path be absolute? how to fix
+        YAML::Node smurf = YAML::LoadFile("smurf.yaml");
         YAML::Node roomsNode = smurf["ROOMS"];
         std::vector<RoomModel> rooms = parser::extractRoomsFromSequence(roomsNode);
-//        for(auto &room : rooms){
-//            addRoom(room);
-//        }
+        for(auto &room : rooms){
+            addRoom(room);
+        }
     }catch(...){
         std::cout << "Could not load yaml file or rooms not available in the file" << std::endl;
     }
@@ -37,7 +37,6 @@ void etl::LoadRoomsToDB() {
 
 void etl::LoadNPCsToDB() {
     try{
-//        createNpcDB();
         YAML::Node smurf = YAML::LoadFile("smurf.yaml");
         YAML::Node npcNode = smurf["NPCS"];
         std::vector<NpcModel> vectorNPC = parser::extractNPCFromSequence(npcNode);
@@ -45,9 +44,10 @@ void etl::LoadNPCsToDB() {
         for(auto reset : resets){
             std::cout << "npc reset action and id: " << reset.action << ", " << reset.id << std::endl;
         }
-//        for(auto &npc : vectorNPC){
-//            addNpc(npc);
-//        }
+        for(auto &npc : vectorNPC){
+
+            addNpc(npc);
+        }
     }catch(...){
         std::cout << "Could not load yaml file or npcs not available in the file" << std::endl;
     }
@@ -62,10 +62,10 @@ void etl::LoadItemsToDB() {
         for(auto reset : resets){
             std::cout << "item reset action and id: " << reset.action << ", " << reset.id << std::endl;
         }
-//        for(auto &item : vectorItemModel){
-//            std::cout << "adding item..." << std::endl;
-//            addItem(item);
-//        }
+        for(auto &item : vectorItemModel){
+            std::cout << "adding item..." << std::endl;
+            addItem(item);
+        }
     }catch(...){
         std::cout << "could not load yaml file or items not available in the file" << std::endl;
     }
