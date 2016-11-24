@@ -135,6 +135,8 @@ bool removeRoom(int roomId){
     db.open("AdventureDatabase.db");
     vector< hiberlite::bean_ptr<RoomModel> > listRooms=db.getAllBeans<RoomModel>();
 
+    int numOfRooms = listRooms.size();
+
     for(int i = 0; i < listRooms.size(); i++ ) {
 
         if (listRooms[i]->id == roomId) {
@@ -143,7 +145,7 @@ bool removeRoom(int roomId){
 
         }
     }
-    int numOfRooms = listRooms.size();
+
 
     //printRoomDB();
     //return true if number of players in db changes after deleting
