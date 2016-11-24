@@ -18,6 +18,7 @@ namespace parser{
     char constexpr ITEM_SHORTDESC_KEY[] = "shortdesc";
     char constexpr ITEM_WEARFLAGS_KEY[] = "wear_Flags";
     char constexpr ITEM_WEIGHT_KEY[] = "weight";
+    char constexpr ITEM_ROOM_ID_KEY[] = "roomId";
 
     char constexpr PLAYER_NAME_KEY[] = "loginName";
     char constexpr PLAYER_ID_KEY[] = "playerId";
@@ -54,6 +55,7 @@ namespace parser{
     char constexpr NPC_GOLD_KEY[] = "gold";
     char constexpr NPC_LEVEL_KEY[] = "level";
     char constexpr NPC_THAC0_KEY[] = "thac0";
+    char constexpr NPC_ROOM_ID_KEY[] = "roomId";
 
     char constexpr MESSAGE_TO[] = "to";
     char constexpr MESSAGE_FROM[] = "from";
