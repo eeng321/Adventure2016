@@ -366,6 +366,14 @@ NpcModel parser::npcDeserializeFromNode(YAML::Node const &npcNode) {
     NpcModel npc;
     //TODO if npcNode[""].isDefined() ERROR CHECKING
     npc.npcId = npcNode[NPC_ID_KEY].as<int>();
+<<<<<<< 6b65f343eee9be8d0cdd91b062814a4ad9cd92d1
+=======
+
+    if(npcNode[NPC_ROOM_ID_KEY]){
+        npc.roomId = npcNode[NPC_ROOM_ID_KEY].as<int>();
+    }
+
+>>>>>>> [sg] Missed one of the merge conflicts
     npc.mainDesc = npcNode[NPC_MAINDESC_KEY].as<std::vector<std::string>>();
     npc.keywords = npcNode[NPC_KEYWORDS_KEY].as<std::vector<std::string>>();
     npc.longDesc = npcNode[NPC_LONGDESC_KEY].as<std::vector<std::string>>();
