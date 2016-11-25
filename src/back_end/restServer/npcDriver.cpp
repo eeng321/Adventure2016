@@ -53,6 +53,8 @@ NpcModel loadNpc(int npcId){
     npc.thac0 = loadNpc->thac0;
     npc.roomId = loadNpc->roomId;
 
+    db.close();
+
     return npc;
 }
 
@@ -66,6 +68,7 @@ NpcModel addNpc(NpcModel npc){
 
     p.save();
 
+
     if(npc.roomId == -1 ){
 
     }
@@ -73,7 +76,9 @@ NpcModel addNpc(NpcModel npc){
         RoomModel room = loadRoom(npc.roomId);
         room.npcList.push_back(p->npcId);
         modifyRoom(room.id, room);
+        db.close();
     }
+
     return npc;
 }
 
@@ -109,6 +114,8 @@ NpcModel modifyNpc(int npcId, NpcModel updateFields){
 
     }
     editNpc.save();
+    db.close();
+
     return loadNpc(npcId);
 }
 
@@ -128,6 +135,7 @@ success removeNpc(int npcId){
     modifyRoom(room.id, room);
 
     npc.destroy();
+    db.close();
     //printNpc();
     //return true if number of npcs in db changes after deleting
     return (numOfNpcs != listNpcs.size());

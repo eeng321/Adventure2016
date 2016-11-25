@@ -9,18 +9,18 @@
 using namespace std;
 //hiberlite::Database db("AdventureDatabase.db");
 
-void printItem(ItemModel item){
-    cout << "ID: " << item.id << endl;
-    cout << "Long Description: " << item.longDesc << endl;
-    cout << "Short Description: " << item.shortDesc << endl;
-    cout << "Keywords: ";
-    for (auto keyword = item.keywords.begin(); keyword != item.keywords.end(); ++keyword){
-        cout << *keyword << ' ';
-    }
-    cout << endl;
-    // TODO: when verified above works.
-    //cout << "Extras: " << item.id << endl;
-}
+//void printItem(ItemModel item){
+//    cout << "ID: " << item.id << endl;
+//    cout << "Long Description: " << item.longDesc << endl;
+//    cout << "Short Description: " << item.shortDesc << endl;
+//    cout << "Keywords: ";
+//    for (auto keyword = item.keywords.begin(); keyword != item.keywords.end(); ++keyword){
+//        cout << *keyword << ' ';
+//    }
+//    cout << endl;
+//    // TODO: when verified above works.
+//    //cout << "Extras: " << item.id << endl;
+//}
 
 /*void createDB(){
     hiberlite::Database db("AdventureDatabase.db");
@@ -32,7 +32,7 @@ void printItem(ItemModel item){
     db.createModel();
 }*/
 
-/*void printDB(){
+void printItemDB(){
 
     hiberlite::Database db("AdventureDatabase.db");
 
@@ -42,10 +42,9 @@ void printItem(ItemModel item){
     cout << "found " << listItems.size() << " items in the database:\n";
 
     for(size_t j=0;j<listItems.size();j++){
-        cout << "[id = " << listItems[j]->id << "     ";
-        cout << "[shortDesc = " << listItems[j]->shortDesc << "]\n";
+        cout << "[id = " << listItems[j]->id << "     " << endl;
     }
-}*/
+}
 
 ItemModel loadItem(int itemId){
 
@@ -64,16 +63,21 @@ ItemModel loadItem(int itemId){
     item.shortDesc = demo->shortDesc;
     item.wearFlags = demo->wearFlags;
     item.weight = demo->weight;
+    db.close();
     return item;
 }
 
 ItemModel addItem(ItemModel item){
+
     hiberlite::Database db;
     db.open("AdventureDatabase.db");
+
     hiberlite::bean_ptr<ItemModel> i=db.copyBean(item);
+
     i->id = i.get_id();
     item.id = i.get_id();
     i.save();
+
 
     if (item.roomId == -1){
 
@@ -82,8 +86,8 @@ ItemModel addItem(ItemModel item){
         RoomModel room = loadRoom(item.roomId);
         room.itemList.push_back(i->id);
         modifyRoom(room.id, room);
+        db.close();
     }
-
 
     return item;
 }
@@ -127,6 +131,8 @@ ItemModel modifyItem(int itemId, ItemModel updateFields){
         modifyRoom(newRoom.id, newRoom);
     }
 
+    db.close();
+
     return loadItem(itemId);
 }
 
@@ -147,6 +153,7 @@ success removeItem(int itemId){
     modifyRoom(room.id, room);
 
     item.destroy();
+    db.close();
     //printDB();
     //return true if number of items in db changes after deleting
     return (numOfItems != listItems.size());

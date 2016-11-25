@@ -109,6 +109,7 @@ int main(int argc, char *argv[]) {
 
     etl::createDB();
 
+
     Endpoints endpoints(addr);
 
     endpoints.init(numThreads);

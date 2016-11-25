@@ -13,6 +13,7 @@ void printItem(ItemModel item);
 void createDB();
 void printDB();
 
+void printItemDB();
 ItemModel loadItem(int itemId);
 ItemModel addItem(ItemModel item);
 ItemModel modifyItem(int itemId, ItemModel updateFields);
