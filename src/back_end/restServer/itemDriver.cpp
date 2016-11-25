@@ -64,6 +64,7 @@ ItemModel loadItem(int itemId){
     item.shortDesc = demo->shortDesc;
     item.wearFlags = demo->wearFlags;
     item.weight = demo->weight;
+    db.close();
     return item;
 }
 
@@ -78,9 +79,7 @@ ItemModel addItem(ItemModel item){
     RoomModel room = loadRoom(item.roomId);
     room.itemList.push_back(item.id);
     modifyRoom(room.id, room);
-
-
-
+    db.close();
     return item;
 }
 
@@ -99,7 +98,7 @@ ItemModel modifyItem(int itemId, ItemModel updateFields){
     editItem->wearFlags = updateFields.wearFlags;
     editItem->weight = updateFields.weight;
     editItem.save();
-
+    db.close();
     return loadItem(itemId);
 }
 
@@ -120,6 +119,7 @@ success removeItem(int itemId){
     modifyRoom(room.id, room);
 
     item.destroy();
+    db.close();
     //printDB();
     //return true if number of items in db changes after deleting
     return (numOfItems != listItems.size());
