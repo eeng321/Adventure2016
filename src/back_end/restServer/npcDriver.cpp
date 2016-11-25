@@ -66,10 +66,14 @@ NpcModel addNpc(NpcModel npc){
 
     p.save();
 
-    RoomModel room = loadRoom(npc.roomId);
-    room.npcList.push_back(p->npcId);
-    modifyRoom(room.id, room);
+    if(npc.roomId == -1 ){
 
+    }
+    else {
+        RoomModel room = loadRoom(npc.roomId);
+        room.npcList.push_back(p->npcId);
+        modifyRoom(room.id, room);
+    }
     return npc;
 }
 
@@ -84,14 +88,16 @@ NpcModel modifyNpc(int npcId, NpcModel updateFields){
     editNpc->roomId = updateFields.roomId;
 
     if (prevRoomId != updateFields.roomId){
-
         RoomModel oldRoom = loadRoom(prevRoomId);
         for (int i = 0; i < oldRoom.npcList.size(); i++ ){
+            cout << oldRoom.npcList[i] << endl;
+            cout<< editNpc->npcId << endl;
             if(oldRoom.npcList[i] == editNpc->npcId){
+                cout << "ERASE" << endl;
                 oldRoom.npcList.erase(oldRoom.npcList.begin()+ i);
             }
         }
-
+        modifyRoom(oldRoom.id, oldRoom);
     }
     if(updateFields.roomId == -1) {
 

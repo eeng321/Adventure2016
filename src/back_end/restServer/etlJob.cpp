@@ -17,9 +17,9 @@ void etl::createDB() {
         std::cout << "DB exists" << std::endl;
         return;
     }else{
-        initializeDB();
-        LoadRoomsToDB();
-        LoadNPCsToDB();
+       // initializeDB();
+//        LoadRoomsToDB();
+//        LoadNPCsToDB();
     }
 }
 

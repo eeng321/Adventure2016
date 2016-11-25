@@ -65,7 +65,12 @@ ItemModel parser::itemDeserialize(std::string const &body) {
         item.wearFlags.push_back(e.as<std::string>());
     }
     item.weight = itemNode[ITEM_WEIGHT_KEY].as<int>();
-    item.roomId = itemNode[ITEM_ROOM_ID_KEY].as<int>();
+    if(itemNode[ITEM_ROOM_ID_KEY]) {
+        item.roomId = itemNode[ITEM_ROOM_ID_KEY].as<int>();
+    }
+    else{
+        item.roomId = -1;
+    }
     return item;
 
 }
@@ -369,7 +374,7 @@ void parser::npcDeserializeAndAppendOptionals(NpcModel &npc, YAML::Node const &n
         npc.roomId = npcNode[NPC_ROOM_ID_KEY].as<int>();
     }
     else{
-        npc.roomId = 101;
+        npc.roomId = -1;
     }
 }
 
