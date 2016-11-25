@@ -3,6 +3,8 @@
 
 using namespace std;
 
+static std::map<int, hiberlite::sqlid_t> roomIdMap;
+
 void printRoomDB(){
 
     hiberlite::Database db;
@@ -33,23 +35,21 @@ RoomModel loadRoom(int roomId){
 
     hiberlite::Database db;
     db.open("AdventureDatabase.db");
-    vector< hiberlite::bean_ptr<RoomModel> > listRooms=db.getAllBeans<RoomModel>();
-    RoomModel room;
 
-    for(auto demo : listRooms ){
-        if(demo->id == roomId ){
-            room.area = demo->area;
-            room.id = demo->id;
-            room.name = demo->name;
-            room.mainDescription = demo->mainDescription;
-            room.extendedDescriptions = demo->extendedDescriptions;
-            room.doors = demo->doors;
-            room.npcList = demo->npcList;
-            room.playerList = demo->playerList;
-            room.itemList = demo->itemList;
-            break;
-        }
-    }
+    auto sqlId = roomIdMap[roomId];
+
+    hiberlite::bean_ptr<RoomModel> roomRecord = db.loadBean<RoomModel>(sqlId);
+
+    RoomModel room;
+    room.area = roomRecord->area;
+    room.id = roomRecord->id;
+    room.name = roomRecord->name;
+    room.mainDescription = roomRecord->mainDescription;
+    room.extendedDescriptions = roomRecord->extendedDescriptions;
+    room.doors = roomRecord->doors;
+    room.npcList = roomRecord->npcList;
+    room.playerList = roomRecord->playerList;
+    room.itemList = roomRecord->itemList;
 
     return room;
 }
@@ -57,9 +57,11 @@ RoomModel loadRoom(int roomId){
 RoomModel addRoom(RoomModel room){
     hiberlite::Database db;
     db.open("AdventureDatabase.db");
-    hiberlite::bean_ptr<RoomModel> r=db.copyBean(room);
+    hiberlite::bean_ptr<RoomModel> r = db.copyBean(room);
     r->id = room.id;
     r.save();
+
+    roomIdMap.insert(std::make_pair(room.id, r.get_id()));
 
     return room;
 }
