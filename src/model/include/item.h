@@ -10,18 +10,18 @@
 
 #include "id.h"
 #include "itemType.h"
-
+#include "extendedDescription.h"
 class ItemModel;
 
 class Item {
 private:
     std::vector<std::string> attributes;
     int cost;
-    std::vector<std::string> extra;
+    std::vector<extendedDescription> extra;
     itemId id;
     item_type type;
     std::vector<std::string> keywords;
-    std::string longDesc;
+    std::vector<std::string> longDesc;
     std::string shortDesc;
     std::vector<std::string> wearFlags;
     int weight;
@@ -29,15 +29,15 @@ private:
 public:
     Item(itemId idIn,
          std::vector<std::string> keywordsIn,
-         std::string longDescIn,
+         std::vector<std::string> longDescIn,
          std::string shortDescIn,
-         std::vector<std::string> extraIn);
+         std::vector<extendedDescription> extraIn);
 
     Item(itemId idIn,
          std::vector<std::string> keywordsIn,
-         std::string longDescIn,
-         std::string shortDescIn,
-         std::vector<std::string> extraIn,
+         std::vector<std::string> longDesc,
+         std::string shortDesc,
+         std::vector<extendedDescription> extraIn,
          std::vector<std::string> attributesIn,
          int costIn,
          item_type typeIn,
@@ -55,11 +55,11 @@ public:
 
     std::vector<std::string> getKeywords() const;
 
-    std::string getlongDesc() const;
+    std::vector<std::string> getlongDesc() const;
 
     std::string getShortDesc() const;
 
-    std::vector<std::string> getExtra() const;
+    std::vector<extendedDescription> getExtra() const;
 
     std::vector<std::string> getAttributes() const;
 
@@ -77,11 +77,11 @@ public:
 
     void setKeywords(std::vector<std::string> keywordsIn);
 
-    void setlongDesc(std::string longDescIn);
+    void setlongDesc(std::vector<std::string> longDescIn);
 
     void setShortDesc(std::string shortDescIn);
 
-    void setExtra(std::vector<std::string> extraIn);
+    void setExtra(std::vector<extendedDescription> extraIn);
 
     void setAttributes(std::vector<std::string> attributesIn);
 

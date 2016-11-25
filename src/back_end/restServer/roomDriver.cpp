@@ -69,7 +69,8 @@ RoomModel addRoom(RoomModel room){
 RoomModel modifyRoom(int roomId, RoomModel updateFields){
     hiberlite::Database db;
     db.open("AdventureDatabase.db");
-    hiberlite::bean_ptr<RoomModel> editRoom = db.loadBean<RoomModel>(roomId);
+    auto sqlId = roomIdMap[roomId];
+    hiberlite::bean_ptr<RoomModel> editRoom = db.loadBean<RoomModel>(sqlId);
 
     editRoom->id = updateFields.id;
     editRoom->name = updateFields.name;

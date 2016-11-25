@@ -32,7 +32,7 @@ void ChatEndpoint::bufferMessage(MessageModel msg){
 }
 
 void ChatEndpoint::getMessage(const Net::Rest::Request &request, Net::Http::ResponseWriter response) {
-    cout << "Request for resource: " << request.method() << request.resource() << endl;
+//    cout << "Request for resource: " << request.method() << request.resource() << endl;
 
     try {
         auto messagesYaml = parser::messageVectorSerialize(_messageBuffer);

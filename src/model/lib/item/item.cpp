@@ -13,9 +13,9 @@ using std::vector;
 
 Item::Item(itemId idIn,
            vector<string> keywordsIn,
-           string longDescIn,
+           vector<string> longDescIn,
            string shortDescIn,
-           vector<string> extraIn)
+           vector<extendedDescription> extraIn)
         : id(std::move(idIn)),
           keywords(std::move(keywordsIn)),
           longDesc(std::move(longDescIn)),
@@ -24,9 +24,9 @@ Item::Item(itemId idIn,
 
 Item::Item(itemId idIn,
            vector<string> keywordsIn,
-           string longDescIn,
+           vector<string> longDescIn,
            string shortDescIn,
-           vector<string> extraIn,
+           vector<extendedDescription> extraIn,
            vector<string> attributesIn,
            int costIn,
            item_type typeIn,
@@ -79,7 +79,7 @@ vector<string> Item::getKeywords() const {
     return keywords;
 }
 
-string Item::getlongDesc() const {
+vector<string> Item::getlongDesc() const {
     return longDesc;
 }
 
@@ -87,7 +87,7 @@ string Item::getShortDesc() const {
     return shortDesc;
 }
 
-vector<string> Item::getExtra() const {
+std::vector<extendedDescription> Item::getExtra() const {
     return extra;
 }
 
@@ -120,7 +120,7 @@ void Item::setKeywords(std::vector<std::string> keywordsIn) {
     keywords = std::move(keywordsIn);
 }
 
-void Item::setlongDesc(std::string longDescIn) {
+void Item::setlongDesc(std::vector<std::string> longDescIn) {
     longDesc = std::move(longDescIn);
 }
 
@@ -128,7 +128,7 @@ void Item::setShortDesc(std::string shortDescIn) {
     shortDesc = std::move(shortDescIn);
 }
 
-void Item::setExtra(std::vector<std::string> extraIn) {
+void Item::setExtra(std::vector<extendedDescription> extraIn) {
     extra = std::move(extraIn);
 }
 

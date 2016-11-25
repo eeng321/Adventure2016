@@ -16,14 +16,20 @@ std::string parser::itemSerialize(ItemModel const &item) {
     out << YAML::Value << item.cost;
     out << YAML::Key << ITEM_EXTRA_KEY;
     out << YAML::BeginSeq;
-    for(auto e : item.extra) {
-        out << e;
+    for(auto &e : item.extra) {
+        out << YAML::BeginMap;
+        out << YAML::Key << ITEM_EX_DESCRIPTION_KEYWORDS_KEY;
+        out << YAML::Value << e.description;
+
+        out << YAML::Key << ITEM_EX_DESCRIPTION_KEYWORDS_KEY;
+        out << YAML::Value << e.keywords;
+        out << YAML::EndMap;
     }
     out << YAML::Key << ITEM_ID_KEY;
     out << YAML::Value << item.id;
     out << YAML::Key << ITEM_KEYWORDS_KEY;
     out << YAML::BeginSeq;
-    for(auto keyword : item.keywords) {
+    for(auto &keyword : item.keywords) {
         out << keyword;
     }
     out << YAML::EndSeq;
@@ -46,28 +52,62 @@ std::string parser::itemSerialize(ItemModel const &item) {
 ItemModel parser::itemDeserialize(std::string const &body) {
     YAML::Node itemNode = YAML::Load(body);
 
+    return itemDeserializeFromNode(itemNode);
+}
+
+ItemModel parser::itemDeserializeFromNode(YAML::Node const &itemNode) {
+
     //TODO if itemNode[""].isDefined() ERROR CHECKING
     ItemModel item;
-    for(auto e: itemNode[ITEM_ATTRIBUTES_KEY]){
-        item.attributes.push_back(e.as<std::string>());
+    if(itemNode[ITEM_ATTRIBUTES_KEY]){
+        item.attributes = itemNode[ITEM_ATTRIBUTES_KEY].as<std::vector<std::string>>();
     }
-    item.cost = itemNode[ITEM_COST_KEY].as<int>();
-    for(auto e: itemNode[ITEM_EXTRA_KEY]){
-        item.extra.push_back(e.as<std::string>());
+    if(itemNode[ITEM_COST_KEY]){
+        item.cost = itemNode[ITEM_COST_KEY].as<int>();
+    }else{
+        item.cost = 0;
     }
-    item.id = itemNode[ITEM_ID_KEY].as<int>();
-    for(auto keyword: itemNode[ITEM_KEYWORDS_KEY]){
-        item.keywords.push_back(keyword.as<std::string>());
-    }
-    item.longDesc = itemNode[ITEM_LONGDESC_KEY].as<std::string>();
-    item.shortDesc = itemNode[ITEM_SHORTDESC_KEY].as<std::string>();
-    for(auto e: itemNode[ITEM_WEARFLAGS_KEY]){
-        item.wearFlags.push_back(e.as<std::string>());
-    }
-    item.weight = itemNode[ITEM_WEIGHT_KEY].as<int>();
-    item.roomId = itemNode[ITEM_ROOM_ID_KEY].as<int>();
-    return item;
+    if(itemNode[ITEM_EXTRA_KEY]){
+        for(auto innerStruct: itemNode[ITEM_EXTRA_KEY]){
+            extendedDescription ex_desc;
+            for(auto desc : innerStruct[ITEM_EX_DESCRIPTION_DESC_KEY]){
+                ex_desc.description.push_back(desc.as<std::string>());
+            }
 
+            for(auto keyword : innerStruct[ITEM_EX_DESCRIPTION_KEYWORDS_KEY]){
+                ex_desc.keywords.push_back(keyword.as<std::string>());
+            }
+            item.extra.push_back(ex_desc);
+        }
+    }
+    if(itemNode[ITEM_ID_KEY]){
+        item.id = itemNode[ITEM_ID_KEY].as<int>();
+    }else{
+        item.id = -1; //invalid item id TODO fix
+    }
+    if(itemNode[ITEM_KEYWORDS_KEY]){
+        item.keywords = itemNode[ITEM_KEYWORDS_KEY].as<std::vector<std::string>>();
+    }
+    if(itemNode[ITEM_LONGDESC_KEY]){
+        item.longDesc = itemNode[ITEM_LONGDESC_KEY].as<std::vector<std::string>>();
+    }
+    if(itemNode[ITEM_SHORTDESC_KEY]){
+        item.shortDesc = itemNode[ITEM_SHORTDESC_KEY].as<std::string>();
+    }
+    if(itemNode[ITEM_WEARFLAGS_KEY]){
+        item.wearFlags = itemNode[ITEM_WEARFLAGS_KEY].as<std::vector<std::string>>();
+    }
+    if(itemNode[ITEM_WEIGHT_KEY]){
+        item.weight = itemNode[ITEM_WEIGHT_KEY].as<int>();
+    }
+    if(itemNode[ITEM_WEIGHT_KEY]){
+        item.weight = itemNode[ITEM_WEIGHT_KEY].as<int>();
+    }
+    if(itemNode[ITEM_ROOM_ID_KEY]){
+        item.roomId = itemNode[ITEM_ROOM_ID_KEY].as<int>();
+    }
+
+    return item;
 }
 
 std::string parser::playerSerialize(PlayerModel const &player) {
@@ -178,8 +218,6 @@ std::string parser::doorSerialize(YAML::Emitter &out, DoorModel const &door) {
     return out.c_str();
 }
 
-
-
 RoomModel parser::roomDeserializeFromNode(YAML::Node const &roomNode) {
     //TODO error checking
     RoomModel model;
@@ -261,7 +299,6 @@ DoorModel parser::doorDeserialize(YAML::Node const &doorNode) {
     return door;
 }
 
-
 std::string parser::serializeDirection(Direction const &directionEnum){
     switch (directionEnum) {
         case Direction::north:
@@ -299,11 +336,23 @@ std::vector<RoomModel> parser::extractRoomsFromSequence(YAML::Node const &roomNo
 
 std::vector<NpcModel> parser::extractNPCFromSequence(YAML::Node const &npcNode) {
     std::vector<NpcModel> npcs;
-
     for(auto s : npcNode){
-        npcs.push_back(parser::npcDeserializeFromNode(s));
+        NpcModel npc = parser::npcDeserializeFromNode(s);
+        npcs.push_back(npc);
     }
     return npcs;
+}
+
+std::vector<ItemModel> parser::extractItemsFromSequence(YAML::Node const &itemNode) {
+    std::vector<ItemModel> items;
+    int count = 0;
+    for(auto s : itemNode){
+        std::cout << count << std::endl;
+        count++;
+        items.push_back(parser::itemDeserializeFromNode(s));
+    }
+
+    return items;
 }
 
 NpcModel parser::npcDeserialize(std::string const &body) {
@@ -318,7 +367,9 @@ NpcModel parser::npcDeserializeFromNode(YAML::Node const &npcNode) {
     NpcModel npc;
     //TODO if npcNode[""].isDefined() ERROR CHECKING
     npc.npcId = npcNode[NPC_ID_KEY].as<int>();
-    npc.roomId = npcNode[NPC_ROOM_ID_KEY].as<int>();
+    if(npcNode[NPC_ROOM_ID_KEY]){
+        npc.roomId = npcNode[NPC_ROOM_ID_KEY].as<int>();
+    }
     npc.mainDesc = npcNode[NPC_MAINDESC_KEY].as<std::vector<std::string>>();
     npc.keywords = npcNode[NPC_KEYWORDS_KEY].as<std::vector<std::string>>();
     npc.longDesc = npcNode[NPC_LONGDESC_KEY].as<std::vector<std::string>>();
@@ -327,7 +378,6 @@ NpcModel parser::npcDeserializeFromNode(YAML::Node const &npcNode) {
     npcDeserializeAndAppendOptionals(npc, npcNode);
     return npc;
 }
-
 
 void parser::npcDeserializeAndAppendOptionals(NpcModel &npc, YAML::Node const &npcNode){
 
@@ -367,7 +417,6 @@ void parser::npcDeserializeAndAppendOptionals(NpcModel &npc, YAML::Node const &n
         npc.thac0 = 0;
     }
 }
-
 
 std::string parser::npcSerialize(NpcModel const &npc) {
 
@@ -412,7 +461,6 @@ std::string parser::npcSerialize(NpcModel const &npc) {
 
     return out.c_str();
 }
-
 
 std::string parser::messageSerialize(MessageModel const &message) {
     YAML::Emitter out;
@@ -479,4 +527,35 @@ std::vector<MessageModel> parser::messageVectorDeserialize(std::string const &bo
     }
 
     return messageModels;
+}
+
+reset parser::resetDeserializeFromNode(YAML::Node const &resetNode){
+    reset resetAction;
+    resetAction.action = resetNode[RESET_ACTION].as<std::string>();
+    resetAction.id = resetNode[RESET_ID].as<int>();
+    if(resetNode[RESET_LIMIT]){
+        resetAction.limit = resetNode[RESET_LIMIT].as<int>();
+    }else{
+        resetAction.limit = 1; //TODO what's the limit otherwise?
+    }
+    if(resetNode[RESET_ROOM]){
+        resetAction.room = resetNode[RESET_ROOM].as<int>();
+    }else{//some resets don't have room or limits
+        //TODO behaviour uncertain,
+    }
+    return resetAction;
+}
+
+std::vector<reset> parser::extractResetsFromSequence(YAML::Node const &resetNode, std::string const &resetType) {
+    std::vector<reset> resets;
+
+    for(auto s : resetNode){
+
+        reset currentReset = parser::resetDeserializeFromNode(s);
+        if(currentReset.action.compare(resetType) == 0){
+            resets.push_back(currentReset);
+        }
+    }
+
+    return resets;
 }
