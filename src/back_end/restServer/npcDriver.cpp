@@ -98,7 +98,6 @@ NpcModel modifyNpc(int npcId, NpcModel updateFields){
             cout << oldRoom.npcList[i] << endl;
             cout<< editNpc->npcId << endl;
             if(oldRoom.npcList[i] == editNpc->npcId){
-                cout << "ERASE" << endl;
                 oldRoom.npcList.erase(oldRoom.npcList.begin()+ i);
             }
         }
