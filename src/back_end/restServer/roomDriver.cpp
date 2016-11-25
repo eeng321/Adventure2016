@@ -50,7 +50,7 @@ RoomModel loadRoom(int roomId){
     room.npcList = roomRecord->npcList;
     room.playerList = roomRecord->playerList;
     room.itemList = roomRecord->itemList;
-
+    db.close();
     return room;
 }
 
@@ -62,7 +62,7 @@ RoomModel addRoom(RoomModel room){
     r.save();
 
     roomIdMap.insert(std::make_pair(room.id, r.get_id()));
-
+    db.close();
     return room;
 }
 
@@ -80,7 +80,7 @@ RoomModel modifyRoom(int roomId, RoomModel updateFields){
     editRoom->playerList = updateFields.playerList;
     editRoom->itemList = updateFields.itemList;
     editRoom.save();
-
+    db.close();
     return loadRoom(roomId);
 }
 
@@ -96,7 +96,7 @@ bool removeRoom(int roomId){
         }
     }
     int numOfRooms = listRooms.size();
-
+    db.close();
     //printRoomDB();
     //return true if number of players in db changes after deleting
     return (numOfRooms != listRooms.size());

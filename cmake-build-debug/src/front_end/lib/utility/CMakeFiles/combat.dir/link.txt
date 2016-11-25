@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../../lib/libcombat.a  CMakeFiles/combat.dir/Combat.cpp.o
+/usr/bin/ranlib ../../../../lib/libcombat.a

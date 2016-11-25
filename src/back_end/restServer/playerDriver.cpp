@@ -92,6 +92,7 @@ PlayerModel loadPlayer(int playerId){
     player.loginName = demo->loginName;
     player.roomId = demo->roomId;
     player.health = demo->health;
+    db.close();
     //printPlayer(player);
     return player;
 }
@@ -103,7 +104,7 @@ PlayerModel addPlayer(PlayerModel player){
     p->playerId = p.get_id();
     player.playerId = p.get_id();
     p.save();
-
+    db.close();
     return player;
 }
 
@@ -115,7 +116,7 @@ PlayerModel modifyPlayer(int playerId, PlayerModel updateFields){
     editPlayer->roomId = updateFields.roomId;
     editPlayer->health = updateFields.health;
     editPlayer.save();
-
+    db.close();
     return loadPlayer(playerId);
 }
 
@@ -128,6 +129,7 @@ success removePlayer(int playerId){
     int numOfPlayers = listPlayers.size();
     player.destroy();
     account.destroy();
+    db.close();
     //printPlayerDB();
     //return true if number of players in db changes after deleting
     return (numOfPlayers != listPlayers.size());
@@ -151,6 +153,7 @@ PlayerModel verifyCredentials(string username, string pw){
     }
     PlayerModel player;
     player.loginName = "";
+    db.close();
     return player; //will give error
 }
 
@@ -178,6 +181,6 @@ PlayerModel registerAccount(string username, string pw){
     account.password = pw;
     //add account to Credential table
     hiberlite::bean_ptr<Credential> p=db.copyBean(account);
-
+    db.close();
     return account.player;
 }
