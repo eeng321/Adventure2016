@@ -12,6 +12,7 @@
 
 #include "id.h"
 #include "itemType.h"
+#include "extendedDescription.h"
 
 
 class ItemModel {
@@ -35,7 +36,7 @@ public:
 
     std::vector<std::string> attributes;
     int cost;
-    std::vector<std::string> extra;
+    std::vector<extendedDescription> extra;
     int id;
     item_type type;
     std::vector<std::string> keywords;

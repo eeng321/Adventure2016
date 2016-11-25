@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../lib/libetljob.a  CMakeFiles/etljob.dir/etlJob.cpp.o
+/usr/bin/ranlib ../../../lib/libetljob.a

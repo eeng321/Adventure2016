@@ -7,7 +7,7 @@
 #include <playerDriver.h>
 #include "../includes/etlJob.h"
 #include "initializeDB.h"
-
+std::string db = "smurf.yaml";
 void etl::createDB() {
     std::ifstream ifile("AdventureDatabase.db");
     if(ifile){
@@ -23,9 +23,8 @@ void etl::createDB() {
 
 void etl::LoadRoomsToDB() {
     try{
-        //createRoomDB();
-        YAML::Node smurf = YAML::LoadFile("smurf.yaml");
-        YAML::Node roomsNode = smurf["ROOMS"];
+        YAML::Node smurf = YAML::LoadFile(db);
+        YAML::Node roomsNode = smurf[parser::WORLD_ROOMS];
         std::vector<RoomModel> rooms = parser::extractRoomsFromSequence(roomsNode);
         for(auto &room : rooms){
             addRoom(room);
@@ -37,16 +36,23 @@ void etl::LoadRoomsToDB() {
 
 void etl::LoadNPCsToDB() {
     try{
-        YAML::Node smurf = YAML::LoadFile("smurf.yaml");
-        YAML::Node npcNode = smurf["NPCS"];
+        YAML::Node smurf = YAML::LoadFile(db);
+        YAML::Node npcNode = smurf[parser::WORLD_NPC];
         std::vector<NpcModel> vectorNPC = parser::extractNPCFromSequence(npcNode);
-        std::vector<reset> resets = etl::loadNPCResets();
-        for(auto reset : resets){
-            std::cout << "npc reset action and id: " << reset.action << ", " << reset.id << std::endl;
-        }
-        for(auto &npc : vectorNPC){
+        std::vector<reset> resets = etl::loadResets("npc");
 
-            addNpc(npc);
+        for(auto &reset : resets){
+            auto it = std::find_if(vectorNPC.begin(), vectorNPC.end(), [&reset](const NpcModel& obj) {
+                return obj.npcId == reset.id;
+            });
+            if(it != vectorNPC.end()){
+                NpcModel npc = *it;
+                npc.roomId = reset.room;
+                for(int x = 0; x < reset.limit; x++){
+                    std::cout << "adding npc to room: " << npc.roomId << std::endl;
+                    addNpc(npc);
+                }
+            }
         }
     }catch(...){
         std::cout << "Could not load yaml file or npcs not available in the file" << std::endl;
@@ -55,45 +61,36 @@ void etl::LoadNPCsToDB() {
 
 void etl::LoadItemsToDB() {
     try{
-        YAML::Node items = YAML::LoadFile("smurf.yaml");
-        YAML::Node itemNode = items["OBJECTS"];
+        YAML::Node items = YAML::LoadFile(db);
+        YAML::Node itemNode = items[parser::WORLD_ITEM];
         std::vector<ItemModel> vectorItemModel = parser::extractItemsFromSequence(itemNode);
-        std::vector<reset> resets = etl::loadItemResets();
-        for(auto reset : resets){
-            std::cout << "item reset action and id: " << reset.action << ", " << reset.id << std::endl;
-        }
-        for(auto &item : vectorItemModel){
-            std::cout << "adding item..." << std::endl;
-            addItem(item);
+        std::vector<reset> resets = etl::loadResets("object");
+
+        for(auto &reset : resets){
+            auto it = std::find_if(vectorItemModel.begin(), vectorItemModel.end(), [&reset](const ItemModel& obj) {
+                return obj.id == reset.id;
+            });
+            if(it != vectorItemModel.end()){
+                ItemModel item = *it;
+                item.roomId = reset.room;
+                for(int x = 0; x < reset.limit; x++){
+                    std::cout << "adding item to room: " << item.roomId << std::endl;
+                    addItem(item);
+                }
+            }
         }
     }catch(...){
         std::cout << "could not load yaml file or items not available in the file" << std::endl;
     }
 }
 
-std::vector<reset> etl::loadNPCResets(){
+std::vector<reset> etl::loadResets(std::string const &action){
     try{
-        YAML::Node resets = YAML::LoadFile("smurf.yaml");
-        YAML::Node resetNode = resets["RESETS"];
+        YAML::Node resets = YAML::LoadFile(db);
+        YAML::Node resetNode = resets[parser::WORLD_RESET];
         std::vector<reset> npcResets;
-        std::string const npcAction = "npc";
-        npcResets = parser::extractResetsFromSequence(resetNode, npcAction);
+        npcResets = parser::extractResetsFromSequence(resetNode, action);
         return npcResets;
-    }catch(...){
-        std::cout << "could not load yaml file or resets not available in the file" << std::endl;
-    }
-}
-
-std::vector<reset> etl::loadItemResets(){
-
-    try{
-        YAML::Node resets = YAML::LoadFile("smurf.yaml");
-        YAML::Node resetNode = resets["RESETS"];
-        std::vector<reset> itemResets;
-        std::string const itemAction = "object";
-        itemResets = parser::extractResetsFromSequence(resetNode, itemAction);
-        return itemResets;
-
     }catch(...){
         std::cout << "could not load yaml file or resets not available in the file" << std::endl;
     }

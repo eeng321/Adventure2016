@@ -16,14 +16,20 @@ std::string parser::itemSerialize(ItemModel const &item) {
     out << YAML::Value << item.cost;
     out << YAML::Key << ITEM_EXTRA_KEY;
     out << YAML::BeginSeq;
-    for(auto e : item.extra) {
-        out << e;
+    for(auto &e : item.extra) {
+        out << YAML::BeginMap;
+        out << YAML::Key << ITEM_EX_DESCRIPTION_KEYWORDS_KEY;
+        out << YAML::Value << e.description;
+
+        out << YAML::Key << ITEM_EX_DESCRIPTION_KEYWORDS_KEY;
+        out << YAML::Value << e.keywords;
+        out << YAML::EndMap;
     }
     out << YAML::Key << ITEM_ID_KEY;
     out << YAML::Value << item.id;
     out << YAML::Key << ITEM_KEYWORDS_KEY;
     out << YAML::BeginSeq;
-    for(auto keyword : item.keywords) {
+    for(auto &keyword : item.keywords) {
         out << keyword;
     }
     out << YAML::EndSeq;
@@ -62,7 +68,17 @@ ItemModel parser::itemDeserializeFromNode(YAML::Node const &itemNode) {
         item.cost = 0;
     }
     if(itemNode[ITEM_EXTRA_KEY]){
-        item.extra = itemNode[ITEM_EXTRA_KEY].as<std::vector<std::string>>();
+        for(auto innerStruct: itemNode[ITEM_EXTRA_KEY]){
+            extendedDescription ex_desc;
+            for(auto desc : innerStruct[ITEM_EX_DESCRIPTION_DESC_KEY]){
+                ex_desc.description.push_back(desc.as<std::string>());
+            }
+
+            for(auto keyword : innerStruct[ITEM_EX_DESCRIPTION_KEYWORDS_KEY]){
+                ex_desc.keywords.push_back(keyword.as<std::string>());
+            }
+            item.extra.push_back(ex_desc);
+        }
     }
     if(itemNode[ITEM_ID_KEY]){
         item.id = itemNode[ITEM_ID_KEY].as<int>();
@@ -320,18 +336,18 @@ std::vector<RoomModel> parser::extractRoomsFromSequence(YAML::Node const &roomNo
 
 std::vector<NpcModel> parser::extractNPCFromSequence(YAML::Node const &npcNode) {
     std::vector<NpcModel> npcs;
-
     for(auto s : npcNode){
-        npcs.push_back(parser::npcDeserializeFromNode(s));
+        NpcModel npc = parser::npcDeserializeFromNode(s);
+        npcs.push_back(npc);
     }
     return npcs;
 }
 
 std::vector<ItemModel> parser::extractItemsFromSequence(YAML::Node const &itemNode) {
     std::vector<ItemModel> items;
-
     for(auto s : itemNode){
         items.push_back(parser::itemDeserializeFromNode(s));
+
     }
 
     return items;
@@ -518,7 +534,7 @@ reset parser::resetDeserializeFromNode(YAML::Node const &resetNode){
     if(resetNode[RESET_LIMIT]){
         resetAction.limit = resetNode[RESET_LIMIT].as<int>();
     }else{
-        resetAction.limit = 100; //TODO what's the limit otherwise?
+        resetAction.limit = 1; //TODO what's the limit otherwise?
     }
     if(resetNode[RESET_ROOM]){
         resetAction.room = resetNode[RESET_ROOM].as<int>();

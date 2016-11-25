@@ -78,7 +78,6 @@ RoomModel modifyRoom(int roomId, RoomModel updateFields){
     editRoom->playerList = updateFields.playerList;
     editRoom->itemList = updateFields.itemList;
     editRoom.save();
-
     return loadRoom(roomId);
 }
 

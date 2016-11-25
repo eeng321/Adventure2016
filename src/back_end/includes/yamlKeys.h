@@ -19,6 +19,8 @@ namespace parser{
     char constexpr ITEM_WEARFLAGS_KEY[] = "wear_Flags";
     char constexpr ITEM_WEIGHT_KEY[] = "weight";
     char constexpr ITEM_ROOM_ID_KEY[] = "roomId";
+    char constexpr ITEM_EX_DESCRIPTION_DESC_KEY[] = "desc";
+    char constexpr ITEM_EX_DESCRIPTION_KEYWORDS_KEY[] = "keywords";
 
     char constexpr PLAYER_NAME_KEY[] = "loginName";
     char constexpr PLAYER_ID_KEY[] = "playerId";
@@ -70,6 +72,11 @@ namespace parser{
     char constexpr RESET_ID[] = "id";
     char constexpr RESET_LIMIT[] = "limit";
     char constexpr RESET_ROOM[] = "room";
+
+    char constexpr WORLD_NPC[] = "NPCS";
+    char constexpr WORLD_ITEM[] = "OBJECTS";
+    char constexpr WORLD_RESET[] = "RESETS";
+    char constexpr WORLD_ROOMS[] = "ROOMS";
 }
 
 #endif //ADVENTURE2016_YAMLKEYS_H

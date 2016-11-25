@@ -15,8 +15,7 @@ namespace etl{
     void LoadRoomsToDB();
     void LoadNPCsToDB();
     void LoadItemsToDB();
-    std::vector<reset> loadNPCResets();
-    std::vector<reset> loadItemResets();
+    std::vector<reset> loadResets(std::string const &action);
 };
 
 

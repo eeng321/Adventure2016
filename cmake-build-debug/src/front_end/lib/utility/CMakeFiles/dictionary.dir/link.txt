@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../../lib/libdictionary.a  CMakeFiles/dictionary.dir/Dictionary.cpp.o
+/usr/bin/ranlib ../../../../lib/libdictionary.a
