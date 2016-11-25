@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../../../../lib/libnpcModel.a  CMakeFiles/npcModel.dir/npc.cpp.o CMakeFiles/npcModel.dir/npcModel.cpp.o
-/usr/bin/ranlib ../../../../lib/libnpcModel.a

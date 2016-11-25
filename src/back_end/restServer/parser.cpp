@@ -345,9 +345,11 @@ std::vector<NpcModel> parser::extractNPCFromSequence(YAML::Node const &npcNode) 
 
 std::vector<ItemModel> parser::extractItemsFromSequence(YAML::Node const &itemNode) {
     std::vector<ItemModel> items;
+    int count = 0;
     for(auto s : itemNode){
+        std::cout << count << std::endl;
+        count++;
         items.push_back(parser::itemDeserializeFromNode(s));
-
     }
 
     return items;

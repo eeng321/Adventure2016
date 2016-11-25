@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../../../../lib/librestClient.a  CMakeFiles/restClient.dir/RestClient.cpp.o
-/usr/bin/ranlib ../../../../lib/librestClient.a

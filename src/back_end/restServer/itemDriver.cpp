@@ -67,16 +67,19 @@ ItemModel loadItem(int itemId){
 }
 
 ItemModel addItem(ItemModel item){
+
     hiberlite::Database db;
     db.open("AdventureDatabase.db");
+
     hiberlite::bean_ptr<ItemModel> i=db.copyBean(item);
+
     i->id = i.get_id();
     item.id = i.get_id();
     i.save();
+
     RoomModel room = loadRoom(item.roomId);
     room.itemList.push_back(item.id);
     modifyRoom(room.id, room);
-
     return item;
 }
 

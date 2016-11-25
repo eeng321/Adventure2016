@@ -7,7 +7,7 @@
 #include <playerDriver.h>
 #include "../includes/etlJob.h"
 #include "initializeDB.h"
-std::string db = "smurf.yaml";
+std::string db = "midgaard.yml";
 void etl::createDB() {
     std::ifstream ifile("AdventureDatabase.db");
     if(ifile){

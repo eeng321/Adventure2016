@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../../../../lib/libitemModel.a  CMakeFiles/itemModel.dir/item.cpp.o CMakeFiles/itemModel.dir/itemModel.cpp.o
-/usr/bin/ranlib ../../../../lib/libitemModel.a
