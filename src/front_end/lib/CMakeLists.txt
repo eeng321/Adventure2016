@@ -1,6 +1,7 @@
 add_subdirectory(userInput)
 add_subdirectory(display)
 add_subdirectory(piglatin)
+add_subdirectory(spawn)
 add_subdirectory(gameState)
 add_subdirectory(restClient)
 add_subdirectory(controller)
