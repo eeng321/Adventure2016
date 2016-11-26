@@ -17,6 +17,7 @@ static bool gameFinished = false;
 
 using namespace std;
 
+
 void Display::setGameFinished() {
     gameFinished = true;
 }
@@ -102,14 +103,24 @@ void Display::addStringToChatWindow(const char* sentence) {
 void Display::updateChatWindow() {
     while(!gameFinished) {
         sleep(1);
-        if(GameState::PiglatinIsActive()){
+        if(GameState::PiglatinIsActive()){//decrement piglatin timer every second
             GameState::decrementPiglatinTimer();
         }
         wclear(chatWindow);
         std::string payload = Controller::getLatestGlobalMessages();
         std::vector<MessageModel> latestChatMessages = parser::messageVectorDeserialize(payload);
         for(auto&msg : latestChatMessages) {
-            std::string chatMsg = " " + msg.From+": "+msg.Message;
+            std::string chatMsg = "";
+            if(isPiglatinCommand(msg)){//TODO time permitting, refactor type of message checking into different class
+                if(msg.To == GameState::getPlayerId()){
+                    GameState::initializePiglatinTimer();
+                    chatMsg = " " + msg.From + " cast " + msg.Message + " on you";
+                } else {
+                    chatMsg = " " + msg.Message + " has been cast on " + msg.To;
+                }
+            } else {
+                chatMsg = " " + msg.From+": "+msg.Message;
+            }
             const char* chatMsgConverted = chatMsg.c_str();
             addStringToChatWindow(chatMsgConverted);
         }

@@ -49,7 +49,7 @@ npcId GameState::getEngagedInCombatWith() {
 }
 
 bool GameState::PiglatinIsActive(){
-    return piglatinTimer == 0;
+    return piglatinTimer != 0;
 }
 
 void GameState::decrementPiglatinTimer(){

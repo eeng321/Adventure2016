@@ -5,8 +5,9 @@
 #include <string>
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/split.hpp>
-#include <vector>
+#include "../../../model/include/messageModel.h"
 
+#include "GameState.h"
 #include "piglatin.h"
 
 using std::string;
@@ -35,12 +36,12 @@ string translateToPiglatin(const string& s){
     return translatedString;
 }
 
-int findVowel(const string& s) {
+unsigned long findVowel(const string& s) {
     return s.find_first_of(VOWELS);
 }
 
 string translateWord(const string& s) {
-    int indexOfVowel = findVowel(s);
+    unsigned long indexOfVowel = findVowel(s);
     if (indexOfVowel != 0) {
         string vowelAndAfter = s.substr(indexOfVowel);
         string beforeVowel = s.substr(0, indexOfVowel);
@@ -49,3 +50,12 @@ string translateWord(const string& s) {
     return s + VOWEL_START_ENDING;
 }
 
+bool isPiglatinCommand(const MessageModel& message){
+    return message.To != "global" && message.Message == PIG_LATIN_MESSAGE;
+}
+
+void initializePiglatin(const MessageModel& message){
+    if(message.To == GameState::getPlayerId()){
+        GameState::initializePiglatinTimer();
+    }
+}

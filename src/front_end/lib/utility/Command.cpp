@@ -12,6 +12,7 @@
 #include <boost/algorithm/string/join.hpp>
 #include <string>
 #include <vector>
+#include "piglatin.h"
 
 
 StatusCode NorthCommand::execute(std::string &result, const std::vector<std::string>& args) {
@@ -202,5 +203,18 @@ StatusCode AttackCommand::execute(std::string& result, const std::vector<std::st
 }
 
 StatusCode PiglatinCommand::execute(std::string& result, const std::vector<std::string>& args){
+//    std::string commandMessage = "";
+//    for(const std::string s : args) {
+//        commandMessage += s + " ";
+//    }
+    std::string toPlayer = args[0];
+    MessageModel playerMessage;
+    playerMessage.To = toPlayer;
+    playerMessage.From = GameState::getPlayerId();
+    playerMessage.Message = PIG_LATIN_MESSAGE;
+    std::string postPayload = parser::messageSerialize(playerMessage);
 
+    auto statusCode = Controller::sendGlobalMessage(postPayload, result);
+    result = "";
+    return statusCode;
 }
