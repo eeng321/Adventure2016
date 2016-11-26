@@ -21,6 +21,9 @@ const string midgaardMessage = "You have spawned into midgaard, a realm of magic
 const string smurfMessage = "You have spawned into smurf village, the home of the happy, peaceful smurfs.";
 const string failedToSpawnMessage = "Sorry, you were unable to spawn. Please try again.";
 
+const roomId midgaardLocation = roomId(3001);
+const roomId smurfLocation = roomId(101);
+
 void Spawn::initialSpawn() {
     vector<question> questions;
     questions.push_back(question1);
@@ -42,9 +45,9 @@ void Spawn::initialSpawn() {
     }
 
     if (midgaard > smurf) {
-        spawnPlayer(roomId(3001), midgaardMessage);//spawn in midgaar
+        spawnPlayer(roomId(midgaardLocation), midgaardMessage);//spawn in midgaar
     } else {
-        spawnPlayer(roomId(101), smurfMessage);//spawn in smurf
+        spawnPlayer(roomId(smurfLocation), smurfMessage);//spawn in smurf
     }
 }
 
