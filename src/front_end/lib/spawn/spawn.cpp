@@ -60,8 +60,6 @@ void Spawn::spawnPlayer(const roomId& room, const string& message){
 //        Display::addStringToMainWindow(message.c_str());
 //    }
     Display::addStringToMainWindow(message.c_str());
-
-
 }
 
 Region Spawn::getAnswer(){
