@@ -379,7 +379,7 @@ NpcModel parser::npcDeserializeFromNode(YAML::Node const &npcNode) {
         npc.roomId = npcNode[NPC_ROOM_ID_KEY].as<int>();
     }
 
-    npc.mainDesc = npcNode[NPC_MAINDESC_KEY].as<std::vector<std::string>>();
+    npc.mainDesc = npcNode[NPC_MAINDESC_KEY].asqstd::vector<std::string>>();
     npc.keywords = npcNode[NPC_KEYWORDS_KEY].as<std::vector<std::string>>();
     npc.longDesc = npcNode[NPC_LONGDESC_KEY].as<std::vector<std::string>>();
     npc.shortDesc = npcNode[NPC_SHORTDESC_KEY].as<std::string>();
@@ -425,11 +425,17 @@ void parser::npcDeserializeAndAppendOptionals(NpcModel &npc, YAML::Node const &n
     }else{
         npc.thac0 = 0;
     }
+
     if(npcNode[NPC_ROOM_ID_KEY]){
         npc.roomId = npcNode[NPC_ROOM_ID_KEY].as<int>();
     }
     else{
         npc.roomId = -1;
+    if(npcNode[NPC_HEALTH_KEY]){
+        npc.health = npcNode[NPC_HEALTH_KEY].as<int>();
+    }else{
+        npc.health = 100;
+
     }
 }
 
@@ -467,10 +473,10 @@ std::string parser::npcSerialize(NpcModel const &npc) {
     out << YAML::Value << npc.gold;
     out << YAML::Key << NPC_LEVEL_KEY;
     out << YAML::Value << npc.level;
-
+    out << YAML::Key << NPC_HEALTH_KEY;
+    out << YAML::Value << npc.health;
     out << YAML::Key << NPC_ROOM_ID_KEY;
     out << YAML::Value << npc.roomId;
-
 
     out << YAML::EndMap;
 

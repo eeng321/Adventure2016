@@ -85,13 +85,13 @@ PlayerModel loadPlayer(int playerId){
 
     hiberlite::Database db;
     db.open("AdventureDatabase.db");
-    hiberlite::bean_ptr<PlayerModel> demo = db.loadBean<PlayerModel>(playerId);
+    hiberlite::bean_ptr<PlayerModel> loadedPlayer = db.loadBean<PlayerModel>(playerId);
 
     PlayerModel player;
-    player.playerId = demo->playerId;
-    player.loginName = demo->loginName;
-    player.roomId = demo->roomId;
-    player.health = demo->health;
+    player.playerId = loadedPlayer->playerId;
+    player.loginName = loadedPlayer->loginName;
+    player.roomId = loadedPlayer->roomId;
+    player.health = loadedPlayer->health;
     db.close();
     //printPlayer(player);
     return player;
@@ -100,6 +100,7 @@ PlayerModel loadPlayer(int playerId){
 PlayerModel addPlayer(PlayerModel player){
     hiberlite::Database db;
     db.open("AdventureDatabase.db");
+
     hiberlite::bean_ptr<PlayerModel> p = db.copyBean(player);
     p->playerId = p.get_id();
     player.playerId = p.get_id();
@@ -164,15 +165,15 @@ PlayerModel registerAccount(string username, string pw){
     //create player model to be added into database
     Credential account;
     PlayerModel newPlayer;
-    //newPlayer.loginName = "";
+    newPlayer.loginName = "";
     //check if username already exists
-    // vector< hiberlite::bean_ptr<Credential> > listAccounts = db.getAllBeans<Credential>();
-    // for(size_t j=0;j<listAccounts.size();j++){
-    //     if(listAccounts[j]->player.loginName == username){
-    //         //found existing user with same name
-    //         return newPlayer; //return empty player object will return http error
-    //     }
-    // }
+    vector< hiberlite::bean_ptr<Credential> > listAccounts = db.getAllBeans<Credential>();
+    for(size_t j=0;j<listAccounts.size();j++){
+        if(listAccounts[j]->player.loginName == username){
+            //found existing user with same name
+            return newPlayer; //return empty player object will return http error
+        }
+    }
     newPlayer.roomId = 0;
     newPlayer.loginName = username;
     newPlayer.health = 100;

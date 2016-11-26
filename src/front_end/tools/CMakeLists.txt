@@ -17,6 +17,7 @@ target_link_libraries(adventure2016 restClient)
 target_link_libraries(adventure2016 dictionary)
 target_link_libraries(adventure2016 command)
 target_link_libraries(adventure2016 combat)
+target_link_libraries(adventure2016 spawn)
 target_link_libraries(adventure2016 Threads::Threads)
 
 install(TARGETS adventure2016 DESTINATION bin)
