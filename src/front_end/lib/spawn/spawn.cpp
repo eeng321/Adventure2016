@@ -12,8 +12,8 @@ using std::vector;
 using std::string;
 using question = string;
 
-const question question1 = "Would you prefer to have a) many enemies or b) few enemeis? (please answer with \"a\" or \"b\")";
-const question question2 = "Do you want to interact with a) wizards and assassins or b) small happy creatues? (please answer with \"a\" or \"b\")";
+const question question1 = "Would you prefer to have a) many enemies or b) few enemies? (please answer with \"a\" or \"b\")";
+const question question2 = "Do you want to interact with a) wizards and assassins or b) small happy creatures? (please answer with \"a\" or \"b\")";
 const question question3 = "Are you interested in guilds? a) Yes, b) No (please answer with \"a\" or \"b\")\n";
 
 const string invalidResponse = "Invalid answer, please respond with a or b";
