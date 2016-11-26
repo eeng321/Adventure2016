@@ -81,6 +81,7 @@ NpcModel modifyNpc(int npcId, NpcModel updateFields){
     hiberlite::bean_ptr<NpcModel> editNpc = db.loadBean<NpcModel>(npcId);
 
     int prevRoomId = editNpc->roomId;
+    editNpc->health = updateFields.health;
     editNpc->hit = updateFields.hit;
     editNpc->armor = updateFields.armor;
     editNpc->damage = updateFields.damage;
