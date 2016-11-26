@@ -6,8 +6,8 @@
 #include <unistd.h>
 #include "display.h"
 
-int max_x = 0;
-int max_y = 0;
+static int max_x = 0;
+static int max_y = 0;
 static WINDOW *loginWindow;
 static WINDOW *mainWindow;
 static WINDOW *chatWindow;
@@ -92,7 +92,6 @@ void Display::updateChatWindow() {
     while(!gameFinished) {
         sleep(1);
         wclear(chatWindow);
-        wrefresh(chatWindow);
         std::string payload = Controller::getLatestGlobalMessages();
         std::vector<MessageModel> latestChatMessages = parser::messageVectorDeserialize(payload);
         for(auto&msg : latestChatMessages) {
@@ -100,6 +99,8 @@ void Display::updateChatWindow() {
             const char* chatMsgConverted = chatMsg.c_str();
             addStringToChatWindow(chatMsgConverted);
         }
+        wrefresh(chatWindow);
+
     }
 }
 

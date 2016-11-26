@@ -137,7 +137,9 @@ StatusCode GlobalChatCommand::execute(std::string &result, const std::vector<std
     playerMessage.Message = commandMessage;
     std::string postPayload = parser::messageSerialize(playerMessage);
 
-    return Controller::sendGlobalMessage(postPayload, result);
+    auto statusCode = Controller::sendGlobalMessage(postPayload, result);
+    result = "";
+    return statusCode;
 }
 
 StatusCode SwapCommand::execute(std::string& result, const std::vector<std::string>& args) {
