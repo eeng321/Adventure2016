@@ -11,7 +11,7 @@ GameState::GameState() {
 }
 
 std::string GameState::getPlayerId() {
-    return player.getUsername();
+    return player.getId().to_string();
 }
 
 PlayerModel GameState::getPlayerModel() {
