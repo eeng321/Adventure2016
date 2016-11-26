@@ -17,8 +17,8 @@ const question question2 = "Do you want to interact with a) wizards and assassin
 const question question3 = "Are you interested in guilds? a) Yes, b) No (please answer with \"a\" or \"b\")\n";
 
 const string invalidResponse = "Invalid answer, please respond with a or b";
-const string midgaardMessage = "You have spawned into midgaard, a realm of magic and fantasy.";
-const string smurfMessage = "You have spawned into smurf village, the home of the happy, peaceful smurfs.";
+const string midgaardMessage = "You have spawned into midgaard, a realm of magic and fantasy.\n";
+const string smurfMessage = "You have spawned into smurf village, the home of the happy, peaceful smurfs.\n";
 const string failedToSpawnMessage = "Sorry, you were unable to spawn. Please try again.";
 
 const roomId midgaardLocation = roomId(3001);

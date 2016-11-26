@@ -20,6 +20,7 @@ public:
     static bool PiglatinIsActive();
     static void decrementPiglatinTimer();
     static void initializePiglatinTimer();
+    static int getTimer();
 private:
     static Player player;
 };

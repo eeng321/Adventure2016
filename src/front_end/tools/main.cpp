@@ -5,7 +5,6 @@
 #include "display.h"
 #include "Controller.h"
 #include "userInput.h"
-#include "spawn.h"
 #include "Dictionary.h"
 
 int main() {
@@ -17,7 +16,6 @@ int main() {
 
     }else if(loginMode == NEW_ACCOUNT_MENU_SELECTION){
         UserInput::createNewPlayerCredentials();
-        Spawn::initialSpawn();
     }
 
     //TODO: 100% faking the language parsing until actual parsing is done

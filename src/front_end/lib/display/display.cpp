@@ -28,12 +28,11 @@ void Display::readUserInput(char *command) {
 }
 
 void Display::addStringToMainWindow(const char* sentence) {
+    string str = sentence;
     if(GameState::PiglatinIsActive()){
-        string str = sentence;
         str = translateToPiglatin(str);
-        sentence = str.c_str();
     }
-    wprintw(mainWindow, sentence);
+    wprintw(mainWindow, str.c_str());
     wprintw(mainWindow, "\n");
     wprintw(mainWindow, "> ");
     wrefresh(mainWindow);
@@ -90,12 +89,11 @@ void Display::createChatWindow() {
 }
 
 void Display::addStringToChatWindow(const char* sentence) {
+    string str = sentence;
     if(GameState::PiglatinIsActive()){
-        string str = sentence;
         str = translateToPiglatin(str);
-        sentence = str.c_str();
     }
-    wprintw(chatWindow, sentence);
+    wprintw(chatWindow, str.c_str());
     wprintw(chatWindow, "\n");
     wrefresh(chatWindow);
 }
@@ -105,6 +103,8 @@ void Display::updateChatWindow() {
         sleep(1);
         if(GameState::PiglatinIsActive()){//decrement piglatin timer every second
             GameState::decrementPiglatinTimer();
+//            std::string str = std::to_string(GameState::getTimer());
+//            addStringToMainWindow(str.c_str());
         }
         wclear(chatWindow);
         std::string payload = Controller::getLatestGlobalMessages();
@@ -136,12 +136,11 @@ void Display::createCombatWindow() {
 }
 
 void Display::addStringToCombatWindow(const char* sentence) {
+    string str = sentence;
     if(GameState::PiglatinIsActive()){
-        string str = sentence;
         str = translateToPiglatin(str);
-        sentence = str.c_str();
     }
-    wprintw(combatWindow, sentence);
+    wprintw(combatWindow, str.c_str());
     wprintw(combatWindow, "\n");
     wrefresh(combatWindow);
 }

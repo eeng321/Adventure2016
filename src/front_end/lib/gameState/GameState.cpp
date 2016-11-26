@@ -59,3 +59,7 @@ void GameState::decrementPiglatinTimer(){
 void GameState::initializePiglatinTimer(){
     piglatinTimer = PIGLATIN_INITIAL_TIME;
 }
+
+int GameState::getTimer(){
+    return piglatinTimer;
+}

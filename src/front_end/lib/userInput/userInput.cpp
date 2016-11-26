@@ -8,6 +8,7 @@
 #include "display.h"
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/split.hpp>
+#include "spawn.h"
 
 void UserInput::checkExistingPlayerCredentials() {
 
@@ -75,6 +76,7 @@ void UserInput::createNewPlayerCredentials() {
         }
         else {
             Display::clearMainWinDisplay();
+            Spawn::initialSpawn();//determine where they player should spawn and place them there
             Display::addStringToMainWindow("You have logged in!");
             Display::addStringToMainWindow("Welcome to the game world! Type in your commands!");
             loggedIn = true;

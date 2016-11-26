@@ -11,9 +11,8 @@
 const std::string PIG_LATIN_MESSAGE = "SPELL_PIG_LATIN";
 
 std::string translateToPiglatin(const std::string& s);
-unsigned long findVowel(const std::string& s);
+int findVowel(const std::string& s);
 std::string translateWord(const std::string& s);
 bool isPiglatinCommand(const MessageModel& message);
-void initializePiglatin(const MessageModel& message);
 
 #endif //ADVENTURE2016_PIGLATIN_H
