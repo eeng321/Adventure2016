@@ -87,12 +87,8 @@ NpcModel modifyNpc(int npcId, NpcModel updateFields){
     hiberlite::Database db;
     db.open("AdventureDatabase.db");
     hiberlite::bean_ptr<NpcModel> editNpc = db.loadBean<NpcModel>(npcId);
-<<<<<<< HEAD
     int prevRoomId = editNpc->roomId;
-=======
-
     editNpc->health = updateFields.health;
->>>>>>> 4a2a62d52c4920540ff7e9de32c92f676afe5382
     editNpc->hit = updateFields.hit;
     editNpc->armor = updateFields.armor;
     editNpc->damage = updateFields.damage;
