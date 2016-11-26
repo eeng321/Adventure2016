@@ -5,6 +5,7 @@
 #include <iostream>
 #include <unistd.h>
 #include "display.h"
+#include "piglatin.h"
 
 static int max_x = 0;
 static int max_y = 0;
@@ -26,6 +27,11 @@ void Display::readUserInput(char *command) {
 }
 
 void Display::addStringToMainWindow(const char* sentence) {
+    if(GameState::PiglatinIsActive()){
+        string str = sentence;
+        str = translateToPiglatin(str);
+        sentence = str.c_str();
+    }
     wprintw(mainWindow, sentence);
     wprintw(mainWindow, "\n");
     wprintw(mainWindow, "> ");
@@ -83,6 +89,11 @@ void Display::createChatWindow() {
 }
 
 void Display::addStringToChatWindow(const char* sentence) {
+    if(GameState::PiglatinIsActive()){
+        string str = sentence;
+        str = translateToPiglatin(str);
+        sentence = str.c_str();
+    }
     wprintw(chatWindow, sentence);
     wprintw(chatWindow, "\n");
     wrefresh(chatWindow);
@@ -91,6 +102,9 @@ void Display::addStringToChatWindow(const char* sentence) {
 void Display::updateChatWindow() {
     while(!gameFinished) {
         sleep(1);
+        if(GameState::PiglatinIsActive()){
+            GameState::decrementPiglatinTimer();
+        }
         wclear(chatWindow);
         std::string payload = Controller::getLatestGlobalMessages();
         std::vector<MessageModel> latestChatMessages = parser::messageVectorDeserialize(payload);
@@ -111,6 +125,11 @@ void Display::createCombatWindow() {
 }
 
 void Display::addStringToCombatWindow(const char* sentence) {
+    if(GameState::PiglatinIsActive()){
+        string str = sentence;
+        str = translateToPiglatin(str);
+        sentence = str.c_str();
+    }
     wprintw(combatWindow, sentence);
     wprintw(combatWindow, "\n");
     wrefresh(combatWindow);

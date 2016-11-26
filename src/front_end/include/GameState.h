@@ -17,6 +17,9 @@ public:
     static bool inCombat();
     static void setEngagedInCombatWith(npcId npc);
     static npcId getEngagedInCombatWith();
+    static bool PiglatinIsActive();
+    static void decrementPiglatinTimer();
+    static void initializePiglatinTimer();
 private:
     static Player player;
 };

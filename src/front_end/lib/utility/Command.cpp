@@ -200,3 +200,7 @@ StatusCode AttackCommand::execute(std::string& result, const std::vector<std::st
     }
     return code;
 }
+
+StatusCode PiglatinCommand::execute(std::string& result, const std::vector<std::string>& args){
+
+}

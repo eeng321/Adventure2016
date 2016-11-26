@@ -1,8 +1,10 @@
 #include "GameState.h"
 
 const int PLAYER_ID_NONE = 0;
+const int PIGLATIN_INITIAL_TIME = 30;
 static bool combatFlag = false;
 static npcId engagedInCombatWith = 0;
+static int piglatinTimer = 0;
 
 Player GameState::player = Player(playerId(PLAYER_ID_NONE));
 
@@ -44,4 +46,16 @@ void GameState::setEngagedInCombatWith(npcId npc) {
 
 npcId GameState::getEngagedInCombatWith() {
     return engagedInCombatWith;
+}
+
+bool GameState::PiglatinIsActive(){
+    return piglatinTimer == 0;
+}
+
+void GameState::decrementPiglatinTimer(){
+    piglatinTimer--;
+}
+
+void GameState::initializePiglatinTimer(){
+    piglatinTimer = PIGLATIN_INITIAL_TIME;
 }
