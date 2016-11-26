@@ -42,14 +42,15 @@ void Spawn::initialSpawn() {
     }
 
     if (midgaard > smurf) {
-        spawnPlayer(roomId(3001), midgaardMessage);
+        spawnPlayer(roomId(3001), midgaardMessage);//spawn in midgaar
     } else {
-        spawnPlayer(roomId(101), smurfMessage);
+        spawnPlayer(roomId(101), smurfMessage);//spawn in smurf
     }
 }
 
-void Spawn::spawnPlayer(const roomId& id, const string& message){
-    StatusCode returnCode = Controller::moveToRoom(id);
+void Spawn::spawnPlayer(const roomId& room, const string& message){
+    StatusCode returnCode = Controller::moveToRoom(room);
+//    TODO status code checking
 //    if (returnCode != STATUS_OK) {
 //        Display::addStringToMainWindow(failedToSpawnMessage.c_str());
 //    } else {
@@ -62,7 +63,7 @@ void Spawn::spawnPlayer(const roomId& id, const string& message){
 
 Region Spawn::getAnswer(){
     char response[MAX_CHAR_LIMIT];
-    while(true){
+    while(true){//loop till valid input is entered
         Display::readUserInput(response);
         std::string strResponse{response};
         if(strResponse.size() > 1){
