@@ -4,6 +4,8 @@
 #include <string>
 #include "RestClient.h"
 #include "Player.h"
+#include "../../model/include/npc.h"
+#include "../../model/include/item.h"
 #include "GameState.h"
 #include "../../model/include/room.h"
 
@@ -51,11 +53,14 @@ public:
     static StatusCode getRoom(roomId id, Room& room);
 
     static StatusCode moveToRoom(roomId id);
+    static StatusCode putPlayer(std::string& result);
 
     static std::string getPlayerId();
 
-    static std::string getNPC(npcId npc);
-    static StatusCode putNPC(npcId npc, const std::string &payload, std::string &result);
+    static StatusCode getNpc(npcId id, Npc& npc);
+    static StatusCode putNpc(Npc& npc, std::string &result);
+
+    static StatusCode getItem(itemId id, Item& item);
 
 private:
     static std::string makeGetRequest(const std::string& url);

@@ -22,6 +22,10 @@ void GameState::setPlayerModel(PlayerModel model) {
     player.setModel(model);
 }
 
+void GameState::setPlayerHealth(int health) {
+    player.setHealth(health);
+}
+
 roomId GameState::getLocation() {
     return player.getLocation();
 }

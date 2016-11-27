@@ -12,6 +12,7 @@ std::string parser::itemSerialize(ItemModel const &item) {
     for(auto e : item.attributes) {
         out << e;
     }
+    out << YAML::EndSeq;
     out << YAML::Key << ITEM_COST_KEY;
     out << YAML::Value << item.cost;
     out << YAML::Key << ITEM_EXTRA_KEY;
@@ -25,6 +26,7 @@ std::string parser::itemSerialize(ItemModel const &item) {
         out << YAML::Value << e.keywords;
         out << YAML::EndMap;
     }
+    out << YAML::EndSeq;
     out << YAML::Key << ITEM_ID_KEY;
     out << YAML::Value << item.id;
     out << YAML::Key << ITEM_KEYWORDS_KEY;
