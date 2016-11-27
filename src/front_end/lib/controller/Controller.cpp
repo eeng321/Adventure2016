@@ -52,7 +52,7 @@ StatusCode Controller::registerAccount(const std::string& username, const std::s
 
 StatusCode Controller::sendGlobalMessage(const std::string &payload, std::string &result) {
     result = "";
-    Net::Http::Response response = client.Post(SERVER + "chat/", payload);
+    Net::Http::Response response = client.Post(Controller::server + "chat/", payload);
     if (response.code() == Net::Http::Code::Internal_Server_Error) {
         // TODO: handle
         return STATUS_SERVER_ERROR;
@@ -62,7 +62,7 @@ StatusCode Controller::sendGlobalMessage(const std::string &payload, std::string
 }
 
 std::string Controller::getLatestGlobalMessages() {
-    Net::Http::Response response = client.Get(SERVER + "chat/");
+    Net::Http::Response response = client.Get(Controller::server + "chat/");
     if (response.code() != Net::Http::Code::Ok) {
         // TODO: handle
         return "ERROR: HTTP error.";
@@ -107,7 +107,7 @@ std::string Controller::getNPC(npcId npc) {
 
 StatusCode Controller::putNPC(npcId npc, const std::string &payload, std::string &result) {
     result = "";
-    Net::Http::Response response = client.Post(SERVER + "NPC/" + npc.to_string(), payload);
+    Net::Http::Response response = client.Post(Controller::server + "NPC/" + npc.to_string(), payload);
     if (response.code() == Net::Http::Code::Internal_Server_Error) {
         // TODO: handle
         return STATUS_SERVER_ERROR;
