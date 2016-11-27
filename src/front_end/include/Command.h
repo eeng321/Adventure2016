@@ -74,6 +74,11 @@ public:
     StatusCode execute(std::string& result, const std::vector<std::string>& args);
 };
 
+class SpellCommand : public Command {
+public:
+    StatusCode execute(std::string& result, const std::vector<std::string>& args);
+};
+
 ///////////////// DEBUG
 class MoveCommand : public Command {
     StatusCode execute(std::string& result, const std::vector<std::string>& args);

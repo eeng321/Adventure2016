@@ -32,6 +32,7 @@ public:
     static void setGameFinished();
     static void createCombatWindow();
     static void addStringToCombatWindow(const char* sentence);
+    static void clearCombatWindow();
 
 private:
     static WINDOW* createNewWindow(int height, int width, int startY, int startX);

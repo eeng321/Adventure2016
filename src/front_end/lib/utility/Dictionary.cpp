@@ -22,6 +22,7 @@ Dictionary::Dictionary() {
     dictionaryCmdMap.insert(std::make_pair("move", new MoveCommand));
     dictionaryCmdMap.insert(std::make_pair("engage", new EngageCommand));
     dictionaryCmdMap.insert(std::make_pair("attack", new AttackCommand));
+    dictionaryCmdMap.insert(std::make_pair("spell", new SpellCommand));
 }
 
 Dictionary::~Dictionary() {

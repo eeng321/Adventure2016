@@ -172,6 +172,7 @@ StatusCode EngageCommand::execute(std::string& result, const std::vector<std::st
         }
     }
     if(npcFound) {
+        Display::clearCombatWindow();
         GameState::setAttackFlag(true);
         std::string engagedMsg = "You are now engaged in combat with " + engagedNPC;
         strcpy(commandString, engagedMsg.c_str());
@@ -195,6 +196,25 @@ StatusCode AttackCommand::execute(std::string& result, const std::vector<std::st
     }
     else {
         code = Combat::playerAttacksNPC(result);
+    }
+    return code;
+}
+
+StatusCode SpellCommand::execute(std::string& result, const std::vector<std::string>& args) {
+    char commandString[MAX_CHAR_LIMIT];
+    StatusCode code;
+    if(!GameState::inCombat()) {
+        std::string noNPCFound = "You are not engaged in combat with anyone.";
+        strcpy(commandString, noNPCFound.c_str());
+        Display::addStringToCombatWindow(commandString);
+        code = STATUS_OK;
+    }
+    else {
+        std::string commandArg = "";
+        for(const std::string s : args) {
+            commandArg += s;
+        }
+        
     }
     return code;
 }

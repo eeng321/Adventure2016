@@ -36,17 +36,23 @@ StatusCode Combat::playerAttacksNPC(std::string& result) {
         GameState::setEngagedInCombatWith(0);
         GameState::setAttackFlag(false);
     } else {
+        //TODO: merge with joshes code to get NPC attacks to work
         //Combat::npcAttacksPlayer();
     }
     return code;
 }
 
 void Combat::npcAttacksPlayer() {
-    PlayerModel currentPlayer = GameState::getPlayerModel();
     char combatString[MAX_CHAR_LIMIT];
-    while(GameState::inCombat()) {
+    auto missOrHit = (rand()%4) + 1;
+    if(missOrHit == 4) {
+        std::string missString = "NPC missed!";
+        memset(&combatString[0], 0, sizeof(combatString));
+        strcpy(combatString, missString.c_str());
+        Display::addStringToCombatWindow(combatString);
+    } else {
         auto damageDone = (rand() % 12) + 1; //Can add modifiers in the future
-        auto playerHealth = currentPlayer.health;
+        auto playerHealth = GameState::getPlayerHealth();
         auto newPlayerHealth = playerHealth - damageDone;
         std::stringstream combatDamageString;
         combatDamageString << "The NPC did" << damageDone << " damage to you";
@@ -62,9 +68,6 @@ void Combat::npcAttacksPlayer() {
             GameState::setAttackFlag(false);
             //TODO: respawn player at default room
         }
-        currentPlayer.health = newPlayerHealth;
-        std::string showPlayerHealth = "Your health: " + currentPlayer.health;
-        Display::addStringToCombatWindow(showPlayerHealth.c_str());
-        GameState::setPlayerModel(currentPlayer);
+        GameState::setPlayerHealth(newPlayerHealth);
     }
 }
