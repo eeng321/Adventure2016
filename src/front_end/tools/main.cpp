@@ -7,8 +7,16 @@
 #include "userInput.h"
 #include "Dictionary.h"
 
-int main() {
+
+int main(int argc, char *argv[]) {
     bool keepPlaying = true;
+
+    //Controller ctrlr = Controller();
+    if (argc >= 3) {
+         Controller::server = "http://" + std::string(argv[1]) + ":" + std::string(argv[2]) + "/";
+    }
+
+    // TODO: We should have a check right away whether the user is connected to a server
 
     int loginMode = Display::createLoginMenu();
     if(loginMode == LOGIN_MENU_SELECTION) {

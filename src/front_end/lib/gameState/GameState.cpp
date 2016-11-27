@@ -15,7 +15,7 @@ GameState::GameState() {
 }
 
 std::string GameState::getPlayerId() {
-    return player.getUsername();
+    return player.getId().to_string();
 }
 
 PlayerModel GameState::getPlayerModel() {
@@ -24,6 +24,14 @@ PlayerModel GameState::getPlayerModel() {
 
 void GameState::setPlayerModel(PlayerModel model) {
     player.setModel(model);
+}
+
+int GameState::getPlayerHealth() {
+    return player.getHealth();
+}
+
+void GameState::setPlayerHealth(int health) {
+    player.setHealth(health);
 }
 
 roomId GameState::getLocation() {

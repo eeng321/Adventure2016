@@ -9,6 +9,12 @@
 using description = std::vector<std::string>;
 using keyword = std::string;
 
+const int BLANK_NPC_ID = 0;
+
+Npc::Npc() : id(npcId(BLANK_NPC_ID)) {
+
+}
+
 Npc::Npc(description desc,
          npcId nid,
          std::vector<keyword> key,
@@ -159,7 +165,11 @@ void Npc::addExp(int expAdded) {
     }
 }
 
-void Npc::deceaseHealth(int change) {
+void Npc::setHealth(int health) {
+    this->health = health;
+}
+
+void Npc::decreaseHealth(int change) {
     health = health - change;
 }
 

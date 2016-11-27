@@ -12,6 +12,7 @@ std::string parser::itemSerialize(ItemModel const &item) {
     for(auto e : item.attributes) {
         out << e;
     }
+    out << YAML::EndSeq;
     out << YAML::Key << ITEM_COST_KEY;
     out << YAML::Value << item.cost;
     out << YAML::Key << ITEM_EXTRA_KEY;
@@ -25,6 +26,7 @@ std::string parser::itemSerialize(ItemModel const &item) {
         out << YAML::Value << e.keywords;
         out << YAML::EndMap;
     }
+    out << YAML::EndSeq;
     out << YAML::Key << ITEM_ID_KEY;
     out << YAML::Value << item.id;
     out << YAML::Key << ITEM_KEYWORDS_KEY;
@@ -416,6 +418,11 @@ void parser::npcDeserializeAndAppendOptionals(NpcModel &npc, YAML::Node const &n
     }else{
         npc.thac0 = 0;
     }
+    if(npcNode[NPC_HEALTH_KEY]){
+        npc.health = npcNode[NPC_HEALTH_KEY].as<int>();
+    }else{
+        npc.health = 100;
+    }
 }
 
 std::string parser::npcSerialize(NpcModel const &npc) {
@@ -452,10 +459,10 @@ std::string parser::npcSerialize(NpcModel const &npc) {
     out << YAML::Value << npc.gold;
     out << YAML::Key << NPC_LEVEL_KEY;
     out << YAML::Value << npc.level;
-
+    out << YAML::Key << NPC_HEALTH_KEY;
+    out << YAML::Value << npc.health;
     out << YAML::Key << NPC_ROOM_ID_KEY;
     out << YAML::Value << npc.roomId;
-
 
     out << YAML::EndMap;
 
