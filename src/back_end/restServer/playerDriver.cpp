@@ -2,6 +2,7 @@
 #include "credential.h"
 #include "../../model/include/npcModel.h"
 #include "../../model/include/itemModel.h"
+#include "roomDriver.h"
 //#include "../../model/include/npcModel.h"
 #include <iostream>
 
@@ -105,6 +106,17 @@ PlayerModel addPlayer(PlayerModel player){
     p->playerId = p.get_id();
     player.playerId = p.get_id();
     p.save();
+
+    if(player.roomId == -1){
+
+    }
+
+    else {
+        RoomModel room = loadRoom(player.roomId);
+        room.playerList.push_back(p->loginName);
+        modifyRoom(room.id, room);
+    }
+
     db.close();
     return player;
 }
@@ -114,8 +126,28 @@ PlayerModel modifyPlayer(int playerId, PlayerModel updateFields){
     db.open("AdventureDatabase.db");
     hiberlite::bean_ptr<PlayerModel> editPlayer = db.loadBean<PlayerModel>(playerId);
 
+    int prevRoomId = editPlayer->roomId;
+
     editPlayer->roomId = updateFields.roomId;
     editPlayer->health = updateFields.health;
+    if (prevRoomId != updateFields.roomId){
+        RoomModel oldRoom = loadRoom(prevRoomId);
+        for (int i = 0; i < oldRoom.playerList.size(); i++ ){
+            if(oldRoom.playerList[i] == editPlayer->loginName){
+                oldRoom.playerList.erase(oldRoom.playerList.begin()+ i);
+            }
+        }
+        modifyRoom(oldRoom.id, oldRoom);
+    }
+    if(updateFields.roomId == -1) {
+
+    }
+    else {
+        RoomModel newRoom = loadRoom(updateFields.roomId);
+        newRoom.playerList.push_back(editPlayer->loginName);
+        modifyRoom(newRoom.id, newRoom);
+
+    }
     editPlayer.save();
     db.close();
     return loadPlayer(playerId);
@@ -128,6 +160,14 @@ success removePlayer(int playerId){
     hiberlite::bean_ptr<Credential> account = db.loadBean<Credential>(playerId);
     vector< hiberlite::bean_ptr<PlayerModel> > listPlayers=db.getAllBeans<PlayerModel>();
     int numOfPlayers = listPlayers.size();
+    RoomModel room = loadRoom(player->roomId);
+    for (int i = 0; i < room.playerList.size(); i++ ){
+        if(player->loginName == room.playerList[i]){
+            room.playerList.erase(room.playerList.begin()+ i);
+        }
+    }
+
+    modifyRoom(room.id, room);
     player.destroy();
     account.destroy();
     db.close();
