@@ -87,5 +87,7 @@ class MoveCommand : public Command {
 
 
 StatusCode moveInDirection(std::string &result, Direction d);
+std::string showNpcs(Room& room);
+std::string showItems(Room& room);
 
 #endif //ADVENTURE2016_COMMAND_H

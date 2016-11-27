@@ -55,7 +55,7 @@ public:
 
     std::vector<std::string> getKeywords() const;
 
-    std::vector<std::string> getlongDesc() const;
+    std::vector<std::string> getLongDesc() const;
 
     std::string getShortDesc() const;
 

@@ -11,6 +11,13 @@
 using std::string;
 using std::vector;
 
+const int BLANK_ITEM_ID = 0;
+
+Item::Item()
+    : id(BLANK_ITEM_ID) {
+
+}
+
 Item::Item(itemId idIn,
            vector<string> keywordsIn,
            vector<string> longDescIn,
@@ -79,7 +86,7 @@ vector<string> Item::getKeywords() const {
     return keywords;
 }
 
-vector<string> Item::getlongDesc() const {
+vector<string> Item::getLongDesc() const {
     return longDesc;
 }
 

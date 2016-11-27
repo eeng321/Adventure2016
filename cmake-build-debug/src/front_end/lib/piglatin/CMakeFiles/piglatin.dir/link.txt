@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../../lib/libpiglatin.a  CMakeFiles/piglatin.dir/piglatin.cpp.o
+/usr/bin/ranlib ../../../../lib/libpiglatin.a

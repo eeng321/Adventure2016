@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../../lib/libspell.a  CMakeFiles/spell.dir/spell.cpp.o CMakeFiles/spell.dir/spellbook.cpp.o
+/usr/bin/ranlib ../../../../lib/libspell.a

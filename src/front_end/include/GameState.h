@@ -11,6 +11,8 @@ public:
     static std::string getPlayerId();
     static PlayerModel getPlayerModel();
     static void setPlayerModel(PlayerModel model);
+    static int getPlayerHealth();
+    static void setPlayerHealth(int health);
     static roomId getLocation();
     static void setLocation(roomId id);
     static void setAttackFlag(bool state);

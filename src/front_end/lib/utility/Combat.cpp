@@ -13,21 +13,21 @@
 
 StatusCode Combat::playerAttacksNPC(std::string& result) {
     char combatString[MAX_CHAR_LIMIT];
-    npcId npc = GameState::getEngagedInCombatWith();
-    std::string getNPCPayload = Controller::getNPC(npc);
-    NpcModel engagedNPC = parser::npcDeserialize(getNPCPayload);
+    npcId id = GameState::getEngagedInCombatWith();
+    Npc engagedNpc;
+    Controller::getNpc(id, engagedNpc);
     auto damageDone = 10; //Can add modifiers to this later with weapons but let us assumes fistacuffs were used
-    auto NPCHealth = engagedNPC.health;
-    auto newNPCHealth = NPCHealth - damageDone;
+    auto npcHealth = engagedNpc.getHealth();
+    auto newNpcHealth = npcHealth - damageDone;
     std::stringstream combatDamageString;
-    combatDamageString << "You have done " << damageDone << " damage to NPC " << npc.to_string();
+    combatDamageString << "You have done " << damageDone << " damage to NPC " << id.to_string();
     std::string finalCombatString = combatDamageString.str();
     strcpy(combatString, finalCombatString.c_str());
     Display::addStringToCombatWindow(combatString);
-    engagedNPC.health = newNPCHealth;
-    std::string putNPCPayload = parser::npcSerialize(engagedNPC);
-    StatusCode code  = Controller::putNPC(npc, putNPCPayload, result);
-    if(newNPCHealth <= 0) {
+    engagedNpc.setHealth(newNpcHealth);
+    StatusCode code = Controller::putNpc(engagedNpc, result);
+    if (newNpcHealth <= 0) {
+        newNpcHealth = 0;
         std::string deathString = "You killed him man...Just....stop... you monster.";
         memset(&combatString[0], 0, sizeof(combatString));
         strcpy(combatString, deathString.c_str());

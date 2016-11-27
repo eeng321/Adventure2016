@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../../lib/libspawn.a  CMakeFiles/spawn.dir/spawn.cpp.o
+/usr/bin/ranlib ../../../../lib/libspawn.a

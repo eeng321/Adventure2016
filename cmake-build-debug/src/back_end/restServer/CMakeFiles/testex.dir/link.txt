@@ -1,0 +1,1 @@
+/usr/bin/c++   -g   CMakeFiles/testex.dir/test.cpp.o  -o ../../../bin/testex -rdynamic ../../../lib/libparser.a -lyaml-cpp ../../../lib/libplayerModel.a ../../../lib/libroomModel.a ../../../lib/libdoor.a ../../../lib/libroom.a ../../../lib/libdoor.a ../../../lib/libid.a 

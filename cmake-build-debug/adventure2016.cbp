@@ -1,0 +1,1881 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="adventure2016"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\src\;CMake Files\src\back_end\;CMake Files\src\back_end\lib\;CMake Files\src\back_end\lib\pistache\;CMake Files\src\back_end\lib\pistache\src\;CMake Files\src\back_end\lib\hiberlite\;CMake Files\src\back_end\restServer\;CMake Files\src\model\;CMake Files\src\model\src\;CMake Files\src\model\lib\;CMake Files\src\model\lib\id\;CMake Files\src\model\lib\door\;CMake Files\src\model\lib\room\;CMake Files\src\model\lib\item\;CMake Files\src\model\lib\resets\;CMake Files\src\model\lib\npc\;CMake Files\src\front_end\;CMake Files\src\front_end\lib\;CMake Files\src\front_end\lib\player\;CMake Files\src\front_end\lib\userInput\;CMake Files\src\front_end\lib\display\;CMake Files\src\front_end\lib\piglatin\;CMake Files\src\front_end\lib\spawn\;CMake Files\src\front_end\lib\gameState\;CMake Files\src\front_end\lib\restClient\;CMake Files\src\front_end\lib\controller\;CMake Files\src\front_end\lib\utility\;CMake Files\src\front_end\lib\spell\;CMake Files\src\front_end\tools\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="list_install_components">
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/Makefile&quot;  VERBOSE=1 list_install_components"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install">
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/Makefile&quot;  VERBOSE=1 install"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/local">
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/Makefile&quot;  VERBOSE=1 install/local"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/strip">
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/Makefile&quot;  VERBOSE=1 install/strip"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="net">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/pistache/src/libnet.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/pistache/src"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/includes"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/pistache/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/pistache/src/Makefile&quot;  VERBOSE=1 net"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/pistache/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/pistache/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/pistache/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="net/fast">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/pistache/src/libnet.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/pistache/src"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/includes"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/pistache/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/pistache/src/Makefile&quot;  VERBOSE=1 net/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/pistache/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/pistache/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/pistache/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="net_static">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libnet_static.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/pistache/src"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/includes"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/pistache/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/pistache/src/Makefile&quot;  VERBOSE=1 net_static"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/pistache/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/pistache/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/pistache/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="net_static/fast">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libnet_static.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/pistache/src"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/includes"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/pistache/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/pistache/src/Makefile&quot;  VERBOSE=1 net_static/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/pistache/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/pistache/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/pistache/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="hiber">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libhiber.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/hiberlite"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/includes"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/pistache"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/hiberlite/include"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/hiberlite/src"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/hiberlite/Makefile&quot;  VERBOSE=1 hiber"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/hiberlite/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/hiberlite/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/hiberlite/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="hiber/fast">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libhiber.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/hiberlite"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/includes"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/pistache"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/hiberlite/include"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/hiberlite/src"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/hiberlite/Makefile&quot;  VERBOSE=1 hiber/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/hiberlite/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/hiberlite/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/lib/hiberlite/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rest_server">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/bin/rest_server" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/includes"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 rest_server"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rest_server/fast">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/bin/rest_server" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/includes"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 rest_server/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="testex">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/bin/testex" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/includes"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 testex"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="testex/fast">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/bin/testex" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/includes"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 testex/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="etljob">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libetljob.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/includes"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 etljob"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="etljob/fast">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libetljob.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/includes"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 etljob/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="parser">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libparser.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/includes"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 parser"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="parser/fast">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libparser.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/includes"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 parser/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/back_end/restServer/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="roomModel">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libroomModel.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/model/src"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/src/Makefile&quot;  VERBOSE=1 roomModel"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="roomModel/fast">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libroomModel.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/model/src"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/src/Makefile&quot;  VERBOSE=1 roomModel/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="playerModel">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libplayerModel.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/model/src"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/src/Makefile&quot;  VERBOSE=1 playerModel"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="playerModel/fast">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libplayerModel.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/model/src"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/src/Makefile&quot;  VERBOSE=1 playerModel/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="id">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libid.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/model/lib/id"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/id/Makefile&quot;  VERBOSE=1 id"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/id/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/id/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/id/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="id/fast">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libid.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/model/lib/id"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/id/Makefile&quot;  VERBOSE=1 id/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/id/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/id/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/id/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="door">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libdoor.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/model/lib/door"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/door/Makefile&quot;  VERBOSE=1 door"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/door/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/door/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/door/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="door/fast">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libdoor.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/model/lib/door"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/door/Makefile&quot;  VERBOSE=1 door/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/door/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/door/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/door/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="room">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libroom.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/model/lib/room"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/room/Makefile&quot;  VERBOSE=1 room"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/room/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/room/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/room/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="room/fast">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libroom.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/model/lib/room"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/room/Makefile&quot;  VERBOSE=1 room/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/room/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/room/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/room/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="itemModel">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libitemModel.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/model/lib/item"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/item/Makefile&quot;  VERBOSE=1 itemModel"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/item/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/item/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/item/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="itemModel/fast">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libitemModel.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/model/lib/item"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/item/Makefile&quot;  VERBOSE=1 itemModel/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/item/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/item/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/item/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="resets">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libresets.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/model/lib/resets"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/resets/Makefile&quot;  VERBOSE=1 resets"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/resets/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/resets/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/resets/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="resets/fast">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libresets.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/model/lib/resets"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/resets/Makefile&quot;  VERBOSE=1 resets/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/resets/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/resets/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/resets/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="npcModel">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libnpcModel.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/model/lib/npc"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/npc/Makefile&quot;  VERBOSE=1 npcModel"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/npc/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/npc/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/npc/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="npcModel/fast">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libnpcModel.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/model/lib/npc"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/npc/Makefile&quot;  VERBOSE=1 npcModel/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/npc/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/npc/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/model/lib/npc/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="player">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libplayer.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/player"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/player/Makefile&quot;  VERBOSE=1 player"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/player/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/player/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/player/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="player/fast">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libplayer.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/player"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/player/Makefile&quot;  VERBOSE=1 player/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/player/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/player/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/player/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="userInput">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libuserInput.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/userInput"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/userInput/Makefile&quot;  VERBOSE=1 userInput"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/userInput/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/userInput/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/userInput/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="userInput/fast">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libuserInput.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/userInput"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/userInput/Makefile&quot;  VERBOSE=1 userInput/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/userInput/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/userInput/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/userInput/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="display">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libdisplay.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/display"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/display/Makefile&quot;  VERBOSE=1 display"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/display/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/display/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/display/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="display/fast">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libdisplay.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/display"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/display/Makefile&quot;  VERBOSE=1 display/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/display/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/display/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/display/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="piglatin">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libpiglatin.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/piglatin"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/piglatin/Makefile&quot;  VERBOSE=1 piglatin"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/piglatin/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/piglatin/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/piglatin/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="piglatin/fast">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libpiglatin.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/piglatin"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/piglatin/Makefile&quot;  VERBOSE=1 piglatin/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/piglatin/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/piglatin/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/piglatin/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="spawn">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libspawn.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/spawn"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/spawn/Makefile&quot;  VERBOSE=1 spawn"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/spawn/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/spawn/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/spawn/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="spawn/fast">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libspawn.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/spawn"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/spawn/Makefile&quot;  VERBOSE=1 spawn/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/spawn/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/spawn/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/spawn/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gameState">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libgameState.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/gameState"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/gameState/Makefile&quot;  VERBOSE=1 gameState"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/gameState/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/gameState/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/gameState/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gameState/fast">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libgameState.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/gameState"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/gameState/Makefile&quot;  VERBOSE=1 gameState/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/gameState/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/gameState/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/gameState/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="restClient">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/librestClient.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/restClient"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/restClient/Makefile&quot;  VERBOSE=1 restClient"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/restClient/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/restClient/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/restClient/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="restClient/fast">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/librestClient.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/restClient"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/restClient/Makefile&quot;  VERBOSE=1 restClient/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/restClient/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/restClient/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/restClient/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="controller">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libcontroller.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/controller"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/controller/Makefile&quot;  VERBOSE=1 controller"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/controller/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/controller/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/controller/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="controller/fast">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libcontroller.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/controller"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/controller/Makefile&quot;  VERBOSE=1 controller/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/controller/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/controller/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/controller/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="command">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libcommand.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 command"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="command/fast">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libcommand.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 command/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="combat">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libcombat.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 combat"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="combat/fast">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libcombat.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 combat/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="dictionary">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libdictionary.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 dictionary"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="dictionary/fast">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libdictionary.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 dictionary/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="utility">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libutility.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 utility"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="utility/fast">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libutility.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 utility/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/utility/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="spell">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libspell.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/spell"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/spell/Makefile&quot;  VERBOSE=1 spell"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/spell/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/spell/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/spell/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="spell/fast">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/lib/libspell.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/spell"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/spell/Makefile&quot;  VERBOSE=1 spell/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/spell/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/spell/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/lib/spell/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="adventure2016">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/bin/adventure2016" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/tools/Makefile&quot;  VERBOSE=1 adventure2016"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/tools/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/tools/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/tools/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="adventure2016/fast">
+				<Option output="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/bin/adventure2016" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/cmake-build-debug/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/hiberlite/src"/>
+					<Add directory="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/tools/Makefile&quot;  VERBOSE=1 adventure2016/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/tools/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/tools/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/home/jmedwid/Dropbox/Current\ Classes/CMPT\ 373/Project/adventure2016/cmake-build-debug/src/front_end/tools/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/hiberlite/src/BeanLoader.cpp">
+			<Option target="hiber"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/hiberlite/src/BeanUpdater.cpp">
+			<Option target="hiber"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/hiberlite/src/ChildKiller.cpp">
+			<Option target="hiber"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/hiberlite/src/CppModel.cpp">
+			<Option target="hiber"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/hiberlite/src/Database.cpp">
+			<Option target="hiber"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/hiberlite/src/ModelExtractor.cpp">
+			<Option target="hiber"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/hiberlite/src/Registry.cpp">
+			<Option target="hiber"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/hiberlite/src/SQLiteStmt.cpp">
+			<Option target="hiber"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/hiberlite/src/Visitor.cpp">
+			<Option target="hiber"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/hiberlite/src/shared_res.cpp">
+			<Option target="hiber"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/hiberlite/src/sqlite3.c">
+			<Option target="hiber"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/pistache/src/client/client.cc">
+			<Option target="net"/>
+			<Option target="net_static"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/pistache/src/common/cookie.cc">
+			<Option target="net"/>
+			<Option target="net_static"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/pistache/src/common/description.cc">
+			<Option target="net"/>
+			<Option target="net_static"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/pistache/src/common/http.cc">
+			<Option target="net"/>
+			<Option target="net_static"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/pistache/src/common/http_defs.cc">
+			<Option target="net"/>
+			<Option target="net_static"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/pistache/src/common/http_header.cc">
+			<Option target="net"/>
+			<Option target="net_static"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/pistache/src/common/http_headers.cc">
+			<Option target="net"/>
+			<Option target="net_static"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/pistache/src/common/mime.cc">
+			<Option target="net"/>
+			<Option target="net_static"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/pistache/src/common/net.cc">
+			<Option target="net"/>
+			<Option target="net_static"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/pistache/src/common/os.cc">
+			<Option target="net"/>
+			<Option target="net_static"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/pistache/src/common/peer.cc">
+			<Option target="net"/>
+			<Option target="net_static"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/pistache/src/common/reactor.cc">
+			<Option target="net"/>
+			<Option target="net_static"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/pistache/src/common/stream.cc">
+			<Option target="net"/>
+			<Option target="net_static"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/pistache/src/common/tcp.cc">
+			<Option target="net"/>
+			<Option target="net_static"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/pistache/src/common/timer_pool.cc">
+			<Option target="net"/>
+			<Option target="net_static"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/pistache/src/common/transport.cc">
+			<Option target="net"/>
+			<Option target="net_static"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/pistache/src/server/endpoint.cc">
+			<Option target="net"/>
+			<Option target="net_static"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/pistache/src/server/listener.cc">
+			<Option target="net"/>
+			<Option target="net_static"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/pistache/src/server/router.cc">
+			<Option target="net"/>
+			<Option target="net_static"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/restServer/chatEndpoint.cpp">
+			<Option target="rest_server"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/restServer/credential.cpp">
+			<Option target="rest_server"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/restServer/etlJob.cpp">
+			<Option target="etljob"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/restServer/initializeDB.cpp">
+			<Option target="rest_server"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/restServer/itemDriver.cpp">
+			<Option target="rest_server"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/restServer/itemEndpoint.cpp">
+			<Option target="rest_server"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/restServer/npcDriver.cpp">
+			<Option target="rest_server"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/restServer/npcEndpoint.cpp">
+			<Option target="rest_server"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/restServer/parser.cpp">
+			<Option target="parser"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/restServer/playerDriver.cpp">
+			<Option target="rest_server"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/restServer/playerEndpoint.cpp">
+			<Option target="rest_server"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/restServer/restServer.cpp">
+			<Option target="rest_server"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/restServer/roomDriver.cpp">
+			<Option target="rest_server"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/restServer/roomEndpoint.cpp">
+			<Option target="rest_server"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/restServer/test.cpp">
+			<Option target="testex"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/lib/controller/Controller.cpp">
+			<Option target="controller"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/lib/display/display.cpp">
+			<Option target="display"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/lib/gameState/GameState.cpp">
+			<Option target="gameState"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/lib/piglatin/piglatin.cpp">
+			<Option target="piglatin"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/lib/player/Player.cpp">
+			<Option target="player"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/lib/restClient/RestClient.cpp">
+			<Option target="restClient"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/lib/spawn/spawn.cpp">
+			<Option target="spawn"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/lib/spell/spell.cpp">
+			<Option target="spell"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/lib/spell/spellbook.cpp">
+			<Option target="spell"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/lib/userInput/userInput.cpp">
+			<Option target="userInput"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/lib/utility/Combat.cpp">
+			<Option target="combat"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/lib/utility/Command.cpp">
+			<Option target="command"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/lib/utility/Dictionary.cpp">
+			<Option target="dictionary"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/lib/utility/utility.cpp">
+			<Option target="utility"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/tools/main.cpp">
+			<Option target="adventure2016"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/include/itemType.h">
+			<Option target="playerModel"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/include/playerModel.h">
+			<Option target="adventure2016"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/lib/door/doorModel.cpp">
+			<Option target="door"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/lib/id/id.cpp">
+			<Option target="id"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/lib/item/item.cpp">
+			<Option target="itemModel"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/lib/item/itemModel.cpp">
+			<Option target="itemModel"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/lib/npc/npc.cpp">
+			<Option target="npcModel"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/lib/npc/npcModel.cpp">
+			<Option target="npcModel"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/lib/resets/resets.cpp">
+			<Option target="resets"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/lib/room/room.cpp">
+			<Option target="room"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/src/playerModel.cpp">
+			<Option target="playerModel"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/src/roomModel.cpp">
+			<Option target="roomModel"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\back_end\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\back_end\lib\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/pistache/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\back_end\lib\pistache\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/pistache/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\back_end\lib\pistache\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/pistache/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\back_end\lib\pistache\src\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/pistache/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\back_end\lib\pistache\src\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/lib/hiberlite/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\back_end\lib\hiberlite\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/back_end/restServer/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\back_end\restServer\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\model\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\model\src\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/lib/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\model\lib\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/lib/id/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\model\lib\id\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/lib/door/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\model\lib\door\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/lib/room/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\model\lib\room\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/lib/item/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\model\lib\item\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/lib/resets/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\model\lib\resets\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/model/lib/npc/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\model\lib\npc\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\front_end\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/lib/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\front_end\lib\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/lib/player/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\front_end\lib\player\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/lib/userInput/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\front_end\lib\userInput\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/lib/display/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\front_end\lib\display\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/lib/piglatin/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\front_end\lib\piglatin\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/lib/spawn/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\front_end\lib\spawn\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/lib/gameState/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\front_end\lib\gameState\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/lib/restClient/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\front_end\lib\restClient\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/lib/controller/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\front_end\lib\controller\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/lib/utility/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\front_end\lib\utility\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/lib/spell/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\front_end\lib\spell\"/>
+		</Unit>
+		<Unit filename="/home/jmedwid/Dropbox/Current Classes/CMPT 373/Project/adventure2016/src/front_end/tools/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\front_end\tools\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
