@@ -77,9 +77,9 @@ NpcModel addNpc(NpcModel npc){
         RoomModel room = loadRoom(npc.roomId);
         room.npcList.push_back(p->npcId);
         modifyRoom(room.id, room);
-        db.close();
-    }
 
+    }
+    db.close();
     return npc;
 }
 
