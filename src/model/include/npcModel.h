@@ -28,6 +28,7 @@ public:
         ar & HIBERLITE_NVP(gold);
         ar & HIBERLITE_NVP(level);
         ar & HIBERLITE_NVP(thac0);
+        ar & HIBERLITE_NVP(health);
         ar & HIBERLITE_NVP(roomId);
     }
 

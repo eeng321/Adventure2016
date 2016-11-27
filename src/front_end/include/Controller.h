@@ -22,7 +22,7 @@ enum StatusCode {
 class Controller {
 public:
     Controller();
-
+    
     /**
      * Attempt to log into the server with the specified credentials.
      * @param username      The username.
@@ -61,6 +61,8 @@ public:
     static StatusCode putNpc(Npc& npc, std::string &result);
 
     static StatusCode getItem(itemId id, Item& item);
+
+    static std::string server;
 
 private:
     static std::string makeGetRequest(const std::string& url);

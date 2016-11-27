@@ -57,6 +57,7 @@ namespace parser{
     char constexpr NPC_GOLD_KEY[] = "gold";
     char constexpr NPC_LEVEL_KEY[] = "level";
     char constexpr NPC_THAC0_KEY[] = "thac0";
+    char constexpr NPC_HEALTH_KEY[] = "health";
     char constexpr NPC_ROOM_ID_KEY[] = "roomId";
 
     char constexpr MESSAGE_TO[] = "to";

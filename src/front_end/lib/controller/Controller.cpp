@@ -7,11 +7,9 @@
 
 using namespace utility;
 
-// TODO
-const std::string SERVER = "http://localhost:8080/";
-//const std::string SERVER = "http://23.99.56.108:8080/";
 Rest::RestClient Controller::client;
 GameState state;
+std::string Controller::server = "http://localhost:8080/";
 
 Controller::Controller() {
 
@@ -19,7 +17,7 @@ Controller::Controller() {
 
 StatusCode Controller::logIn(const std::string& username, const std::string& password, std::string& result) {
     result = "";
-    Net::Http::Response response = client.Post(SERVER + "login", "?username=" + username + "&password=" + password);
+    Net::Http::Response response = client.Post(Controller::server + "login", "?username=" + username + "&password=" + password);
     if (response.code() == Net::Http::Code::Forbidden) {
         return STATUS_BAD_PASSWORD;
     }
@@ -36,7 +34,7 @@ StatusCode Controller::logIn(const std::string& username, const std::string& pas
 
 StatusCode Controller::registerAccount(const std::string& username, const std::string& password, std::string& result) {
     result = "";
-    Net::Http::Response response = client.Post(SERVER + "register", "?username=" + username + "&password=" + password);
+    Net::Http::Response response = client.Post(Controller::server + "register", "?username=" + username + "&password=" + password);
     if (response.code() == Net::Http::Code::Forbidden) {
         // TODO: any other reasons for 403?
         return STATUS_USER_EXISTS;
@@ -54,7 +52,7 @@ StatusCode Controller::registerAccount(const std::string& username, const std::s
 
 StatusCode Controller::sendGlobalMessage(const std::string &payload, std::string &result) {
     result = "";
-    Net::Http::Response response = client.Post(SERVER + "chat/", payload);
+    Net::Http::Response response = client.Post(Controller::server + "chat/", payload);
     if (response.code() == Net::Http::Code::Internal_Server_Error) {
         // TODO: handle
         return STATUS_SERVER_ERROR;
@@ -64,7 +62,7 @@ StatusCode Controller::sendGlobalMessage(const std::string &payload, std::string
 }
 
 std::string Controller::getLatestGlobalMessages() {
-    Net::Http::Response response = client.Get(SERVER + "chat/");
+    Net::Http::Response response = client.Get(Controller::server + "chat/");
     if (response.code() != Net::Http::Code::Ok) {
         // TODO: handle
         return "ERROR: HTTP error.";
@@ -73,7 +71,7 @@ std::string Controller::getLatestGlobalMessages() {
 }
 
 StatusCode Controller::getRoom(roomId id, Room& room) {
-    Net::Http::Response response = client.Get(SERVER + "room/" + id.to_string());
+    Net::Http::Response response = client.Get(Controller::server + "room/" + id.to_string());
     if (response.code() == Net::Http::Code::Forbidden) {
         // TODO: correct error code
         return STATUS_SERVER_ERROR;
@@ -90,7 +88,7 @@ StatusCode Controller::moveToRoom(roomId id) {
     // TODO: try moving on server before updating the state
     GameState::setLocation(id);
     PlayerModel model = GameState::getPlayerModel();
-    Net::Http::Response response = client.Put(SERVER + "player/" + GameState::getPlayerId(), parser::playerSerialize(model));
+    Net::Http::Response response = client.Put(Controller::server + "player/" + GameState::getPlayerId(), parser::playerSerialize(model));
     if (response.code() != Net::Http::Code::Ok) {
         // TODO: handle
         return STATUS_SERVER_ERROR;
@@ -101,7 +99,7 @@ StatusCode Controller::moveToRoom(roomId id) {
 StatusCode Controller::putPlayer(std::string& result) {
     result = "";
     PlayerModel model = GameState::getPlayerModel();
-    Net::Http::Response response = client.Put(SERVER + "player/" + GameState::getPlayerId(), parser::playerSerialize(model));
+    Net::Http::Response response = client.Put(Controller::server + "player/" + GameState::getPlayerId(), parser::playerSerialize(model));
     if (response.code() != Net::Http::Code::Ok) {
         // TODO: handle
         return STATUS_SERVER_ERROR;
@@ -111,7 +109,7 @@ StatusCode Controller::putPlayer(std::string& result) {
 }
 
 StatusCode Controller::getNpc(npcId id, Npc& npc) {
-    Net::Http::Response response = client.Get(SERVER + "npc/" + id.to_string());
+    Net::Http::Response response = client.Get(Controller::server + "npc/" + id.to_string());
     if (response.code() == Net::Http::Code::Forbidden) {
         // TODO: correct error code
         return STATUS_SERVER_ERROR;
@@ -127,9 +125,8 @@ StatusCode Controller::getNpc(npcId id, Npc& npc) {
 
 StatusCode Controller::putNpc(Npc& npc, std::string& result) {
     result = "";
-
     NpcModel model = npc.getModel();
-    Net::Http::Response response = client.Put(SERVER + "npc/" + npc.getNpcId().to_string(), parser::npcSerialize(model));
+    Net::Http::Response response = client.Put(Controller::server + "npc/" + npc.getNpcId().to_string(), parser::npcSerialize(model));
     if (response.code() == Net::Http::Code::Internal_Server_Error) {
         // TODO: handle
         return STATUS_SERVER_ERROR;
@@ -143,7 +140,7 @@ std::string Controller::getPlayerId() {
 }
 
 StatusCode Controller::getItem(itemId id, Item& item) {
-    Net::Http::Response response = client.Get(SERVER + "item/" + id.to_string());
+    Net::Http::Response response = client.Get(Controller::server + "item/" + id.to_string());
     if (response.code() == Net::Http::Code::Forbidden) {
         // TODO: correct error code
         return STATUS_SERVER_ERROR;

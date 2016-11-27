@@ -68,10 +68,11 @@ void PlayerEndpoint::createPlayer(const Rest::Request& request, Net::Http::Respo
         PlayerModel player;
         player = parser::playerDeserialize(request.body());
 
-        addPlayer(player);
+        PlayerModel createdPlayer = addPlayer(player);
 
-        //todo: fix this with proper returns
-        auto success = true;
+        
+        auto success = (createdPlayer.loginName == player.loginName);
+
         if (success) {
             response.send(Http::Code::Created, parser::playerSerialize(player));
         }
