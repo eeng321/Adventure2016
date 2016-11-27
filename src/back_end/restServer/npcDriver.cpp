@@ -51,6 +51,7 @@ NpcModel loadNpc(int npcId){
     npc.gold = loadNpc->gold;
     npc.level = loadNpc->level;
     npc.thac0 = loadNpc->thac0;
+    npc.health = loadNpc->health;
     db.close();
     return npc;
 }
@@ -76,6 +77,7 @@ NpcModel modifyNpc(int npcId, NpcModel updateFields){
     db.open("AdventureDatabase.db");
     hiberlite::bean_ptr<NpcModel> editNpc = db.loadBean<NpcModel>(npcId);
 
+    editNpc->health = updateFields.health;
     editNpc->hit = updateFields.hit;
     editNpc->armor = updateFields.armor;
     editNpc->damage = updateFields.damage;
