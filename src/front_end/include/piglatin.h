@@ -14,5 +14,6 @@ std::string translateToPiglatin(const std::string& s);
 int findVowel(const std::string& s);
 std::string translateWord(const std::string& s);
 bool isPiglatinCommand(const MessageModel& message);
+bool hasPunctuation(const std::string& s);
 
 #endif //ADVENTURE2016_PIGLATIN_H
