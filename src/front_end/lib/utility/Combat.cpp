@@ -27,8 +27,6 @@ StatusCode Combat::playerAttacksNPC(std::string& result) {
     engagedNPC.health = newNPCHealth;
     std::string putNPCPayload = parser::npcSerialize(engagedNPC);
     StatusCode code  = Controller::putNPC(npc, putNPCPayload, result);
-    std::string showNPCHealth = "NPC Health: " + engagedNPC.health;
-    Display::addStringToCombatWindow(showNPCHealth.c_str());
     if(newNPCHealth <= 0) {
         std::string deathString = "You killed him man...Just....stop... you monster.";
         memset(&combatString[0], 0, sizeof(combatString));

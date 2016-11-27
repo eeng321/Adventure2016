@@ -109,7 +109,7 @@ std::string Controller::getNPC(npcId npc) {
 
 StatusCode Controller::putNPC(npcId npc, const std::string &payload, std::string &result) {
     result = "";
-    Net::Http::Response response = client.Put(SERVER + "NPC/" + npc.to_string(), payload);
+    Net::Http::Response response = client.Put(SERVER + "npc/" + npc.to_string(), payload);
     if (response.code() == Net::Http::Code::Internal_Server_Error) {
         // TODO: handle
         return STATUS_SERVER_ERROR;
