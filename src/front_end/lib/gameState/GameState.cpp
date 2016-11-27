@@ -2,9 +2,11 @@
 
 const int PLAYER_ID_NONE = 0;
 const int PIGLATIN_INITIAL_TIME = 30;
+
 static bool combatFlag = false;
 static npcId engagedInCombatWith = 0;
 static int piglatinTimer = 0;
+static long piglatinTimeStamp = 0;
 
 Player GameState::player = Player(playerId(PLAYER_ID_NONE));
 
@@ -60,6 +62,10 @@ void GameState::initializePiglatinTimer(){
     piglatinTimer = PIGLATIN_INITIAL_TIME;
 }
 
-int GameState::getTimer(){
-    return piglatinTimer;
+long GameState::getPiglatinTimeStamp(){
+    return piglatinTimeStamp;
+}
+
+long GameState::setPiglatinTimeStamp(long timeStamp){
+    piglatinTimeStamp = timeStamp;
 }

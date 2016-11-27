@@ -20,7 +20,8 @@ public:
     static bool PiglatinIsActive();
     static void decrementPiglatinTimer();
     static void initializePiglatinTimer();
-    static int getTimer();
+    static long getPiglatinTimeStamp();
+    static long setPiglatinTimeStamp(long timeStamp);
 private:
     static Player player;
 };

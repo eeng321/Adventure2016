@@ -103,21 +103,24 @@ void Display::updateChatWindow() {
         sleep(1);
         if(GameState::PiglatinIsActive()){//decrement piglatin timer every second
             GameState::decrementPiglatinTimer();
-//            std::string str = std::to_string(GameState::getTimer());
-//            addStringToMainWindow(str.c_str());
         }
         wclear(chatWindow);
         std::string payload = Controller::getLatestGlobalMessages();
         std::vector<MessageModel> latestChatMessages = parser::messageVectorDeserialize(payload);
         for(auto&msg : latestChatMessages) {
             std::string chatMsg = "";
-            if(isPiglatinCommand(msg)){//TODO time permitting, refactor type of message checking into different class
-                if(msg.To == GameState::getPlayerId()){
+            //TODO time permitting, refactor type of message checking into different class
+            if(isPiglatinCommand(msg) && msg.Timestamp > GameState::getPiglatinTimeStamp()) {
+                if (msg.To == GameState::getPlayerId()) {
+                    GameState::setPiglatinTimeStamp(msg.Timestamp);
                     GameState::initializePiglatinTimer();
                     chatMsg = " " + msg.From + " cast " + msg.Message + " on you";
                 } else {
                     chatMsg = " " + msg.Message + " has been cast on " + msg.To;
                 }
+            /*output the correct message if piglatin was cast on you without updating the piglatin timer logic */
+            } else if (isPiglatinCommand(msg) && msg.To == GameState::getPlayerId()) {
+                chatMsg = " " + msg.From + " cast " + msg.Message + " on you";
             } else {
                 chatMsg = " " + msg.From+": "+msg.Message;
             }
@@ -125,7 +128,6 @@ void Display::updateChatWindow() {
             addStringToChatWindow(chatMsgConverted);
         }
         wrefresh(chatWindow);
-
     }
 }
 

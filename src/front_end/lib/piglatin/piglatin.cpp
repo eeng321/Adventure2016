@@ -57,7 +57,7 @@ string translateWord(const string& s) {
     }
     return s + VOWEL_START_ENDING;
 }
- 
+
 bool isPiglatinCommand(const MessageModel& message){
     return message.To != "global" && message.Message == PIG_LATIN_MESSAGE;
 }
