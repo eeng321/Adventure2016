@@ -16,8 +16,8 @@ deploy:
     - master
   script:
     - kill $(lsof -t -i:8080) &
-    - mkdir build
-    - cd build
+    - mkdir deploy
+    - cd deploy
     - cmake ..
     - make
     - cd bin
