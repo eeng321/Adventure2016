@@ -132,6 +132,10 @@ int Player::getHealth() const {
     return health;
 }
 
+void Player::setHealth(int health) {
+    this->health = health;
+}
+
 void Player::addToInventory(itemId item) {
     inventory.push_back(std::move(item));
 }

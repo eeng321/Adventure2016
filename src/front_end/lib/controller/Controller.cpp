@@ -96,18 +96,37 @@ StatusCode Controller::moveToRoom(roomId id) {
     return STATUS_OK;
 }
 
-std::string Controller::getNPC(npcId npc) {
-    Net::Http::Response response = client.Put(Controller::server + "npc/", npc.to_string());
+StatusCode Controller::putPlayer(std::string& result) {
+    result = "";
+    PlayerModel model = GameState::getPlayerModel();
+    Net::Http::Response response = client.Put(Controller::server + "player/" + GameState::getPlayerId(), parser::playerSerialize(model));
     if (response.code() != Net::Http::Code::Ok) {
         // TODO: handle
-        return "ERROR: HTTP error.";
+        return STATUS_SERVER_ERROR;
     }
-    return response.body();
+    result = response.body();
+    return STATUS_OK;
 }
 
-StatusCode Controller::putNPC(npcId npc, const std::string &payload, std::string &result) {
+StatusCode Controller::getNpc(npcId id, Npc& npc) {
+    Net::Http::Response response = client.Get(Controller::server + "npc/" + id.to_string());
+    if (response.code() == Net::Http::Code::Forbidden) {
+        // TODO: correct error code
+        return STATUS_SERVER_ERROR;
+    }
+    else if (response.code() == Net::Http::Code::Internal_Server_Error) {
+        // TODO
+        return STATUS_SERVER_ERROR;
+    }
+
+    NpcModel model = parser::npcDeserialize(response.body());
+    npc.setModel(model);
+}
+
+StatusCode Controller::putNpc(Npc& npc, std::string& result) {
     result = "";
-    Net::Http::Response response = client.Post(Controller::server + "NPC/" + npc.to_string(), payload);
+    NpcModel model = npc.getModel();
+    Net::Http::Response response = client.Put(Controller::server + "npc/" + npc.getNpcId().to_string(), parser::npcSerialize(model));
     if (response.code() == Net::Http::Code::Internal_Server_Error) {
         // TODO: handle
         return STATUS_SERVER_ERROR;
@@ -118,6 +137,20 @@ StatusCode Controller::putNPC(npcId npc, const std::string &payload, std::string
 
 std::string Controller::getPlayerId() {
     return GameState::getPlayerId();
+}
+
+StatusCode Controller::getItem(itemId id, Item& item) {
+    Net::Http::Response response = client.Get(Controller::server + "item/" + id.to_string());
+    if (response.code() == Net::Http::Code::Forbidden) {
+        // TODO: correct error code
+        return STATUS_SERVER_ERROR;
+    }
+    else if (response.code() == Net::Http::Code::Internal_Server_Error) {
+        // TODO
+        return STATUS_SERVER_ERROR;
+    }
+    ItemModel model = parser::itemDeserialize(response.body());
+    item.setModel(model);
 }
 
 std::string Controller::makeGetRequest(const std::string& url) {

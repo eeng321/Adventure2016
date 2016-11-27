@@ -33,6 +33,7 @@ public:
     std::string getUsername() const;
     roomId getLocation() const;//used to be getRoomId
     int getHealth() const;
+    void setHealth(int health);
     std::string getDamage() const;
     int getArmor() const;
     std::string getHit() const;
