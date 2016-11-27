@@ -214,7 +214,7 @@ StatusCode SpellCommand::execute(std::string& result, const std::vector<std::str
         for(const std::string s : args) {
             commandArg += s;
         }
-        
+
     }
     return code;
 }
