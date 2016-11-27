@@ -13,7 +13,6 @@
 
 StatusCode Combat::playerAttacksNPC(std::string& result) {
     char combatString[MAX_CHAR_LIMIT];
-    auto secondsOfRest = 2; //This could change based upon weapons equipped but shall assume nothing was equipped at the time
     npcId npc = GameState::getEngagedInCombatWith();
     std::string getNPCPayload = Controller::getNPC(npc);
     NpcModel engagedNPC = parser::npcDeserialize(getNPCPayload);
@@ -25,24 +24,21 @@ StatusCode Combat::playerAttacksNPC(std::string& result) {
     std::string finalCombatString = combatDamageString.str();
     strcpy(combatString, finalCombatString.c_str());
     Display::addStringToCombatWindow(combatString);
+    engagedNPC.health = newNPCHealth;
+    std::string putNPCPayload = parser::npcSerialize(engagedNPC);
+    StatusCode code  = Controller::putNPC(npc, putNPCPayload, result);
+    std::string showNPCHealth = "NPC Health: " + engagedNPC.health;
+    Display::addStringToCombatWindow(showNPCHealth.c_str());
     if(newNPCHealth <= 0) {
-        newNPCHealth = 0;
         std::string deathString = "You killed him man...Just....stop... you monster.";
         memset(&combatString[0], 0, sizeof(combatString));
         strcpy(combatString, deathString.c_str());
         Display::addStringToCombatWindow(combatString);
+        Controller::deleteNPC(npc);
         GameState::setEngagedInCombatWith(0);
         GameState::setAttackFlag(false);
-    }
-    engagedNPC.health = newNPCHealth;
-    std::string putNPCPayload = parser::npcSerialize(engagedNPC);
-    StatusCode code = Controller::putNPC(npc, putNPCPayload, result);
-    Display::addStringToMainWindow("You must rest because of your attack");
-    for(int i = 1; i <= secondsOfRest; i++) {
-        sleep(1);
-        memset(&combatString[0], 0, sizeof(combatString));
-        strcpy(combatString, std::to_string(i).c_str());
-        Display::addStringToMainWindow(combatString);
+    } else {
+        //Combat::npcAttacksPlayer();
     }
     return code;
 }
@@ -52,7 +48,6 @@ void Combat::npcAttacksPlayer() {
     char combatString[MAX_CHAR_LIMIT];
     while(GameState::inCombat()) {
         auto damageDone = (rand() % 12) + 1; //Can add modifiers in the future
-        auto secondsOfRest = (rand() % 4) + 2; //Depending on what the NPC may have, this number can change
         auto playerHealth = currentPlayer.health;
         auto newPlayerHealth = playerHealth - damageDone;
         std::stringstream combatDamageString;
@@ -67,17 +62,11 @@ void Combat::npcAttacksPlayer() {
             Display::addStringToCombatWindow(combatString);
             GameState::setEngagedInCombatWith(0);
             GameState::setAttackFlag(false);
+            //TODO: respawn player at default room
         }
         currentPlayer.health = newPlayerHealth;
+        std::string showPlayerHealth = "Your health: " + currentPlayer.health;
+        Display::addStringToCombatWindow(showPlayerHealth.c_str());
         GameState::setPlayerModel(currentPlayer);
-        sleep(secondsOfRest);
     }
-}
-
-void Combat::startCombatThread() {
-
-}
-
-void Combat::closeCombatThread() {
-
 }

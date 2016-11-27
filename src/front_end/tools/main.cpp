@@ -35,6 +35,7 @@ int main() {
     dictionary.insertIntoLanguageMap("/s", "/s");
     dictionary.insertIntoLanguageMap("move", "move");
     dictionary.insertIntoLanguageMap("engage", "engage");
+    dictionary.insertIntoLanguageMap("attack", "attack");
 
     Display::createChatWindow();
     Display::createCombatWindow();

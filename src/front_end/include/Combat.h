@@ -10,8 +10,6 @@ class Combat {
 public:
     static StatusCode playerAttacksNPC(std::string& result);
     static void npcAttacksPlayer();
-    static void startCombatThread();
-    static void closeCombatThread();
 };
 
 

@@ -176,7 +176,6 @@ StatusCode EngageCommand::execute(std::string& result, const std::vector<std::st
         std::string engagedMsg = "You are now engaged in combat with " + engagedNPC;
         strcpy(commandString, engagedMsg.c_str());
         Display::addStringToCombatWindow(commandString);
-        //TODO: Create a thread man...somewhere
     } else {
         std::string noNPCFound = "There is no one with that name to engage in combat with!";
         strcpy(commandString, noNPCFound.c_str());
@@ -188,7 +187,6 @@ StatusCode EngageCommand::execute(std::string& result, const std::vector<std::st
 StatusCode AttackCommand::execute(std::string& result, const std::vector<std::string>& args) {
     char commandString[MAX_CHAR_LIMIT];
     StatusCode code;
-    npcId notAllowed = 0;
     if(!GameState::inCombat()) {
         std::string noNPCFound = "You are not engaged in combat with anyone.";
         strcpy(commandString, noNPCFound.c_str());
