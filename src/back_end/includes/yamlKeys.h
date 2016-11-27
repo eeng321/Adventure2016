@@ -62,6 +62,7 @@ namespace parser{
     char constexpr MESSAGE_TO[] = "to";
     char constexpr MESSAGE_FROM[] = "from";
     char constexpr MESSAGE_BODY[] = "message";
+    char constexpr MESSAGE_TIMESTAMP[] = "timestamp";
 
     char constexpr NORTH[] = "north";
     char constexpr EAST[] = "east";
