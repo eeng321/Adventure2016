@@ -112,8 +112,39 @@ StatusCode LookCommand::execute(std::string& result, const std::vector<std::stri
     Controller::getRoom(currentRoomId, room);
 
     result += "You are here: " + boost::algorithm::join(room.getDescription(), " ") + "\n";
-    result += "Others in the room:\n" + showNpcs(room) + "\n\n";
-    result += "Items here:\n" + showItems(room) + "\n\n";
+    result += "You can move:";
+    // TODO: streamline
+    try {
+        room.getDoor(Direction::north);
+        result += " north";
+    }
+    catch (const std::domain_error& e) {
+
+    }
+    try {
+        room.getDoor(Direction::east);
+        result += " east";
+    }
+    catch (const std::domain_error& e) {
+
+    }
+    try {
+        room.getDoor(Direction::south);
+        result += " south";
+    }
+    catch (const std::domain_error& e) {
+
+    }
+    try {
+        room.getDoor(Direction::west);
+        result += " west";
+    }
+    catch (const std::domain_error& e) {
+
+    }
+    result += "\n";
+    result += "Others in the room:\n" + showNpcs(room) + "\n";
+    result += "Items here:\n" + showItems(room) + "\n";
 
     return STATUS_OK;
 }
@@ -125,7 +156,7 @@ std::string showNpcs(Room& room) {
     for (const npcId& n : npcIds) {
         Npc npc;
         Controller::getNpc(n, npc);
-        out += boost::algorithm::join(npc.getLongDesc(), "\n") + "\n";
+        out += "(" +  npc.getNpcId().to_string() + ") " + boost::algorithm::join(npc.getLongDesc(), "\n") + "\n";
     }
     return out;
 }
@@ -134,12 +165,40 @@ std::string showItems(Room& room) {
     // TODO: error checking
     vector<itemId> itemIds = room.getItemList();
     std::string out;
-    for (const itemId& i : itemIds) {
+    for (const itemId& id : itemIds) {
         Item item;
-        Controller::getItem(i, item);
+        Controller::getItem(id, item);
         out += boost::algorithm::join(item.getLongDesc(), "\n") + "\n";
     }
     return out;
+}
+
+StatusCode TalkCommand::execute(std::string& result, const std::vector<std::string>& args) {
+    roomId currentRoomId = GameState::getLocation();
+    Room room;
+    Controller::getRoom(currentRoomId, room);
+
+    if (args.size() < 1) {
+        result = "Talk to whom? You can say: ";
+        for (const npcId& id : room.getNpcList()) {
+            Npc npc;
+            Controller::getNpc(id, npc);
+            result += "talk " + boost::algorithm::join(npc.getKeywords(), " ") + "\n";
+        }
+        return STATUS_OK;
+    }
+
+    const std::string& target = args[0];
+    for (const npcId& id : room.getNpcList()) {
+        Npc npc;
+        Controller::getNpc(id, npc);
+        const std::vector<std::string>& keywords = npc.getKeywords();
+        // found the NPC we are looking for
+        if (std::find(keywords.begin(), keywords.end(), target) != keywords.end()) {
+            result = boost::algorithm::join(npc.getMainDesc(), " ") + "\n";
+            break;
+        }
+    }
 }
 
 StatusCode TakeCommand::execute(std::string& result, const std::vector<std::string>& args) {

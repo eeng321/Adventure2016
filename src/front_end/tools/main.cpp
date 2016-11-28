@@ -39,6 +39,7 @@ int main(int argc, char *argv[]) {
     dictionary.insertIntoLanguageMap("where", "where");
     dictionary.insertIntoLanguageMap("take", "take");
     dictionary.insertIntoLanguageMap("look", "look");
+    dictionary.insertIntoLanguageMap("talk", "talk");
     dictionary.insertIntoLanguageMap("regarde", "look"); //This is french for Look. Will be the test for now
     dictionary.insertIntoLanguageMap("/s", "/s");
     dictionary.insertIntoLanguageMap("move", "move");
