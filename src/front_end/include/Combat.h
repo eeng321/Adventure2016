@@ -10,6 +10,7 @@ class Combat {
 public:
     static StatusCode playerAttacksNPC(std::string& result);
     static void npcAttacksPlayer();
+    static StatusCode spellCast(int castorEffect, int victimEffect, std::string& result);
 };
 
 

@@ -19,24 +19,25 @@ StatusCode Combat::playerAttacksNPC(std::string& result) {
     auto damageDone = 10; //Can add modifiers to this later with weapons but let us assumes fistacuffs were used
     auto npcHealth = engagedNpc.getHealth();
     auto newNpcHealth = npcHealth - damageDone;
+
     std::stringstream combatDamageString;
     combatDamageString << "You have done " << damageDone << " damage to NPC " << id.to_string();
     std::string finalCombatString = combatDamageString.str();
     strcpy(combatString, finalCombatString.c_str());
     Display::addStringToCombatWindow(combatString);
+
     engagedNpc.setHealth(newNpcHealth);
     StatusCode code = Controller::putNpc(engagedNpc, result);
+
     if (newNpcHealth <= 0) {
-        newNpcHealth = 0;
         std::string deathString = "You killed him man...Just....stop... you monster.";
         memset(&combatString[0], 0, sizeof(combatString));
         strcpy(combatString, deathString.c_str());
         Display::addStringToCombatWindow(combatString);
-        Controller::deleteNPC(npc);
+        Controller::deleteNPC(id);
         GameState::setEngagedInCombatWith(0);
         GameState::setAttackFlag(false);
     } else {
-        //TODO: merge with joshes code to get NPC attacks to work
         //Combat::npcAttacksPlayer();
     }
     return code;
@@ -45,6 +46,7 @@ StatusCode Combat::playerAttacksNPC(std::string& result) {
 void Combat::npcAttacksPlayer() {
     char combatString[MAX_CHAR_LIMIT];
     auto missOrHit = (rand()%4) + 1;
+
     if(missOrHit == 4) {
         std::string missString = "NPC missed!";
         memset(&combatString[0], 0, sizeof(combatString));
@@ -54,10 +56,12 @@ void Combat::npcAttacksPlayer() {
         auto damageDone = (rand() % 12) + 1; //Can add modifiers in the future
         auto playerHealth = GameState::getPlayerHealth();
         auto newPlayerHealth = playerHealth - damageDone;
+
         std::stringstream combatDamageString;
         combatDamageString << "The NPC did" << damageDone << " damage to you";
         std::string finalCombatString = combatDamageString.str();
         strcpy(combatString, finalCombatString.c_str());
+
         if(newPlayerHealth <= 0) {
             newPlayerHealth = 0;
             std::string deathString = "OH MAN. You just got owned. Plz git gud.";
@@ -69,5 +73,54 @@ void Combat::npcAttacksPlayer() {
             //TODO: respawn player at default room
         }
         GameState::setPlayerHealth(newPlayerHealth);
+    }
+}
+
+StatusCode Combat::spellCast(int castorEffect, int victimEffect, std::string& result) {
+    char combatString[MAX_CHAR_LIMIT];
+    npcId id = GameState::getEngagedInCombatWith();
+    Npc engagedNpc;
+    Controller::getNpc(id, engagedNpc);
+    auto playerHealth = GameState::getPlayerHealth();
+    auto newPlayerHealth = playerHealth - castorEffect;
+    auto npcHealth = engagedNpc.getHealth();
+    auto newNpcHealth = npcHealth - victimEffect;
+
+    engagedNpc.setHealth(newNpcHealth);
+    StatusCode code = Controller::putNpc(engagedNpc, result);
+
+    std::stringstream combatDamageNpcString;
+    combatDamageNpcString << "You have done " << victimEffect << " damage to NPC " << id.to_string();
+    std::string finalCombatNpcString = combatDamageNpcString.str();
+    strcpy(combatString, finalCombatNpcString.c_str());
+    Display::addStringToCombatWindow(combatString);
+
+    if (newNpcHealth <= 0) {
+        std::string deathString = "You killed him man...Just....stop... you monster.";
+        memset(&combatString[0], 0, sizeof(combatString));
+        strcpy(combatString, deathString.c_str());
+        Display::addStringToCombatWindow(combatString);
+        Controller::deleteNPC(id);
+        GameState::setEngagedInCombatWith(0);
+        GameState::setAttackFlag(false);
+    }
+
+    GameState::setPlayerHealth(newPlayerHealth);
+
+    std::stringstream combatDamagePlayerString;
+    combatDamagePlayerString << "You have received " << castorEffect << " damage";
+    std::string finalCombatPlayerString = combatDamagePlayerString.str();
+    strcpy(combatString, finalCombatPlayerString.c_str());
+    Display::addStringToCombatWindow(combatString);
+
+    if(newPlayerHealth <= 0) {
+        newPlayerHealth = 0;
+        std::string deathString = "OH MAN. You just got owned. Plz git gud.";
+        memset(&combatString[0], 0, sizeof(combatString));
+        strcpy(combatString, deathString.c_str());
+        Display::addStringToCombatWindow(combatString);
+        GameState::setEngagedInCombatWith(0);
+        GameState::setAttackFlag(false);
+        //TODO: respawn player at default room
     }
 }
