@@ -42,6 +42,7 @@ set_property(TARGET etljob PROPERTY CXX_STANDARD 14)
 install(TARGETS etljob DESTINATION lib)
 
 file(COPY midgaard.yml DESTINATION ${PROJECT_BINARY_DIR}/bin)
+file(COPY world.yaml DESTINATION ${PROJECT_BINARY_DIR}/bin)
 target_link_libraries(parser room)
 
 add_executable(testex test.cpp)
