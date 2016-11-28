@@ -46,6 +46,7 @@ StatusCode Combat::playerAttacksNPC(std::string& result) {
     memset(&combatString[0], 0, sizeof(combatString));
     strcpy(combatString, printNpcHealth.c_str());
     Display::addStringToCombatWindow(combatString);
+    result = "";
 
     return code;
 }

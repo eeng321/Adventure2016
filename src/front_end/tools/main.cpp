@@ -6,9 +6,14 @@
 #include "Controller.h"
 #include "userInput.h"
 #include "Dictionary.h"
-
+#include <stdio.h>
+#include "irrKlang/include/irrKlang.h"
+using namespace irrklang;
+#pragma comment(lib, "irrKlang.lib") // link with irrKlang.dll
 
 int main(int argc, char *argv[]) {
+
+
     bool keepPlaying = true;
 
     //Controller ctrlr = Controller();
@@ -49,12 +54,17 @@ int main(int argc, char *argv[]) {
     Display::createChatWindow();
     Display::createCombatWindow();
     std::thread chat(&Display::updateChatWindow);
-
+    
+    // start the sound engine with default parameters
+	ISoundEngine* engine = createIrrKlangDevice();
+	engine->play2D("midgaard.ogg", true); //play music
+	
     while(keepPlaying) {
        if(UserInput::readBasicInput(&dictionary) == STATUS_QUIT){
            keepPlaying = false;
        }
     }
+    engine->drop(); // delete engine
     Display::setGameFinished();
     chat.join();
     Display::destroyMainWindow();
