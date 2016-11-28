@@ -198,6 +198,7 @@ StatusCode EngageCommand::execute(std::string& result, const std::vector<std::st
         }
     }
     if (npcFound) {
+        Display::clearCombatWindow();
         GameState::setAttackFlag(true);
         std::string engagedMsg = "You are now engaged in combat with " + engagedNPC;
         strcpy(commandString, engagedMsg.c_str());

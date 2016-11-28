@@ -19,6 +19,7 @@ StatusCode Combat::playerAttacksNPC(std::string& result) {
     auto damageDone = 10; //Can add modifiers to this later with weapons but let us assumes fistacuffs were used
     auto npcHealth = engagedNpc.getHealth();
     auto newNpcHealth = npcHealth - damageDone;
+    StatusCode code;
 
     std::stringstream combatDamageString;
     combatDamageString << "You have done " << damageDone << " damage to NPC " << id.to_string();
@@ -26,20 +27,23 @@ StatusCode Combat::playerAttacksNPC(std::string& result) {
     strcpy(combatString, finalCombatString.c_str());
     Display::addStringToCombatWindow(combatString);
 
-    engagedNpc.setHealth(newNpcHealth);
-    StatusCode code = Controller::putNpc(engagedNpc, result);
-
     if (newNpcHealth <= 0) {
         std::string deathString = "You killed him man...Just....stop... you monster.";
         memset(&combatString[0], 0, sizeof(combatString));
         strcpy(combatString, deathString.c_str());
         Display::addStringToCombatWindow(combatString);
+        engagedNpc.setHealth(newNpcHealth);
+        code = Controller::putNpc(engagedNpc, result);
         Controller::deleteNPC(id);
         GameState::setEngagedInCombatWith(0);
         GameState::setAttackFlag(false);
     } else {
+        engagedNpc.setHealth(newNpcHealth);
+        code = Controller::putNpc(engagedNpc, result);
         //Combat::npcAttacksPlayer();
     }
+
+
     return code;
 }
 
@@ -85,9 +89,7 @@ StatusCode Combat::spellCast(int castorEffect, int victimEffect, std::string& re
     auto newPlayerHealth = playerHealth - castorEffect;
     auto npcHealth = engagedNpc.getHealth();
     auto newNpcHealth = npcHealth - victimEffect;
-
-    engagedNpc.setHealth(newNpcHealth);
-    StatusCode code = Controller::putNpc(engagedNpc, result);
+    StatusCode code;
 
     std::stringstream combatDamageNpcString;
     combatDamageNpcString << "You have done " << victimEffect << " damage to NPC " << id.to_string();
@@ -100,12 +102,16 @@ StatusCode Combat::spellCast(int castorEffect, int victimEffect, std::string& re
         memset(&combatString[0], 0, sizeof(combatString));
         strcpy(combatString, deathString.c_str());
         Display::addStringToCombatWindow(combatString);
+        engagedNpc.setHealth(newNpcHealth);
+        code = Controller::putNpc(engagedNpc, result);
         Controller::deleteNPC(id);
         GameState::setEngagedInCombatWith(0);
         GameState::setAttackFlag(false);
     }
-
-    GameState::setPlayerHealth(newPlayerHealth);
+    else {
+        engagedNpc.setHealth(newNpcHealth);
+        code = Controller::putNpc(engagedNpc, result);
+    }
 
     std::stringstream combatDamagePlayerString;
     combatDamagePlayerString << "You have received " << castorEffect << " damage";
@@ -123,4 +129,6 @@ StatusCode Combat::spellCast(int castorEffect, int victimEffect, std::string& re
         GameState::setAttackFlag(false);
         //TODO: respawn player at default room
     }
+    GameState::setPlayerHealth(newPlayerHealth);
+    return code;
 }

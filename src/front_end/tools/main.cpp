@@ -44,6 +44,7 @@ int main(int argc, char *argv[]) {
     dictionary.insertIntoLanguageMap("move", "move");
     dictionary.insertIntoLanguageMap("engage", "engage");
     dictionary.insertIntoLanguageMap("attack", "attack");
+    dictionary.insertIntoLanguageMap("spell", "spell");
 
     Display::createChatWindow();
     Display::createCombatWindow();
