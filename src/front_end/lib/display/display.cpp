@@ -5,9 +5,10 @@
 #include <iostream>
 #include <unistd.h>
 #include "display.h"
+#include "piglatin.h"
 
-int max_x = 0;
-int max_y = 0;
+static int max_x = 0;
+static int max_y = 0;
 static WINDOW *loginWindow;
 static WINDOW *mainWindow;
 static WINDOW *chatWindow;
@@ -15,6 +16,7 @@ static WINDOW *combatWindow;
 static bool gameFinished = false;
 
 using namespace std;
+
 
 void Display::setGameFinished() {
     gameFinished = true;
@@ -26,7 +28,11 @@ void Display::readUserInput(char *command) {
 }
 
 void Display::addStringToMainWindow(const char* sentence) {
-    wprintw(mainWindow, sentence);
+    string str = sentence;
+    if(GameState::PiglatinIsActive()){
+        str = translateToPiglatin(str);
+    }
+    wprintw(mainWindow, str.c_str());
     wprintw(mainWindow, "\n");
     wprintw(mainWindow, "> ");
     wrefresh(mainWindow);
@@ -83,7 +89,11 @@ void Display::createChatWindow() {
 }
 
 void Display::addStringToChatWindow(const char* sentence) {
-    wprintw(chatWindow, sentence);
+    string str = sentence;
+    if(GameState::PiglatinIsActive()){
+        str = translateToPiglatin(str);
+    }
+    wprintw(chatWindow, str.c_str());
     wprintw(chatWindow, "\n");
     wrefresh(chatWindow);
 }
@@ -91,15 +101,33 @@ void Display::addStringToChatWindow(const char* sentence) {
 void Display::updateChatWindow() {
     while(!gameFinished) {
         sleep(1);
+        if(GameState::PiglatinIsActive()){//decrement piglatin timer every second
+            GameState::decrementPiglatinTimer();
+        }
         wclear(chatWindow);
-        wrefresh(chatWindow);
         std::string payload = Controller::getLatestGlobalMessages();
         std::vector<MessageModel> latestChatMessages = parser::messageVectorDeserialize(payload);
         for(auto&msg : latestChatMessages) {
-            std::string chatMsg = " " + msg.From+": "+msg.Message;
+            std::string chatMsg = "";
+            //TODO time permitting, refactor type of message checking into different class
+            if(isPiglatinCommand(msg) && msg.Timestamp > GameState::getPiglatinTimeStamp()) {
+                if (msg.To == GameState::getPlayerId()) {
+                    GameState::setPiglatinTimeStamp(msg.Timestamp);
+                    GameState::initializePiglatinTimer();
+                    chatMsg = " " + msg.From + " cast " + msg.Message + " on you";
+                } else {
+                    chatMsg = " " + msg.Message + " has been cast on " + msg.To;
+                }
+            /*output the correct message if piglatin was cast on you without updating the piglatin timer logic */
+            } else if (isPiglatinCommand(msg) && msg.To == GameState::getPlayerId()) {
+                chatMsg = " " + msg.From + " cast " + msg.Message + " on you";
+            } else {
+                chatMsg = " " + msg.From+": "+msg.Message;
+            }
             const char* chatMsgConverted = chatMsg.c_str();
             addStringToChatWindow(chatMsgConverted);
         }
+        wrefresh(chatWindow);
     }
 }
 
@@ -110,7 +138,11 @@ void Display::createCombatWindow() {
 }
 
 void Display::addStringToCombatWindow(const char* sentence) {
-    wprintw(combatWindow, sentence);
+    string str = sentence;
+    if(GameState::PiglatinIsActive()){
+        str = translateToPiglatin(str);
+    }
+    wprintw(combatWindow, str.c_str());
     wprintw(combatWindow, "\n");
     wrefresh(combatWindow);
 }

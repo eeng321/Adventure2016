@@ -7,15 +7,23 @@
 #include "userInput.h"
 #include "Dictionary.h"
 
-int main() {
+
+int main(int argc, char *argv[]) {
     bool keepPlaying = true;
+
+    //Controller ctrlr = Controller();
+    if (argc >= 3) {
+         Controller::server = "http://" + std::string(argv[1]) + ":" + std::string(argv[2]) + "/";
+    }
+
+    // TODO: We should have a check right away whether the user is connected to a server
 
     int loginMode = Display::createLoginMenu();
     if(loginMode == LOGIN_MENU_SELECTION) {
         UserInput::checkExistingPlayerCredentials();
 
     }else if(loginMode == NEW_ACCOUNT_MENU_SELECTION){
-       UserInput::createNewPlayerCredentials();
+        UserInput::createNewPlayerCredentials();
     }
 
     //TODO: 100% faking the language parsing until actual parsing is done
@@ -29,10 +37,12 @@ int main() {
     dictionary.insertIntoLanguageMap("where", "where");
     dictionary.insertIntoLanguageMap("take", "take");
     dictionary.insertIntoLanguageMap("look", "look");
+    dictionary.insertIntoLanguageMap("talk", "talk");
     dictionary.insertIntoLanguageMap("regarde", "look"); //This is french for Look. Will be the test for now
     dictionary.insertIntoLanguageMap("/s", "/s");
     dictionary.insertIntoLanguageMap("move", "move");
     dictionary.insertIntoLanguageMap("engage", "engage");
+    dictionary.insertIntoLanguageMap("piglatin", "piglatin");
 
     Display::createChatWindow();
     Display::createCombatWindow();

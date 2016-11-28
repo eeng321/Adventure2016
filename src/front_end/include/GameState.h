@@ -11,12 +11,19 @@ public:
     static std::string getPlayerId();
     static PlayerModel getPlayerModel();
     static void setPlayerModel(PlayerModel model);
+    static int getPlayerHealth();
+    static void setPlayerHealth(int health);
     static roomId getLocation();
     static void setLocation(roomId id);
     static void setAttackFlag(bool state);
     static bool inCombat();
     static void setEngagedInCombatWith(npcId npc);
     static npcId getEngagedInCombatWith();
+    static bool PiglatinIsActive();
+    static void decrementPiglatinTimer();
+    static void initializePiglatinTimer();
+    static long getPiglatinTimeStamp();
+    static long setPiglatinTimeStamp(long timeStamp);
 private:
     static Player player;
 };
