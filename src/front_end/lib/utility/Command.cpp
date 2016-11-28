@@ -327,6 +327,7 @@ StatusCode SpellCommand::execute(std::string& result, const std::vector<std::str
             Display::addStringToCombatWindow(commandString);
             code = Combat::spellCast(castorEffect, victimEffect, result);
         }
+        result = "";
     }
     return code;
 }
