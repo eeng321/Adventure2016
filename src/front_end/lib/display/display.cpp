@@ -113,7 +113,7 @@ void Display::updateChatWindow() {
             std::string chatMsg = "";
             //TODO time permitting, refactor type of message checking into different class
             if(isPiglatinCommand(msg) && msg.Timestamp > GameState::getPiglatinTimeStamp()) {
-                if (msg.To == GameState::getPlayerId()) {
+                if (msg.To == GameState::getPlayerName()) {
                     GameState::setPiglatinTimeStamp(msg.Timestamp);
                     GameState::initializePiglatinTimer();
                     chatMsg = " " + msg.From + " cast " + msg.Message + " on you";
@@ -121,7 +121,7 @@ void Display::updateChatWindow() {
                     chatMsg = " " + msg.Message + " has been cast on " + msg.To;
                 }
             /*output the correct message if piglatin was cast on you without updating the piglatin timer logic */
-            } else if (isPiglatinCommand(msg) && msg.To == GameState::getPlayerId()) {
+            } else if (isPiglatinCommand(msg) && msg.To == GameState::getPlayerName()) {
                 chatMsg = " " + msg.From + " cast " + msg.Message + " on you";
             } else {
                 chatMsg = " " + msg.From+": "+msg.Message;
