@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../../../../lib/libgameState.a  CMakeFiles/gameState.dir/GameState.cpp.o
-/usr/bin/ranlib ../../../../lib/libgameState.a

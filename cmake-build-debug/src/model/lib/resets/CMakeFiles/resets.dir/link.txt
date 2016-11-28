@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../../../../lib/libresets.a  CMakeFiles/resets.dir/resets.cpp.o
-/usr/bin/ranlib ../../../../lib/libresets.a
