@@ -57,7 +57,7 @@ int main(int argc, char *argv[]) {
     
     // start the sound engine with default parameters
 	ISoundEngine* engine = createIrrKlangDevice();
-	engine->play2D("bin/midgaard.ogg", true); //play music
+	engine->play2D("midgaard.ogg", true); //play music
 	
     while(keepPlaying) {
        if(UserInput::readBasicInput(&dictionary) == STATUS_QUIT){
