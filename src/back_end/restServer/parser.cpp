@@ -105,6 +105,9 @@ ItemModel parser::itemDeserializeFromNode(YAML::Node const &itemNode) {
     if(itemNode[ITEM_ROOM_ID_KEY]){
         item.roomId = itemNode[ITEM_ROOM_ID_KEY].as<int>();
     }
+    else{
+        item.roomId = -1;
+    }
 
     return item;
 }
@@ -366,9 +369,6 @@ NpcModel parser::npcDeserializeFromNode(YAML::Node const &npcNode) {
     NpcModel npc;
     //TODO if npcNode[""].isDefined() ERROR CHECKING
     npc.npcId = npcNode[NPC_ID_KEY].as<int>();
-    if(npcNode[NPC_ROOM_ID_KEY]){
-        npc.roomId = npcNode[NPC_ROOM_ID_KEY].as<int>();
-    }
     npc.mainDesc = npcNode[NPC_MAINDESC_KEY].as<std::vector<std::string>>();
     npc.keywords = npcNode[NPC_KEYWORDS_KEY].as<std::vector<std::string>>();
     npc.longDesc = npcNode[NPC_LONGDESC_KEY].as<std::vector<std::string>>();
@@ -419,6 +419,12 @@ void parser::npcDeserializeAndAppendOptionals(NpcModel &npc, YAML::Node const &n
         npc.health = npcNode[NPC_HEALTH_KEY].as<int>();
     }else{
         npc.health = 100;
+    }
+    if(npcNode[NPC_ROOM_ID_KEY]){
+        npc.roomId = npcNode[NPC_ROOM_ID_KEY].as<int>();
+    }
+    else{
+        npc.roomId = -1;
     }
 }
 

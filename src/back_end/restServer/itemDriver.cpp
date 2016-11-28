@@ -63,6 +63,7 @@ ItemModel loadItem(int itemId){
     item.shortDesc = demo->shortDesc;
     item.wearFlags = demo->wearFlags;
     item.weight = demo->weight;
+    item.roomId = demo->roomId;
     db.close();
     return item;
 }
@@ -78,9 +79,11 @@ ItemModel addItem(ItemModel item){
     item.id = i.get_id();
     i.save();
 
-    RoomModel room = loadRoom(item.roomId);
-    room.itemList.push_back(item.id);
-    modifyRoom(room.id, room);
+    if(item.roomId != -1) {
+        RoomModel room = loadRoom(item.roomId);
+        room.itemList.push_back(item.id);
+        modifyRoom(room.id, room);
+    }
     db.close();
     return item;
 }
@@ -89,7 +92,7 @@ ItemModel modifyItem(int itemId, ItemModel updateFields){
     hiberlite::Database db;
     db.open("AdventureDatabase.db");
     hiberlite::bean_ptr<ItemModel> editItem = db.loadBean<ItemModel>(itemId);
-
+    int prevRoomid = editItem->roomId;
     editItem->attributes = updateFields.attributes;
     editItem->cost = updateFields.cost;
     editItem->extra = updateFields.extra;
@@ -99,6 +102,25 @@ ItemModel modifyItem(int itemId, ItemModel updateFields){
     editItem->shortDesc = updateFields.shortDesc;
     editItem->wearFlags = updateFields.wearFlags;
     editItem->weight = updateFields.weight;
+    editItem->roomId = updateFields.roomId;
+
+    if(prevRoomid != updateFields.roomId){
+        RoomModel oldRoom = loadRoom(prevRoomid);
+        for(int i =0; i < oldRoom.itemList.size(); i++){
+            if(oldRoom.itemList[i] == editItem->id){
+                oldRoom.itemList.erase(oldRoom.itemList.begin() + i);
+            }
+        }
+        modifyRoom(oldRoom.id, oldRoom);
+    }
+
+    if(updateFields.roomId != -1){
+        RoomModel newRoom = loadRoom(updateFields.roomId);
+        newRoom.itemList.push_back(editItem->id);
+        modifyRoom(newRoom.id, newRoom);
+
+    }
+
     editItem.save();
     db.close();
     return loadItem(itemId);
