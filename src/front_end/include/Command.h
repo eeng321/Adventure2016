@@ -49,6 +49,11 @@ public:
     StatusCode execute(std::string& result, const std::vector<std::string>& args);
 };
 
+class TalkCommand : public Command {
+public:
+    StatusCode execute(std::string& result, const std::vector<std::string>& args);
+};
+
 class TakeCommand : public Command {
 public:
     StatusCode execute(std::string& result, const std::vector<std::string>& args);
@@ -75,6 +80,11 @@ public:
 };
 
 class SpellCommand : public Command {
+public:
+    StatusCode execute(std::string& result, const std::vector<std::string>& args);
+};
+
+class PiglatinCommand : public Command {
 public:
     StatusCode execute(std::string& result, const std::vector<std::string>& args);
 };

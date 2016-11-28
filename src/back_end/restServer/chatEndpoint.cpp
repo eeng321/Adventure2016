@@ -49,6 +49,8 @@ void ChatEndpoint::sendMessage(const Net::Rest::Request &request, Net::Http::Res
 
     try {
         MessageModel message = parser::messageDeserialize(request.body());
+        message.Timestamp = std::chrono::duration_cast<chrono::milliseconds>(chrono::steady_clock::now().time_since_epoch()).count();
+
         bufferMessage(message);
 
         auto messagesYaml = parser::messageVectorSerialize(_messageBuffer);

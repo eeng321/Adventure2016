@@ -5,7 +5,6 @@
 #include "display.h"
 #include "Controller.h"
 #include "userInput.h"
-#include "spawn.h"
 #include "Dictionary.h"
 
 
@@ -25,7 +24,6 @@ int main(int argc, char *argv[]) {
 
     }else if(loginMode == NEW_ACCOUNT_MENU_SELECTION){
         UserInput::createNewPlayerCredentials();
-        Spawn::initialSpawn();
     }
 
     //TODO: 100% faking the language parsing until actual parsing is done
@@ -39,12 +37,14 @@ int main(int argc, char *argv[]) {
     dictionary.insertIntoLanguageMap("where", "where");
     dictionary.insertIntoLanguageMap("take", "take");
     dictionary.insertIntoLanguageMap("look", "look");
+    dictionary.insertIntoLanguageMap("talk", "talk");
     dictionary.insertIntoLanguageMap("regarde", "look"); //This is french for Look. Will be the test for now
     dictionary.insertIntoLanguageMap("/s", "/s");
     dictionary.insertIntoLanguageMap("move", "move");
     dictionary.insertIntoLanguageMap("engage", "engage");
     dictionary.insertIntoLanguageMap("attack", "attack");
     dictionary.insertIntoLanguageMap("spell", "spell");
+    dictionary.insertIntoLanguageMap("piglatin", "piglatin");
 
     Display::createChatWindow();
     Display::createCombatWindow();
