@@ -3055,10 +3055,6 @@ RESETS:
   id: 3020
   slot: 16
 - action: object
-  comment: fountain at chat room
-  id: 3135
-  room: 1200
-- action: object
   comment: fountain at temple
   id: 3135
   room: 3005
