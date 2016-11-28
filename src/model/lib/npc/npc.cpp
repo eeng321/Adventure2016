@@ -78,6 +78,7 @@ void Npc::setModel(const NpcModel &model) {
     gold = model.gold;
     level = model.level;
     thac0 = model.thac0;
+    health = model.health;
 
     inventory.clear();
     for (int item : model.inventory) {
