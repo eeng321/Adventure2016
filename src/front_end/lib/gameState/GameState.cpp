@@ -18,6 +18,10 @@ std::string GameState::getPlayerId() {
     return player.getId().to_string();
 }
 
+std::string GameState::getPlayerName() {
+    return player.getUsername();
+}
+
 PlayerModel GameState::getPlayerModel() {
     return player.getModel();
 }
