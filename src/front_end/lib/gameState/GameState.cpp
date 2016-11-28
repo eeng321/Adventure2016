@@ -9,6 +9,8 @@ static int piglatinTimer = 0;
 static long piglatinTimeStamp = 0;
 
 Player GameState::player = Player(playerId(PLAYER_ID_NONE));
+Npc GameState::controlledNpc;
+bool GameState::swapped = false;
 
 GameState::GameState() {
 
@@ -76,4 +78,25 @@ long GameState::getPiglatinTimeStamp(){
 
 long GameState::setPiglatinTimeStamp(long timeStamp){
     piglatinTimeStamp = timeStamp;
+}
+
+bool GameState::isSwapped() {
+    return swapped;
+}
+
+void GameState::setSwapped(bool newSwapped) {
+    swapped = newSwapped;
+}
+
+Npc GameState::getControlledNpc() {
+    return controlledNpc;
+}
+
+void GameState::setControlledNpc(Npc npc) {
+    controlledNpc = npc;
+    swapped = true;
+}
+
+void GameState::resetControl() {
+    swapped = false;
 }

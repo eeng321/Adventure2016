@@ -229,7 +229,16 @@ StatusCode GlobalChatCommand::execute(std::string &result, const std::vector<std
 }
 
 StatusCode SwapCommand::execute(std::string& result, const std::vector<std::string>& args) {
-
+    if (args.size() < 1) {
+        result = "Swap with whom? Say \"look\" to see NPC IDs.";
+    }
+    std::string idString = args[0];
+    npcId id{stoi(idString)};
+    Npc npc;
+    Controller::getNpc(id, npc);
+    GameState::setControlledNpc(npc);
+    result = "Swapped with " + args[0];
+    return STATUS_OK;
 }
 
 StatusCode MoveCommand::execute(std::string& result, const std::vector<std::string>& args) {

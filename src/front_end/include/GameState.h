@@ -4,6 +4,7 @@
 #include <vector>
 #include "Player.h"
 #include "../../model/include/playerModel.h"
+#include "../../model/include/npc.h"
 
 class GameState {
 public:
@@ -24,8 +25,15 @@ public:
     static void initializePiglatinTimer();
     static long getPiglatinTimeStamp();
     static long setPiglatinTimeStamp(long timeStamp);
+    static bool isSwapped();
+    static void setSwapped(bool newSwapped);
+    static Npc getControlledNpc();
+    static void setControlledNpc(Npc npc);
+    static void resetControl();
 private:
     static Player player;
+    static Npc controlledNpc;
+    static bool swapped;
 };
 
 

@@ -50,6 +50,7 @@ int main(int argc, char *argv[]) {
     dictionary.insertIntoLanguageMap("attack", "attack");
     dictionary.insertIntoLanguageMap("spell", "spell");
     dictionary.insertIntoLanguageMap("piglatin", "piglatin");
+    dictionary.insertIntoLanguageMap("swap", "swap");
 
     Display::createChatWindow();
     Display::createCombatWindow();
