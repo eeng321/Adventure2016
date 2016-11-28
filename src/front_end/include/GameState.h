@@ -9,6 +9,7 @@ class GameState {
 public:
     GameState();
     static std::string getPlayerId();
+    static std::string getPlayerName();
     static PlayerModel getPlayerModel();
     static void setPlayerModel(PlayerModel model);
     static int getPlayerHealth();

@@ -219,7 +219,7 @@ StatusCode GlobalChatCommand::execute(std::string &result, const std::vector<std
     }
     MessageModel playerMessage;
     playerMessage.To = "global";
-    playerMessage.From = GameState::getPlayerId();
+    playerMessage.From = GameState::getPlayerName();
     playerMessage.Message = commandMessage;
     std::string postPayload = parser::messageSerialize(playerMessage);
 
@@ -340,7 +340,7 @@ StatusCode PiglatinCommand::execute(std::string& result, const std::vector<std::
     std::string toPlayer = args[0];
     MessageModel playerMessage;
     playerMessage.To = toPlayer;
-    playerMessage.From = GameState::getPlayerId();
+    playerMessage.From = GameState::getPlayerName();
     playerMessage.Message = PIG_LATIN_MESSAGE;
     std::string postPayload = parser::messageSerialize(playerMessage);
 
