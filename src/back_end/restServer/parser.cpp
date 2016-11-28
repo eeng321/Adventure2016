@@ -102,16 +102,24 @@ ItemModel parser::itemDeserializeFromNode(YAML::Node const &itemNode) {
     if(itemNode[ITEM_WEIGHT_KEY]){
         item.weight = itemNode[ITEM_WEIGHT_KEY].as<int>();
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2ba9605d2c09ff54db4b5094683bb037e0822589
     if(itemNode[ITEM_ROOM_ID_KEY]) {
         item.roomId = itemNode[ITEM_ROOM_ID_KEY].as<int>();
     }
     else{
         item.roomId = -1;
     }
+<<<<<<< HEAD
     return item;
 
 
+=======
+>>>>>>> 2ba9605d2c09ff54db4b5094683bb037e0822589
     return item;
+
 }
 
 std::string parser::playerSerialize(PlayerModel const &player) {
@@ -372,6 +380,13 @@ NpcModel parser::npcDeserializeFromNode(YAML::Node const &npcNode) {
     //TODO if npcNode[""].isDefined() ERROR CHECKING
     npc.npcId = npcNode[NPC_ID_KEY].as<int>();
 
+<<<<<<< HEAD
+=======
+    if(npcNode[NPC_ROOM_ID_KEY]){
+        npc.roomId = npcNode[NPC_ROOM_ID_KEY].as<int>();
+    }
+
+>>>>>>> 2ba9605d2c09ff54db4b5094683bb037e0822589
     npc.mainDesc = npcNode[NPC_MAINDESC_KEY].as<std::vector<std::string>>();
     npc.keywords = npcNode[NPC_KEYWORDS_KEY].as<std::vector<std::string>>();
     npc.longDesc = npcNode[NPC_LONGDESC_KEY].as<std::vector<std::string>>();
@@ -418,18 +433,11 @@ void parser::npcDeserializeAndAppendOptionals(NpcModel &npc, YAML::Node const &n
     }else{
         npc.thac0 = 0;
     }
-
-    if(npcNode[NPC_ROOM_ID_KEY]){
-        npc.roomId = npcNode[NPC_ROOM_ID_KEY].as<int>();
-    }
-    else {
-        npc.roomId = -1;
-    }
-
     if(npcNode[NPC_HEALTH_KEY]){
         npc.health = npcNode[NPC_HEALTH_KEY].as<int>();
     }else {
         npc.health = 100;
+
     }
     if(npcNode[NPC_ROOM_ID_KEY]){
         npc.roomId = npcNode[NPC_ROOM_ID_KEY].as<int>();

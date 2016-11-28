@@ -51,10 +51,12 @@ NpcModel loadNpc(int npcId){
     npc.gold = loadNpc->gold;
     npc.level = loadNpc->level;
     npc.thac0 = loadNpc->thac0;
-    npc.health = loadNpc->health;
     npc.roomId = loadNpc->roomId;
+    npc.health = loadNpc->health;
+
 
     db.close();
+
     return npc;
 }
 
@@ -85,7 +87,6 @@ NpcModel modifyNpc(int npcId, NpcModel updateFields){
     hiberlite::Database db;
     db.open("AdventureDatabase.db");
     hiberlite::bean_ptr<NpcModel> editNpc = db.loadBean<NpcModel>(npcId);
-
     int prevRoomId = editNpc->roomId;
     editNpc->health = updateFields.health;
     editNpc->hit = updateFields.hit;
@@ -94,14 +95,13 @@ NpcModel modifyNpc(int npcId, NpcModel updateFields){
     editNpc->roomId = updateFields.roomId;
 
     if (prevRoomId != updateFields.roomId){
-
         RoomModel oldRoom = loadRoom(prevRoomId);
         for (int i = 0; i < oldRoom.npcList.size(); i++ ){
             if(oldRoom.npcList[i] == editNpc.get_id()){
                 oldRoom.npcList.erase(oldRoom.npcList.begin()+ i);
             }
         }
-
+        modifyRoom(oldRoom.id, oldRoom);
     }
     if(updateFields.roomId == -1) {
 
@@ -113,6 +113,8 @@ NpcModel modifyNpc(int npcId, NpcModel updateFields){
 
     }
     editNpc.save();
+
+    db.close();
 
     return loadNpc(npcId);
 }

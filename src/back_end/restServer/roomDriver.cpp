@@ -70,6 +70,7 @@ RoomModel modifyRoom(int roomId, RoomModel updateFields){
     hiberlite::Database db;
     db.open("AdventureDatabase.db");
     auto sqlId = roomIdMap[roomId];
+
     hiberlite::bean_ptr<RoomModel> editRoom = db.loadBean<RoomModel>(sqlId);
 
     editRoom->id = updateFields.id;
@@ -89,6 +90,8 @@ bool removeRoom(int roomId){
     hiberlite::Database db;
     db.open("AdventureDatabase.db");
     vector< hiberlite::bean_ptr<RoomModel> > listRooms=db.getAllBeans<RoomModel>();
+    
+    int numOfRooms = listRooms.size();
 
     for(auto demo : listRooms ) {
         if (demo->id == roomId) {
@@ -96,7 +99,7 @@ bool removeRoom(int roomId){
             demo.save();
         }
     }
-    int numOfRooms = listRooms.size();
+
     db.close();
 
     //printRoomDB();
