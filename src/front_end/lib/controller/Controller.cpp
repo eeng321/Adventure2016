@@ -86,9 +86,27 @@ StatusCode Controller::getRoom(roomId id, Room& room) {
 
 StatusCode Controller::moveToRoom(roomId id) {
     // TODO: try moving on server before updating the state
-    GameState::setLocation(id);
-    PlayerModel model = GameState::getPlayerModel();
-    Net::Http::Response response = client.Put(Controller::server + "player/" + GameState::getPlayerId(), parser::playerSerialize(model));
+    Net::Http::Response response;
+    // control NPC instead
+    if (GameState::isSwapped()) {
+        Npc npc = GameState::getControlledNpc();
+        Room room;
+        // update old room
+        getRoom(GameState::getLocation(), room);
+        room.removeNpc(npc.getNpcId());
+        response = client.Put(Controller::server + "room/" + GameState::getLocation().to_string(), parser::roomSerialize(room.getModel()));
+
+        // update new room
+        getRoom(id, room);
+        room.addNpc(npc.getNpcId());
+        response = client.Put(Controller::server + "room/" + id.to_string(), parser::roomSerialize(room.getModel()));
+    }
+    else {
+        GameState::setLocation(id);
+        PlayerModel model = GameState::getPlayerModel();
+        response = client.Put(Controller::server + "player/" + GameState::getPlayerId(), parser::playerSerialize(model));
+    }
+
     if (response.code() != Net::Http::Code::Ok) {
         // TODO: handle
         return STATUS_SERVER_ERROR;
