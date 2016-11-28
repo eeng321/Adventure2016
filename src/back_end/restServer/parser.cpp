@@ -429,8 +429,9 @@ void parser::npcDeserializeAndAppendOptionals(NpcModel &npc, YAML::Node const &n
 
     if(npcNode[NPC_HEALTH_KEY]){
         npc.health = npcNode[NPC_HEALTH_KEY].as<int>();
-    }else{
+    }else {
         npc.health = 100;
+    }
 
     if(npcNode[NPC_ROOM_ID_KEY]){
         npc.roomId = npcNode[NPC_ROOM_ID_KEY].as<int>();
