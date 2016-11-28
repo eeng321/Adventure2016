@@ -60,7 +60,7 @@ StatusCode moveInDirection(std::string &result, Direction d) {
 
 StatusCode HelpCommand::execute(std::string& result, const std::vector<std::string>& args) {
     result = "You can say:\n";
-    result += "help whoami whereami north east south west look take quit";
+    result += "help where north east south west look take engage quit";
     return STATUS_OK;
 }
 
@@ -311,7 +311,7 @@ StatusCode SpellCommand::execute(std::string& result, const std::vector<std::str
             spellCasted = bookOfSpells->getSpell(commandArg);
         }
         if(spellCasted.getSpellName().compare("") == 0) {
-            Display::addStringToCombatWindow("There is no spell of that name!");
+            Display::addStringToCombatWindow("There is no spell of that name! Possible spells: fireball, bodyslam, meditate, trip.");
             code = STATUS_OK;
         }
         else {
