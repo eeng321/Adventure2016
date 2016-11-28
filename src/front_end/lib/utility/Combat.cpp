@@ -18,10 +18,6 @@ StatusCode Combat::playerAttacksNPC(std::string& result) {
     Controller::getNpc(id, engagedNpc);
     auto damageDone = 10; //Can add modifiers to this later with weapons but let us assumes fistacuffs were used
     auto npcHealth = engagedNpc.getHealth();
-    std::string printNpcHealth = std::to_string(npcHealth);
-    memset(&combatString[0], 0, sizeof(combatString));
-    strcpy(combatString, printNpcHealth.c_str());
-    Display::addStringToCombatWindow(combatString);
     auto newNpcHealth = npcHealth - damageDone;
     StatusCode code;
 
@@ -44,9 +40,12 @@ StatusCode Combat::playerAttacksNPC(std::string& result) {
     } else {
         engagedNpc.setHealth(newNpcHealth);
         code = Controller::putNpc(engagedNpc, result);
-        //Combat::npcAttacksPlayer();
+        Combat::npcAttacksPlayer();
     }
-
+    std::string printNpcHealth = "NPC Health: " + std::to_string(newNpcHealth);
+    memset(&combatString[0], 0, sizeof(combatString));
+    strcpy(combatString, printNpcHealth.c_str());
+    Display::addStringToCombatWindow(combatString);
 
     return code;
 }
@@ -66,9 +65,11 @@ void Combat::npcAttacksPlayer() {
         auto newPlayerHealth = playerHealth - damageDone;
 
         std::stringstream combatDamageString;
-        combatDamageString << "The NPC did" << damageDone << " damage to you";
+        combatDamageString << "The NPC did " << damageDone << " damage to you";
         std::string finalCombatString = combatDamageString.str();
+        memset(&combatString[0], 0, sizeof(combatString));
         strcpy(combatString, finalCombatString.c_str());
+        Display::addStringToCombatWindow(combatString);
 
         if(newPlayerHealth <= 0) {
             newPlayerHealth = 0;
@@ -81,6 +82,10 @@ void Combat::npcAttacksPlayer() {
             //TODO: respawn player at default room
         }
         GameState::setPlayerHealth(newPlayerHealth);
+        std::string printPlayerHealth = "Player Health: " + std::to_string(newPlayerHealth);
+        memset(&combatString[0], 0, sizeof(combatString));
+        strcpy(combatString, printPlayerHealth.c_str());
+        Display::addStringToCombatWindow(combatString);
     }
 }
 
