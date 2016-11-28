@@ -95,9 +95,9 @@ StatusCode Combat::spellCast(int castorEffect, int victimEffect, std::string& re
     Npc engagedNpc;
     Controller::getNpc(id, engagedNpc);
     auto playerHealth = GameState::getPlayerHealth();
-    auto newPlayerHealth = playerHealth - castorEffect;
+    auto newPlayerHealth = playerHealth + castorEffect;
     auto npcHealth = engagedNpc.getHealth();
-    auto newNpcHealth = npcHealth - victimEffect;
+    auto newNpcHealth = npcHealth + victimEffect;
     StatusCode code;
 
     std::stringstream combatDamageNpcString;
@@ -120,6 +120,7 @@ StatusCode Combat::spellCast(int castorEffect, int victimEffect, std::string& re
     else {
         engagedNpc.setHealth(newNpcHealth);
         code = Controller::putNpc(engagedNpc, result);
+        Combat::npcAttacksPlayer();
     }
 
     std::stringstream combatDamagePlayerString;
@@ -138,6 +139,12 @@ StatusCode Combat::spellCast(int castorEffect, int victimEffect, std::string& re
         GameState::setAttackFlag(false);
         //TODO: respawn player at default room
     }
+
+    std::string printNpcHealth = "NPC Health: " + std::to_string(newNpcHealth);
+    memset(&combatString[0], 0, sizeof(combatString));
+    strcpy(combatString, printNpcHealth.c_str());
+    Display::addStringToCombatWindow(combatString);
+
     GameState::setPlayerHealth(newPlayerHealth);
     return code;
 }
