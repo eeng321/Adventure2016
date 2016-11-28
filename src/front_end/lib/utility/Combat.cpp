@@ -18,6 +18,10 @@ StatusCode Combat::playerAttacksNPC(std::string& result) {
     Controller::getNpc(id, engagedNpc);
     auto damageDone = 10; //Can add modifiers to this later with weapons but let us assumes fistacuffs were used
     auto npcHealth = engagedNpc.getHealth();
+    std::string printNpcHealth = std::to_string(npcHealth);
+    memset(&combatString[0], 0, sizeof(combatString));
+    strcpy(combatString, printNpcHealth.c_str());
+    Display::addStringToCombatWindow(combatString);
     auto newNpcHealth = npcHealth - damageDone;
     StatusCode code;
 

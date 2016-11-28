@@ -329,6 +329,7 @@ StatusCode SpellCommand::execute(std::string& result, const std::vector<std::str
         }
     }
     return code;
+}
 
 StatusCode PiglatinCommand::execute(std::string& result, const std::vector<std::string>& args){
 //    std::string commandMessage = "";
