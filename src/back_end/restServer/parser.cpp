@@ -102,7 +102,6 @@ ItemModel parser::itemDeserializeFromNode(YAML::Node const &itemNode) {
     if(itemNode[ITEM_WEIGHT_KEY]){
         item.weight = itemNode[ITEM_WEIGHT_KEY].as<int>();
     }
-
     if(itemNode[ITEM_ROOM_ID_KEY]) {
         item.roomId = itemNode[ITEM_ROOM_ID_KEY].as<int>();
     }
@@ -432,7 +431,6 @@ void parser::npcDeserializeAndAppendOptionals(NpcModel &npc, YAML::Node const &n
     }else {
         npc.health = 100;
     }
-
     if(npcNode[NPC_ROOM_ID_KEY]){
         npc.roomId = npcNode[NPC_ROOM_ID_KEY].as<int>();
     }
