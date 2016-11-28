@@ -57,6 +57,8 @@ public:
 
     static std::string getPlayerId();
 
+    static void deleteNPC(npcId npc);
+
     static StatusCode getNpc(npcId id, Npc& npc);
     static StatusCode putNpc(Npc& npc, std::string &result);
 

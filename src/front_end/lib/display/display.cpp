@@ -5,6 +5,7 @@
 #include <iostream>
 #include <unistd.h>
 #include "display.h"
+#include <signal.h>
 #include "piglatin.h"
 
 static int max_x = 0;
@@ -56,8 +57,9 @@ void Display::initDisplay() {
     wclear(mainWindow);
     curs_set(TRUE);
     getmaxyx(stdscr, max_y, max_x);
-    mainWindow = createNewWindow(Display::getScreenHeight()/2, (Display::getScreenWidth()/2)-2, WINDOW_START_Y, WINDOW_START_X);
+    mainWindow = createNewWindow(Display::getScreenHeight()/2+7, (Display::getScreenWidth()/2)-2, WINDOW_START_Y, WINDOW_START_X);
     scrollok(mainWindow, TRUE);
+    signal(SIGWINCH, NULL);
     wprintw(mainWindow, "> ");
     wrefresh(mainWindow);
 }
@@ -132,7 +134,7 @@ void Display::updateChatWindow() {
 }
 
 void Display::createCombatWindow() {
-    combatWindow = createNewWindow((Display::getScreenHeight()/2)+2, (Display::getScreenWidth()/2)-2, (Display::getScreenHeight()/2)+3, (Display::getScreenWidth()/2)+2);
+    combatWindow = createNewWindow((Display::getScreenHeight()/2)-2, (Display::getScreenWidth()/2)-2, (Display::getScreenHeight()/2)+1, (Display::getScreenWidth()/2)+2);
     scrollok(combatWindow, TRUE);
     wrefresh(combatWindow);
 }
@@ -145,6 +147,10 @@ void Display::addStringToCombatWindow(const char* sentence) {
     wprintw(combatWindow, str.c_str());
     wprintw(combatWindow, "\n");
     wrefresh(combatWindow);
+}
+
+void Display::clearCombatWindow() {
+    wclear(combatWindow);
 }
 
 int Display::createLoginMenu() {

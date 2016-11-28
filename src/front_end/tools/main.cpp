@@ -42,6 +42,8 @@ int main(int argc, char *argv[]) {
     dictionary.insertIntoLanguageMap("/s", "/s");
     dictionary.insertIntoLanguageMap("move", "move");
     dictionary.insertIntoLanguageMap("engage", "engage");
+    dictionary.insertIntoLanguageMap("attack", "attack");
+    dictionary.insertIntoLanguageMap("spell", "spell");
     dictionary.insertIntoLanguageMap("piglatin", "piglatin");
 
     Display::createChatWindow();

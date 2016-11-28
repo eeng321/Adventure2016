@@ -1,6 +1,8 @@
 //
 // Created by curtis on 23/11/16.
 //
+#ifndef ADVENTURE2016_SPELLBOOK_H
+#define ADVENTURE2016_SPELLBOOK_H
 
 #include <string>
 #include <map>
@@ -35,3 +37,5 @@ public:
 private:
     std::map<std::string, Spell> spellBook;
 };
+
+#endif //ADVENTURE2016_SPELLBOOK_H

@@ -135,6 +135,10 @@ StatusCode Controller::putNpc(Npc& npc, std::string& result) {
     return STATUS_OK;
 }
 
+void Controller::deleteNPC(npcId npc) {
+    Net::Http::Response response = client.Delete(Controller::server + "npc/" + npc.to_string());
+}
+
 std::string Controller::getPlayerId() {
     return GameState::getPlayerId();
 }

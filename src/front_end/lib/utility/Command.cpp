@@ -10,10 +10,11 @@
 #include "GameState.h"
 #include "../../../model/include/room.h"
 #include <boost/algorithm/string/join.hpp>
+#include "spellbook.h"
+#include "spell.h"
 #include <string>
 #include <vector>
 #include "piglatin.h"
-
 
 using std::vector;
 
@@ -257,11 +258,11 @@ StatusCode EngageCommand::execute(std::string& result, const std::vector<std::st
         }
     }
     if (npcFound) {
+        Display::clearCombatWindow();
         GameState::setAttackFlag(true);
         std::string engagedMsg = "You are now engaged in combat with " + engagedNPC;
         strcpy(commandString, engagedMsg.c_str());
         Display::addStringToCombatWindow(commandString);
-        //TODO: Create a thread man...somewhere
     }
     else {
         std::string noNPCFound = "There is no one with that name to engage in combat with!";
@@ -274,7 +275,6 @@ StatusCode EngageCommand::execute(std::string& result, const std::vector<std::st
 StatusCode AttackCommand::execute(std::string& result, const std::vector<std::string>& args) {
     char commandString[MAX_CHAR_LIMIT];
     StatusCode code;
-    npcId notAllowed = 0;
     if (!GameState::inCombat()) {
         std::string noNPCFound = "You are not engaged in combat with anyone.";
         strcpy(commandString, noNPCFound.c_str());
@@ -283,6 +283,50 @@ StatusCode AttackCommand::execute(std::string& result, const std::vector<std::st
     }
     else {
         code = Combat::playerAttacksNPC(result);
+    }
+    return code;
+}
+
+StatusCode SpellCommand::execute(std::string& result, const std::vector<std::string>& args) {
+    char commandString[MAX_CHAR_LIMIT];
+    StatusCode code;
+    if (!GameState::inCombat()) {
+        std::string noNPCFound = "You are not engaged in combat with anyone.";
+        strcpy(commandString, noNPCFound.c_str());
+        Display::addStringToCombatWindow(commandString);
+        code = STATUS_OK;
+    }
+    else {
+        std::string commandArg = "";
+        Spell spellCasted;
+        SpellBook* bookOfSpells = new SpellBook();
+        for(const std::string s : args) {
+            commandArg += s;
+        }
+        auto missOrHit = (rand()%10) + 1;
+        if (missOrHit == 9) {
+            spellCasted = bookOfSpells->getSpell("trip");
+        }
+        else {
+            spellCasted = bookOfSpells->getSpell(commandArg);
+        }
+        if(spellCasted.getSpellName().compare("") == 0) {
+            Display::addStringToCombatWindow("There is no spell of that name!");
+            code = STATUS_OK;
+        }
+        else {
+            int castorEffect = spellCasted.getCasterEffect();
+            int victimEffect = spellCasted.getVictimEffect();
+            std::string spellName = "You just cast " + spellCasted.getSpellName();
+            memset(&commandString[0], 0, sizeof(commandString));
+            strcpy(commandString, spellName.c_str());
+            Display::addStringToCombatWindow(commandString);
+            std::string spellDesc = spellCasted.getMessage();
+            memset(&commandString[0], 0, sizeof(commandString));
+            strcpy(commandString, spellDesc.c_str());
+            Display::addStringToCombatWindow(commandString);
+            code = Combat::spellCast(castorEffect, victimEffect, result);
+        }
     }
     return code;
 }
