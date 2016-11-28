@@ -74,6 +74,11 @@ public:
     StatusCode execute(std::string& result, const std::vector<std::string>& args);
 };
 
+class PiglatinCommand : public Command {
+public:
+    StatusCode execute(std::string& result, const std::vector<std::string>& args);
+};
+
 ///////////////// DEBUG
 class MoveCommand : public Command {
     StatusCode execute(std::string& result, const std::vector<std::string>& args);
@@ -82,5 +87,7 @@ class MoveCommand : public Command {
 
 
 StatusCode moveInDirection(std::string &result, Direction d);
+std::string showNpcs(Room& room);
+std::string showItems(Room& room);
 
 #endif //ADVENTURE2016_COMMAND_H

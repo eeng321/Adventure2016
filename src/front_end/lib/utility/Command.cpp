@@ -12,7 +12,10 @@
 #include <boost/algorithm/string/join.hpp>
 #include <string>
 #include <vector>
+#include "piglatin.h"
 
+
+using std::vector;
 
 StatusCode NorthCommand::execute(std::string &result, const std::vector<std::string>& args) {
     return moveInDirection(result, Direction::north);
@@ -31,14 +34,14 @@ StatusCode WestCommand::execute(std::string& result, const std::vector<std::stri
 }
 
 StatusCode moveInDirection(std::string &result, Direction d) {
-    if(!GameState::inCombat()) {
-        roomId currentRoom = GameState::getLocation();
+    if (!GameState::inCombat()) {
+        roomId currentRoomId = GameState::getLocation();
         Room room;
-        Controller::getRoom(currentRoom, room);
+        Controller::getRoom(currentRoomId, room);
         try {
-            roomId nextRoom = room.getRoomInDirection(d);
-            Controller::moveToRoom(nextRoom);
-            Controller::getRoom(nextRoom, room);
+            roomId nextRoomId = room.getRoomInDirection(d);
+            Controller::moveToRoom(nextRoomId);
+            Controller::getRoom(nextRoomId, room);
             result += boost::algorithm::join(room.getDescription(), " ") + "\n";
             return STATUS_OK;
         }
@@ -46,7 +49,8 @@ StatusCode moveInDirection(std::string &result, Direction d) {
             result = "You cannot move in this direction.";
             return STATUS_OK;
         }
-    } else {
+    }
+    else {
         Display::addStringToCombatWindow("You cannot move while in combat! Stand and fight!");
         return STATUS_OK;
     }
@@ -107,16 +111,38 @@ StatusCode LookCommand::execute(std::string& result, const std::vector<std::stri
     roomId currentRoomId = GameState::getLocation();
     Room room;
     Controller::getRoom(currentRoomId, room);
-    std::vector<npcId> npcs = room.getNpcList();
-    result = "You see NPCs ";
-    for(auto & npc : npcs) {
-        result += npc.to_string() + " ";
-    }
-    if(npcs.size() == 0) {
-        result = "You see no NPCs";
-    }
+
+    result += "You are here: " + boost::algorithm::join(room.getDescription(), " ") + "\n";
+    result += "Others in the room:\n" + showNpcs(room) + "\n\n";
+    result += "Items here:\n" + showItems(room) + "\n\n";
+
     return STATUS_OK;
 }
+
+std::string showNpcs(Room& room) {
+    // TODO: error checking
+    vector<npcId> npcIds = room.getNpcList();
+    std::string out;
+    for (const npcId& n : npcIds) {
+        Npc npc;
+        Controller::getNpc(n, npc);
+        out += boost::algorithm::join(npc.getLongDesc(), "\n") + "\n";
+    }
+    return out;
+}
+
+std::string showItems(Room& room) {
+    // TODO: error checking
+    vector<itemId> itemIds = room.getItemList();
+    std::string out;
+    for (const itemId& i : itemIds) {
+        Item item;
+        Controller::getItem(i, item);
+        out += boost::algorithm::join(item.getLongDesc(), "\n") + "\n";
+    }
+    return out;
+}
+
 StatusCode TakeCommand::execute(std::string& result, const std::vector<std::string>& args) {
     // TODO
     result = "";
@@ -154,7 +180,7 @@ StatusCode MoveCommand::execute(std::string& result, const std::vector<std::stri
 StatusCode EngageCommand::execute(std::string& result, const std::vector<std::string>& args) {
     char commandString[MAX_CHAR_LIMIT];
     std::string commandArg = "";
-    for(const std::string s : args) {
+    for (const std::string s : args) {
         commandArg += s;
     }
     roomId currentRoomId = GameState::getLocation();
@@ -163,7 +189,7 @@ StatusCode EngageCommand::execute(std::string& result, const std::vector<std::st
     std::vector<npcId> npcs = room.getNpcList();
     bool npcFound = false;
     std::string engagedNPC = "";
-    for(auto & npc : npcs) {
+    for (auto& npc : npcs) {
         if(commandArg.compare(npc.to_string()) == 0){
             npcFound = true;
             GameState::setEngagedInCombatWith(npc);
@@ -171,13 +197,14 @@ StatusCode EngageCommand::execute(std::string& result, const std::vector<std::st
             break;
         }
     }
-    if(npcFound) {
+    if (npcFound) {
         GameState::setAttackFlag(true);
         std::string engagedMsg = "You are now engaged in combat with " + engagedNPC;
         strcpy(commandString, engagedMsg.c_str());
         Display::addStringToCombatWindow(commandString);
         //TODO: Create a thread man...somewhere
-    } else {
+    }
+    else {
         std::string noNPCFound = "There is no one with that name to engage in combat with!";
         strcpy(commandString, noNPCFound.c_str());
         Display::addStringToCombatWindow(commandString);
@@ -189,7 +216,7 @@ StatusCode AttackCommand::execute(std::string& result, const std::vector<std::st
     char commandString[MAX_CHAR_LIMIT];
     StatusCode code;
     npcId notAllowed = 0;
-    if(!GameState::inCombat()) {
+    if (!GameState::inCombat()) {
         std::string noNPCFound = "You are not engaged in combat with anyone.";
         strcpy(commandString, noNPCFound.c_str());
         Display::addStringToCombatWindow(commandString);
@@ -200,3 +227,21 @@ StatusCode AttackCommand::execute(std::string& result, const std::vector<std::st
     }
     return code;
 }
+
+StatusCode PiglatinCommand::execute(std::string& result, const std::vector<std::string>& args){
+//    std::string commandMessage = "";
+//    for(const std::string s : args) {
+//        commandMessage += s + " ";
+//    }
+    std::string toPlayer = args[0];
+    MessageModel playerMessage;
+    playerMessage.To = toPlayer;
+    playerMessage.From = GameState::getPlayerId();
+    playerMessage.Message = PIG_LATIN_MESSAGE;
+    std::string postPayload = parser::messageSerialize(playerMessage);
+
+    auto statusCode = Controller::sendGlobalMessage(postPayload, result);
+    result = "";
+    return statusCode;
+}
+

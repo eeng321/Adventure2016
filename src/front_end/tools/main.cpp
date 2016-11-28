@@ -5,11 +5,18 @@
 #include "display.h"
 #include "Controller.h"
 #include "userInput.h"
-#include "spawn.h"
 #include "Dictionary.h"
 
-int main() {
+
+int main(int argc, char *argv[]) {
     bool keepPlaying = true;
+
+    //Controller ctrlr = Controller();
+    if (argc >= 3) {
+         Controller::server = "http://" + std::string(argv[1]) + ":" + std::string(argv[2]) + "/";
+    }
+
+    // TODO: We should have a check right away whether the user is connected to a server
 
     int loginMode = Display::createLoginMenu();
     if(loginMode == LOGIN_MENU_SELECTION) {
@@ -17,7 +24,6 @@ int main() {
 
     }else if(loginMode == NEW_ACCOUNT_MENU_SELECTION){
         UserInput::createNewPlayerCredentials();
-        Spawn::initialSpawn();
     }
 
     //TODO: 100% faking the language parsing until actual parsing is done
@@ -35,6 +41,7 @@ int main() {
     dictionary.insertIntoLanguageMap("/s", "/s");
     dictionary.insertIntoLanguageMap("move", "move");
     dictionary.insertIntoLanguageMap("engage", "engage");
+    dictionary.insertIntoLanguageMap("piglatin", "piglatin");
 
     Display::createChatWindow();
     Display::createCombatWindow();

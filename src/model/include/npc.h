@@ -53,7 +53,8 @@ public:
     void incrementLevel();
     void addExp(int expAdded);
     void setLocation(roomId id);
-    void deceaseHealth(int change);
+    void setHealth(int health);
+    void decreaseHealth(int change);
     void increaseHealth(int change);
 
 private:
