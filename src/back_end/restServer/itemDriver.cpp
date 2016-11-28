@@ -63,6 +63,7 @@ ItemModel loadItem(int itemId){
     item.shortDesc = demo->shortDesc;
     item.wearFlags = demo->wearFlags;
     item.weight = demo->weight;
+    item.roomId = demo ->roomId;
     db.close();
     return item;
 }

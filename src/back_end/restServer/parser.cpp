@@ -102,9 +102,15 @@ ItemModel parser::itemDeserializeFromNode(YAML::Node const &itemNode) {
     if(itemNode[ITEM_WEIGHT_KEY]){
         item.weight = itemNode[ITEM_WEIGHT_KEY].as<int>();
     }
-    if(itemNode[ITEM_ROOM_ID_KEY]){
+
+    if(itemNode[ITEM_ROOM_ID_KEY]) {
         item.roomId = itemNode[ITEM_ROOM_ID_KEY].as<int>();
     }
+    else{
+        item.roomId = -1;
+    }
+    return item;
+
 
     return item;
 }
