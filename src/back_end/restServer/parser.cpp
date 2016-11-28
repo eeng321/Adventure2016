@@ -2,7 +2,7 @@
 #include "parser.h"
 #include <iostream>
 #include <fstream>
-
+#include <string>
 
 std::string parser::itemSerialize(ItemModel const &item) {
     YAML::Emitter out;
@@ -418,6 +418,11 @@ void parser::npcDeserializeAndAppendOptionals(NpcModel &npc, YAML::Node const &n
     }else{
         npc.thac0 = 0;
     }
+    if(npcNode[NPC_HEALTH_KEY]){
+        npc.health = npcNode[NPC_HEALTH_KEY].as<int>();
+    }else{
+        npc.health = 100;
+    }
 }
 
 std::string parser::npcSerialize(NpcModel const &npc) {
@@ -454,10 +459,10 @@ std::string parser::npcSerialize(NpcModel const &npc) {
     out << YAML::Value << npc.gold;
     out << YAML::Key << NPC_LEVEL_KEY;
     out << YAML::Value << npc.level;
-
+    out << YAML::Key << NPC_HEALTH_KEY;
+    out << YAML::Value << npc.health;
     out << YAML::Key << NPC_ROOM_ID_KEY;
     out << YAML::Value << npc.roomId;
-
 
     out << YAML::EndMap;
 
@@ -473,6 +478,8 @@ std::string parser::messageSerialize(MessageModel const &message) {
     out << YAML::Value << message.From;
     out << YAML::Key << MESSAGE_BODY;
     out << YAML::Value << message.Message;
+    out << YAML::Key << MESSAGE_TIMESTAMP;
+    out << YAML::Value << message.Timestamp;
     out << YAML::EndMap;
 
     return out.c_str();
@@ -485,6 +492,7 @@ MessageModel parser::messageDeserialize(const std::string &body) {
     message.To = node[MESSAGE_TO].as<std::string>();
     message.From = node[MESSAGE_FROM].as<std::string>();
     message.Message = node[MESSAGE_BODY].as<std::string>();
+//    message.Timestamp = node[MESSAGE_TIMESTAMP].as<long>();
 
     return message;
 }
@@ -497,6 +505,8 @@ YAML::Emitter& operator << (YAML::Emitter& out, const MessageModel &message) {
     out << YAML::Value << message.From;
     out << YAML::Key << parser::MESSAGE_BODY;
     out << YAML::Value << message.Message;
+    out << YAML::Key << parser::MESSAGE_TIMESTAMP;
+    out << YAML::Value << message.Timestamp;
     out << YAML::EndMap;
     return out;
 }
@@ -525,6 +535,7 @@ std::vector<MessageModel> parser::messageVectorDeserialize(std::string const &bo
         temp.To = message[MESSAGE_TO].as<std::string>();
         temp.From = message[MESSAGE_FROM].as<std::string>();
         temp.Message = message[MESSAGE_BODY].as<std::string>();
+        temp.Timestamp = message[MESSAGE_TIMESTAMP].as<long>();
         messageModels.push_back(temp);
     }
 
