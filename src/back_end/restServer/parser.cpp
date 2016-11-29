@@ -137,7 +137,12 @@ PlayerModel parser::playerDeserialize(std::string const &body) {
     PlayerModel player;
     player.loginName = playerNode[PLAYER_NAME_KEY].as<std::string>();
     player.playerId = playerNode[PLAYER_ID_KEY].as<int>();
-    player.roomId = playerNode[PLAYER_COORDINATE_KEY].as<int>();
+    if(playerNode[PLAYER_COORDINATE_KEY]) {
+        player.roomId = playerNode[PLAYER_COORDINATE_KEY].as<int>();
+    }
+    else{
+        player.roomId = -1;
+    }
     player.health = playerNode[PLAYER_HEALTH_KEY].as<int>();
     return player;
 

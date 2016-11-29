@@ -105,14 +105,14 @@ PlayerModel addPlayer(PlayerModel player){
     hiberlite::bean_ptr<PlayerModel> p = db.copyBean(player);
     p->playerId = p.get_id();
     player.playerId = p.get_id();
-    p.save();
+
     if(player.roomId != -1){
         RoomModel room = loadRoom(player.roomId);
         room.playerList.push_back(p->loginName);
         modifyRoom(room.id, room);
 
     }
-
+    p.save();
     db.close();
     return player;
 }
@@ -207,7 +207,7 @@ PlayerModel registerAccount(string username, string pw){
             return newPlayer; //return empty player object will return http error
         }
     }
-    newPlayer.roomId = 0;
+    newPlayer.roomId = -1;
     newPlayer.loginName = username;
     newPlayer.health = 100;
     //username unused, create player
