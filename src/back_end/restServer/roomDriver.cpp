@@ -27,7 +27,7 @@ void printRoomDB(){
                 cout << "[ExtendedDescription keywords = " << keyword << "     ";
 
             }
-            }
+        }
     }
 }
 
